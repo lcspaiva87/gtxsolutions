@@ -1,13 +1,21 @@
-import { configureStore, createSlice } from "@reduxjs/toolkit";
-import {useSelector,TypedUseSelectorHook} from "react-redux"
-import { ModalSlice } from "./slices/modalContainer.slice";
 
+import { create } from "zustand";
 
-export const store = configureStore({
-  reducer: {
-    modalContainer: ModalSlice.reducer,
-  },
+export interface ModalIsOpen {
+  isOpen: boolean;
+  openModal: () => void;
+  closeModal: () => void;
+}
+export const useStore = create<ModalIsOpen>((set, get) => {
+  return {
+    isOpen: false,
+    openModal: () => {
+      set({ isOpen: true });
+    },
+    closeModal: () => {
+      set({ isOpen: false });
+    },
+  };
 });
 
-export type RootState = ReturnType <typeof store.getState>
-export const useAppSelector:TypedUseSelectorHook<RootState> = useSelector
+

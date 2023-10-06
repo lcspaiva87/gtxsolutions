@@ -1,12 +1,11 @@
-import { closeModal } from "@/store/slices/modalContainer.slice";
 import Modal from "../../modal/container";
-import { useAppSelector } from "@/store";
-import { useDispatch } from "react-redux";
 import { useState } from "react";
-import { Icons } from "@/components/icons";
 import { UniqueIdentifier } from "@dnd-kit/core";
 import Input from "@/components/ui/Input";
 import { v4 as uuidv4 } from "uuid";
+
+import { useStore } from "@/store";
+
 type DNDType = {
   id: UniqueIdentifier;
   title: string;
@@ -16,13 +15,10 @@ type DNDType = {
   }[];
 };
 export function ModalContainer() {
-  const modal = useAppSelector((store) => {
-    return store.modalContainer;
-  });
-  const dispatch = useDispatch();
+
   const [containerName, setContainerName] = useState("");
   const [containers, setContainers] = useState<DNDType[]>([]);
-
+  const {isOpen,closeModal} =useStore()
   const onAddContainer = () => {
     if (!containerName) return;
     const id = `container-${uuidv4()}`;
@@ -35,10 +31,10 @@ export function ModalContainer() {
       },
     ]);
     setContainerName("");
-    dispatch(closeModal());
+    closeModal();
   };
   return (
-    <Modal showModal={modal} setShowModal={() => dispatch(closeModal())}>
+    <Modal showModal={isOpen} setShowModal={() => closeModal()}>
       <div className="flex flex-col w-full items-start gap-y-4">
         <h1 className="text-gray-800 text-3xl font-bold">
           Adicione Titulo do card
@@ -53,7 +49,7 @@ export function ModalContainer() {
       </div>
       <div className="flex justify-between gap-3 mt-3">
         <button
-          onClick={() => dispatch(closeModal())}
+          onClick={() => closeModal()}
           className="flex text-red-300 items-center gap-2 border border-red-300 p-2 rounded-lg hover:text-red-400 hover:border-red-400"
         >
           Cancelar

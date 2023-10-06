@@ -19,11 +19,11 @@ import {
 } from "@dnd-kit/core";
 import {ModalContainer} from "@/components/pages/dashboard/ModalContainer"
 import { Icons } from "@/components/icons";
+import { useStore } from "@/store";
 
 
 export default function Dashboard() {
-  const dispatch = useDispatch();
-
+  const {openModal} =useStore()
   return (
     <div className="mx-auto max-w-7xl py-10">
       <ModalContainer />
@@ -36,7 +36,7 @@ export default function Dashboard() {
             Filtro
           </button>
           <button
-            onClick={() => dispatch(openModal())}
+            onClick={() => openModal()}
             className="flex text-white bg-gray-900 items-center gap-2 border border-gray-50 p-2 rounded-lg hover:text-gray-100/25 hover:border-gray-400"
           >
             <Icons.Plus className="w-5 text-white" />
