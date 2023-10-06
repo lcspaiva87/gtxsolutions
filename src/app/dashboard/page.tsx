@@ -3,7 +3,6 @@ import Input from "@/components/ui/Input";
 import { v4 as uuidv4 } from "uuid";
 import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
-import { closeModal, openModal } from "@/store/slices/modalContainer.slice";
 import {
   DndContext,
   DragEndEvent,
@@ -19,11 +18,11 @@ import {
 } from "@dnd-kit/core";
 import {ModalContainer} from "@/components/pages/dashboard/ModalContainer"
 import { Icons } from "@/components/icons";
-import { useStore } from "@/store";
+import { useModalContainerStore } from "@/store/ModalContainerStore";
 
 
 export default function Dashboard() {
-  const {openModal} =useStore()
+  const {openModal} =useModalContainerStore()
   return (
     <div className="mx-auto max-w-7xl py-10">
       <ModalContainer />

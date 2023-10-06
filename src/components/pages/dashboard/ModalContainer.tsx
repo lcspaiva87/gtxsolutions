@@ -1,66 +1,75 @@
 import Modal from "../../modal/container";
-import { useState } from "react";
-import { UniqueIdentifier } from "@dnd-kit/core";
-import Input from "@/components/ui/Input";
 import { v4 as uuidv4 } from "uuid";
-
-import { useStore } from "@/store";
-
-type DNDType = {
-  id: UniqueIdentifier;
+import * as yup from "yup";
+import { useModalContainerStore } from "@/store/ModalContainerStore";
+import { InputCustomer } from "@/components/ui/inputs";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+type FormValues = {
   title: string;
-  items: {
-    id: UniqueIdentifier;
-    title: string;
-  }[];
 };
-export function ModalContainer() {
+const nameContainer = yup.object().shape({
+  title: yup.string().required("nome obrigatório"),
+});
 
-  const [containerName, setContainerName] = useState("");
-  const [containers, setContainers] = useState<DNDType[]>([]);
-  const {isOpen,closeModal} =useStore()
-  const onAddContainer = () => {
-    if (!containerName) return;
+export function ModalContainer() {
+  const { isOpen, closeModal, addContainer, containers } =useModalContainerStore();
+  const {
+    handleSubmit,
+    control,
+    setError,
+    reset,
+    formState: { errors },
+  } = useForm<FormValues>({
+    resolver: yupResolver(nameContainer),
+    defaultValues: {
+      title: "",
+    },
+  });
+  async function onSubmit({ title }: FormValues) {
     const id = `container-${uuidv4()}`;
-    setContainers([
-      ...containers,
-      {
-        id,
-        title: containerName,
-        items: [],
-      },
-    ]);
-    setContainerName("");
+    const newContainer = {
+      id: id,
+      title: title,
+      items: [],
+    };
+    addContainer(newContainer);
     closeModal();
-  };
+    reset({ title: '' });
+  }
+
+
   return (
     <Modal showModal={isOpen} setShowModal={() => closeModal()}>
-      <div className="flex flex-col w-full items-start gap-y-4">
-        <h1 className="text-gray-800 text-3xl font-bold">
-          Adicione Titulo do card
-        </h1>
-        <Input
-          type="text"
-          placeholder="Titulo"
-          name="containername"
-          value={containerName}
-          onChange={(e) => setContainerName(e.target.value)}
-        />
-      </div>
-      <div className="flex justify-between gap-3 mt-3">
-        <button
-          onClick={() => closeModal()}
-          className="flex text-red-300 items-center gap-2 border border-red-300 p-2 rounded-lg hover:text-red-400 hover:border-red-400"
-        >
-          Cancelar
-        </button>
-        <button
-          onClick={onAddContainer}
-          className="flex text-green-300 items-center gap-2 border border-green-300 p-2 rounded-lg hover:text-green-400 hover:border-green-600"
-        >
-          Adicionar
-        </button>
-      </div>
+      <form onSubmit={handleSubmit(onSubmit)} className="mt-6">
+        <div className="flex flex-col w-full items-start gap-y-4">
+          <h1 className="text-gray-800 text-3xl font-bold">
+            Adicione Titulo do card
+          </h1>
+          <InputCustomer
+            type="text"
+            name="title"
+            placeholder="Titulo do card"
+            required
+            control={control}
+            //disabled={loading}
+          />
+        </div>
+        <div className="flex justify-between gap-3 mt-3">
+          <button
+            onClick={() => closeModal()}
+            className="flex text-red-300 items-center gap-2 border border-red-300 p-2 rounded-lg hover:text-red-400 hover:border-red-400"
+          >
+            Cancelar
+          </button>
+          <button
+            type="submit"
+            className="flex text-green-300 items-center gap-2 border border-green-300 p-2 rounded-lg hover:text-green-400 hover:border-green-600"
+          >
+            Adicionar
+          </button>
+        </div>
+      </form>
     </Modal>
   );
 }
