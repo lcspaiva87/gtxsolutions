@@ -4,11 +4,13 @@ import { Envelope } from "./Envelope";
 import { User } from "./User";
 import {Search} from "./Search"
 import {Plus} from "./Plus"
+import {Chat} from "./Chat"
 export const Icons = {
   Eye,
   Lock,
   Envelope,
   User,
   Search,
-  Plus
+  Plus,
+  Chat
 };

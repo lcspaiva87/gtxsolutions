@@ -26,7 +26,7 @@ export function AdminLayout({ children }: { children: React.ReactNode }) {
           <SidebarItemMap />
         </div>
       </div>
-      <div className="flex flex-col flex-1">
+      <div className="w-full">
         <Header />
         {children}
       </div>

@@ -31,7 +31,7 @@ export function Header() {
     },
   });
   return (
-    <div className="bg-gray-900 w-full h-[5rem] justify-center items-center flex">
+    <div className="bg-gray-900  h-[5rem] justify-center items-center flex">
       <div className="w-[28rem]">
         <div
           className={clsx(
