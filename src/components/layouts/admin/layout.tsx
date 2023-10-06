@@ -1,5 +1,5 @@
 "use client";
-import { Header } from "@/components/dashboard/header";
+import { Header } from "@/components/pages/dashboard/header";
 import { SidebarItem } from "@/components/sidebarItem";
 import { siteSettings } from "@/settings/site.settings";
 import { Avatar } from "@radix-ui/themes";
