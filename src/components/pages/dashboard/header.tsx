@@ -1,7 +1,6 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { Icons } from "../../icons";
-import { InputCustomer } from "../../ui/inputs";
 import * as yup from "yup";
 import clsx from "clsx";
 

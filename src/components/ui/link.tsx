@@ -8,11 +8,11 @@ const Link: React.FC<
   > = ({ className, children, ...props }) => {
 
   return (
-    <Tooltip content={String(props.href)?.replace(/\//g, '')} align="center" >
+    // <Tooltip content={String(props.href)?.replace(/\//g, '')} align="center" >
     <NextLink {...props}>
       <h5 className={className}>{children}</h5>
     </NextLink>
-    </Tooltip>
+    // </Tooltip>
   );
 };
 
