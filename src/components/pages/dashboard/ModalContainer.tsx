@@ -5,6 +5,7 @@ import { useModalContainerStore } from "@/store/ModalContainerStore";
 import { InputCustomer } from "@/components/ui/inputs";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+
 type FormValues = {
   title: string;
 };
@@ -13,7 +14,7 @@ const nameContainer = yup.object().shape({
 });
 
 export function ModalContainer() {
-  const { isOpen, closeModal, addContainer, containers } =useModalContainerStore();
+  const { isOpen, closeModal, addContainer } =useModalContainerStore();
   const {
     handleSubmit,
     control,
