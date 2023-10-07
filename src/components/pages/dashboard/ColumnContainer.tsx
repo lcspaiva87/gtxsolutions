@@ -150,12 +150,12 @@ function ColumnContainer({
       </div>
       {/* Column footer */}
       <button
-        className="flex gap-2 items-center border-columnBackgroundColor border-2 rounded-md p-4 border-x-columnBackgroundColor hover:bg-mainBackgroundColor hover:text-rose-500 active:bg-black"
+        className="flex gap-2 text-white items-center border-columnBackgroundColor border-2 rounded-md p-4 border-x-columnBackgroundColor hover:bg-mainBackgroundColor hover:text-rose-500 active:bg-black"
         // onClick={() => {
         //   createTask(column.id);
         // }}
       >
-        <Icons.PlusIcon className="w-6" />
+        <Icons.PlusIcon className="w-6 color-gray-100" />
         Add task
       </button>
     </div>

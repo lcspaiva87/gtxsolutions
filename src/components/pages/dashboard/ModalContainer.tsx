@@ -24,7 +24,6 @@ ModalContainer() {
   const {
     handleSubmit,
     control,
-    setError,
     reset,
     formState: { errors },
   } = useForm<FormValues>({
@@ -59,7 +58,6 @@ ModalContainer() {
               placeholder="Titulo do card"
               required
               control={control}
-              // disabled={isLoading}
             />
           </div>
           <div className="flex justify-between gap-3 mt-3">
