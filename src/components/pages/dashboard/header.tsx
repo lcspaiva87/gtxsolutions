@@ -1,7 +1,6 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import { Icons } from "../icons";
-import { InputCustomer } from "../ui/inputs";
+import { Icons } from "../../icons";
 import * as yup from "yup";
 import clsx from "clsx";
 
@@ -31,7 +30,7 @@ export function Header() {
     },
   });
   return (
-    <div className="bg-gray-900 w-full h-[5rem] justify-center items-center flex">
+    <div className="bg-gray-900  h-[5rem] justify-center items-center flex">
       <div className="w-[28rem]">
         <div
           className={clsx(

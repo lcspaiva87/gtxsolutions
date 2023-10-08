@@ -1,4 +1,5 @@
 import { AdminLayout } from "@/components/layouts/admin/layout";
+import { QueryProvider } from "@/utils/QueryClientProvider";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
@@ -16,7 +17,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <AdminLayout>{children}</AdminLayout>
+
+          <AdminLayout>{children}</AdminLayout>
+
       </body>
     </html>
   );

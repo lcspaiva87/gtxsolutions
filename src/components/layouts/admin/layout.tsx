@@ -1,5 +1,5 @@
 "use client";
-import { Header } from "@/components/dashboard/header";
+import { Header } from "@/components/pages/dashboard/header";
 import { SidebarItem } from "@/components/sidebarItem";
 import { siteSettings } from "@/settings/site.settings";
 import { Avatar } from "@radix-ui/themes";
@@ -26,7 +26,7 @@ export function AdminLayout({ children }: { children: React.ReactNode }) {
           <SidebarItemMap />
         </div>
       </div>
-      <div className="flex flex-col flex-1">
+      <div className="w-full">
         <Header />
         {children}
       </div>
