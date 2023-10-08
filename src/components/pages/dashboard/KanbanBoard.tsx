@@ -11,10 +11,13 @@ import useColumns from "@/hooks/useColuns";
 import { Column } from "@/@types/Column";
 import { useEffect, useMemo, useState } from "react";
 import { SortableContext, arrayMove } from "@dnd-kit/sortable";
+import useTask from "@/hooks/useTask";
+
 export function KanbanBoard() {
   const { columns: colun } = useColumns();
+  const { task } = useTask();
   const [columns, setColumns] = useState(colun);
-  const columnsId = useMemo(() => columns.map((col) => col.id), [columns])
+  const columnsId = useMemo(() => columns.map((col) => col.id), [columns]);
   const [activeColumn, setActiveColumn] = useState<Column | null>(null);
   const sensors = useSensors(
     useSensor(PointerSensor, {
@@ -51,7 +54,11 @@ export function KanbanBoard() {
           <div className="flex gap-4">
             <SortableContext items={columnsId}>
               {columns.map((col) => (
-                <ColumnContainer key={col.id} column={col} />
+                <ColumnContainer
+                  key={col.id}
+                  column={col}
+                  tasks={task.filter((task) => task.columnId === col.id)}
+                />
               ))}
             </SortableContext>
           </div>

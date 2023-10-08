@@ -18,9 +18,8 @@ const nameContainer = yup.object().shape({
   title: yup.string().required("nome obrigatório"),
 });
 
-export function
-ModalContainer() {
-  const [isOpen,setIsOpen] = useState(false)
+export function ModalContainer() {
+  const [isOpen, setIsOpen] = useState(false);
   const {
     handleSubmit,
     control,
@@ -32,22 +31,22 @@ ModalContainer() {
       title: "",
     },
   });
-  const { refetch,} = useColumns();
+  const { refetch } = useColumns();
   async function onSubmit({ title }: FormValues) {
     const id = `container-${uuidv4()}`;
     await PostColumns({
       id: id,
       title: title,
-    })
+    });
     reset({ title: "" });
     setIsOpen(false);
-    refetch()
+    refetch();
   }
 
   return (
     <>
-      <Modal showModal={isOpen} setShowModal={() =>  setIsOpen(false)}>
-        <form onSubmit={handleSubmit(onSubmit)} className="mt-6">
+      <Modal showModal={isOpen} setShowModal={() => setIsOpen(false)}>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <div className="flex flex-col w-full items-start gap-y-4">
             <h1 className="text-gray-800 text-3xl font-bold">
               Adicione Titulo do card

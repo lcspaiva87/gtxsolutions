@@ -7,6 +7,7 @@ import { Plus } from "./Plus";
 import { Chat } from "./Chat";
 import { PlusIcon } from "./KanbanBoard/PlusIcon";
 import {TrashIcon} from "./KanbanBoard/TrashIcon";
+import {EditIcon} from "./KanbanBoard/EditIcon"
 export const Icons = {
   Eye,
   Lock,
@@ -16,5 +17,6 @@ export const Icons = {
   Plus,
   Chat,
   PlusIcon,
-  TrashIcon
+  TrashIcon,
+  EditIcon
 };

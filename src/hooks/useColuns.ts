@@ -1,8 +1,10 @@
 'use client'
 import { Column } from "@/@types/Column";
-import { fetchColumns } from "@/data/columns";
+
 import { useQuery } from "react-query";
 import { useEffect, useState } from "react";
+import { fetchColumns } from "@/data/columns";
+
 
 const useColumns = () => {
   const [columns, setColumns] = useState<Column[]>([]);

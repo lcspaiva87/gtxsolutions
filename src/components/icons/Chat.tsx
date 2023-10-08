@@ -6,8 +6,8 @@ export const Chat = ({ className }: { className?: string }) => {
       viewBox="0 0 24 24"
       stroke-width="1.5"
       stroke="currentColor"
-      width="16"
-      height="16"
+      width="20"
+      height="20"
       className={className}
     >
       <path
