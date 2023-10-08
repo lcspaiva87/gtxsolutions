@@ -111,6 +111,7 @@ function ColumnContainer({
         setShowModal={() => {
           setIsOpen(false);
         }}
+        idColumn={column.id}
         showModal={isOpen}
       />
       <div

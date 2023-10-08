@@ -1,6 +1,6 @@
 export type taskProps ={
   id: any;
-  columnId: string;
+  columnId: string | number;
   company: string;
   camera?: string;
   phone?: string;

@@ -139,7 +139,7 @@ function TaskCard({ task }: Props) {
             // }}
             className="stroke-white absolute right-4 top-1/3 -translate-y-1/2 bg-columnBackgroundColor p-2 rounded opacity-60 hover:opacity-100"
           >
-            <Icons.EditIcon className="w-6" />
+            <Icons.Eye className="w-6" />
           </button>
           <button
             // onClick={() => {

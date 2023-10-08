@@ -7,6 +7,7 @@ import * as yup from "yup";
 import { v4 as uuidv4 } from "uuid";
 import { useForm } from "react-hook-form";
 import { Dispatch, SetStateAction } from 'react';
+import useTask from "@/hooks/useTask";
 type FormValues = {
   company: string;
   camera: string;
@@ -29,9 +30,10 @@ const FormSchema = yup.object().shape({
 interface FormCreateTaskProps {
   showModal: boolean;
   setShowModal: Dispatch<SetStateAction<boolean>>;
+  idColumn: string | number
 }
-
-export function FormCreateTask({setShowModal,showModal}:FormCreateTaskProps) {
+export function FormCreateTask({setShowModal,showModal,idColumn}:FormCreateTaskProps) {
+  const {refetch} = useTask()
   const {
     handleSubmit,
     control,
@@ -66,10 +68,11 @@ export function FormCreateTask({setShowModal,showModal}:FormCreateTaskProps) {
         avatar:
           "https://images.unsplash.com/photo-1492633423870-43d1cd2775eb?&w=128&h=128&dpr=2&q=80",
         id: id,
-        columnId: "container-555671e6-665d-415d-a6de-1a692f92c4",
+        columnId: idColumn,
         priority: priority,
       });
       setShowModal(false);
+      refetch()
     } catch (error) {
       console.error("Ocorreu um erro ao enviar a tarefa:", error);
     }
