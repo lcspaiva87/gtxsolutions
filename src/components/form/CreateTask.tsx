@@ -46,6 +46,8 @@ export function FormCreateTask({setShowModal,showModal,idColumn}:FormCreateTaskP
       company: "",
       message: "",
       phone: "",
+      responsible:"",
+      priority:""
     },
   });
   async function onSubmit({

@@ -14,3 +14,8 @@ export const postTask= async ({camera,company,file,message,phone,responsible,ava
   return response
 
 };
+export const deleteTasID= async (id:number | string) => {
+  const response = await axios.delete(`${process.env.NEXT_PUBLIC_BASE_URL}/task/${id}`);
+  return response
+
+};

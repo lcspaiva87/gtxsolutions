@@ -3,7 +3,6 @@ import { getIcon } from "@/utils/get-icon";
 import * as sidebarIcons from "@/components/icons/sidebar";
 import { usePathname } from "next/navigation";
 import { cn } from "@/utils/utils";
-import { Tooltip } from "@radix-ui/themes";
 
 export const SidebarItem = ({ href, icon, label }: any) => {
   const pathname = usePathname();
