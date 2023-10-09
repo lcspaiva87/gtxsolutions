@@ -58,7 +58,7 @@ export function FormCreateTask({setShowModal,showModal,idColumn}:FormCreateTaskP
     responsible,
     priority,
   }: FormValues) {
-    const id = `container-${uuidv4()}`;
+    const id = uuidv4();
     try {
       await postTask({
         camera: camera,

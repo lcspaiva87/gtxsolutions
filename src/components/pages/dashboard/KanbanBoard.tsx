@@ -15,7 +15,7 @@ import { Column } from "@/@types/Column";
 import { useEffect, useMemo, useState } from "react";
 import { SortableContext, arrayMove } from "@dnd-kit/sortable";
 import useTask from "@/hooks/useTask";
-import { deleteTasID } from "@/data/tasks";
+import { deleteTasID, putTask } from "@/data/tasks";
 import { taskProps } from "@/@types/Task";
 import { createPortal } from "react-dom";
 import TaskCard from "@/app/dashboard/TaskCard";
@@ -43,6 +43,13 @@ export function KanbanBoard() {
   useEffect(() => {
     setTasks(task);
   }, [task]);
+
+  async function updateTaskColumn({id, columnId ,message, avatar,priority,company}:taskProps) {
+   await putTask({id, columnId ,message, avatar,priority,company})
+    refetch();
+  }
+
+
   function onDragEnd(event: DragEndEvent) {
     setActiveColumn(null);
     // setActiveTask(null);
@@ -104,14 +111,15 @@ export function KanbanBoard() {
     }
 
     const isOverAColumn = over.data.current?.type === "Column";
-
     // Im dropping a Task over a column
     if (isActiveATask && isOverAColumn) {
       setTasks((tasks) => {
         const activeIndex = tasks.findIndex((t) => t.id === activeId);
 
         tasks[activeIndex].columnId = overId;
-        console.log("DROPPING TASK OVER COLUMN", { activeIndex });
+        const { id ,message, avatar,priority,company} = tasks[activeIndex];
+        const newIDColum:any = tasks[activeIndex].columnId = overId
+        updateTaskColumn({id,columnId:newIDColum ,message, avatar,priority,company})
         return arrayMove(tasks, activeIndex, activeIndex);
       });
     }
@@ -153,7 +161,7 @@ export function KanbanBoard() {
                 // createTask={createTask}
                 deleteTask={deleteTask}
                 // updateTask={updateTask}
-                tasks={task.filter((task) => task.columnId === activeColumn.id)}
+                tasks={tasks.filter((task) => task.columnId === activeColumn.id)}
               />
             )}
             {activeTask && (
