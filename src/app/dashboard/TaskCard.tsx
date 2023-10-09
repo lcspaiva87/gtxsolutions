@@ -14,11 +14,11 @@ export type Column = {
 
 interface Props {
   task: taskProps;
-  // deleteTask: (id: Id) => void;
+  deleteTask: (id: string | number) => void;
   // updateTask: (id: Id, content: string) => void;
 }
 
-function TaskCard({ task }: Props) {
+function TaskCard({ task, deleteTask }: Props) {
   const [mouseIsOver, setMouseIsOver] = useState(false);
   const [editMode, setEditMode] = useState(false);
 
@@ -61,40 +61,6 @@ function TaskCard({ task }: Props) {
     );
   }
 
-  // if (editMode) {
-  //   return (
-  //     <div
-  //       ref={setNodeRef}
-  //       style={style}
-  //       {...attributes}
-  //       {...listeners}
-  //       className="bg-mainBackgroundColor p-2.5 h-[100px] min-h-[100px] items-center flex text-left rounded-xl hover:ring-2 hover:ring-inset hover:ring-rose-500 cursor-grab relative"
-  //     >
-  //       <div className="w-full resize-none border-none rounded bg-transparent text-white focus:outline-none">
-  //         {/* <textarea
-  //           className=" w-full resize-none border-none rounded bg-transparent text-white focus:outline-none"
-  //           value={task.message}
-  //           autoFocus
-  //           placeholder="Task content here"
-  //           onBlur={toggleEditMode}
-  //           onKeyDown={(e) => {
-  //             if (e.key === "Enter" && e.shiftKey) {
-  //               toggleEditMode();
-  //             }
-  //           }}
-
-  //           // onChange={(e) => updateTask(task.id, e.target.value)}
-  //         /> */}
-  //         <Avatar.Root className="AvatarRoot">
-  //           <Avatar.Fallback className="mx-auto object-cover rounded-full h-6 w-6 bg-gray-200 p-1 ">
-  //             PD
-  //           </Avatar.Fallback>
-  //         </Avatar.Root>
-  //       </div>
-  //     </div>
-  //   );
-  // }
-
   return (
     <div
       ref={setNodeRef}
@@ -102,7 +68,7 @@ function TaskCard({ task }: Props) {
       {...attributes}
       {...listeners}
       onClick={toggleEditMode}
-      className="bg-mainBackgroundColor p-2.5 h-[100px] min-h-[210px] flex flex-col  rounded-xl hover:ring-2 hover:ring-inset hover:ring-rose-500 cursor-grab relative task"
+      className="bg-mainBackgroundColor p-2.5 h-[100px] min-h-[150px] flex flex-col  rounded-xl hover:ring-2 hover:ring-inset hover:ring-rose-500 cursor-grab relative task"
       onMouseEnter={() => {
         setMouseIsOver(true);
       }}
@@ -110,9 +76,9 @@ function TaskCard({ task }: Props) {
         setMouseIsOver(false);
       }}
     >
-      <div className="">
-        <span className="bg-red-200 w-10 text-center rounded-lg text-red-400  block m-1 p-0.5 ">
-          hard
+      <div className=" m-1 ">
+        <span className="bg-blue-100 text-blue-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">
+          Default
         </span>
       </div>
 
@@ -134,17 +100,14 @@ function TaskCard({ task }: Props) {
       {mouseIsOver && (
         <>
           <button
-            // onClick={() => {
-            //   deleteTask(task.id);
-            // }}
             className="stroke-white absolute right-4 top-1/3 -translate-y-1/2 bg-columnBackgroundColor p-2 rounded opacity-60 hover:opacity-100"
           >
-            <Icons.EditIcon className="w-6" />
+            <Icons.Eye className="w-6" />
           </button>
           <button
-            // onClick={() => {
-            //   deleteTask(task.id);
-            // }}
+            onClick={() => {
+              deleteTask(task.id);
+            }}
             className="stroke-white absolute right-4 top-1/2 -translate-y-1/2 bg-columnBackgroundColor p-2 rounded opacity-60 hover:opacity-100"
           >
             <Icons.TrashIcon className="w-6" />

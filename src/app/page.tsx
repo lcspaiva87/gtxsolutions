@@ -1,5 +1,5 @@
 import { SignintoForm } from "@/components/form/SignintoForm";
-import { Avatar, Card, Flex } from "@radix-ui/themes";
+import { Avatar} from "@radix-ui/themes";
 
 export default function Home() {
   return (

@@ -13,7 +13,7 @@ export function AdminLayout({ children }: { children: React.ReactNode }) {
     </>
   );
   return (
-    <main className="flex">
+    <div className="flex">
       <div className=" bg-gray-900 w-[5rem] h-screen flex flex-col items-center ">
         <div className="w-12  mt-[2rem] rounded-lg justify-center flex flex-col gap-5">
           <Avatar
@@ -30,6 +30,6 @@ export function AdminLayout({ children }: { children: React.ReactNode }) {
         <Header />
         {children}
       </div>
-    </main>
+    </div>
   );
 }

@@ -3,16 +3,6 @@ import { SortableContext, useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { useMemo, useState } from "react";
 import { Icons } from "@/components/icons";
-import Modal from "@/components/modal/container";
-import { InputCustomer } from "@/components/ui/inputs";
-import { useForm } from "react-hook-form";
-
-import { transform } from "framer-motion";
-import { listeners } from "process";
-import style from "styled-jsx/style";
-
-import useTask from "@/hooks/useTask";
-import { postTask } from "@/data/tasks";
 import { FormCreateTask } from "@/components/form/CreateTask";
 import { taskProps } from "@/@types/Task";
 import TaskCard from "@/app/dashboard/TaskCard";
@@ -27,10 +17,9 @@ interface Props {
   column: Column;
   deleteColumn?: (id: Id) => void;
   updateColumn?: (id: Id, title: string) => void;
-
   createTask?: (columnId: Id) => void;
   updateTask?: (id: Id, content: string) => void;
-  deleteTask?: (id: Id) => void;
+  deleteTask: (id: number| string) => void;
   tasks: taskProps[];
 }
 
@@ -62,7 +51,7 @@ function ColumnContainer({
     return tasks.map((task) => task.id);
   }, [tasks]);
 
-  console.log(tasksIds);
+
   const {
     setNodeRef,
     attributes,
@@ -89,18 +78,7 @@ function ColumnContainer({
       <div
         ref={setNodeRef}
         style={style}
-        className="
-      bg-columnBackgroundColor
-      opacity-40
-      border-2
-      border-pink-500
-      w-[350px]
-      h-[500px]
-      max-h-[500px]
-      rounded-md
-      flex
-      flex-col
-      "
+        className="bg-columnBackgroundColor opacity-40 border-2 border-pink-500 w-[350px] h-[500px] max-h-[500px]rounded-md flex flex-col"
       ></div>
     );
   }
@@ -111,6 +89,7 @@ function ColumnContainer({
         setShowModal={() => {
           setIsOpen(false);
         }}
+        idColumn={column.id}
         showModal={isOpen}
       />
       <div
