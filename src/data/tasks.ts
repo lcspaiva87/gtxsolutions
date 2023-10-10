@@ -19,14 +19,11 @@ export const deleteTasID= async (id:number | string) => {
   return response
 
 };
-export const putTask= async ({id, columnId ,message, avatar,priority,company}:taskProps) => {
+export const pathTask= async ({id, columnId }:{id:string | number ,columnId:string  | number}) => {
 
   const response = await axios.put(`${process.env.NEXT_PUBLIC_BASE_URL}/task/${id}`,{
     columnId:columnId,
-    message,
-    avatar,
-    priority,
-    company
+
   });
   return response
 };
