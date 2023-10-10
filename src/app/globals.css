@@ -5,8 +5,11 @@ html,
 body,
 #root {
   @apply bg-black text-gray-400 box-border;
-}
 
+}
+body{
+  @apply overflow-x-hidden
+}
 ::-webkit-scrollbar {
   width: 4px;
 }

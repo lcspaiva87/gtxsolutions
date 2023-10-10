@@ -61,6 +61,7 @@ function TaskCard({ task, deleteTask }: Props) {
     );
   }
 
+
   return (
     <div
       ref={setNodeRef}

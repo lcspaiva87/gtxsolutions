@@ -15,7 +15,7 @@ import { Column } from "@/@types/Column";
 import { useEffect, useMemo, useState } from "react";
 import { SortableContext, arrayMove } from "@dnd-kit/sortable";
 import useTask from "@/hooks/useTask";
-import { deleteTasID, putTask } from "@/data/tasks";
+import { deleteTasID, pathTask, } from "@/data/tasks";
 import { taskProps } from "@/@types/Task";
 import { createPortal } from "react-dom";
 import TaskCard from "@/app/dashboard/TaskCard";
@@ -44,8 +44,8 @@ export function KanbanBoard() {
     setTasks(task);
   }, [task]);
 
-  async function updateTaskColumn({id, columnId ,message, avatar,priority,company}:taskProps) {
-   await putTask({id, columnId ,message, avatar,priority,company})
+  async function updateTaskColumn({id, columnId ,}:{id:string | number ,columnId:string  | number}) {
+   await pathTask({id, columnId})
     refetch();
   }
 
@@ -117,9 +117,9 @@ export function KanbanBoard() {
         const activeIndex = tasks.findIndex((t) => t.id === activeId);
 
         tasks[activeIndex].columnId = overId;
-        const { id ,message, avatar,priority,company} = tasks[activeIndex];
+        const { id } = tasks[activeIndex];
         const newIDColum:any = tasks[activeIndex].columnId = overId
-        updateTaskColumn({id,columnId:newIDColum ,message, avatar,priority,company})
+        updateTaskColumn({id,columnId:newIDColum })
         return arrayMove(tasks, activeIndex, activeIndex);
       });
     }
@@ -130,7 +130,7 @@ export function KanbanBoard() {
     refetch();
   }
   return (
-    <div className="flex w-full items-center overflow-x-auto px-[40px]">
+    <div className="flex w-full items-center px-[40px]  ">
       <DndContext
         sensors={sensors}
         onDragStart={onDragStart}
