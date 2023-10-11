@@ -15,3 +15,10 @@ export const PostColumns= async ({id,title}:Column) => {
   return response
 
 };
+
+
+export const DeleteColumns= async (id:number| string) => {
+  const response = await axios.delete(`${process.env.NEXT_PUBLIC_BASE_URL}/columns/${id}`);
+  return response
+
+};

@@ -23,7 +23,6 @@ export const pathTask= async ({id, columnId }:{id:string | number ,columnId:stri
 
   const response = await axios.patch(`${process.env.NEXT_PUBLIC_BASE_URL}/task/${id}`,{
     columnId:columnId,
-
   });
   return response
 };
