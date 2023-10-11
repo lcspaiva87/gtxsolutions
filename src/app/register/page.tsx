@@ -1,15 +1,9 @@
+import { SignUpForm } from "@/components/form/SignUpForm";
 import { SignintoForm } from "@/components/form/SignintoForm";
-import { Metadata } from "next";
+
 import Image from "next/image";
-import Link from "next/link";
 
-export const metadata: Metadata = {
-  title: 'GTX | Login',
-  description: '...',
-}
 export default function Home() {
-
-
   return (
     <main className="bg-light flex h-screen items-center justify-center sm:bg-gray-100">
       <div className="bg-light m-auto w-full max-w-[420px] rounded p-5 sm:p-8 sm:shadow">
@@ -23,9 +17,9 @@ export default function Home() {
             quality={100}
           />
         </div>
-        <SignintoForm />
+        <SignUpForm />
         <div className="mt-4 text-small-label text-center ">
-          <Link href="#"  className="hidden md:inline">Don{"'"}t have an account? </Link>
+          <span className="hidden md:inline">Don{"'"}t have an account? </span>
         </div>
       </div>
     </main>

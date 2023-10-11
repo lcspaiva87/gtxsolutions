@@ -1,8 +1,8 @@
-"use client"
+"use client";
 import { validateEmailFormat } from "@/utils/validateEmail";
 import clsx from "clsx";
 import { useState } from "react";
-import { Controller} from "react-hook-form";
+import { Controller } from "react-hook-form";
 import { Icons } from "../icons";
 
 type InputType = "text" | "email" | "password" | "number" | "username";
@@ -14,7 +14,6 @@ type InputProps = {
   disabled?: boolean;
   className?: string;
   control?: any;
-
 };
 
 export const InputCustomer = ({
@@ -82,7 +81,7 @@ export const InputCustomer = ({
               name={name}
               value={field.value}
               placeholder={placeholder}
-              disabled={disabled }
+              disabled={disabled}
               onChange={(e) => {
                 field.onChange(e);
                 handleChange(e);
@@ -95,13 +94,16 @@ export const InputCustomer = ({
                 className="group flex-shrink-0"
                 type="button"
               >
-                <Icons.Eye className="fill-secondary-300 transition-colors group-hover:fill-secondary-400 group-active:fill-secondary-500" />
+                {inputType === "text" ? (
+                  <Icons.EyeSlash className="fill-secondary-300 transition-colors group-hover:fill-secondary-400 group-active:fill-secondary-500" />
+                ) : (
+                  <Icons.Eye />
+                )}
+
               </button>
             )}
           </div>
-          {error && (
-            <p className="text-red-500 text-sm mt-1">{error}</p>
-          )}
+          {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
         </label>
       )}
     />

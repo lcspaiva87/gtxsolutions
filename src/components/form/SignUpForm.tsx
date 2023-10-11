@@ -19,7 +19,7 @@ const signInFormSchema = yup.object().shape({
     .required("Senha obrigatória")
     .min(8, "A senha deve ter pelo menos 8 caracteres"),
 });
-export function SignintoForm() {
+export function SignUpForm() {
   const {
     handleSubmit,
     control,
@@ -36,7 +36,7 @@ export function SignintoForm() {
   return (
     <>
      <InputCustomer
-        type="email"
+        type="username"
         name="email"
         placeholder="Digite seu nome Completo"
         required
@@ -45,15 +45,23 @@ export function SignintoForm() {
         // disabled={loading}
       />
       <InputCustomer
-        type="password"
-        name="password"
+        type="email"
+        name="email"
         placeholder="Digite seu endereço de e-mail"
         required
         control={control}
         className="mt-6"
         // disabled={loading}
       />
-
+      <InputCustomer
+        type="password"
+        name="password"
+        placeholder="Digite sua senha"
+        className="mt-6"
+        required
+        control={control}
+        //disabled={loading}
+      />
 
       <Link
         href="#"

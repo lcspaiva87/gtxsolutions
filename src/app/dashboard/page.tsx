@@ -6,7 +6,7 @@ export default function Dashboard() {
     <>
       <ModalContainer />
       <div className="bg-gray-90 h-[45rem] w-full items-center overflow-x-auto overflow-y-auto ml-[2rem]  ">
-        <KanbanBoard />
+        {/* <KanbanBoard /> */}
       </div>
     </>
   );
