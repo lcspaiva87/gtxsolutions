@@ -1,4 +1,4 @@
-export type taskProps ={
+export interface  Itask {
   id: any;
   columnId: string | number;
   company: string;

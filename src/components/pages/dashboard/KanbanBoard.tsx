@@ -14,21 +14,20 @@ import useColumns from "@/hooks/useColuns";
 import { Column } from "@/@types/Column";
 import { useEffect, useMemo, useState } from "react";
 import { SortableContext, arrayMove } from "@dnd-kit/sortable";
-import useTask from "@/hooks/useTask";
-import { deleteTasID, pathTask, } from "@/data/tasks";
-import { taskProps } from "@/@types/Task";
+import { useTask } from "@/hooks/useTask";
+import { Itask } from "@/@types/Task";
 import { createPortal } from "react-dom";
 import TaskCard from "@/app/dashboard/TaskCard";
 
 export function KanbanBoard() {
   const { columns: colun } = useColumns();
-  const { task, refetch } = useTask();
+  const { isLoading, isError, tasks: task, saveMutation ,removeMutation} = useTask();
   const [columns, setColumns] = useState(colun);
 
   const [tasks, setTasks] = useState(task);
   const columnsId = useMemo(() => columns.map((col) => col.id), [columns]);
   const [activeColumn, setActiveColumn] = useState<Column | null>(null);
-  const [activeTask, setActiveTask] = useState<taskProps | null>(null);
+  const [activeTask, setActiveTask] = useState<Itask | null>(null);
 
   const sensors = useSensors(
     useSensor(PointerSensor, {
@@ -44,11 +43,15 @@ export function KanbanBoard() {
     setTasks(task);
   }, [task]);
 
-  async function updateTaskColumn({id, columnId ,}:{id:string | number ,columnId:string  | number}) {
-   await pathTask({id, columnId})
-    refetch();
+  async function updateTaskColumn({
+    id,
+    columnId,
+  }: {
+    id: string | number;
+    columnId: string | number;
+  }) {
+    await saveMutation.mutate({ id, columnId });
   }
-
 
   function onDragEnd(event: DragEndEvent) {
     setActiveColumn(null);
@@ -118,16 +121,15 @@ export function KanbanBoard() {
 
         tasks[activeIndex].columnId = overId;
         const { id } = tasks[activeIndex];
-        const newIDColum:any = tasks[activeIndex].columnId = overId
-        updateTaskColumn({id,columnId:newIDColum })
+        const newIDColum: any = (tasks[activeIndex].columnId = overId);
+        updateTaskColumn({ id, columnId: newIDColum });
         return arrayMove(tasks, activeIndex, activeIndex);
       });
     }
   }
 
   async function deleteTask(id: string | number) {
-    await deleteTasID(id);
-    refetch();
+    await removeMutation.mutate(id);
   }
   return (
     <div className="flex w-full items-center px-[40px]  ">
@@ -161,7 +163,9 @@ export function KanbanBoard() {
                 // createTask={createTask}
                 deleteTask={deleteTask}
                 // updateTask={updateTask}
-                tasks={tasks.filter((task) => task.columnId === activeColumn.id)}
+                tasks={tasks.filter(
+                  (task) => task.columnId === activeColumn.id
+                )}
               />
             )}
             {activeTask && (

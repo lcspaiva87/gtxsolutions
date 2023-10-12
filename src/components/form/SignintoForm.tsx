@@ -17,7 +17,6 @@ const signInFormSchema = yup.object().shape({
   password: yup
     .string()
     .required("Senha obrigatória")
-    .min(8, "A senha deve ter pelo menos 8 caracteres"),
 });
 export function SignintoForm() {
   const {
@@ -33,8 +32,11 @@ export function SignintoForm() {
       password: "",
     },
   });
+  async function handleSignIn(data: FormValues) {
+
+  }
   return (
-    <>
+    <form onSubmit={handleSubmit(handleSignIn)}  >
      <InputCustomer
         type="email"
         name="email"
@@ -69,6 +71,6 @@ export function SignintoForm() {
       >
         {false ? <LoadingSpinner className="mx-auto" /> : " Sign in"}
       </Button>
-    </>
+    </form>
   );
 }

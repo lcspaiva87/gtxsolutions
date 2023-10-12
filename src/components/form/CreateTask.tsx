@@ -7,7 +7,7 @@ import * as yup from "yup";
 import { v4 as uuidv4 } from "uuid";
 import { useForm } from "react-hook-form";
 import { Dispatch, SetStateAction } from 'react';
-import useTask from "@/hooks/useTask";
+import {useTask} from "@/hooks/useTask";
 type FormValues = {
   company: string;
   camera: string;
@@ -33,7 +33,7 @@ interface FormCreateTaskProps {
   idColumn: string | number
 }
 export function FormCreateTask({setShowModal,showModal,idColumn}:FormCreateTaskProps) {
-  const {refetch} = useTask()
+  const {saveMutation} = useTask()
   const {
     handleSubmit,
     control,
@@ -74,7 +74,6 @@ export function FormCreateTask({setShowModal,showModal,idColumn}:FormCreateTaskP
         priority: priority,
       });
       setShowModal(false);
-      refetch()
     } catch (error) {
       console.error("Ocorreu um erro ao enviar a tarefa:", error);
     }
