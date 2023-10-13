@@ -14,7 +14,7 @@ export function AdminLayout({ children }: { children: React.ReactNode }) {
   );
   return (
     <div className="flex">
-      <div className=" bg-gray-900 w-[5rem] h-screen flex flex-col items-center ">
+      <div className=" bg-gray-900 w-[5rem] h-screen flex flex-col items-center p-2 ">
         <div className="w-12  mt-[2rem] rounded-lg justify-center flex flex-col gap-5">
           <Avatar
             style={{ borderRadius: "5rem", width: 50 }}
