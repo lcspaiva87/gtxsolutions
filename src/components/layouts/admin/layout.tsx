@@ -13,15 +13,14 @@ import useMenuHidden from "@/hooks/useMenuHidden";
 import useMonoChrome from "@/hooks/useMonoChrome";
 
 import { motion } from "framer-motion";
-import { usePathname ,useRouter} from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { Suspense, useEffect } from "react";
 import { useSelector } from "react-redux";
-import Sidebar from "@/components/partials/sidebar"
-import {Loading} from "@/components/Loading"
-import {MobileMenu} from "@/components/partials/sidebar/mobileMenu"
-import MobileFooter from "@/components/partials/footer/mobileFooter"
-import Footer from "@/components/partials/footer/index"
-import Breadcrumbs from "@/components/ui/Breadcrumbs"
+import Sidebar from "@/components/partials/sidebar";
+import { Loading } from "@/components/Loading";
+import { MobileMenu } from "@/components/partials/sidebar/mobileMenu";
+import MobileFooter from "@/components/partials/footer/mobileFooter";
+import Footer from "@/components/partials/footer/index";
 export function AdminLayout({ children }: { children: React.ReactNode }) {
   const { width, breakpoints } = useWidth();
   const [collapsed] = useSidebar();
@@ -29,21 +28,7 @@ export function AdminLayout({ children }: { children: React.ReactNode }) {
   const [isDark] = useDarkMode();
   const [skin] = useSkin();
   const [navbarType] = useNavbarType();
-
-
-  interface AuthState {
-    isAuth: boolean;
-  }
-    const [isMonoChrome] = useMonoChrome();
-    const router = useRouter();
-    const { isAuth } = useSelector((state:any) => state.auth);
-    useEffect(() => {
-      if (!isAuth) {
-        router.push("/");
-      }
-      //darkMode;
-    }, [isAuth]);
-    const location = usePathname();
+  const location = usePathname();
   // header switch class
   const switchHeaderClass = () => {
     if (menuType === "horizontal" || menuHidden) {
@@ -70,20 +55,21 @@ export function AdminLayout({ children }: { children: React.ReactNode }) {
       ${navbarType === "floating" ? "has-floating" : ""}
       `}
     >
-
-      <Header className={width > parseInt(breakpoints.xl) ? switchHeaderClass() : ""} />
-      {menuType === "vertical" && width >parseInt(breakpoints.xl)  && !menuHidden && (
-        <Sidebar />
-      )}
+      <Header
+        className={width > parseInt(breakpoints.xl) ? switchHeaderClass() : ""}
+      />
+      {menuType === "vertical" &&
+        width > parseInt(breakpoints.xl) &&
+        !menuHidden && <Sidebar />}
       <MobileMenu
         className={`${
-          width < parseInt(breakpoints.xl)  && mobileMenu
+          width < parseInt(breakpoints.xl) && mobileMenu
             ? "left-0 visible opacity-100  z-[9999]"
             : "left-[-300px] invisible opacity-0  z-[-999] "
         }`}
       />
       {/* mobile menu overlay*/}
-      {width <parseInt(breakpoints.xl)  && mobileMenu && (
+      {width < parseInt(breakpoints.xl) && mobileMenu && (
         <div
           className="overlay bg-slate-900/50 backdrop-filter backdrop-blur-sm opacity-100 fixed inset-0 z-[999]"
           onClick={() => setMobileMenu(false)}
@@ -127,16 +113,18 @@ export function AdminLayout({ children }: { children: React.ReactNode }) {
                 duration: 0.5,
               }}
             >
-              <Suspense fallback={<Loading />}>
-                {children}
-              </Suspense>
+              <Suspense fallback={<Loading />}>{children}</Suspense>
             </motion.div>
           </div>
         </div>
       </div>
       {width < parseInt(breakpoints.md) && <MobileFooter />}
       {width > parseInt(breakpoints.md) && (
-        <Footer className={width > parseInt(breakpoints.xl) ? switchHeaderClass() : ""} />
+        <Footer
+          className={
+            width > parseInt(breakpoints.xl) ? switchHeaderClass() : ""
+          }
+        />
       )}
     </div>
   );
