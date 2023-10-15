@@ -6,6 +6,10 @@ import { Icons } from "@/components/icons";
 import { FormCreateTask } from "@/components/form/CreateTask";
 import { Itask } from "@/@types/Task";
 import TaskCard from "@/app/dashboard/TaskCard";
+import { toggleTaskModal } from "@/components/partials/app/kanban/store";
+import { Icon } from "@iconify/react/dist/iconify.js";
+import Tooltip from "@/components/ui/Tooltip"
+import { useSelector, useDispatch } from "react-redux";
 
 export type Id = string | number;
 export type Column = {
@@ -19,7 +23,7 @@ interface Props {
   updateColumn?: (id: Id, title: string) => void;
   createTask?: (columnId: Id) => void;
   updateTask?: (id: Id, content: string) => void;
-  deleteTask: (id: number| string) => void;
+  deleteTask: (id: number | string) => void;
   tasks: Itask[];
 }
 
@@ -50,8 +54,7 @@ function ColumnContainer({
   const tasksIds = useMemo(() => {
     return tasks.map((task) => task.id);
   }, [tasks]);
-
-
+  const dispatch = useDispatch();
   const {
     setNodeRef,
     attributes,
@@ -83,14 +86,13 @@ function ColumnContainer({
         opacity-40
         border-2
         border-pink-500
-        w-[350px]
-        h-[500px]
+
         max-h-[500px]
         rounded-md
         flex
         flex-col
         "
-        ></div>
+      ></div>
     );
   }
 
@@ -103,66 +105,53 @@ function ColumnContainer({
         idColumn={column.id}
         showModal={isOpen}
       />
+
       <div
         ref={setNodeRef}
         style={style}
-        className="bg-columnBackgroundColor w-[350px] h-[500px] max-h-[500px] rounded-md flex flex-col"
+        className="bg-columnBackgroundColor w-[350px]  h-[45rem] max-h-[45rem] rounded-md flex flex-col"
       >
         {/* Column title */}
-        <div
-          {...attributes}
-          {...listeners}
-          onClick={() => {
-            setEditMode(true);
-          }}
-          className="bg-mainBackgroundColor
-          text-md
-          h-[60px]
-          cursor-grab
-          rounded-md
-          rounded-b-none
-          p-3
-          font-bold
-          border-columnBackgroundColor
-          border-4
-          flex
-          items-center
-          justify-between
-          "
-        >
-          <div className="flex gap-2">
-            <div className="flex justify-centeritems-center bg-column BackgroundColor px-2 py-1 text-sm rounded-full">
-              0
-            </div>
-            {!editMode && column.title}
-            {editMode && (
-              <input
-                className="bg-black focus:border-rose-500 border rounded outline-none px-2"
-                value={column.title}
-                // onChange={(e) => updateColumn(column.id, e.target.value)}
-                autoFocus
-                onBlur={() => {
-                  setEditMode(false);
-                }}
-                onKeyDown={(e) => {
-                  if (e.key !== "Enter") return;
-                  setEditMode(false);
-                }}
-              />
-            )}
-          </div>
-          <button
-            onClick={() => {
-              deleteColumn(column.id);
+        <div className="relative flex justify-between items-center bg-white dark:bg-slate-800 rounded shadow-base px-6 py-5">
+          <div
+            className="absolute left-0 top-1/2 -translate-y-1/2 h-8 w-[2px]"
+            style={{
+              backgroundColor: "red",
             }}
-            className="stroke-gray-500 hover:stroke-white hover:bg-columnBackgroundColor rounded px-1 py-2"
-          >
-            <Icons.TrashIcon className="w-6" />
-          </button>
+          ></div>
+          <div className="text-lg text-slate-900 dark:text-white font-medium capitalize">
+            {column.title}
+          </div>
+          <div className="flex items-center space-x-2 rtl:space-x-reverse">
+            <Tooltip placement="top" arrow theme="danger" content="Deletse">
+              <button
+                className="border border-slate-200 dark:border-slate-700 dark:text-slate-400 rounded h-6 w-6 flex flex-col  items-center justify-center text-base text-slate-600"
+
+              >
+                <Icon icon="heroicons-outline:trash" />
+              </button>
+            </Tooltip>
+
+            <Tooltip placement="top" arrow theme="dark" content="Add Card">
+              <button
+                className="border border-slate-200 dark:border-slate-700 dark:text-slate-400 rounded h-6 w-6 flex flex-col  items-center justify-center text-base text-slate-600"
+                onClick={() =>
+                  dispatch(
+                    toggleTaskModal({
+                      open: true,
+                      columnId: column.id,
+                    })
+                  )
+                }
+              >
+                <Icon icon="heroicons-outline:plus-sm" />
+              </button>
+            </Tooltip>
+          </div>
         </div>
 
         {/* Column task container */}
-        <div className="flex flex-grow flex-col gap-4 p-2 overflow-x-hidden overflow-y-auto">
+        <div className="flex flex-grow flex-col gap-4 p-1 overflow-x-hidden overflow-y-auto">
           <SortableContext items={tasksIds}>
             {tasks.map((task) => (
               <TaskCard
@@ -175,15 +164,7 @@ function ColumnContainer({
           </SortableContext>
         </div>
         {/* Column footer */}
-        <button
-          className="flex gap-2 items-center border-columnBackgroundColor border-2 rounded-md p-4 border-x-columnBackgroundColor hover:bg-mainBackgroundColor hover:text-rose-500 active:bg-black"
-          onClick={() => {
-            setIsOpen(true);
-          }}
-        >
-          <Icons.PlusIcon className="w-6 color-gray-100" />
-          Add task
-        </button>
+
       </div>
     </>
   );

@@ -3,7 +3,6 @@ import { ModalContainer } from "@/components/pages/dashboard/ModalContainer";
 export default function Dashboard() {
   return (
     <>
-      <ModalContainer />
       <KanbanBoard />
     </>
   );

@@ -1,5 +1,5 @@
 import { Menu, Transition } from "@headlessui/react";
-import { Fragment, useEffect, useRef, useState } from "react";
+import { Fragment} from "react";
 import Link from "next/link";
 import Icon from "@/components/icons/Icon";
 
@@ -25,7 +25,7 @@ const Dropdown = ({
   ],
   classItem = "px-4 py-2",
   className = "",
-}) => {
+}:any) => {
   return (
     <div className={`relative ${wrapperClass}`}>
       <Menu as="div" className={`block w-full ${className}`}>

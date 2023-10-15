@@ -19,6 +19,10 @@ import { Itask } from "@/@types/Task";
 import { createPortal } from "react-dom";
 import TaskCard from "@/app/dashboard/TaskCard";
 
+import { useSelector, useDispatch } from "react-redux";
+import { toggleColumnModal } from "@/components/partials/app/kanban/store";
+import { Button } from "@/components/Button";
+
 export function KanbanBoard() {
   const { columns: columm, removeMutation: deleteColumnMutation } =
     useColumns();
@@ -29,6 +33,7 @@ export function KanbanBoard() {
   const columnsId = useMemo(() => columns.map((col) => col.id), [columns]);
   const [activeColumn, setActiveColumn] = useState<Column | null>(null);
   const [activeTask, setActiveTask] = useState<Itask | null>(null);
+  const dispatch = useDispatch();
 
   const sensors = useSensors(
     useSensor(PointerSensor, {
@@ -40,6 +45,7 @@ export function KanbanBoard() {
   useEffect(() => {
     setColumns(columm);
   }, [columm]);
+
   useEffect(() => {
     setTasks(task);
   }, [task]);
@@ -136,64 +142,81 @@ export function KanbanBoard() {
     await deleteColumnMutation.mutate(id);
   }
   return (
-    <div
-      className="
+    <div>
+      {/* Header Kanban */}
+      <div className="flex flex-wrap justify-between items-center mb-4">
+        <h4 className="font-medium lg:text-2xl text-xl capitalize text-slate-900 inline-block ltr:pr-4 rtl:pl-4">
+          kanban
+        </h4>
+        <div className="flex space-x-4 justify-end items-center rtl:space-x-reverse">
+          <Button
+            icon="heroicons-outline:plus"
+            text="Add Board"
+            className="bg-slate-800 dark:hover:bg-opacity-70   h-min text-sm font-medium text-slate-50 hover:ring-2 hover:ring-opacity-80 ring-slate-900  hover:ring-offset-1  dark:hover:ring-0 dark:hover:ring-offset-0"
+            iconclassName=" text-lg"
+            onClick={() => dispatch(toggleColumnModal(true))}
+          />
+        </div>
+      </div>
+
+      <div
+        className="
       flex
       w-full
-      h-[35rem]
       items-center
       overflow-x-auto
       overflow-y-hidden
       pr-[7rem]
   "
-    >
-      <DndContext
-        sensors={sensors}
-        onDragStart={onDragStart}
-        onDragEnd={onDragEnd}
-        onDragOver={onDragOver}
       >
-        <div className="flex gap-4">
+        <DndContext
+          sensors={sensors}
+          onDragStart={onDragStart}
+          onDragEnd={onDragEnd}
+          onDragOver={onDragOver}
+        >
           <div className="flex gap-4">
-            <SortableContext items={columnsId}>
-              {columns.map((col) => (
-                <ColumnContainer
-                  key={col.id}
-                  deleteColumn={deleteColumn}
-                  column={col}
-                  deleteTask={deleteTask}
-                  tasks={task.filter((task) => task.columnId === col.id)}
-                />
-              ))}
-            </SortableContext>
+            <div className="flex gap-4">
+              <SortableContext items={columnsId}>
+                {columns.map((col) => (
+                  <ColumnContainer
+                    key={col.id}
+                    deleteColumn={deleteColumn}
+                    column={col}
+                    deleteTask={deleteTask}
+                    tasks={task.filter((task) => task.columnId === col.id)}
+                  />
+                ))}
+              </SortableContext>
+            </div>
           </div>
-        </div>
-        {createPortal(
-          <DragOverlay>
-            {activeColumn && (
-              <ColumnContainer
-                column={activeColumn}
-                deleteColumn={deleteColumn}
-                // updateColumn={updateColumn}
-                // createTask={createTask}
-                deleteTask={deleteTask}
-                // updateTask={updateTask}
-                tasks={tasks.filter(
-                  (task) => task.columnId === activeColumn.id
-                )}
-              />
-            )}
-            {activeTask && (
-              <TaskCard
-                task={activeTask}
-                deleteTask={deleteTask}
-                // updateTask={updateTask}
-              />
-            )}
-          </DragOverlay>,
-          document.body
-        )}
-      </DndContext>
+          {createPortal(
+            <DragOverlay>
+              {activeColumn && (
+                <ColumnContainer
+                  column={activeColumn}
+                  deleteColumn={deleteColumn}
+                  // updateColumn={updateColumn}
+                  // createTask={createTask}
+                  deleteTask={deleteTask}
+                  // updateTask={updateTask}
+                  tasks={tasks.filter(
+                    (task) => task.columnId === activeColumn.id
+                  )}
+                />
+              )}
+              {activeTask && (
+                <TaskCard
+                  task={activeTask}
+                  deleteTask={deleteTask}
+                  // updateTask={updateTask}
+                />
+              )}
+            </DragOverlay>,
+            document.body
+          )}
+        </DndContext>
+      </div>
     </div>
   );
 }
