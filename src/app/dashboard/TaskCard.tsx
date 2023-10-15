@@ -3,8 +3,9 @@ import { useState } from "react";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { Icons } from "@/components/icons";
-import { taskProps } from "@/@types/Task";
+import { Itask } from "@/@types/Task";
 import * as Avatar from "@radix-ui/react-avatar";
+import { Tag } from "@/components/ui/Tag";
 export type Id = string | number;
 
 export type Column = {
@@ -13,7 +14,7 @@ export type Column = {
 };
 
 interface Props {
-  task: taskProps;
+  task: Itask;
   deleteTask: (id: string | number) => void;
   // updateTask: (id: Id, content: string) => void;
 }
@@ -55,7 +56,7 @@ function TaskCard({ task, deleteTask }: Props) {
         style={style}
         className="
         opacity-30
-      bg-mainBackgroundColor p-2.5 h-[100px] min-h-[100px] items-center flex text-left rounded-xl border-2 border-rose-500  cursor-grab relative
+        bg-mainBackgroundColor p-2.5 h-[100px] min-h-[100px] items-center flex text-left rounded-xl border-2 border-rose-500  cursor-grab relative
       "
       />
     );
@@ -77,13 +78,8 @@ function TaskCard({ task, deleteTask }: Props) {
         setMouseIsOver(false);
       }}
     >
-      <div className=" m-1 ">
-        <span className="bg-blue-100 text-blue-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">
-          Default
-        </span>
-      </div>
-
-      <p className="my-auto m-1  w-full overflow-y-auto overflow-x-hidden whitespace-pre-wrap">
+     <Tag title={String(task.priority)} />
+      <p className="m-1  overflow-y-auto overflow-x-hidden whitespace-pre-wrap">
         {task.message}
       </p>
       <div className="flex justify-between m-1 p-0.5">
@@ -99,12 +95,13 @@ function TaskCard({ task, deleteTask }: Props) {
       </div>
 
       {mouseIsOver && (
-        <>
+        <div className="flex gap-[2rem]">
           <button
-            className="stroke-white absolute right-4 top-1/3 -translate-y-1/2 bg-columnBackgroundColor p-2 rounded opacity-60 hover:opacity-100"
+            className="stroke-white absolute right-4 top-1/4 -translate-y-1/2 bg-columnBackgroundColor p-2 rounded opacity-60 hover:opacity-100"
           >
             <Icons.Eye className="w-6" />
           </button>
+
           <button
             onClick={() => {
               deleteTask(task.id);
@@ -113,7 +110,7 @@ function TaskCard({ task, deleteTask }: Props) {
           >
             <Icons.TrashIcon className="w-6" />
           </button>
-        </>
+        </div>
       )}
     </div>
   );

@@ -4,7 +4,7 @@ import { CSS } from "@dnd-kit/utilities";
 import { useMemo, useState } from "react";
 import { Icons } from "@/components/icons";
 import { FormCreateTask } from "@/components/form/CreateTask";
-import { taskProps } from "@/@types/Task";
+import { Itask } from "@/@types/Task";
 import TaskCard from "@/app/dashboard/TaskCard";
 
 export type Id = string | number;
@@ -15,12 +15,12 @@ export type Column = {
 
 interface Props {
   column: Column;
-  deleteColumn?: (id: Id) => void;
+  deleteColumn: (id: Id) => void;
   updateColumn?: (id: Id, title: string) => void;
   createTask?: (columnId: Id) => void;
   updateTask?: (id: Id, content: string) => void;
   deleteTask: (id: number| string) => void;
-  tasks: taskProps[];
+  tasks: Itask[];
 }
 
 function applyPhoneMask(value: string) {
@@ -78,8 +78,19 @@ function ColumnContainer({
       <div
         ref={setNodeRef}
         style={style}
-        className="bg-columnBackgroundColor opacity-40 border-2 border-pink-500 w-[350px] h-[500px] max-h-[500px]rounded-md flex flex-col"
-      ></div>
+        className="
+        bg-columnBackgroundColor
+        opacity-40
+        border-2
+        border-pink-500
+        w-[350px]
+        h-[500px]
+        max-h-[500px]
+        rounded-md
+        flex
+        flex-col
+        "
+        ></div>
     );
   }
 
@@ -104,7 +115,20 @@ function ColumnContainer({
           onClick={() => {
             setEditMode(true);
           }}
-          className="bg-mainBackgroundColor text-md h-[60px] cursor-grab rounded-md rounded-b-none p-3 font-bold border-columnBackgroundColor border-4 flex items-center justify-between"
+          className="bg-mainBackgroundColor
+          text-md
+          h-[60px]
+          cursor-grab
+          rounded-md
+          rounded-b-none
+          p-3
+          font-bold
+          border-columnBackgroundColor
+          border-4
+          flex
+          items-center
+          justify-between
+          "
         >
           <div className="flex gap-2">
             <div className="flex justify-centeritems-center bg-column BackgroundColor px-2 py-1 text-sm rounded-full">
@@ -128,9 +152,9 @@ function ColumnContainer({
             )}
           </div>
           <button
-            // onClick={() => {
-            //   deleteColumn(column.id);
-            // }}
+            onClick={() => {
+              deleteColumn(column.id);
+            }}
             className="stroke-gray-500 hover:stroke-white hover:bg-columnBackgroundColor rounded px-1 py-2"
           >
             <Icons.TrashIcon className="w-6" />
@@ -152,7 +176,7 @@ function ColumnContainer({
         </div>
         {/* Column footer */}
         <button
-          className="flex gap-2 text-white items-center border-columnBackgroundColor border-2 rounded-md p-4 border-x-columnBackgroundColor hover:bg-mainBackgroundColor hover:text-rose-500 active:bg-black"
+          className="flex gap-2 items-center border-columnBackgroundColor border-2 rounded-md p-4 border-x-columnBackgroundColor hover:bg-mainBackgroundColor hover:text-rose-500 active:bg-black"
           onClick={() => {
             setIsOpen(true);
           }}

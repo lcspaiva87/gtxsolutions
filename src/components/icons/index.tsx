@@ -9,6 +9,7 @@ import { PlusIcon } from "./KanbanBoard/PlusIcon";
 import {TrashIcon} from "./KanbanBoard/TrashIcon";
 import {EditIcon} from "./KanbanBoard/EditIcon"
 import {EyeSlash} from "./EyeSlash"
+import {Bell} from "./Bell"
 export const Icons = {
   Eye,
   Lock,
@@ -20,5 +21,6 @@ export const Icons = {
   PlusIcon,
   TrashIcon,
   EditIcon,
-  EyeSlash
+  EyeSlash,
+  Bell
 };

@@ -9,7 +9,6 @@ import { Icons } from "@/components/icons";
 import { useState } from "react";
 
 import { PostColumns } from "@/data/columns";
-import useColumns from "@/hooks/useColuns";
 
 type FormValues = {
   title: string;
@@ -31,7 +30,7 @@ export function ModalContainer() {
       title: "",
     },
   });
-  const { refetch } = useColumns();
+
   async function onSubmit({ title }: FormValues) {
     const id = `container-${uuidv4()}`;
     await PostColumns({
@@ -40,7 +39,7 @@ export function ModalContainer() {
     });
     reset({ title: "" });
     setIsOpen(false);
-    refetch();
+
   }
 
   return (
@@ -75,7 +74,7 @@ export function ModalContainer() {
           </div>
         </form>
       </Modal>
-      <div className=" mx-auto max-w-7xl py-10 ">
+      <div className="py-10 px-2 ">
         <div className="flex items-center justify-between gap-y-2">
           <h1 className="text-gray-800 text-3xl font-bold">
             Registro de ocorrência

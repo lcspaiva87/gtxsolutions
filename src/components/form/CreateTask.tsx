@@ -7,7 +7,6 @@ import * as yup from "yup";
 import { v4 as uuidv4 } from "uuid";
 import { useForm } from "react-hook-form";
 import { Dispatch, SetStateAction } from 'react';
-import {useTask} from "@/hooks/useTask";
 type FormValues = {
   company: string;
   camera: string;
@@ -33,7 +32,6 @@ interface FormCreateTaskProps {
   idColumn: string | number
 }
 export function FormCreateTask({setShowModal,showModal,idColumn}:FormCreateTaskProps) {
-  const {saveMutation} = useTask()
   const {
     handleSubmit,
     control,
@@ -79,7 +77,7 @@ export function FormCreateTask({setShowModal,showModal,idColumn}:FormCreateTaskP
     }
   }
   return (
-    <Modal showModal={showModal} setShowModal={() => setShowModal}>
+    <Modal showModal={showModal} setShowModal={ setShowModal}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="flex flex-col w-full items-start gap-y-4">
           <h1 className="text-gray-800 text-lg font-bold">Relatório</h1>
@@ -176,7 +174,7 @@ export function FormCreateTask({setShowModal,showModal,idColumn}:FormCreateTaskP
         </div>
         <div className="flex justify-between gap-3 mt-3">
           <button
-            onClick={() => setShowModal}
+              onClick={()=>setShowModal(false)}
             className="flex text-red-300 items-center gap-2 border border-red-300 p-2 rounded-lg hover:text-red-400 hover:border-red-400"
           >
             Cancelar

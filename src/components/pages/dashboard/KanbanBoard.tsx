@@ -10,7 +10,7 @@ import {
   useSensors,
 } from "@dnd-kit/core";
 import ColumnContainer from "./ColumnContainer";
-import useColumns from "@/hooks/useColuns";
+import { useColumns } from "@/hooks/useColuns";
 import { Column } from "@/@types/Column";
 import { useEffect, useMemo, useState } from "react";
 import { SortableContext, arrayMove } from "@dnd-kit/sortable";
@@ -20,9 +20,10 @@ import { createPortal } from "react-dom";
 import TaskCard from "@/app/dashboard/TaskCard";
 
 export function KanbanBoard() {
-  const { columns: colun } = useColumns();
-  const { isLoading, isError, tasks: task, saveMutation ,removeMutation} = useTask();
-  const [columns, setColumns] = useState(colun);
+  const { columns: columm, removeMutation: deleteColumnMutation } =
+    useColumns();
+  const { tasks: task, saveMutation, removeMutation } = useTask();
+  const [columns, setColumns] = useState(columm);
 
   const [tasks, setTasks] = useState(task);
   const columnsId = useMemo(() => columns.map((col) => col.id), [columns]);
@@ -37,8 +38,8 @@ export function KanbanBoard() {
     })
   );
   useEffect(() => {
-    setColumns(colun);
-  }, [colun]);
+    setColumns(columm);
+  }, [columm]);
   useEffect(() => {
     setTasks(task);
   }, [task]);
@@ -131,20 +132,34 @@ export function KanbanBoard() {
   async function deleteTask(id: string | number) {
     await removeMutation.mutate(id);
   }
+  async function deleteColumn(id: string | number) {
+    await deleteColumnMutation.mutate(id);
+  }
   return (
-    <div className="flex w-full items-center px-[40px]  ">
+    <div
+      className="
+      flex
+      w-full
+      h-[35rem]
+      items-center
+      overflow-x-auto
+      overflow-y-hidden
+      pr-[7rem]
+  "
+    >
       <DndContext
         sensors={sensors}
         onDragStart={onDragStart}
         onDragEnd={onDragEnd}
         onDragOver={onDragOver}
       >
-        <div className="m-auto flex gap-4">
+        <div className="flex gap-4">
           <div className="flex gap-4">
             <SortableContext items={columnsId}>
               {columns.map((col) => (
                 <ColumnContainer
                   key={col.id}
+                  deleteColumn={deleteColumn}
                   column={col}
                   deleteTask={deleteTask}
                   tasks={task.filter((task) => task.columnId === col.id)}
@@ -158,7 +173,7 @@ export function KanbanBoard() {
             {activeColumn && (
               <ColumnContainer
                 column={activeColumn}
-                // deleteColumn={deleteColumn}
+                deleteColumn={deleteColumn}
                 // updateColumn={updateColumn}
                 // createTask={createTask}
                 deleteTask={deleteTask}
