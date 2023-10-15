@@ -7,6 +7,7 @@ import * as yup from "yup";
 import { v4 as uuidv4 } from "uuid";
 import { useForm } from "react-hook-form";
 import { Dispatch, SetStateAction } from 'react';
+import { useTask } from "@/hooks/useTask";
 type FormValues = {
   company: string;
   camera: string;
@@ -32,6 +33,7 @@ interface FormCreateTaskProps {
   idColumn: string | number
 }
 export function FormCreateTask({setShowModal,showModal,idColumn}:FormCreateTaskProps) {
+  const {createMutation} = useTask()
   const {
     handleSubmit,
     control,
@@ -58,7 +60,7 @@ export function FormCreateTask({setShowModal,showModal,idColumn}:FormCreateTaskP
   }: FormValues) {
     const id = uuidv4();
     try {
-      await postTask({
+      await createMutation.mutate({
         camera: camera,
         company: company,
         file: "fotos",
