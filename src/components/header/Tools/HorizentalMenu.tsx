@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { topMenu } from "@/constant/data";
-import Icon from "@/components/icons/Icon";
+import Icon from "@/components//ui/icons/Icon";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 
@@ -51,7 +51,7 @@ const HorizentalMenu = () => {
               <ul className="sub-menu">
                 {item.child.map((childitem, index) => (
                   <li key={index}>
-                    <Link href={`${childitem.link}`}>
+                    <Link href={`${childitem.childlink}`}>
                       <div className="flex space-x-2 items-start rtl:space-x-reverse">
                         <Icon
                           icon={childitem.childicon}
@@ -78,7 +78,7 @@ const HorizentalMenu = () => {
                         <span> {m_item.megamenutitle}</span>
                       </div>
                       {/* single menu item*/}
-                      {m_item.singleMegamenu.map((ms_item, ms_i) => (
+                      {m_item.singleMegamenu?.map((ms_item, ms_i) => (
                         <Link href={`${ms_item.m_childlink}`} key={ms_i}>
                           <div className="flex items-center space-x-2 text-[15px] leading-6 rtl:space-x-reverse">
                             <span

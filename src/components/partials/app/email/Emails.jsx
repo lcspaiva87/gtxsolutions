@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Icon from "@/components/icons/Icon";
+import Icon from "@/components//ui/icons/Icon";
 import { useDispatch, useSelector } from "react-redux";
 import Checkbox from "@/components/ui/Checkbox";
 import {

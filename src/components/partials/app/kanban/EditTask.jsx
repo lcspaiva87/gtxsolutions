@@ -3,7 +3,7 @@ import Select, { components } from "react-select";
 import Modal from "@/components/ui/Modal";
 import { useSelector, useDispatch } from "react-redux";
 import { updateTask, toggleEditModal } from "./store";
-import Icon from "@/components/icons/Icon";
+import Icon from "@/components//ui/icons/Icon";
 import Textarea from "@/components/ui/Textarea";
 import Flatpickr from "react-flatpickr";
 import { useForm, Controller } from "react-hook-form";

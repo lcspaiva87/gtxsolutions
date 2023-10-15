@@ -8,7 +8,7 @@ import useSkin from "@/hooks/useSkin";
 import useDarkMode from "@/hooks/useDarkMode";
 import Link from "next/link";
 import useMobileMenu from "@/hooks/useMobileMenu";
-import Icon from "@/components/icons/Icon";
+import Icon from "@/components//ui/icons/Icon";
 
 export const MobileMenu = ({ className = "custom-class" }) => {
   const scrollableNodeRef = useRef();

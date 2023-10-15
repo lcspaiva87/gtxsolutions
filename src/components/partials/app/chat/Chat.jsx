@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { toggleMobileChatSidebar, infoToggle, sendMessage } from "./store";
 import useWidth from "@/hooks/useWidth";
-import Icon from "@/components/icons/Icon";
+import Icon from "@/components//ui/icons/Icon";
 import Dropdown from "@/components/ui/Dropdown";
 
 const chatAction = [

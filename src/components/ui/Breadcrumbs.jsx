@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
 import { menuItems } from "@/constant/data";
-import Icon from "@/components/icons/Icon";
+import Icon from "@/components//ui/icons/Icon";
 
 const Breadcrumbs = () => {
   const location = usePathname();

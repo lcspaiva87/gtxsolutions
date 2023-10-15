@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import Card from "@/components/ui/Card";
-import Icon from "@/components/icons/Icon";
+import Icon from "@/components//ui/icons/Icon";
 import GroupChart4 from "@/components/partials/widget/chart/group-chart-4";
 import DonutChart from "@/components/partials/widget/chart/donut-chart";
 import { meets, files } from "@/constant/data";

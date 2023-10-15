@@ -3,7 +3,7 @@ import Card from "@/components/ui/Card";
 import Dropdown from "@/components/ui/Dropdown";
 // import menu form headless ui
 import { Menu } from "@headlessui/react";
-import Icon from "@/components/icons/Icon";
+import Icon from "@/components//ui/icons/Icon";
 import ProgressBar from "@/components/ui/ProgressBar";
 import { removeProject, updateProject } from "./store";
 import { useDispatch, useSelector } from "react-redux";

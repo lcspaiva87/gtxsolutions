@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import Icon from "@/components/icons/Icon";
+import Icon from "@/components//ui/icons/Icon";
 import { CSSTransition } from "react-transition-group";
 import { useSelector, useDispatch } from "react-redux";
 import Textarea from "@/components/ui/Textarea";

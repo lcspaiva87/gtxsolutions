@@ -1,7 +1,7 @@
 import React, { useState, useMemo, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Card from "@/components/ui/Card";
-import Icon from "@/components/icons/Icon";
+import Icon from "@/components//ui/icons/Icon";
 import Dropdown from "@/components/ui/Dropdown";
 import ProgressBar from "@/components/ui/ProgressBar";
 import { Menu } from "@headlessui/react";

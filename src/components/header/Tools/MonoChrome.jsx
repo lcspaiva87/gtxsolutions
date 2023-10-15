@@ -1,6 +1,6 @@
 import React from "react";
 import useMonoChrome from "@/hooks/useMonoChrome";
-import Icon from "@/components/icons/Icon";
+import Icon from "@/components//ui/icons/Icon";
 const MonoChrome = () => {
   const [isMonoChrome, setMonoChrome] = useMonoChrome();
   return (

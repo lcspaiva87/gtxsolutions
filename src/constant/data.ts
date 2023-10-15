@@ -1,3 +1,5 @@
+import { Idata } from "./type";
+
 export const menuItems = [
   {
     isHeadr: true,
@@ -427,7 +429,7 @@ export const menuItems = [
   },
 ];
 
-export const topMenu = [
+export const topMenu:Idata[] = [
   {
     title: "Dashboard",
     icon: "heroicons-outline:home",
@@ -723,7 +725,6 @@ export const topMenu = [
   {
     title: "Extra",
     icon: "heroicons-outline:template",
-
     child: [
       {
         childtitle: "Basic Table",
@@ -864,7 +865,7 @@ export const colors = {
   "dark-light": "#CBD5E1",
 };
 
-export const hexToRGB = (hex, alpha) => {
+export const hexToRGB = (hex:string, alpha:string) => {
   var r = parseInt(hex.slice(1, 3), 16),
     g = parseInt(hex.slice(3, 5), 16),
     b = parseInt(hex.slice(5, 7), 16);

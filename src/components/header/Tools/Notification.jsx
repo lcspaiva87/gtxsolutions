@@ -1,6 +1,6 @@
 import React from "react";
 import Dropdown from "@/components/ui/Dropdown";
-import Icon from "@/components/icons/Icon";
+import Icon from "@/components//ui/icons/Icon";
 import Link from "next/link";
 import { Menu } from "@headlessui/react";
 import { notifications } from "@/constant/data";

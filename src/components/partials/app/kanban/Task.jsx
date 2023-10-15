@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Dropdown from "@/components/ui/Dropdown";
 import Card from "@/components/ui/Card";
-import Icon from "@/components/icons/Icon";
+import Icon from "@/components//ui/icons/Icon";
 // import menu form headless ui
 import { Menu } from "@headlessui/react";
 import ProgressBar from "@/components/ui/ProgressBar";

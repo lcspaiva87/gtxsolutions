@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Icon from "@/components/icons/Icon";
+import Icon from "@/components//ui/icons/Icon";
 import Dropdown from "@/components/ui/Dropdown";
 import Checkbox from "@/components/ui/Checkbox";
 import { Menu } from "@headlessui/react";

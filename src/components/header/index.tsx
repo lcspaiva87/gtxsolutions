@@ -1,5 +1,5 @@
 import React from "react";
-import Icon from "@/components/icons/Icon"
+import Icon from "@/components//ui/icons/Icon"
 import SwitchDark from "./Tools/SwitchDark";
 import HorizentalMenu from "./Tools/HorizentalMenu";
 import useWidth from "@/hooks/useWidth";

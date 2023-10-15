@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Collapse } from "react-collapse";
 import Link from "next/link";
-import Icon from "@/components/icons/Icon";
+import Icon from "@/components//ui/icons/Icon";
 import Multilevel from "./Multi";
 
 const Submenu = ({ activeSubmenu, item, i, locationName }) => {

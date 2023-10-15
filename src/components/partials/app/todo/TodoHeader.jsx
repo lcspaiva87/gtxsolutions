@@ -1,5 +1,5 @@
 import React from "react";
-import Icon from "@/components/icons/Icon";
+import Icon from "@/components//ui/icons/Icon";
 import Dropdown from "@/components/ui/Dropdown";
 import { Menu } from "@headlessui/react";
 import useWidth from "@/hooks/useWidth";
