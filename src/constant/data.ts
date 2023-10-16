@@ -1,4 +1,4 @@
-import { Idata, Inotifications, MenuItem } from "./type";
+import { IbottomFilterLists, Idata, Ifiles, Imeets, Imessage, Inotifications, ItopFilterLists, MenuItem } from "./type";
 
 export const menuItems:MenuItem[]  = [
   {
@@ -786,7 +786,7 @@ export const notifications:Inotifications[] = [
   },
 ];
 
-export const message = [
+export const message:Imessage[] = [
   {
     title: "Wade Warren",
     desc: "Hi! How are you doing?.....",
@@ -877,7 +877,7 @@ export const hexToRGB = (hex:string, alpha:string) => {
   }
 };
 
-export const topFilterLists = [
+export const topFilterLists:ItopFilterLists[] = [
   {
     name: "Inbox",
     value: "all",
@@ -911,7 +911,7 @@ export const topFilterLists = [
   },
 ];
 
-export const bottomFilterLists = [
+export const bottomFilterLists:IbottomFilterLists[] = [
   {
     name: "personal",
     value: "personal",
@@ -934,7 +934,7 @@ export const bottomFilterLists = [
   },
 ];
 
-export const meets = [
+export const meets:Imeets[] = [
   {
     img: "/assets/images/svg/sk.svg",
     title: "Meeting with client",
@@ -961,7 +961,7 @@ export const meets = [
   },
 ];
 
-export const files = [
+export const files:Ifiles[] = [
   {
     img: "/assets/images/icon/file-1.svg",
     title: "Dashboard.fig",
