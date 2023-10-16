@@ -1,6 +1,6 @@
-import { Idata } from "./type";
+import { Idata, Inotifications, MenuItem } from "./type";
 
-export const menuItems = [
+export const menuItems:MenuItem[]  = [
   {
     isHeadr: true,
     title: "menu",
@@ -755,7 +755,7 @@ export const topMenu:Idata[] = [
   },
 ];
 
-export const notifications = [
+export const notifications:Inotifications[] = [
   {
     title: "Your order is placed",
     desc: "Amet minim mollit non deser unt ullamco est sit aliqua.",
