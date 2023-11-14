@@ -1,10 +1,8 @@
-import React from "react";
-import Link from "next/link";
-import Icon from "@/components//ui/icons/Icon";
 import useDarkMode from "@/hooks/useDarkMode";
-import useSidebar from "@/hooks/useSidebar";
 import useSemiDark from "@/hooks/useSemiDark";
+import useSidebar from "@/hooks/useSidebar";
 import useSkin from "@/hooks/useSkin";
+import Link from "next/link";
 
 const SidebarLogo = ({ menuHover }) => {
   const [isDark] = useDarkMode();
@@ -38,7 +36,7 @@ const SidebarLogo = ({ menuHover }) => {
           {(!collapsed || menuHover) && (
             <div>
               <h1 className="text-xl font-semibold text-slate-900 dark:text-slate-100">
-                DashCode
+                Gtx Solutions
               </h1>
             </div>
           )}

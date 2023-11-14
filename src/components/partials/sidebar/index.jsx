@@ -1,11 +1,11 @@
-import React, { useRef, useEffect, useState } from "react";
+import { menuItems } from "@/constant/data";
+import useSemiDark from "@/hooks/useSemiDark";
+import useSidebar from "@/hooks/useSidebar";
+import useSkin from "@/hooks/useSkin";
+import { useEffect, useRef, useState } from "react";
+import SimpleBar from "simplebar-react";
 import SidebarLogo from "./Logo";
 import Navmenu from "./Navmenu";
-import { menuItems } from "@/constant/data";
-import SimpleBar from "simplebar-react";
-import useSidebar from "@/hooks/useSidebar";
-import useSemiDark from "@/hooks/useSemiDark";
-import useSkin from "@/hooks/useSkin";
 
 const Sidebar = () => {
   const scrollableNodeRef = useRef();
@@ -61,26 +61,7 @@ const Sidebar = () => {
           scrollableNodeProps={{ ref: scrollableNodeRef }}
         >
           <Navmenu menus={menuItems} />
-          {!collapsed && (
-            <div className="bg-slate-900 mb-16 mt-24 p-4 relative text-center rounded-2xl text-white">
-              <img
-                src="/assets/images/svg/rabit.svg"
-                alt=""
-                className="mx-auto relative -mt-[73px]"
-              />
-              <div className="max-w-[160px] mx-auto mt-6">
-                <div className="widget-title">Unlimited Access</div>
-                <div className="text-xs font-light">
-                  Upgrade your system to business plan
-                </div>
-              </div>
-              <div className="mt-6">
-                <button className="btn bg-white hover:bg-opacity-80 text-slate-900 btn-sm w-full block">
-                  Upgrade
-                </button>
-              </div>
-            </div>
-          )}
+
         </SimpleBar>
       </div>
     </div>
