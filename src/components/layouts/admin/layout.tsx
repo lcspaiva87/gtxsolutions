@@ -1,6 +1,13 @@
 "use client";
+import { Loading } from "@/components/Loading";
 import Header from "@/components/header/";
+import MobileFooter from "@/components/partials/footer/MobileFooter";
+import Footer from "@/components/partials/footer/index";
+import Sidebar from "@/components/partials/sidebar";
+import { MobileMenu } from "@/components/partials/sidebar/MobileMenu";
+import useContentWidth from "@/hooks/useContentWidth";
 import useDarkMode from "@/hooks/useDarkMode";
+import useMenuHidden from "@/hooks/useMenuHidden";
 import useMenulayout from "@/hooks/useMenulayout";
 import useMobileMenu from "@/hooks/useMobileMenu";
 import useNavbarType from "@/hooks/useNavbarType";
@@ -8,19 +15,9 @@ import useRtl from "@/hooks/useRtl";
 import useSidebar from "@/hooks/useSidebar";
 import useSkin from "@/hooks/useSkin";
 import useWidth from "@/hooks/useWidth";
-import useContentWidth from "@/hooks/useContentWidth";
-import useMenuHidden from "@/hooks/useMenuHidden";
-import useMonoChrome from "@/hooks/useMonoChrome";
-
 import { motion } from "framer-motion";
-import { usePathname, useRouter } from "next/navigation";
-import { Suspense, useEffect } from "react";
-import { useSelector } from "react-redux";
-import Sidebar from "@/components/partials/sidebar";
-import { Loading } from "@/components/Loading";
-import { MobileMenu } from "@/components/partials/sidebar/mobileMenu";
-import MobileFooter from "@/components/partials/footer/mobileFooter";
-import Footer from "@/components/partials/footer/index";
+import { usePathname } from "next/navigation";
+import { Suspense } from "react";
 export function AdminLayout({ children }: { children: React.ReactNode }) {
   const { width, breakpoints } = useWidth();
   const [collapsed] = useSidebar();
