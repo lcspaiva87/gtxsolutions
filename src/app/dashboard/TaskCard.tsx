@@ -1,18 +1,14 @@
-import { useEffect, useState } from "react";
+import { Itask } from "@/@types/Task";
+import { toggleEditModal } from "@/components/partials/app/projects/store";
+import { Card } from "@/components/ui/Card";
+import Dropdown from "@/components/ui/Dropdown";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import { Icons } from "@/components/icons";
-import { Itask } from "@/@types/Task";
-import * as Avatar from "@radix-ui/react-avatar";
-import { Card } from "@/components/ui/Card";
-import { toggleEditModal } from "@/components/partials/app/projects/store";
-import Dropdown from "@/components/ui/Dropdown";
 import { Menu } from "@headlessui/react";
 import { Icon } from "@iconify/react/dist/iconify.js";
-import { useDispatch } from "react-redux";
-import { message } from "@/constant/data";
 import * as Separator from "@radix-ui/react-separator";
-import { Tag } from "@/components/ui/Tag";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 
 export type Id = string | number;
 export type Column = {
@@ -87,8 +83,7 @@ function TaskCard({ task, deleteTask }: Props) {
     {...listeners}
     onClick={toggleEditMode}>
  <Card
-    className=" bg-mainBackgroundColor flex flex-col  rounded-xl hover:ring-2 hover:ring-inset hover:ring-rose-500 cursor-grab relative task"
-
+    className=" bg-mainBackgroundColor  flex flex-col  rounded-xl hover:ring-2 hover:ring-inset hover:ring-rose-500 cursor-grab relative task"
 
     >
       <header className="flex justify-between items-end">

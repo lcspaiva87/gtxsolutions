@@ -140,7 +140,7 @@ function ColumnContainer({
         </div>
 
         {/* Column task container */}
-        <div className="flex flex-grow flex-col gap-4 p-1 overflow-x-hidden overflow-y-auto">
+        <div className="flex flex-grow flex-col gap-4 p-[0.8rem] overflow-x-hidden overflow-y-auto">
           <SortableContext items={tasksIds}>
             {tasks.map((task) => (
               <TaskCard
