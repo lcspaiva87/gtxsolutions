@@ -2,15 +2,16 @@ import Modal from "@/components/ui/Modal";
 import { TextArea } from "@/components/ui/Textarea";
 import { useTask } from "@/hooks/useTask";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Dispatch, SetStateAction } from "react";
+
+import 'flatpickr/dist/flatpickr.min.css';
+import { useState } from "react";
+import Flatpickr from "react-flatpickr";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
 import * as yup from "yup";
-
 import { toggleTaskModal } from "../partials/app/kanban/store";
 import { InputCustomer } from "../ui/inputs";
-
 type FormValues = {
   company: string;
   camera: string;
@@ -18,6 +19,7 @@ type FormValues = {
   responsible: string;
   message: string;
   priority: string;
+  startDate:any
 };
 const FormSchema = yup.object().shape({
   company: yup.string().required("Digite o nome da empresa"),
@@ -28,15 +30,16 @@ const FormSchema = yup.object().shape({
     .required("Digite o nome do responsavel pelo sentor"),
   message: yup.string().required("Digite a mensagem"),
   priority: yup.string().required("Digite a mensagem"),
+  startDate: yup
+  .date()
+  .required("Start date is required")
+  .min(new Date(), "Start date must be greater than today"),
 });
 
-interface FormCreateTaskProps {
-  showModal: boolean;
-  setShowModal: Dispatch<SetStateAction<boolean>>;
-  idColumn: string | number;
-}
+
 export function FormCreateTask() {
   const { createMutation } = useTask();
+  const [picker, setPicker] = useState(new Date());
   const { taskModal } = useSelector((state: any) => state.kanban);
   const dispatch = useDispatch();
   const {
@@ -53,6 +56,7 @@ export function FormCreateTask() {
       phone: "",
       responsible: "",
       priority: "",
+      startDate: "",
     },
   });
   async function onSubmit({
@@ -78,7 +82,6 @@ export function FormCreateTask() {
       //   columnId: idColumn,
       //   priority: priority,
       // });
-
     } catch (error) {
       console.error("Ocorreu um erro ao enviar a tarefa:", error);
     }
@@ -86,7 +89,7 @@ export function FormCreateTask() {
   return (
     <Modal
       title="Create Project"
-      labelclassName="btn-outline-dark"
+      labelClass="btn-outline-dark"
       activeModal={taskModal}
       onClose={() =>
         dispatch(
@@ -96,9 +99,15 @@ export function FormCreateTask() {
         )
       }
     >
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form >
         <div className="flex flex-col w-full items-start gap-y-4">
           <h1 className="text-gray-800 text-lg font-bold">Relatório</h1>
+          <Flatpickr
+              className="form-control py-2"
+              value={picker}
+              onChange={(date) => setPicker(date)}
+              id="default-picker"
+            />
           <InputCustomer
             type="text"
             name="priority"
@@ -106,38 +115,37 @@ export function FormCreateTask() {
             required
             control={control}
           />
-          <div className="flex gap-2">
-            <InputCustomer
-              type="text"
-              name="company"
-              placeholder="Empresa"
-              required
-              control={control}
-            />
-            <InputCustomer
-              type="text"
-              name="camera"
-              placeholder="Camera"
-              required
-              control={control}
-            />
-          </div>
-          <div className="flex gap-3">
-            <InputCustomer
-              type="text"
-              name="phone"
-              placeholder="Telefone"
-              required
-              control={control}
-            />
-            <InputCustomer
-              type="text"
-              name="responsible"
-              placeholder="responsible"
-              required
-              control={control}
-            />
-          </div>
+
+          <InputCustomer
+            type="text"
+            name="company"
+            placeholder="Empresa"
+            required
+            control={control}
+          />
+          <InputCustomer
+            type="text"
+            name="camera"
+            placeholder="Camera"
+            required
+            control={control}
+          />
+
+
+          <InputCustomer
+            type="text"
+            name="phone"
+            placeholder="Telefone"
+            required
+            control={control}
+          />
+          <InputCustomer
+            type="text"
+            name="responsible"
+            placeholder="responsible"
+            required
+            control={control}
+          />
 
           <div className="w-full">
             <div className="relative w-full ">
@@ -191,10 +199,7 @@ export function FormCreateTask() {
           </div>
         </div>
         <div className="flex justify-between gap-3 mt-3">
-          <button
-
-            className="flex text-red-300 items-center gap-2 border border-red-300 p-2 rounded-lg hover:text-red-400 hover:border-red-400"
-          >
+          <button className="flex text-red-300 items-center gap-2 border border-red-300 p-2 rounded-lg hover:text-red-400 hover:border-red-400">
             Cancelar
           </button>
           <button

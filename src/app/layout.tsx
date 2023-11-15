@@ -1,10 +1,8 @@
-import "./scss/app.scss";
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "simplebar-react/dist/simplebar.min.css";
 import { QueryProvider } from "@/utils/QueryClientProvider";
 import { SnackbarProvider } from "@/utils/QueryProvider";
 import { ReduxProvider } from "@/utils/provider";
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
