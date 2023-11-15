@@ -87,6 +87,7 @@ export function FormCreateTask() {
     }
   }
   return (
+    //@ts-ignore
     <Modal
       title="Create Project"
       labelClass="btn-outline-dark"
@@ -105,6 +106,7 @@ export function FormCreateTask() {
           <Flatpickr
               className="form-control py-2"
               value={picker}
+              // @ts-ignore
               onChange={(date) => setPicker(date)}
               id="default-picker"
             />

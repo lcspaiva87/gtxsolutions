@@ -1,7 +1,8 @@
-import { Menu, Transition } from "@headlessui/react";
-import { Fragment} from "react";
-import Link from "next/link";
 import Icon from "@/components//ui/icons/Icon";
+import { Menu, Transition } from "@headlessui/react";
+import Link from "next/link";
+import { Fragment, JSXElementConstructor, Key, PromiseLikeOfReactNode, ReactElement, ReactNode } from "react";
+import { UrlObject } from "url";
 
 const Dropdown = ({
   label = "Dropdown",
@@ -51,7 +52,7 @@ const Dropdown = ({
             <div>
               {children
                 ? children
-                : items?.map((item, index) => (
+                : items?.map((item: { hasDivider: any; link: string | UrlObject; icon: any; label: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | PromiseLikeOfReactNode | null | undefined; }, index: Key | null | undefined) => (
                     <Menu.Item key={index}>
                       {({ active }) => (
                         <div

@@ -1,6 +1,6 @@
 "use client";
 import { Itask } from "@/@types/Task";
-import TaskCard from "@/app/dashboard/TaskCard";
+import TaskCard from "@/app/dashboard/components/TaskCard";
 import { toggleTaskModal } from "@/components/partials/app/kanban/store";
 import { SortableContext, useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";

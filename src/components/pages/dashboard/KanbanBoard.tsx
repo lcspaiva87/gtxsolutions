@@ -1,7 +1,7 @@
 "use client";
 import { Column } from "@/@types/Column";
 import { Itask } from "@/@types/Task";
-import TaskCard from "@/app/dashboard/TaskCard";
+import TaskCard from "@/app/dashboard/components/TaskCard";
 import { Button } from "@/components/Button";
 import { FormCreateTask } from "@/components/form/CreateTask";
 import AddColumn from "@/components/partials/app/kanban/AddColumn";
@@ -24,7 +24,7 @@ import { createPortal } from "react-dom";
 import { useDispatch } from "react-redux";
 import ColumnContainer from "./ColumnContainer";
 
-export function KanbanBoard() {
+export default function KanbanBoard() {
   const { columns: columm, removeMutation: deleteColumnMutation } =useColumns();
   const { tasks: task, saveMutation, removeMutation } = useTask();
   const [columns, setColumns] = useState(columm);

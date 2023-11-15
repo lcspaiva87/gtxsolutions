@@ -1,5 +1,4 @@
 import { Itask } from "@/@types/Task";
-import { toggleEditModal } from "@/components/partials/app/projects/store";
 import { Card } from "@/components/ui/Card";
 import Dropdown from "@/components/ui/Dropdown";
 import { useSortable } from "@dnd-kit/sortable";
@@ -7,7 +6,7 @@ import { CSS } from "@dnd-kit/utilities";
 import { Menu } from "@headlessui/react";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import * as Separator from "@radix-ui/react-separator";
-import { useEffect, useState } from "react";
+import { Key, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
 export type Id = string | number;
@@ -82,9 +81,9 @@ function TaskCard({ task, deleteTask }: Props) {
     {...attributes}
     {...listeners}
     onClick={toggleEditMode}>
- <Card
-    className=" bg-mainBackgroundColor  flex flex-col  rounded-xl hover:ring-2 hover:ring-inset hover:ring-rose-500 cursor-grab relative task"
 
+ <Card
+        className=" bg-mainBackgroundColor  flex flex-col  rounded-xl hover:ring-2 hover:ring-inset hover:ring-rose-500 cursor-grab relative task"
     >
       <header className="flex justify-between items-end">
         <div className="flex space-x-4 items-center rtl:space-x-reverse">
@@ -110,14 +109,14 @@ function TaskCard({ task, deleteTask }: Props) {
           >
             <div>
               <Menu.Item
-                onClick={() =>
-                  dispatch(
-                    toggleEditModal({
-                      editModal: true,
-                      task,
-                    })
-                  )
-                }
+                // onClick={() =>
+                //   dispatch(
+                //     toggleEditModal({
+                //       editModal: true,
+                //       task,
+                //     })
+                //   )
+                // }
               >
                 <div
                   className="hover:bg-slate-900 dark:hover:bg-slate-600 dark:hover:bg-opacity-70 hover:text-white
@@ -130,7 +129,9 @@ function TaskCard({ task, deleteTask }: Props) {
                   <span>Edit</span>
                 </div>
               </Menu.Item>
-              <Menu.Item onClick={() => dispatch(deleteTask(id))}>
+              <Menu.Item
+              // onClick={() => dispatch(deleteTask(id))}
+              >
                 <div
                   className="hover:bg-slate-900 dark:hover:bg-slate-600 dark:hover:bg-opacity-70 hover:text-white
                    w-full border-b border-b-gray-500 border-opacity-10   px-4 py-2 text-sm dark:text-slate-300  last:mb-0 cursor-pointer first:rounded-t last:rounded-b flex  space-x-2 items-center
@@ -175,7 +176,7 @@ function TaskCard({ task, deleteTask }: Props) {
             Assigned to
           </div>
           <div className="flex justify-start -space-x-1.5 rtl:space-x-reverse">
-            {assignee?.map((user, userIndex) => (
+            {assignee?.map((user: { image: string | undefined; label: string | undefined; }, userIndex: Key | null | undefined) => (
               <div
                 className="h-6 w-6 rounded-full ring-1 ring-slate-100"
                 key={userIndex}
