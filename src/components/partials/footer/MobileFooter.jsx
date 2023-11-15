@@ -1,7 +1,6 @@
-import React from "react";
-import { useRouter } from "next/navigation";
-import Link from "next/link";
 import Icon from "@/components//ui/icons/Icon";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const MobileFooter = () => {
   const router = useRouter();
@@ -42,7 +41,7 @@ const MobileFooter = () => {
       >
         <div className="h-[50px] w-[50px] rounded-full relative left-[0px] top-[0px] custom-dropshadow">
           <img
-            src="/assets/images/users/user-1.jpg"
+            src="https://avatars.githubusercontent.com/u/40870393?v=4"
             alt=""
             className={` w-full h-full rounded-full
           ${
@@ -67,7 +66,7 @@ const MobileFooter = () => {
           >
             <Icon icon="heroicons-outline:bell" />
             <span className="absolute right-[17px] lg:top-0 -top-2 h-4 w-4 bg-red-500 text-[8px] font-semibold flex flex-col items-center justify-center rounded-full text-white z-[99]">
-              2
+              3
             </span>
           </span>
           <span

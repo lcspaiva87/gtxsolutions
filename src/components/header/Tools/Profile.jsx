@@ -1,10 +1,9 @@
-import React from "react";
-import Dropdown from "@/components/ui/Dropdown";
 import Icon from "@/components//ui/icons/Icon";
-import { Menu, Transition } from "@headlessui/react";
-import { useDispatch, useSelector } from "react-redux";
 import { handleLogout } from "@/components/partials/auth/store";
+import Dropdown from "@/components/ui/Dropdown";
+import { Menu } from "@headlessui/react";
 import { useRouter } from "next/navigation";
+import { useDispatch } from "react-redux";
 
 const ProfileLabel = () => {
   return (
@@ -12,8 +11,8 @@ const ProfileLabel = () => {
       <div className="flex-1 ltr:mr-[10px] rtl:ml-[10px]">
         <div className="lg:h-8 lg:w-8 h-7 w-7 rounded-full">
           <img
-            src="/assets/images/all-img/user.png"
-            alt=""
+            src="https://avatars.githubusercontent.com/u/40870393?v=4"
+            alt="profile"
             className="block w-full h-full object-cover rounded-full"
           />
         </div>
