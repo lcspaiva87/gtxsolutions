@@ -1,17 +1,16 @@
-import React, { useState } from "react";
-import Select, { components } from "react-select";
-import Modal from "@/components/ui/Modal";
-import { useSelector, useDispatch } from "react-redux";
-import { toggleTaskModal, addTask } from "./store";
-import Textinput from "@/components/ui/Textinput";
-import Textarea from "@/components/ui/Textarea";
-import Flatpickr from "react-flatpickr";
-import { useForm, Controller } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
-import { v4 as uuidv4 } from "uuid";
 import FormGroup from "@/components/ui/FormGroup";
-
+import Modal from "@/components/ui/Modal";
+import Textarea from "@/components/ui/Textarea";
+import Textinput from "@/components/ui/Textinput";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useState } from "react";
+import Flatpickr from "react-flatpickr";
+import { Controller, useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import Select, { components } from "react-select";
+import { v4 as uuidv4 } from "uuid";
+import * as yup from "yup";
+import { addTask, toggleTaskModal } from "./store";
 const styles = {
   multiValue: (base, state) => {
     return state.data.isFixed ? { ...base, opacity: "0.5" } : base;
@@ -74,7 +73,6 @@ const options = [
     label: "update",
   },
 ];
-
 const OptionComponent = ({ data, ...props }) => {
   //const Icon = data.icon;
 
@@ -95,8 +93,7 @@ const OptionComponent = ({ data, ...props }) => {
     </components.Option>
   );
 };
-
-const AddTaskModal = () => {
+export const AddTaskModal = () => {
   const { taskModal } = useSelector((state) => state.kanban);
   const dispatch = useDispatch();
   const [startDate, setStartDate] = useState(new Date());
@@ -156,7 +153,7 @@ const AddTaskModal = () => {
       <Modal
         title="Create Project"
         labelclassName="btn-outline-dark"
-        activeModal={taskModal}
+        activeModal={false}
         onClose={() =>
           dispatch(
             toggleTaskModal({
@@ -173,8 +170,9 @@ const AddTaskModal = () => {
             register={register}
             error={errors.title}
           />
-          <div className="grid lg:grid-cols-2 gap-4 grid-cols-1">
-            <FormGroup
+
+        <div className="grid lg:grid-cols-2 gap-4 grid-cols-1">
+        <FormGroup
               label="Start Date"
               id="default-picker"
               error={errors.startDate}
@@ -255,7 +253,6 @@ const AddTaskModal = () => {
               </div>
             )}
           </div>
-
           <div className={errors.tags ? "has-error" : ""}>
             <label className="form-label" htmlFor="icon_s">
               Tag
@@ -282,7 +279,6 @@ const AddTaskModal = () => {
             )}
           </div>
           <Textarea label="Description" placeholder="Description" />
-
           <div className="ltr:text-right rtl:text-left">
             <button className="btn btn-dark  text-center">Add</button>
           </div>
@@ -292,4 +288,4 @@ const AddTaskModal = () => {
   );
 };
 
-export default AddTaskModal;
+

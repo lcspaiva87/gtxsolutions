@@ -1,13 +1,14 @@
 "use client";
-import Modal from "../../modal/container";
+
+import { InputCustomer } from "@/components/ui/inputs";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
 import { v4 as uuidv4 } from "uuid";
 import * as yup from "yup";
-import { InputCustomer } from "@/components/ui/inputs";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { Icons } from "@/components/icons";
-import { useState } from "react";
+import Modal from "../../modal/container";
 
+import { Icons } from "@/components/ui/icons";
 import { PostColumns } from "@/data/columns";
 
 type FormValues = {

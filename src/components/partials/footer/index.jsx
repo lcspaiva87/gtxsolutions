@@ -1,4 +1,3 @@
-import React from "react";
 import useFooterType from "@/hooks/useFooterType";
 
 const Footer = ({ className = "custom-class" }) => {
@@ -21,7 +20,6 @@ const Footer = ({ className = "custom-class" }) => {
             COPYRIGHT &copy; 2023 GTX Solutions, All rights Reserved
           </div>
           <div className="ltr:md:text-right rtl:md:text-end text-center text-sm">
-            dev Lucas{" "}
             <a
               href="https://codeshaper.net"
               target="_blank"

@@ -1,13 +1,16 @@
+import Modal from "@/components/ui/Modal";
 import { TextArea } from "@/components/ui/Textarea";
-import Modal from "../modal/container";
-import { InputCustomer } from "../ui/inputs";
-import { postTask } from "@/data/tasks";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
-import { v4 as uuidv4 } from "uuid";
-import { useForm } from "react-hook-form";
-import { Dispatch, SetStateAction } from 'react';
 import { useTask } from "@/hooks/useTask";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { Dispatch, SetStateAction } from "react";
+import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { v4 as uuidv4 } from "uuid";
+import * as yup from "yup";
+
+import { toggleTaskModal } from "../partials/app/kanban/store";
+import { InputCustomer } from "../ui/inputs";
+
 type FormValues = {
   company: string;
   camera: string;
@@ -30,10 +33,12 @@ const FormSchema = yup.object().shape({
 interface FormCreateTaskProps {
   showModal: boolean;
   setShowModal: Dispatch<SetStateAction<boolean>>;
-  idColumn: string | number
+  idColumn: string | number;
 }
-export function FormCreateTask({setShowModal,showModal,idColumn}:FormCreateTaskProps) {
-  const {createMutation} = useTask()
+export function FormCreateTask() {
+  const { createMutation } = useTask();
+  const { taskModal } = useSelector((state: any) => state.kanban);
+  const dispatch = useDispatch();
   const {
     handleSubmit,
     control,
@@ -46,8 +51,8 @@ export function FormCreateTask({setShowModal,showModal,idColumn}:FormCreateTaskP
       company: "",
       message: "",
       phone: "",
-      responsible:"",
-      priority:""
+      responsible: "",
+      priority: "",
     },
   });
   async function onSubmit({
@@ -60,26 +65,37 @@ export function FormCreateTask({setShowModal,showModal,idColumn}:FormCreateTaskP
   }: FormValues) {
     const id = uuidv4();
     try {
-      await createMutation.mutate({
-        camera: camera,
-        company: company,
-        file: "fotos",
-        message: message,
-        phone: phone,
-        responsible: responsible,
-        avatar:
-          "https://images.unsplash.com/photo-1492633423870-43d1cd2775eb?&w=128&h=128&dpr=2&q=80",
-        id: id,
-        columnId: idColumn,
-        priority: priority,
-      });
-      setShowModal(false);
+      // await createMutation.mutate({
+      //   camera: camera,
+      //   company: company,
+      //   file: "fotos",
+      //   message: message,
+      //   phone: phone,
+      //   responsible: responsible,
+      //   avatar:
+      //     "https://images.unsplash.com/photo-1492633423870-43d1cd2775eb?&w=128&h=128&dpr=2&q=80",
+      //   id: id,
+      //   columnId: idColumn,
+      //   priority: priority,
+      // });
+
     } catch (error) {
       console.error("Ocorreu um erro ao enviar a tarefa:", error);
     }
   }
   return (
-    <Modal showModal={showModal} setShowModal={ setShowModal}>
+    <Modal
+      title="Create Project"
+      labelclassName="btn-outline-dark"
+      activeModal={taskModal}
+      onClose={() =>
+        dispatch(
+          toggleTaskModal({
+            open: false,
+          })
+        )
+      }
+    >
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="flex flex-col w-full items-start gap-y-4">
           <h1 className="text-gray-800 text-lg font-bold">Relatório</h1>
@@ -176,7 +192,7 @@ export function FormCreateTask({setShowModal,showModal,idColumn}:FormCreateTaskP
         </div>
         <div className="flex justify-between gap-3 mt-3">
           <button
-              onClick={()=>setShowModal(false)}
+
             className="flex text-red-300 items-center gap-2 border border-red-300 p-2 rounded-lg hover:text-red-400 hover:border-red-400"
           >
             Cancelar

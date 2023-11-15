@@ -1,4 +1,13 @@
 "use client";
+import { Column } from "@/@types/Column";
+import { Itask } from "@/@types/Task";
+import TaskCard from "@/app/dashboard/TaskCard";
+import { Button } from "@/components/Button";
+import { FormCreateTask } from "@/components/form/CreateTask";
+import AddColumn from "@/components/partials/app/kanban/AddColumn";
+import { toggleColumnModal } from "@/components/partials/app/kanban/store";
+import { useColumns } from "@/hooks/useColuns";
+import { useTask } from "@/hooks/useTask";
 import {
   DndContext,
   DragEndEvent,
@@ -9,26 +18,16 @@ import {
   useSensor,
   useSensors,
 } from "@dnd-kit/core";
-import ColumnContainer from "./ColumnContainer";
-import { useColumns } from "@/hooks/useColuns";
-import { Column } from "@/@types/Column";
-import { useEffect, useMemo, useState } from "react";
 import { SortableContext, arrayMove } from "@dnd-kit/sortable";
-import { useTask } from "@/hooks/useTask";
-import { Itask } from "@/@types/Task";
+import { useEffect, useMemo, useState } from "react";
 import { createPortal } from "react-dom";
-import TaskCard from "@/app/dashboard/TaskCard";
-
-import { useSelector, useDispatch } from "react-redux";
-import { toggleColumnModal } from "@/components/partials/app/kanban/store";
-import { Button } from "@/components/Button";
+import { useDispatch } from "react-redux";
+import ColumnContainer from "./ColumnContainer";
 
 export function KanbanBoard() {
-  const { columns: columm, removeMutation: deleteColumnMutation } =
-    useColumns();
+  const { columns: columm, removeMutation: deleteColumnMutation } =useColumns();
   const { tasks: task, saveMutation, removeMutation } = useTask();
   const [columns, setColumns] = useState(columm);
-
   const [tasks, setTasks] = useState(task);
   const columnsId = useMemo(() => columns.map((col) => col.id), [columns]);
   const [activeColumn, setActiveColumn] = useState<Column | null>(null);
@@ -141,17 +140,18 @@ export function KanbanBoard() {
   async function deleteColumn(id: string | number) {
     await deleteColumnMutation.mutate(id);
   }
+
   return (
     <div>
       {/* Header Kanban */}
       <div className="flex flex-wrap justify-between items-center mb-4">
         <h4 className="font-medium lg:text-2xl text-xl capitalize text-slate-900 inline-block ltr:pr-4 rtl:pl-4">
-          kanban
+          Task
         </h4>
         <div className="flex space-x-4 justify-end items-center rtl:space-x-reverse">
           <Button
             icon="heroicons-outline:plus"
-            text="Add Board"
+            text="Create new task"
             className="bg-slate-800 dark:hover:bg-opacity-70   h-min text-sm font-medium text-slate-50 hover:ring-2 hover:ring-opacity-80 ring-slate-900  hover:ring-offset-1  dark:hover:ring-0 dark:hover:ring-offset-0"
             iconclassName=" text-lg"
             onClick={() => dispatch(toggleColumnModal(true))}
@@ -217,6 +217,8 @@ export function KanbanBoard() {
           )}
         </DndContext>
       </div>
+      <FormCreateTask />
+      <AddColumn />
     </div>
   );
 }

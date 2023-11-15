@@ -1,10 +1,8 @@
 'use client'
 import { Column } from "@/@types/Column";
-
-import { useMutation, useQuery, useQueryClient } from "react-query";
-import { useEffect, useState } from "react";
 import { DeleteColumns, fetchColumns, } from "@/data/columns";
 import { enqueueSnackbar } from "notistack";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 
 
 export const useColumns = (id?:Column[]) => {

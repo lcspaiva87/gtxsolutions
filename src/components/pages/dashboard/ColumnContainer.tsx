@@ -1,15 +1,12 @@
 "use client";
-import { SortableContext, useSortable } from "@dnd-kit/sortable";
-import { CSS } from "@dnd-kit/utilities";
-import { useMemo, useState } from "react";
-import { Icons } from "@/components/icons";
-import { FormCreateTask } from "@/components/form/CreateTask";
 import { Itask } from "@/@types/Task";
 import TaskCard from "@/app/dashboard/TaskCard";
 import { toggleTaskModal } from "@/components/partials/app/kanban/store";
+import { SortableContext, useSortable } from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
 import { Icon } from "@iconify/react/dist/iconify.js";
-import Tooltip from "@/components/ui/Tooltip"
-import { useSelector, useDispatch } from "react-redux";
+import { useMemo, useState } from "react";
+import { useDispatch } from "react-redux";
 
 export type Id = string | number;
 export type Column = {
@@ -98,14 +95,6 @@ function ColumnContainer({
 
   return (
     <>
-      <FormCreateTask
-        setShowModal={() => {
-          setIsOpen(false);
-        }}
-        idColumn={column.id}
-        showModal={isOpen}
-      />
-
       <div
         ref={setNodeRef}
         style={style}
@@ -123,16 +112,16 @@ function ColumnContainer({
             {column.title}
           </div>
           <div className="flex items-center space-x-2 rtl:space-x-reverse">
-            <Tooltip placement="top" arrow theme="danger" content="Deletse">
+
               <button
                 className="border border-slate-200 dark:border-slate-700 dark:text-slate-400 rounded h-6 w-6 flex flex-col  items-center justify-center text-base text-slate-600"
 
               >
                 <Icon icon="heroicons-outline:trash" />
               </button>
-            </Tooltip>
 
-            <Tooltip placement="top" arrow theme="dark" content="Add Card">
+
+
               <button
                 className="border border-slate-200 dark:border-slate-700 dark:text-slate-400 rounded h-6 w-6 flex flex-col  items-center justify-center text-base text-slate-600"
                 onClick={() =>
@@ -146,7 +135,7 @@ function ColumnContainer({
               >
                 <Icon icon="heroicons-outline:plus-sm" />
               </button>
-            </Tooltip>
+
           </div>
         </div>
 

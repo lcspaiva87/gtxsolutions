@@ -7,34 +7,6 @@
     {
       "id": "container-555671e6-665d-415d-a6de-1a692f92c4",
       "title": "Work in progress"
-    },
-    {
-      "id": "container-b7b36a15-d5d0-4a9d-a5da-abb5985cc618",
-      "title": "feeffe"
-    },
-    {
-      "id": "container-89c10a5d-5188-4a19-990d-8adff84e5779",
-      "title": "aaa"
-    },
-    {
-      "id": "container-34d1c104-4104-4a61-b228-4609a8a4327f",
-      "title": "efeffe"
-    },
-    {
-      "id": "container-fd5d49fa-3190-4acc-891b-38d1f96a5d89",
-      "title": "5533553"
-    },
-    {
-      "id": "container-a9f7a013-ef4d-4b2c-89b5-8c5e6337870f",
-      "title": "53535353"
-    },
-    {
-      "id": "container-dc9e6420-1bc5-4663-94b0-8cafb23098c9",
-      "title": "3553535353"
-    },
-    {
-      "id": "container-bd7284d4-7fdd-4fe9-8287-aa1d4ae2ebb8",
-      "title": "efeefef"
     }
   ],
   "task": [
@@ -93,7 +65,7 @@
     {
       "user": "dev 2",
       "title": "Fazer a tela de Registro",
-      "columnId": "container-555671e6-665d-415d-a6de-1a692f92c4",
+      "columnId": "container-555671e6-665d-415d-a6de-1a692f92c48",
       "message": "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.",
       "avatar": "https://images.unsplash.com/photo-1492633423870-43d1cd2775eb?&w=128&h=128&dpr=2&q=80",
       "priority": "hoje",
@@ -119,7 +91,7 @@
     {
       "user": "dev 3",
       "title": "Fazer a tela de cms",
-      "columnId": "container-b7b36a15-d5d0-4a9d-a5da-abb5985cc618",
+      "columnId": "container-555671e6-665d-415d-a6de-1a692f92c4",
       "message": "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.",
       "avatar": "https://images.unsplash.com/photo-1492633423870-43d1cd2775eb?&w=128&h=128&dpr=2&q=80",
       "priority": "hoje",
