@@ -6,7 +6,6 @@ import { toggleColumnModal } from "@/components/partials/app/kanban/store";
 import { useColumns } from "@/hooks/useColuns";
 import { useTask } from "@/hooks/useTask";
 import { DndContext, DragEndEvent, DragOverEvent, DragOverlay, DragStartEvent, PointerSensor, useSensor, useSensors } from "@dnd-kit/core";
-import { createPortal } from "react-dom";
 
 import { SortableContext, arrayMove } from "@dnd-kit/sortable";
 import { useEffect, useMemo, useState } from "react";
@@ -185,8 +184,7 @@ export default function Dashboard() {
               </SortableContext>
             </div>
           </div>
-          {createPortal(
-            <DragOverlay>
+         <DragOverlay>
               {activeColumn && (
                 <ColumnContainer
                   column={activeColumn}
@@ -208,8 +206,7 @@ export default function Dashboard() {
                 />
               )}
             </DragOverlay>,
-            document.body
-          )}
+
         </DndContext>
 
       </div>
