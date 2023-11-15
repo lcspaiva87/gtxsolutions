@@ -9,4 +9,9 @@ export interface  Itask {
   file?: string;
   avatar?: string;
   priority?:string;
+  title:string;
+  user:string;
+  startDate?:string;
+  endDate:string;
+  assignee:any
 }

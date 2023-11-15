@@ -1,7 +1,8 @@
 import { AdminLayout } from "@/components/layouts/admin/layout";
+import "flatpickr/dist/themes/light.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-
+import '../scss/app.scss';
 const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "GTX | dashboard",

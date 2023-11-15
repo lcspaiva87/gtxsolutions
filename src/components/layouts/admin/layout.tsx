@@ -1,35 +1,131 @@
 "use client";
-import { Header } from "@/components/pages/dashboard/header";
-import { SidebarItem } from "@/components/sidebarItem";
-import { siteSettings } from "@/settings/site.settings";
-import { Avatar } from "@radix-ui/themes";
+import Header from "@/components/header/";
+import useDarkMode from "@/hooks/useDarkMode";
+import useMenulayout from "@/hooks/useMenulayout";
+import useMobileMenu from "@/hooks/useMobileMenu";
+import useNavbarType from "@/hooks/useNavbarType";
+import useRtl from "@/hooks/useRtl";
+import useSidebar from "@/hooks/useSidebar";
+import useSkin from "@/hooks/useSkin";
+import useWidth from "@/hooks/useWidth";
+import useContentWidth from "@/hooks/useContentWidth";
+import useMenuHidden from "@/hooks/useMenuHidden";
+import useMonoChrome from "@/hooks/useMonoChrome";
 
+import { motion } from "framer-motion";
+import { usePathname, useRouter } from "next/navigation";
+import { Suspense, useEffect } from "react";
+import { useSelector } from "react-redux";
+import Sidebar from "@/components/partials/sidebar";
+import { Loading } from "@/components/Loading";
+import { MobileMenu } from "@/components/partials/sidebar/mobileMenu";
+import MobileFooter from "@/components/partials/footer/mobileFooter";
+import Footer from "@/components/partials/footer/index";
 export function AdminLayout({ children }: { children: React.ReactNode }) {
-  const SidebarItemMap = () => (
-    <>
-      {siteSettings.sidebarLinks.admin.map(({ href, label, icon }) => (
-        <SidebarItem href={href} label={label} icon={icon} key={href} />
-      ))}
-    </>
-  );
+  const { width, breakpoints } = useWidth();
+  const [collapsed] = useSidebar();
+  const [isRtl] = useRtl();
+  const [isDark] = useDarkMode();
+  const [skin] = useSkin();
+  const [navbarType] = useNavbarType();
+  const location = usePathname();
+  // header switch class
+  const switchHeaderClass = () => {
+    if (menuType === "horizontal" || menuHidden) {
+      return "ltr:ml-0 rtl:mr-0";
+    } else if (collapsed) {
+      return "ltr:ml-[72px] rtl:mr-[72px]";
+    } else {
+      return "ltr:ml-[248px] rtl:mr-[248px]";
+    }
+  };
+
+  // content width
+  const [contentWidth] = useContentWidth();
+  const [menuType] = useMenulayout();
+  const [menuHidden] = useMenuHidden();
+  // mobile menu
+  const [mobileMenu, setMobileMenu] = useMobileMenu();
   return (
-    <div className="flex">
-      <div className=" bg-gray-900 w-[5rem] h-screen flex flex-col items-center p-2 ">
-        <div className="w-12  mt-[2rem] rounded-lg justify-center flex flex-col gap-5">
-          <Avatar
-            style={{ borderRadius: "5rem", width: 50 }}
-            src="https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?&w=256&h=256&q=70&crop=focalpoint&fp-x=0.5&fp-y=0.3&fp-z=1&fit=crop"
-            fallback="A"
-          />
-        </div>
-        <div className="justify-center items-center w-12 mt-[10rem] flex flex-col gap-5">
-          <SidebarItemMap />
+    <div
+      dir={isRtl ? "rtl" : "ltr"}
+      className={`app-warp    ${isDark ? "dark" : "light"} ${
+        skin === "bordered" ? "skin--bordered" : "skin--default"
+      }
+      ${navbarType === "floating" ? "has-floating" : ""}
+      `}
+    >
+      <Header
+        className={width > parseInt(breakpoints.xl) ? switchHeaderClass() : ""}
+      />
+      {menuType === "vertical" &&
+        width > parseInt(breakpoints.xl) &&
+        !menuHidden && <Sidebar />}
+      <MobileMenu
+        className={`${
+          width < parseInt(breakpoints.xl) && mobileMenu
+            ? "left-0 visible opacity-100  z-[9999]"
+            : "left-[-300px] invisible opacity-0  z-[-999] "
+        }`}
+      />
+      {/* mobile menu overlay*/}
+      {width < parseInt(breakpoints.xl) && mobileMenu && (
+        <div
+          className="overlay bg-slate-900/50 backdrop-filter backdrop-blur-sm opacity-100 fixed inset-0 z-[999]"
+          onClick={() => setMobileMenu(false)}
+        ></div>
+      )}
+      {/* <Settings /> */}
+      <div
+        className={`content-wrapper transition-all duration-150 ${
+          width > 1280 ? switchHeaderClass() : ""
+        }`}
+      >
+        {/* md:min-h-screen will h-full*/}
+        <div className="page-content   page-min-height  ">
+          <div
+            className={
+              contentWidth === "boxed" ? "container mx-auto" : "container-fluid"
+            }
+          >
+            <motion.div
+              key={location}
+              initial="pageInitial"
+              animate="pageAnimate"
+              exit="pageExit"
+              variants={{
+                pageInitial: {
+                  opacity: 0,
+                  y: 50,
+                },
+                pageAnimate: {
+                  opacity: 1,
+                  y: 0,
+                },
+                pageExit: {
+                  opacity: 0,
+                  y: -50,
+                },
+              }}
+              transition={{
+                type: "tween",
+                ease: "easeInOut",
+                duration: 0.5,
+              }}
+            >
+              <Suspense fallback={<Loading />}>{children}</Suspense>
+            </motion.div>
+          </div>
         </div>
       </div>
-      <div className="w-full">
-        <Header />
-        {children}
-      </div>
+      {width < parseInt(breakpoints.md) && <MobileFooter />}
+      {width > parseInt(breakpoints.md) && (
+        <Footer
+          className={
+            width > parseInt(breakpoints.xl) ? switchHeaderClass() : ""
+          }
+        />
+      )}
     </div>
   );
 }

@@ -1,11 +1,8 @@
-import "./globals.css";
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "@radix-ui/themes/styles.css";
 import { QueryProvider } from "@/utils/QueryClientProvider";
 import { SnackbarProvider } from "@/utils/QueryProvider";
-
-
+import { ReduxProvider } from "@/utils/provider";
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -22,7 +19,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <SnackbarProvider>
-          <QueryProvider>{children}</QueryProvider>
+          <QueryProvider>
+            <ReduxProvider>{children}</ReduxProvider>
+          </QueryProvider>
         </SnackbarProvider>
       </body>
     </html>

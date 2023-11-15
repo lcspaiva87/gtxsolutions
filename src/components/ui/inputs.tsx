@@ -3,9 +3,9 @@ import { validateEmailFormat } from "@/utils/validateEmail";
 import clsx from "clsx";
 import { useState } from "react";
 import { Controller } from "react-hook-form";
-import { Icons } from "../icons";
+import { Icons } from "./icons";
 
-type InputType = "text" | "email" | "password" | "number" | "username";
+type InputType = "text" | "email" | "password" | "number" | "username"| 'date';
 type InputProps = {
   type: InputType;
   name: string;
