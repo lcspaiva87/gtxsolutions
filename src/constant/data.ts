@@ -34,7 +34,16 @@ export const menuItems:MenuItem[]  = [
       },
     ],
   },
-
+  {
+    isHeadr: true,
+    title: "apps",
+  },
+  {
+    title: "Kanban",
+    isHide: true,
+    icon: "heroicons-outline:view-boards",
+    link: "kanban",
+  },
 ];
 
 export const topMenu:Idata[] = [
@@ -67,6 +76,33 @@ export const topMenu:Idata[] = [
         childtitle: "Banking Dashboard",
         childlink: "banking",
         childicon: "heroicons:wrench-screwdriver",
+      },
+    ],
+  },
+  {
+    title: "App",
+    icon: "heroicons-outline:chip",
+    link: "/app/home",
+    child: [
+      {
+        childtitle: "Calendar",
+        childlink: "calender",
+        childicon: "heroicons-outline:calendar",
+      },
+      {
+        childtitle: "Kanban",
+        childlink: "kanban",
+        childicon: "heroicons-outline:view-boards",
+      },
+      {
+        childtitle: "Todo",
+        childlink: "todo",
+        childicon: "heroicons-outline:clipboard-check",
+      },
+      {
+        childtitle: "Projects",
+        childlink: "projects",
+        childicon: "heroicons-outline:document",
       },
     ],
   },

@@ -18,6 +18,7 @@ import useWidth from "@/hooks/useWidth";
 import { motion } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { Suspense } from "react";
+import '../scss/app.scss';
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const { width, breakpoints } = useWidth();
   const [collapsed] = useSidebar();

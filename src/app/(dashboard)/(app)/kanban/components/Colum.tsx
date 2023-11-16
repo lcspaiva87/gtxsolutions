@@ -5,7 +5,7 @@ import { DragDropContext } from "react-beautiful-dnd";
 import { Itask } from "@/@types/Task";
 import { useColumns } from "@/hooks/useColuns";
 import { useTask } from "@/hooks/useTask";
-import { ColumItem } from "../../../../kaban./(dashboard)/(app)/kanban/components/ColumItem";
+import { ColumItem } from "./ColumItem";
 type Column = {
   id: string;
   title: string;
