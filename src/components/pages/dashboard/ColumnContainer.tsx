@@ -107,7 +107,9 @@ function ColumnContainer({
             style={{
               backgroundColor: "red",
             }}
-          ></div>
+          >
+
+          </div>
           <div className="text-lg text-slate-900 dark:text-white font-medium capitalize">
             {column.title}
           </div>
