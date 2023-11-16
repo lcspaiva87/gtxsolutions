@@ -46,21 +46,22 @@ const reorderColumnList = (
 };
 
 const Column = () => {
+
   const { columns: initialColumns, removeMutation: deleteColumnMutation } =
     useColumns();
   const { tasks: initialTasks, saveMutation, removeMutation } = useTask();
-  const [columns, setColumns] = useState(initialColumns);
-  const [tasks, setTasks] = useState(initialTasks);
+  const [columns, setColumns] = useState(initialColumnss);
+  const [tasks, setTasks] = useState(intialTaskss);
 
   useEffect(() => {
-    if (initialColumns) {
-      setColumns(initialColumns);
+    if (initialColumnss) {
+      setColumns(initialColumnss);
     }
   }, [initialColumns]);
 
   useEffect(() => {
-    if (initialTasks) {
-      setTasks(initialTasks);
+    if (intialTaskss) {
+      setTasks(intialTaskss);
     }
   }, [initialTasks]);
   const filterTasks = (columnId: string) =>
@@ -118,3 +119,68 @@ const Column = () => {
 };
 
 export default Column;
+const initialColumnss =  [
+  {
+    "id": "container-555671e6-665d-415d-a6de-1a692f92c48",
+    "title": "Todo"
+  },
+  {
+    "id": "container-555671e6-665d-415d-a6de-1a692f92c4",
+    "title": "Work in progress"
+  }
+]
+const intialTaskss = [
+  {
+    "user": "dev",
+    "columnId": "container-555671e6-665d-415d-a6de-1a692f92c4",
+    "message": "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.",
+    "avatar": "https://images.unsplash.com/photo-1492633423870-43d1cd2775eb?&w=128&h=128&dpr=2&q=80",
+    "priority": "hard",
+    "company": "44545",
+    "id": "container-11a2883b-8246-49ac-aced-9f99fbab3b20",
+    "title": "Fazer o almoço",
+    "startDate": "2018-01-01",
+    "endDate": "2018-01-01",
+    "assignee": [
+      {
+        "image": "/assets/images/avatar/av-1.svg",
+        "title": "Mahedi Amin"
+      },
+      {
+        "image": "/assets/images/avatar/av-2.svg",
+        "title": "Sovo Haldar"
+      },
+      {
+        "image": "/assets/images/avatar/av-3.svg",
+        "title": "Rakibul Islam"
+      }
+    ]
+  },
+  {
+    "user": "dev 1",
+    "title": "Fazer a tela de mensagem",
+    "columnId": "container-555671e6-665d-415d-a6de-1a692f92c48",
+    "message": "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.",
+    "avatar": "https://images.unsplash.com/photo-1492633423870-43d1cd2775eb?&w=128&h=128&dpr=2&q=80",
+    "priority": "hoje",
+    "company": "tem",
+    "id": "container-d61d45b7-3ddb-471d-a57f-f1b4f56e217c",
+    "startDate": "2018-01-01",
+    "endDate": "2018-01-01",
+    "assignee": [
+      {
+        "image": "/assets/images/avatar/av-1.svg",
+        "title": "Mahedi Amin"
+      },
+      {
+        "image": "/assets/images/avatar/av-2.svg",
+        "title": "Sovo Haldar"
+      },
+      {
+        "image": "/assets/images/avatar/av-3.svg",
+        "title": "Rakibul Islam"
+      }
+    ],
+    "columId": "container-555671e6-665d-415d-a6de-1a692f92c4"
+  }
+]

@@ -4,10 +4,7 @@ import Dropdown from "@/components/ui/Dropdown";
 import { Menu } from "@headlessui/react";
 import { Icon } from "@iconify/react/dist/iconify.js";
 type Id = string | number;
-type Column = {
-  id: Id;
-  title: string;
-};
+
 
 interface Props {
   task: Itask;
