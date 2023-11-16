@@ -1,32 +1,68 @@
 "use client";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { DragDropContext } from "react-beautiful-dnd";
 
 import { useColumns } from "@/hooks/useColuns";
 import { useTask } from "@/hooks/useTask";
 import { ColumItem } from "./ColumItem";
-const reorderColumnList = (sourceCol: any, startIndex: any, endIndex: any) => {
-  const newTaskIds = Array.from(sourceCol.taskIds);
-  const [removed] = newTaskIds.splice(startIndex, 1);
-  newTaskIds.splice(endIndex, 0, removed);
-
-  const newColumn = {
-    ...sourceCol,
-    taskIds: newTaskIds,
-  };
-
-  return newColumn;
+type Column = {
+  id: string;
+  title:string
 };
+type Assignee = {
+  image: string;
+  title: string;
+ };
+
+ type Task = {
+  user: string;
+  columnId: string;
+  message: string;
+  avatar: string;
+  priority: string;
+  company: string;
+  id: string;
+  title: string;
+  startDate: string;
+  endDate: string;
+  assignee: Assignee[];
+ };
+ const reorderColumnList = (
+  columns: Column[],
+  tasks: Task[],
+  sourceColId: string,
+  destinationColId: string,
+  startIndex: number,
+  endIndex: number
+ ) => {
+  let removed:any; // Define removed here
+
+  const updatedColumns = columns.map((col) => {
+    if (col.id === sourceColId) {
+      const sourceTasks = tasks.filter((task) => task.columnId === sourceColId);
+      [removed] = sourceTasks.splice(startIndex, 1);
+
+      return { ...col, tasks: sourceTasks };
+    } else if (col.id === destinationColId) {
+      const destinationTasks = tasks.filter((task) => task.columnId === destinationColId);
+      destinationTasks.splice(endIndex, 0, removed);
+
+      return { ...col, tasks: destinationTasks };
+    }
+
+    return col;
+  });
+
+  return updatedColumns;
+ };
+
 const Column = () => {
   const { columns: columm, removeMutation: deleteColumnMutation } =
     useColumns();
   const { tasks: task, saveMutation, removeMutation } = useTask();
-  const [columns, setColumns] = useState(columm);
-  const columnsId = useMemo(() => columns.map((col) => col.id), [columns]);
-
-  const tasksIds = task.map((task) => task.id);
-  const [tasks, setTasks] = useState(task);
-
+  const [columns, setColumns] = useState(initialColum);
+  const [tasks, setTasks] = useState(initialTask);
+  console.log("columns",columns)
   useEffect(() => {
     setColumns(columm);
   }, [columm]);
@@ -35,12 +71,10 @@ const Column = () => {
   }, [task]);
 
   const onDragEnd = (result: any) => {
-    console.log("result", result);
     const { destination, source } = result;
-    console.log("source", source);
-    // If user tries to drop in an unknown destination
+
     if (!destination) return;
-    // if the user drags and drops back in the same position
+
     if (
       destination.droppableId === source.droppableId &&
       destination.index === source.index
@@ -48,53 +82,23 @@ const Column = () => {
       return;
     }
 
-    // If the user drops within the same column but in a different positoin
-    console.log(columns);
-    const sourceCol = columns.findIndex((col) => col.id === source.droppableId);
-    const destinationCol = columns.findIndex(
-      (col) => col.id === destination.droppableId
+    const updatedColumns = reorderColumnList(
+      columns,
+      tasks,
+      source.droppableId,
+      destination.droppableId,
+      source.index,
+      destination.index
     );
 
-    if (sourceCol === destinationCol) {
-      const newColumn = reorderColumnList(sourceCol, source, destination);
-
-      const newState = {
-        ...columns,
-        columns: {
-          ...columns.columns,
-          [newColumn.id]: newColumn,
-        },
-      };
-      setColumns(newState);
-      return;
+    // Update the columnId of the task
+    const task = tasks.find(task => task.id === result.draggableId);
+    if (task) {
+      task.columnId = destination.droppableId;
     }
 
-    // If the user moves from one column to another
-    const startTaskIds = Array.from(sourceCol.taskIds);
-    const [removed] = startTaskIds.splice(source.index, 1);
-    const newStartCol = {
-      ...sourceCol,
-      taskIds: startTaskIds,
-    };
-
-    const endTaskIds = Array.from(destinationCol.taskIds);
-    endTaskIds.splice(destination.index, 0, removed);
-    const newEndCol = {
-      ...destinationCol,
-      taskIds: endTaskIds,
-    };
-
-    const newState = {
-      ...state,
-      columns: {
-        ...state.columns,
-        [newStartCol.id]: newStartCol,
-        [newEndCol.id]: newEndCol,
-      },
-    };
-
-    setColumns(newState);
-  };
+    setColumns(updatedColumns);
+   };
   return (
     <div className="  flex w-full items-center overflow-x-auto overflow-y-hidden pr-[7rem]">
       <DragDropContext onDragEnd={onDragEnd}>
@@ -149,3 +153,66 @@ const initialData = {
   // Facilitate reordering of the columns
   columnOrder: ["column-1", "column-2", "column-3"],
 };
+
+const initialColum =[
+  {
+    "id": "container-555671e6-665d-415d-a6de-1a692f92c48",
+    "title": "Todo"
+  },
+  {
+    "id": "container-555671e6-665d-415d-a6de-1a692f92c4",
+    "title": "Work in progress"
+  }
+]
+const initialTask =[{
+  "user": "dev",
+  "columnId": "container-555671e6-665d-415d-a6de-1a692f92c48",
+  "message": "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.",
+  "avatar": "https://images.unsplash.com/photo-1492633423870-43d1cd2775eb?&w=128&h=128&dpr=2&q=80",
+  "priority": "hard",
+  "company": "44545",
+  "id": "container-11a2883b-8246-49ac-aced-9f99fbab3b20",
+  "title": "Fazer o almoço",
+  "startDate": "2018-01-01",
+  "endDate": "2018-01-01",
+  "assignee": [
+    {
+      "image": "/assets/images/avatar/av-1.svg",
+      "title": "Mahedi Amin"
+    },
+    {
+      "image": "/assets/images/avatar/av-2.svg",
+      "title": "Sovo Haldar"
+    },
+    {
+      "image": "/assets/images/avatar/av-3.svg",
+      "title": "Rakibul Islam"
+    }
+  ]
+},
+{
+  "user": "dev 1",
+  "title": "Fazer a tela de mensagem",
+  "columnId": "container-555671e6-665d-415d-a6de-1a692f92c48",
+  "message": "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.",
+  "avatar": "https://images.unsplash.com/photo-1492633423870-43d1cd2775eb?&w=128&h=128&dpr=2&q=80",
+  "priority": "hoje",
+  "company": "tem",
+  "id": "container-d61d45b7-3ddb-471d-a57f-f1b4f56e217c",
+  "startDate": "2018-01-01",
+  "endDate": "2018-01-01",
+  "assignee": [
+    {
+      "image": "/assets/images/avatar/av-1.svg",
+      "title": "Mahedi Amin"
+    },
+    {
+      "image": "/assets/images/avatar/av-2.svg",
+      "title": "Sovo Haldar"
+    },
+    {
+      "image": "/assets/images/avatar/av-3.svg",
+      "title": "Rakibul Islam"
+    }
+  ]
+}]
