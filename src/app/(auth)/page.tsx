@@ -2,14 +2,12 @@ import { SignintoForm } from "@/components/form/SignintoForm";
 import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import './scss/app.scss';
+import '../scss/app.scss';
 export const metadata: Metadata = {
   title: 'GTX | Login',
   description: '...',
 }
 export default function Home() {
-
-
   return (
     <main className="bg-light flex h-screen items-center justify-center sm:bg-gray-100">
       <div className="bg-light m-auto w-full max-w-[420px] rounded p-5 sm:p-8 sm:shadow">
@@ -25,7 +23,7 @@ export default function Home() {
         </div>
         <SignintoForm />
         <div className="mt-4 text-small-label text-center ">
-          <Link href="#"  className="hidden md:inline">Don{"'"}t have an account? </Link>
+          <Link href="/register"  className="hidden md:inline">Don{"'"}t have an account? </Link>
         </div>
       </div>
     </main>

@@ -2,7 +2,8 @@
 import { Button } from "@/components/Button";
 import { toggleColumnModal } from "@/components/partials/app/kanban/store";
 import { useDispatch } from "react-redux";
-import Column from "./Colum";
+import Column from "./components/Colum";
+
 
 
 export default function Kaban() {
