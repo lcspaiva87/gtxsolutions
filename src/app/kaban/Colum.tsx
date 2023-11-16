@@ -187,7 +187,7 @@ const Column = ({ column, tasks }: any) => {
                                 {" "}
                                 <Icon icon="heroicons-outline:clock" />
                               </span>
-                              <span>days left</span>
+
                               <span>days left</span>
                             </span>
                           </div>
