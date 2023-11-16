@@ -1,11 +1,11 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { DragDropContext } from "react-beautiful-dnd";
 
 import { useColumns } from "@/hooks/useColuns";
 import { useTask } from "@/hooks/useTask";
 import { ColumItem } from "./ColumItem";
-const reorderColumnList = () => {
+const reorderColumnList = (sourceCol: any, startIndex: any, endIndex: any) => {
   const newTaskIds = Array.from(sourceCol.taskIds);
   const [removed] = newTaskIds.splice(startIndex, 1);
   newTaskIds.splice(endIndex, 0, removed);
@@ -18,20 +18,26 @@ const reorderColumnList = () => {
   return newColumn;
 };
 const Column = () => {
-
   const { columns: columm, removeMutation: deleteColumnMutation } =
     useColumns();
-    const { tasks: task, saveMutation, removeMutation } = useTask();
-    const [tasks, setTasks] = useState(task);
+  const { tasks: task, saveMutation, removeMutation } = useTask();
   const [columns, setColumns] = useState(columm);
+  const columnsId = useMemo(() => columns.map((col) => col.id), [columns]);
+
+  const tasksIds = task.map((task) => task.id);
+  const [tasks, setTasks] = useState(task);
+
   useEffect(() => {
     setColumns(columm);
   }, [columm]);
   useEffect(() => {
     setTasks(task);
   }, [task]);
+
   const onDragEnd = (result: any) => {
+    console.log("result", result);
     const { destination, source } = result;
+    console.log("source", source);
     // If user tries to drop in an unknown destination
     if (!destination) return;
     // if the user drags and drops back in the same position
@@ -43,15 +49,14 @@ const Column = () => {
     }
 
     // If the user drops within the same column but in a different positoin
-    const sourceCol = columns.columns[source.droppableId];
-    const destinationCol = state.columns[destination.droppableId];
+    console.log(columns);
+    const sourceCol = columns.findIndex((col) => col.id === source.droppableId);
+    const destinationCol = columns.findIndex(
+      (col) => col.id === destination.droppableId
+    );
 
-    if (sourceCol.id === destinationCol.id) {
-      const newColumn = reorderColumnList(
-        sourceCol,
-        source.index,
-        destination.index
-      );
+    if (sourceCol === destinationCol) {
+      const newColumn = reorderColumnList(sourceCol, source, destination);
 
       const newState = {
         ...columns,
@@ -94,9 +99,20 @@ const Column = () => {
     <div className="  flex w-full items-center overflow-x-auto overflow-y-hidden pr-[7rem]">
       <DragDropContext onDragEnd={onDragEnd}>
         <div className="flex gap-4">
-          {columns.map((item) => (
-            <ColumItem key={item.id} column={item} tasks={tasks} />
-          ))}
+          {columns.map((column) => {
+            // Filtra as tarefas correspondentes a esta coluna
+            const tasksInColumn = task.filter(
+              (task) => task.columnId === column.id
+            );
+
+            return (
+              <ColumItem
+                key={column.id}
+                column={column}
+                tasks={tasksInColumn}
+              />
+            );
+          })}
         </div>
       </DragDropContext>
     </div>
