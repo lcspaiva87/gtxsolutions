@@ -1,11 +1,11 @@
 "use client";
-import { useForm } from "react-hook-form";
-import Link from "next/link";
-import { InputCustomer } from "../ui/inputs";
-import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import Link from "next/link";
+import { useForm } from "react-hook-form";
+import * as yup from "yup";
 import Button from "../ui/Button";
 import { LoadingSpinner } from "../ui/LoadingSpinner";
+import { InputCustomer } from "../ui/inputs";
 
 type FormValues = {
   email: string;
@@ -49,7 +49,7 @@ export function SignintoForm() {
       <InputCustomer
         type="password"
         name="password"
-        placeholder="Digite seu endereço de e-mail"
+        placeholder="Digite sua senha"
         required
         control={control}
         className="mt-6"
