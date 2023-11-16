@@ -60,8 +60,8 @@ const Column = () => {
   const { columns: columm, removeMutation: deleteColumnMutation } =
     useColumns();
   const { tasks: task, saveMutation, removeMutation } = useTask();
-  const [columns, setColumns] = useState(initialColum);
-  const [tasks, setTasks] = useState(initialTask);
+  const [columns, setColumns] = useState(columm);
+  const [tasks, setTasks] = useState(task);
   console.log("columns",columns)
   useEffect(() => {
     setColumns(columm);
@@ -70,7 +70,7 @@ const Column = () => {
     setTasks(task);
   }, [task]);
 
-  const onDragEnd = (result: any) => {
+  const onDragEnd =  (result: any) => {
     const { destination, source } = result;
 
     if (!destination) return;
@@ -94,6 +94,7 @@ const Column = () => {
     // Update the columnId of the task
     const task = tasks.find(task => task.id === result.draggableId);
     if (task) {
+      saveMutation.mutate({ id: task.id, columnId: destination.droppableId });
       task.columnId = destination.droppableId;
     }
 
@@ -124,95 +125,3 @@ const Column = () => {
 };
 
 export default Column;
-const initialData = {
-  tasks: {
-    1: { id: 1, content: "Configure Next.js application" },
-    2: { id: 2, content: "Configure Next.js and tailwind " },
-    3: { id: 3, content: "Create sidebar navigation menu" },
-    4: { id: 4, content: "Create page footer" },
-    5: { id: 5, content: "Create page navigation menu" },
-    6: { id: 6, content: "Create page layout" },
-  },
-  columns: {
-    "column-1": {
-      id: "column-1",
-      title: "TO-DO",
-      taskIds: [1, 2, 3, 4, 5, 6],
-    },
-    "column-2": {
-      id: "column-2",
-      title: "IN-PROGRESS",
-      taskIds: [],
-    },
-    "column-3": {
-      id: "column-3",
-      title: "COMPLETED",
-      taskIds: [],
-    },
-  },
-  // Facilitate reordering of the columns
-  columnOrder: ["column-1", "column-2", "column-3"],
-};
-
-const initialColum =[
-  {
-    "id": "container-555671e6-665d-415d-a6de-1a692f92c48",
-    "title": "Todo"
-  },
-  {
-    "id": "container-555671e6-665d-415d-a6de-1a692f92c4",
-    "title": "Work in progress"
-  }
-]
-const initialTask =[{
-  "user": "dev",
-  "columnId": "container-555671e6-665d-415d-a6de-1a692f92c48",
-  "message": "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.",
-  "avatar": "https://images.unsplash.com/photo-1492633423870-43d1cd2775eb?&w=128&h=128&dpr=2&q=80",
-  "priority": "hard",
-  "company": "44545",
-  "id": "container-11a2883b-8246-49ac-aced-9f99fbab3b20",
-  "title": "Fazer o almoço",
-  "startDate": "2018-01-01",
-  "endDate": "2018-01-01",
-  "assignee": [
-    {
-      "image": "/assets/images/avatar/av-1.svg",
-      "title": "Mahedi Amin"
-    },
-    {
-      "image": "/assets/images/avatar/av-2.svg",
-      "title": "Sovo Haldar"
-    },
-    {
-      "image": "/assets/images/avatar/av-3.svg",
-      "title": "Rakibul Islam"
-    }
-  ]
-},
-{
-  "user": "dev 1",
-  "title": "Fazer a tela de mensagem",
-  "columnId": "container-555671e6-665d-415d-a6de-1a692f92c48",
-  "message": "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.",
-  "avatar": "https://images.unsplash.com/photo-1492633423870-43d1cd2775eb?&w=128&h=128&dpr=2&q=80",
-  "priority": "hoje",
-  "company": "tem",
-  "id": "container-d61d45b7-3ddb-471d-a57f-f1b4f56e217c",
-  "startDate": "2018-01-01",
-  "endDate": "2018-01-01",
-  "assignee": [
-    {
-      "image": "/assets/images/avatar/av-1.svg",
-      "title": "Mahedi Amin"
-    },
-    {
-      "image": "/assets/images/avatar/av-2.svg",
-      "title": "Sovo Haldar"
-    },
-    {
-      "image": "/assets/images/avatar/av-3.svg",
-      "title": "Rakibul Islam"
-    }
-  ]
-}]
