@@ -1,8 +1,9 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { DragDropContext } from "react-beautiful-dnd";
 
-import { useDispatch } from "react-redux";
+import { useColumns } from "@/hooks/useColuns";
+import { useTask } from "@/hooks/useTask";
 import { ColumItem } from "./ColumItem";
 const reorderColumnList = () => {
   const newTaskIds = Array.from(sourceCol.taskIds);
@@ -17,8 +18,18 @@ const reorderColumnList = () => {
   return newColumn;
 };
 const Column = () => {
-  const [state, setState] = useState(initialData);
-  const dispatch = useDispatch();
+
+  const { columns: columm, removeMutation: deleteColumnMutation } =
+    useColumns();
+    const { tasks: task, saveMutation, removeMutation } = useTask();
+    const [tasks, setTasks] = useState(task);
+  const [columns, setColumns] = useState(columm);
+  useEffect(() => {
+    setColumns(columm);
+  }, [columm]);
+  useEffect(() => {
+    setTasks(task);
+  }, [task]);
   const onDragEnd = (result: any) => {
     const { destination, source } = result;
     // If user tries to drop in an unknown destination
@@ -32,7 +43,7 @@ const Column = () => {
     }
 
     // If the user drops within the same column but in a different positoin
-    const sourceCol = state.columns[source.droppableId];
+    const sourceCol = columns.columns[source.droppableId];
     const destinationCol = state.columns[destination.droppableId];
 
     if (sourceCol.id === destinationCol.id) {
@@ -43,13 +54,13 @@ const Column = () => {
       );
 
       const newState = {
-        ...state,
+        ...columns,
         columns: {
-          ...state.columns,
+          ...columns.columns,
           [newColumn.id]: newColumn,
         },
       };
-      setState(newState);
+      setColumns(newState);
       return;
     }
 
@@ -77,18 +88,15 @@ const Column = () => {
       },
     };
 
-    setState(newState);
+    setColumns(newState);
   };
   return (
     <div className="  flex w-full items-center overflow-x-auto overflow-y-hidden pr-[7rem]">
       <DragDropContext onDragEnd={onDragEnd}>
         <div className="flex gap-4">
-          {state.columnOrder.map((columnId) => {
-            const column = state.columns[columnId];
-            const tasks = column.taskIds.map((taskId) => state.tasks[taskId]);
-
-            return <ColumItem key={column.id} column={column} tasks={tasks} />;
-          })}
+          {columns.map((item) => (
+            <ColumItem key={item.id} column={item} tasks={tasks} />
+          ))}
         </div>
       </DragDropContext>
     </div>

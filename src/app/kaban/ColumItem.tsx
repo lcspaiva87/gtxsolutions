@@ -5,10 +5,13 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import * as Separator from "@radix-ui/react-separator";
 
 import { Card } from "@/components/ui/Card";
-import { title } from "process";
+import { Key, useState } from "react";
 import { Draggable, Droppable } from "react-beautiful-dnd";
 import { useDispatch } from "react-redux";
 export function ColumItem({ column, tasks }: any){
+  const { title, user, message, startDate, endDate, assignee } = tasks;
+  const [start, setStart] = useState(new Date(Number(startDate)));
+  const [end, setEnd] = useState(new Date(endDate));
   const dispatch = useDispatch();
   return(
     <div className="bg-columnBackgroundColor w-[350px]  h-[45rem] max-h-[45rem] rounded-md flex flex-col">
@@ -67,12 +70,12 @@ export function ColumItem({ column, tasks }: any){
                           <div className="flex space-x-4 items-center rtl:space-x-reverse">
                             <div className="flex-none">
                               <div className="h-10 w-10 rounded-md text-lg bg-slate-100 text-slate-900 dark:bg-slate-600 dark:text-slate-200 flex flex-col items-center justify-center font-normal capitalize">
-                                {title.charAt(0) + title.charAt(1)}
+                                {task.title.charAt(0) + task.title.charAt(1)}
                               </div>
                             </div>
                             <div className="font-medium text-base leading-6">
                               <div className="dark:text-slate-200 text-slate-900 max-w-[160px] truncate">
-                                {title}
+                                {task.title}
                               </div>
                             </div>
                           </div>
@@ -126,18 +129,18 @@ export function ColumItem({ column, tasks }: any){
                           </div>
                         </header>
                         <div className="text-slate-600 dark:text-slate-400 text-sm pt-4 pb-8">
-                          kgjkgjkgrjkjgrkgrjkjgrk
+                        {task.message}
                         </div>
                         <div className="flex space-x-4 rtl:space-x-reverse">
                           {/* start date */}
                           <div>
                             <span className="block date-label">Start date</span>
-                            <span className="block date-text">Start date</span>
+                            <span className="block date-text">{task.startDate}</span>
                           </div>
                           {/* end date */}
                           <div>
                             <span className="block date-label">Start date</span>
-                            <span className="block date-text">Start date</span>
+                            <span className="block date-text">{task.endDate}</span>
                           </div>
                         </div>
                         <Separator.Root
@@ -151,7 +154,7 @@ export function ColumItem({ column, tasks }: any){
                               Assigned to
                             </div>
                             <div className="flex justify-start -space-x-1.5 rtl:space-x-reverse">
-                              {/* {assignee?.map(
+                              {task.assignee?.map(
                                 (
                                   user: {
                                     image: string | undefined;
@@ -170,7 +173,7 @@ export function ColumItem({ column, tasks }: any){
                                     />
                                   </div>
                                 )
-                              )} */}
+                              )}
                               <div className="bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-300 text-xs ring-2 ring-slate-100 dark:ring-slate-700 rounded-full h-6 w-6 flex flex-col justify-center items-center">
                                 +2
                               </div>
