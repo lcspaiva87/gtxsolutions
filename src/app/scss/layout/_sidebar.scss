@@ -82,7 +82,7 @@
   }
   .single-sidebar-menu {
     .text-box {
-      @apply absolute  left-full ml-5 w-[180px] top-0 px-2 py-3 bg-white shadow-dropdown rounded-[4px] dark:bg-slate-800 z-[999] invisible opacity-0 transition-all duration-150;
+      @apply absolute  left-full ml-5 w-[180px] top-0 px-4 py-3 bg-white shadow-dropdown rounded-[4px] dark:bg-slate-800 z-[999] invisible opacity-0 transition-all duration-150;
     }
     &:hover {
       .text-box {
