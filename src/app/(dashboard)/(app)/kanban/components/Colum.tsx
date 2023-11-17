@@ -1,17 +1,12 @@
 "use client";
-import { useEffect, useState } from "react";
-import { DragDropContext } from "react-beautiful-dnd";
-
 import { Itask } from "@/@types/Task";
 import { useColumns } from "@/hooks/useColuns";
 import { useTask } from "@/hooks/useTask";
+import { useEffect, useState } from "react";
+import { DragDropContext } from "react-beautiful-dnd";
 import { ColumItem } from "./ColumItem";
 type Column = {
   id: string;
-  title: string;
-};
-type Assignee = {
-  image: string;
   title: string;
 };
 
@@ -46,22 +41,21 @@ const reorderColumnList = (
 };
 
 const Column = () => {
-
   const { columns: initialColumns, removeMutation: deleteColumnMutation } =
     useColumns();
   const { tasks: initialTasks, saveMutation, removeMutation } = useTask();
-  const [columns, setColumns] = useState(initialColumnss);
-  const [tasks, setTasks] = useState(intialTaskss);
+  const [columns, setColumns] = useState(initialColumns);
+  const [tasks, setTasks] = useState(initialTasks);
 
   useEffect(() => {
-    if (initialColumnss) {
-      setColumns(initialColumnss);
+    if (initialColumns) {
+      setColumns(initialColumns);
     }
   }, [initialColumns]);
 
   useEffect(() => {
-    if (intialTaskss) {
-      setTasks(intialTaskss);
+    if (initialTasks) {
+      setTasks(initialTasks);
     }
   }, [initialTasks]);
   const filterTasks = (columnId: string) =>
@@ -97,90 +91,33 @@ const Column = () => {
     setColumns(updatedColumns);
   };
   return (
-    <div className="  flex w-full items-center overflow-x-auto overflow-y-hidden pr-[7rem]">
-      <DragDropContext onDragEnd={onDragEnd}>
-        <div className="flex gap-4">
-          {columns.map((column) => {
-            // Filtra as tarefas correspondentes a esta coluna
-            const tasksInColumn = filterTasks(column.id);
-
-            return (
-              <ColumItem
-                key={column.id}
-                column={column}
-                tasks={tasksInColumn}
-              />
-            );
-          })}
+    <>
+      <div className="  flex w-full items-center overflow-x-auto overflow-y-hidden pr-[7rem]">
+        <DragDropContext onDragEnd={onDragEnd}>
+          <div className="flex gap-4">
+            {columns.map((column) => {
+              // Filtra as tarefas correspondentes a esta coluna
+              const tasksInColumn = filterTasks(column.id);
+              return (
+                <ColumItem
+                  key={column.id}
+                  column={column}
+                  tasks={tasksInColumn}
+                />
+              );
+            })}
+          </div>
+        </DragDropContext>
+      </div>
+      {!columns?.length && (
+        <div className="w-full flex h-[45rem] lg:h-[35rem] justify-center items-center ">
+          <div className="flex items-center justify-center">
+            <span>nao tem task disponivel</span>
+          </div>
         </div>
-      </DragDropContext>
-    </div>
+      )}
+    </>
   );
 };
 
 export default Column;
-const initialColumnss =  [
-  {
-    "id": "container-555671e6-665d-415d-a6de-1a692f92c48",
-    "title": "Todo"
-  },
-  {
-    "id": "container-555671e6-665d-415d-a6de-1a692f92c4",
-    "title": "Work in progress"
-  }
-]
-const intialTaskss = [
-  {
-    "user": "dev",
-    "columnId": "container-555671e6-665d-415d-a6de-1a692f92c4",
-    "message": "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.",
-    "avatar": "https://images.unsplash.com/photo-1492633423870-43d1cd2775eb?&w=128&h=128&dpr=2&q=80",
-    "priority": "hard",
-    "company": "44545",
-    "id": "container-11a2883b-8246-49ac-aced-9f99fbab3b20",
-    "title": "Fazer o almoço",
-    "startDate": "2018-01-01",
-    "endDate": "2018-01-01",
-    "assignee": [
-      {
-        "image": "/assets/images/avatar/av-1.svg",
-        "title": "Mahedi Amin"
-      },
-      {
-        "image": "/assets/images/avatar/av-2.svg",
-        "title": "Sovo Haldar"
-      },
-      {
-        "image": "/assets/images/avatar/av-3.svg",
-        "title": "Rakibul Islam"
-      }
-    ]
-  },
-  {
-    "user": "dev 1",
-    "title": "Fazer a tela de mensagem",
-    "columnId": "container-555671e6-665d-415d-a6de-1a692f92c48",
-    "message": "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.",
-    "avatar": "https://images.unsplash.com/photo-1492633423870-43d1cd2775eb?&w=128&h=128&dpr=2&q=80",
-    "priority": "hoje",
-    "company": "tem",
-    "id": "container-d61d45b7-3ddb-471d-a57f-f1b4f56e217c",
-    "startDate": "2018-01-01",
-    "endDate": "2018-01-01",
-    "assignee": [
-      {
-        "image": "/assets/images/avatar/av-1.svg",
-        "title": "Mahedi Amin"
-      },
-      {
-        "image": "/assets/images/avatar/av-2.svg",
-        "title": "Sovo Haldar"
-      },
-      {
-        "image": "/assets/images/avatar/av-3.svg",
-        "title": "Rakibul Islam"
-      }
-    ],
-    "columId": "container-555671e6-665d-415d-a6de-1a692f92c4"
-  }
-]

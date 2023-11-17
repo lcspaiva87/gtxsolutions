@@ -1,5 +1,5 @@
+import { TextArea } from "@/components/Textarea";
 import Modal from "@/components/ui/Modal";
-import { TextArea } from "@/components/ui/Textarea";
 import { useTask } from "@/hooks/useTask";
 import { yupResolver } from "@hookform/resolvers/yup";
 

@@ -1,13 +1,13 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 import Modal from "@/components/ui/Modal";
-import { useSelector, useDispatch } from "react-redux";
 import Textinput from "@/components/ui/Textinput";
+import { useDispatch, useSelector } from "react-redux";
 
-import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
 import * as yup from "yup";
-import { toggleColumnModal, addColumnBoard } from "./store";
+import { addColumnBoard, toggleColumnModal } from "./store";
 
 const FormValidationSchema = yup
   .object({

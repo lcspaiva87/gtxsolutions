@@ -44,6 +44,12 @@ export const menuItems:MenuItem[]  = [
     icon: "heroicons-outline:view-boards",
     link: "kanban",
   },
+  {
+    title: "Chat",
+    isHide: true,
+    icon: "heroicons-outline:chat",
+    link: "chat",
+  },
 ];
 
 export const topMenu:Idata[] = [

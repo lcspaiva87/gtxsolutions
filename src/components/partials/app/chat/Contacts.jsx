@@ -1,5 +1,4 @@
-import React from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { openChat } from "./store";
 
 const Contacts = ({ contact }) => {

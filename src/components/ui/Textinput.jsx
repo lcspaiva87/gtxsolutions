@@ -1,7 +1,7 @@
-import React, { useState } from "react";
 import Icon from "@/components/ui/Icon";
-import Cleave from "cleave.js/react";
 import "cleave.js/dist/addons/cleave-phone.us";
+import Cleave from "cleave.js/react";
+import { useState } from "react";
 const Textinput = ({
   type,
   label,
@@ -59,7 +59,7 @@ const Textinput = ({
             {...rest}
             className={`${
               error ? " has-error" : " "
-            } form-control py-2 ${className}  `}
+            } form-control py-2 px-[1.3rem] ${className}  `}
             placeholder={placeholder}
             readOnly={readonly}
             defaultValue={defaultValue}
@@ -71,7 +71,7 @@ const Textinput = ({
         {!name && !isMask && (
           <input
             type={type === "password" && open === true ? "text" : type}
-            className={`form-control py-2 ${className}`}
+            className={`form-control py-2  ${className}`}
             placeholder={placeholder}
             readOnly={readonly}
             disabled={disabled}
@@ -102,7 +102,7 @@ const Textinput = ({
             options={options}
             className={`${
               error ? " has-error" : " "
-            } form-control py-2 ${className}  `}
+            } form-control  py-2 ${className}  `}
             onFocus={onFocus}
             id={id}
             readOnly={readonly}
@@ -127,7 +127,7 @@ const Textinput = ({
           )}
 
           {error && (
-            <span className="text-danger-500">
+            <span className="text-danger-500 pl-[0.2rem]">
               <Icon icon="heroicons-outline:information-circle" />
             </span>
           )}
