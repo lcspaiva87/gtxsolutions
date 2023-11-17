@@ -1,5 +1,5 @@
 "use client";
-import { Button } from "@/components/Button";
+import { Button } from "@/components/button";
 import AddColumn from "@/components/partials/app/kanban/AddColumn";
 import { toggleColumnModal } from "@/components/partials/app/kanban/store";
 import { useDispatch } from "react-redux";

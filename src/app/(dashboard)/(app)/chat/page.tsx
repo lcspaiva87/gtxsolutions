@@ -1,10 +1,11 @@
 "use client";
 
 import Contacts from "@/components/partials/app/chat/Contacts";
+import Info from "@/components/partials/app/chat/Info";
 import MyProfile from "@/components/partials/app/chat/MyProfile";
 
 import Blank from "@/components/partials/app/chat/Blank";
-import Info from "@/components/partials/app/chat/Info";
+import Chat from "@/components/partials/app/chat/Chat";
 import {
   setContactSearch, toggleMobileChatSidebar
 } from "@/components/partials/app/chat/store";
@@ -14,7 +15,9 @@ import useWidth from "@/hooks/useWidth";
 import { Key } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import SimpleBar from "simplebar-react";
-export default function Chat () {
+
+
+export default function ChatPage () {
   const { width, breakpoints } = useWidth();
   const dispatch = useDispatch();
   const { activechat, openinfo, mobileChatSidebar, contacts, searchContact } =
