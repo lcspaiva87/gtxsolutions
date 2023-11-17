@@ -3,6 +3,7 @@ import { Button } from "@/components/Button";
 import AddColumn from "@/components/partials/app/kanban/AddColumn";
 import { toggleColumnModal } from "@/components/partials/app/kanban/store";
 import { useDispatch } from "react-redux";
+import Column from "./components/Colum";
 
 
 
@@ -12,7 +13,7 @@ export default function Kaban() {
   const dispatch = useDispatch();
 
   return (
-    <div>
+    <>
       <div className="flex flex-wrap justify-between items-center mb-4">
         <h4 className="font-medium lg:text-2xl text-xl capitalize text-slate-900 inline-block ltr:pr-4 rtl:pl-4">
           Task
@@ -27,7 +28,8 @@ export default function Kaban() {
           />
         </div>
       </div>
+      <Column />
       <AddColumn/>
-    </div>
+    </>
   );
 }
