@@ -1,8 +1,9 @@
 "use client";
 import { Button } from "@/components/Button";
+import AddColumn from "@/components/partials/app/kanban/AddColumn";
 import { toggleColumnModal } from "@/components/partials/app/kanban/store";
 import { useDispatch } from "react-redux";
-import Column from "./components/Colum";
+
 
 
 
@@ -26,7 +27,7 @@ export default function Kaban() {
           />
         </div>
       </div>
-      <Column/>
+      <AddColumn/>
     </div>
   );
 }
