@@ -1,6 +1,13 @@
-import React from "react";
 import { Icon } from "@iconify/react";
-const Icons = ({ icon, className, width, rotate, hFlip, vFlip }) => {
+type IconsProps={
+  icon: string;
+  className?: string;
+  width?: string;
+  rotate?: number;
+  hFlip?: boolean;
+  vFlip?: boolean;
+}
+const Icons = ({ icon, className, width, rotate, hFlip, vFlip }:IconsProps) => {
   return (
     <>
       <Icon
