@@ -3,8 +3,6 @@ import Dropdown from "@/components/ui/Dropdown";
 import useWidth from "@/hooks/useWidth";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import { useDispatch } from "react-redux";
-import { toggleMobileChatSidebar } from "./store";
 import appChat from "./test";
 
 const chatAction = [
@@ -31,9 +29,9 @@ const Chat = () => {
   const { width, breakpoints } = useWidth();
 
   const [message, setMessage] = useState("");
-  const { user, messFeed, sendMessage, infoToggle, openinfo } = appChat();
+  const { user, messFeed, sendMessage, infoToggle, openinfo ,toggleMobileChatSidebar} = appChat();
 
-  const dispatch = useDispatch();
+
 
   const handleSendMessage = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -62,7 +60,7 @@ const Chat = () => {
             <div className="flex space-x-3 rtl:space-x-reverse">
               {width <= parseInt(breakpoints.lg) && (
                 <span
-                  onClick={() => dispatch(toggleMobileChatSidebar(true))}
+                  onClick={() => toggleMobileChatSidebar(true)}
                   className="text-slate-900 dark:text-white cursor-pointer text-xl self-center ltr:mr-3 rtl:ml-3"
                 >
                   <Icon icon="heroicons-outline:menu-alt-1" />
