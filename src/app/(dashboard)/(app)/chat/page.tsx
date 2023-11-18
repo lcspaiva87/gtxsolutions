@@ -9,6 +9,7 @@ import Chat from "@/components/partials/app/chat/Chat";
 import {
   setContactSearch, toggleMobileChatSidebar
 } from "@/components/partials/app/chat/store";
+import appChat from "@/components/partials/app/chat/test";
 import { Card } from "@/components/ui/Card";
 import Icon from "@/components/ui/Icon";
 import useWidth from "@/hooks/useWidth";
@@ -20,8 +21,9 @@ import SimpleBar from "simplebar-react";
 export default function ChatPage () {
   const { width, breakpoints } = useWidth();
   const dispatch = useDispatch();
-  const { activechat, openinfo, mobileChatSidebar, contacts, searchContact } =
-    useSelector((state) => state.chat);
+  const {  openinfo, mobileChatSidebar, searchContact } =
+    useSelector((state:any) => state.chat);
+    const{activechat,contacts } = appChat()
 
   const searchContacts = contacts?.filter((item: { fullName: string; }) =>
     item.fullName.toLowerCase().includes(searchContact.toLowerCase())

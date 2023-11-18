@@ -24,12 +24,12 @@ export const appChatSlice = createSlice({
       },
       {
         id: 2,
-        fullName: "Felecia Rower",
+        fullName: "teste",
         role: " UI/UX Designer",
         lastmessage: "Hey! there I'm available",
         lastmessageTime: "2:30 PM",
         unredmessage: Math.floor(Math.random() * 10),
-        avatar: "/assets/images/users/user-3.jpg",
+        avatar: "/assets/images/users/user-7.png",
         status: "active",
       },
       {
@@ -70,13 +70,13 @@ export const appChatSlice = createSlice({
         messages: [
           {
             img: "/assets/images/users/user-2.jpg",
-            content: "Hey! How are you?",
+            content: "teste",
             time: "10:00",
             sender: "them",
           },
           {
             img: "/assets/images/users/user-2.jpg",
-            content: "Good, I will book the meeting room for you.",
+            content: "salve teste",
             time: "10:02",
 
             sender: "them",
@@ -101,8 +101,8 @@ export const appChatSlice = createSlice({
             sender: "them",
           },
           {
-            img: "/assets/images/users/user-2.jpg",
-            content: "Good, I will book the meeting room for you.",
+            img: "/assets/images/users/user-7.png",
+            content: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
             time: "10:02",
 
             sender: "them",
@@ -127,14 +127,14 @@ export const appChatSlice = createSlice({
         userId: 2,
         messages: [
           {
-            img: "/assets/images/users/user-2.jpg",
-            content: "Hey! How are you?",
+            img: "/assets/images/users/user-7.png",
+            content: "lore",
             time: "10:00",
             sender: "them",
           },
           {
-            img: "/assets/images/users/user-2.jpg",
-            content: "Good, I will book the meeting room for you.",
+            img: "/assets/images/users/user-7.png",
+            content: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
             time: "10:02",
 
             sender: "them",
@@ -153,7 +153,7 @@ export const appChatSlice = createSlice({
           },
           {
             img: "/assets/images/users/user-2.jpg",
-            content: "Good, I will book the meeting room for you.",
+            content: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
             time: "10:02",
 
             sender: "me",
@@ -172,7 +172,7 @@ export const appChatSlice = createSlice({
           },
           {
             img: "/assets/images/users/user-2.jpg",
-            content: "Good, I will book the meeting room for you.",
+            content: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
             time: "10:02",
 
             sender: "them",
@@ -191,7 +191,7 @@ export const appChatSlice = createSlice({
           },
           {
             img: "/assets/images/users/user-2.jpg",
-            content: "Good, I will book the meeting room for you.",
+            content: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
             time: "10:02",
 
             sender: "them",

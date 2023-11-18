@@ -1,9 +1,10 @@
-import React, { useEffect, useRef, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { toggleMobileChatSidebar, infoToggle, sendMessage } from "./store";
-import useWidth from "@/hooks/useWidth";
 import Icon from "@/components//ui/icons/Icon";
 import Dropdown from "@/components/ui/Dropdown";
+import useWidth from "@/hooks/useWidth";
+import { useEffect, useRef, useState } from "react";
+import { useDispatch } from "react-redux";
+import { infoToggle, sendMessage, toggleMobileChatSidebar } from "./store";
+import appChat from "./test";
 
 const chatAction = [
   {
@@ -26,8 +27,7 @@ const time = () => {
 };
 
 const Chat = () => {
-  const { activechat, openinfo, mobileChatSidebar, messFeed, user } =
-    useSelector((state) => state.chat);
+
   const { width, breakpoints } = useWidth();
   const dispatch = useDispatch();
   const [message, setMessage] = useState("");
@@ -44,6 +44,8 @@ const Chat = () => {
       setMessage("");
     }
   };
+  const{user,openinfo, messFeed } = appChat()
+  console.log("messFeed",messFeed)
   const chatheight = useRef(null);
   useEffect(() => {
     chatheight.current.scrollTop = chatheight.current.scrollHeight;

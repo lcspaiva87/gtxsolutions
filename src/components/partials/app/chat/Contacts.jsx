@@ -1,22 +1,15 @@
-import { useDispatch } from "react-redux";
-import { openChat } from "./store";
+'use client';
+import appChat from "./test";
+
 
 const Contacts = ({ contact }) => {
   const { fullName, avatar, status, lastmessage, unredmessage } = contact;
-
-  const dispatch = useDispatch();
+  const{openChat} = appChat()
 
   return (
     <div
       className="block w-full py-5 focus:ring-0 outline-none cursor-pointer group transition-all duration-150 hover:bg-slate-100 dark:hover:bg-slate-600 dark:hover:bg-opacity-70"
-      onClick={() => {
-        dispatch(
-          openChat({
-            contact,
-            activechat: true,
-          })
-        );
-      }}
+      onClick={() => openChat({activechat:true,contact})}
     >
       <div className="flex space-x-3 px-6 rtl:space-x-reverse">
         <div className="flex-none">
