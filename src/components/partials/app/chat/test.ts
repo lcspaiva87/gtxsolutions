@@ -32,7 +32,7 @@ interface AppState {
   mobileChatSidebar: boolean;
   profileinfo: Record<string, unknown>;
   messFeed: Message[];
-  user: Record<string, unknown>;
+  user: Contact
   contacts: Contact[];
   chats: Chat[];
   sendMessage: (payload: Message) => void;
@@ -48,7 +48,16 @@ const appChatStore = create<AppState>((set) => ({
   mobileChatSidebar: false,
   profileinfo: {},
   messFeed: [],
-  user: {},
+  user: {
+    id: 0,
+    fullName: '',
+    role: '',
+    lastmessage: '',
+    lastmessageTime: '',
+    unredmessage: 0,
+    avatar: '',
+    status: ''
+  },
   contacts: [
     {
       id: 1,

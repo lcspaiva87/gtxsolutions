@@ -23,8 +23,10 @@ export default function ChatPage () {
   const dispatch = useDispatch();
   const {   mobileChatSidebar, searchContact } =
     useSelector((state:any) => state.chat);
+
     const{activechat,contacts,openinfo } = appChat()
-    console.log("openinfo",openinfo)
+
+
   const searchContacts = contacts?.filter((item: { fullName: string; }) =>
     item.fullName.toLowerCase().includes(searchContact.toLowerCase())
   );
