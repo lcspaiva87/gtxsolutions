@@ -1,7 +1,6 @@
-import React from "react";
-import SimpleBar from "simplebar-react";
-import { useSelector } from "react-redux";
 import Icon from "@/components//ui/icons/Icon";
+import { useSelector } from "react-redux";
+import SimpleBar from "simplebar-react";
 
 const socials = [
   {
@@ -22,7 +21,7 @@ const socials = [
 ];
 
 const Info = () => {
-  const { activechat, user } = useSelector((state) => state.chat);
+  const {  user } = useSelector((state) => state.chat);
   return (
     <SimpleBar className="h-full p-6">
       <h4 className="text-xl text-slate-900 font-medium mb-8">About</h4>

@@ -3,7 +3,7 @@ import Dropdown from "@/components/ui/Dropdown";
 import useWidth from "@/hooks/useWidth";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
-import { infoToggle, toggleMobileChatSidebar } from "./store";
+import { toggleMobileChatSidebar } from "./store";
 import appChat from "./test";
 
 const chatAction = [
@@ -29,10 +29,12 @@ const time = () => {
 const Chat = () => {
 
   const { width, breakpoints } = useWidth();
-  const dispatch = useDispatch();
+
   const [message, setMessage] = useState("");
-  const{user,openinfo, messFeed,sendMessage } = appChat()
-  const handleSendMessage = (e) => {
+  const{user, messFeed,sendMessage ,infoToggle,openinfo} = appChat()
+  const dispatch = useDispatch();
+
+  const handleSendMessage = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (message.trim()) {
         sendMessage({
@@ -46,7 +48,7 @@ const Chat = () => {
   };
 
   console.log("messFeed",messFeed)
-  const chatheight = useRef(null);
+  const chatheight = useRef<HTMLDivElement | null>(null);
   useEffect(() => {
     chatheight.current.scrollTop = chatheight.current.scrollHeight;
   }, [messFeed]);
@@ -102,7 +104,7 @@ const Chat = () => {
             </div>
 
             <div
-              onClick={() => dispatch(infoToggle(!openinfo))}
+              onClick={() => infoToggle(!openinfo)}
               className="msg-action-btn"
             >
               <Icon icon="heroicons-outline:dots-horizontal" />

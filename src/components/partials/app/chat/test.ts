@@ -3,7 +3,7 @@ import { create } from 'zustand';
 interface Message {
   img: string;
   content: string;
-  time: string;
+  time?: string;
   sender: string;
 }
 
@@ -35,9 +35,12 @@ interface AppState {
   user: Record<string, unknown>;
   contacts: Contact[];
   chats: Chat[];
+  sendMessage: (payload: Message) => void;
+  toggleMobileChatSidebar: (payload: boolean) => void;
+  infoToggle: (openinfo: boolean) => void;
 }
 
-const appChat = create<AppState>((set) => ({
+const appChatStore = create<AppState>((set) => ({
   openProfile: false,
   openinfo: true,
   activechat: false,
@@ -266,14 +269,15 @@ const appChat = create<AppState>((set) => ({
     set(() => ({
       openProfile: payload,
     })),
-  setContactSearch: (payload) =>
+  setContactSearch: (payload:string) =>
     set(() => ({
       searchContact: payload,
     })),
-  toggleActiveChat: (payload:boolean) =>
-    set(() => ({
+    toggleActiveChat: (payload: boolean) =>
+    set((state) => ({
+      ...state,
       activechat: payload,
     })),
 }));
-
-export default appChat;
+;
+export default appChatStore;

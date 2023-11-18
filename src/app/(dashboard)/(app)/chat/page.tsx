@@ -21,10 +21,10 @@ import SimpleBar from "simplebar-react";
 export default function ChatPage () {
   const { width, breakpoints } = useWidth();
   const dispatch = useDispatch();
-  const {  openinfo, mobileChatSidebar, searchContact } =
+  const {   mobileChatSidebar, searchContact } =
     useSelector((state:any) => state.chat);
-    const{activechat,contacts } = appChat()
-
+    const{activechat,contacts,openinfo } = appChat()
+    console.log("openinfo",openinfo)
   const searchContacts = contacts?.filter((item: { fullName: string; }) =>
     item.fullName.toLowerCase().includes(searchContact.toLowerCase())
   );

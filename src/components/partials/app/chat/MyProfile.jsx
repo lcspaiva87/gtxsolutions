@@ -32,8 +32,10 @@ const allStatus = [
 ];
 
 import SimpleBar from "simplebar-react";
+import appChatStore from "./test";
 const MyProfile = () => {
   const { openProfile } = useSelector((state) => state.chat);
+  const{user, messFeed,sendMessage ,infoToggle,openinfo} = appChatStore()
   const [status, setStatus] = useState("online");
   const nodeRef = useRef(null);
   const dispatch = useDispatch();
