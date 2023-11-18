@@ -2,9 +2,8 @@ import { Itask } from "@/@types/Task";
 import { del, get, post, put } from "./client/http-client";
 
 export const fetchTask= async (): Promise<Itask[]> => {
-  const response = await get(`${process.env.NEXT_PUBLIC_BASE_URL}/task`);
-  const data = await response.json();
-  return data;
+  const response = await get(`/task`);
+  return response;
 };
 
 export const postTask= async ({camera,company,file,message,phone,responsible,avatar,columnId,id,priority}:Itask) => {
@@ -15,13 +14,13 @@ export const postTask= async ({camera,company,file,message,phone,responsible,ava
 
 };
 export const deleteTaskId= async (id:number | string) => {
-  const response = await del(`${process.env.NEXT_PUBLIC_BASE_URL}/task/${id}`);
+  const response = await del(`/task/${id}`);
   return response
 
 };
 export const pathTask= async ({id, columnId }:{id:string | number ,columnId:string  | number}) => {
 
-  const response = await put(`${process.env.NEXT_PUBLIC_BASE_URL}/task/${id}`,{
+  const response = await put(`/task/${id}`,{
     columnId:columnId,
   });
   return response
