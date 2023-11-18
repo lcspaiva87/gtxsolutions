@@ -32,7 +32,7 @@ const Chat = () => {
 
   const [message, setMessage] = useState("");
   const { user, messFeed, sendMessage, infoToggle, openinfo } = appChat();
-  console.log("user", user);
+
   const dispatch = useDispatch();
 
   const handleSendMessage = (e: React.FormEvent<HTMLFormElement>) => {
