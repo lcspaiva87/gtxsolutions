@@ -1,4 +1,4 @@
-import create from 'zustand';
+import { create } from 'zustand';
 
 interface Message {
   img: string;
@@ -237,7 +237,7 @@ const appChat = create<AppState>((set) => ({
 
   openChat: (payload:any) =>
   set((state: AppState) => {
-    console.log('Payload:', payload);
+    console.log('Payload:', state);
     console.log('Current State:', payload.contact.id);
     const contactId = payload.contact.id;
     const chat = state.chats.find((item:Chat) => item.userId === contactId);
@@ -245,7 +245,7 @@ const appChat = create<AppState>((set) => ({
       activechat: payload.activechat,
       mobileChatSidebar: !state.mobileChatSidebar,
       user: payload.contact,
-      messFeed: chat.messages,
+      messFeed: chat?.messages || [],
 
 
     };

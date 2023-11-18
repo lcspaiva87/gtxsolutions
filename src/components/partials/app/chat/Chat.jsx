@@ -3,7 +3,7 @@ import Dropdown from "@/components/ui/Dropdown";
 import useWidth from "@/hooks/useWidth";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
-import { infoToggle, sendMessage, toggleMobileChatSidebar } from "./store";
+import { infoToggle, toggleMobileChatSidebar } from "./store";
 import appChat from "./test";
 
 const chatAction = [
@@ -31,20 +31,20 @@ const Chat = () => {
   const { width, breakpoints } = useWidth();
   const dispatch = useDispatch();
   const [message, setMessage] = useState("");
+  const{user,openinfo, messFeed,sendMessage } = appChat()
   const handleSendMessage = (e) => {
     e.preventDefault();
     if (message.trim()) {
-      dispatch(
         sendMessage({
           content: message.trim(),
           sender: "me",
           img: "/assets/images/users/user-1.jpg",
         })
-      );
+
       setMessage("");
     }
   };
-  const{user,openinfo, messFeed } = appChat()
+
   console.log("messFeed",messFeed)
   const chatheight = useRef(null);
   useEffect(() => {
