@@ -38,6 +38,7 @@ interface AppState {
   sendMessage: (payload: Message) => void;
   toggleMobileChatSidebar: (payload: boolean) => void;
   infoToggle: (openinfo: boolean) => void;
+  toggleProfile: (openProfile: boolean) => void;
 }
 
 const appChatStore = create<AppState>((set) => ({
