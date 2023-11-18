@@ -247,7 +247,7 @@ const appChatStore = create<AppState>((set) => ({
     },
   ],
 
-  openChat: (payload:any) =>
+openChat: (payload:any) =>
   set((state: AppState) => {
     console.log('Payload:', state);
     console.log('Current State:', payload.contact.id);
@@ -259,10 +259,9 @@ const appChatStore = create<AppState>((set) => ({
       user: payload.contact,
       messFeed: chat?.messages || [],
 
-
     };
   }),
-  toggleMobileChatSidebar: (payload:boolean) =>
+toggleMobileChatSidebar: (payload:boolean) =>
     set(() => ({
       mobileChatSidebar: payload,
     })),

@@ -1,10 +1,11 @@
 'use client';
-import appChat from "./test";
+import appChatStore from "./test";
+
 
 
 const Contacts = ({ contact }) => {
   const { fullName, avatar, status, lastmessage, unredmessage } = contact;
-  const{openChat} = appChat()
+  const{openChat} = appChatStore()
 
   return (
     <div

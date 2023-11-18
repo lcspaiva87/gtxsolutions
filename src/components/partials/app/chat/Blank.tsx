@@ -1,11 +1,10 @@
 import useWidth from "@/hooks/useWidth";
 import Image from "next/image";
-import { useDispatch } from "react-redux";
-import { toggleMobileChatSidebar } from "./store";
+import appChatStore from "./test";
 
 const Blank = () => {
   const { width, breakpoints } = useWidth();
-  const dispatch = useDispatch();
+  const {toggleMobileChatSidebar} = appChatStore()
   return (
     <div className="h-full flex flex-col items-center justify-center xl:space-y-2 space-y-6">
       <Image src="/assets/images/svg/blank.svg" alt="blanck" width={0} height={0} />
@@ -21,7 +20,7 @@ const Blank = () => {
         ) : (
           <span
             className="btn btn-dark cursor-pointer"
-            onClick={() => dispatch(toggleMobileChatSidebar(true))}
+            onClick={() => toggleMobileChatSidebar(true)}
           >
             Start Conversation
           </span>
