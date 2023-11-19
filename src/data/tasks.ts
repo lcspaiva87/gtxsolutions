@@ -1,5 +1,5 @@
 import { Itask } from '@/@types/Task'
-import { del, get, post, put } from './client/http-client'
+import { del, get, patch, post } from './client/http-client'
 
 export const fetchTask = async (): Promise<Itask[]> => {
   const response = await get(`/task`)
@@ -43,7 +43,7 @@ export const pathTask = async ({
   id: string | number
   columnId: string | number
 }) => {
-  const response = await put(`/task/${id}`, {
+  const response = await patch(`/task/${id}`, {
     columnId,
   })
   return response
