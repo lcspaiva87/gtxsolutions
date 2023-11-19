@@ -30,10 +30,10 @@ const allStatus = [
 ];
 
 import SimpleBar from "simplebar-react";
-import appChatStore from "./test";
+import appChatStore from "./store";
 const MyProfile = () => {
 
-  const{user, messFeed,sendMessage ,infoToggle,openinfo,toggleProfile,openProfile} = appChatStore()
+  const{toggleProfile,openProfile} = appChatStore()
   const [status, setStatus] = useState("online");
   const nodeRef = useRef(null);
 

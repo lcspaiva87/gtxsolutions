@@ -1,5 +1,5 @@
 import Icon from "@/components//ui/icons/Icon";
-import { toggleActiveChat } from "@/components/partials/app/chat/store";
+import appChatStore from "@/components/partials/app/chat/store";
 import useMobileMenu from "@/hooks/useMobileMenu";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
@@ -23,7 +23,7 @@ const Navmenu = ({ menus }) => {
 
   const [mobileMenu, setMobileMenu] = useMobileMenu();
   const dispatch = useDispatch();
-
+  const{toggleActiveChat} = appChatStore()
   useEffect(() => {
     let submenuIndex = null;
     menus.map((item, i) => {
@@ -41,7 +41,7 @@ const Navmenu = ({ menus }) => {
     });
 
     setActiveSubmenu(submenuIndex);
-    dispatch(toggleActiveChat(false));
+  toggleActiveChat(false);
     if (mobileMenu) {
       setMobileMenu(false);
     }

@@ -1,6 +1,6 @@
 import useWidth from "@/hooks/useWidth";
 import Image from "next/image";
-import appChatStore from "./test";
+import appChatStore from "./store";
 
 const Blank = () => {
   const { width, breakpoints } = useWidth();

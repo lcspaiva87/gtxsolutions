@@ -39,6 +39,8 @@ interface AppState {
   toggleMobileChatSidebar: (payload: boolean) => void;
   infoToggle: (openinfo: boolean) => void;
   toggleProfile: (openProfile: boolean) => void;
+  setContactSearch: (searchContact: string) => void;
+  openChat: (payload: { contact: Contact; activechat: boolean }) => void;
 }
 
 const appChatStore = create<AppState>((set) => ({
@@ -250,8 +252,6 @@ const appChatStore = create<AppState>((set) => ({
 
 openChat: (payload:any) =>
   set((state: AppState) => {
-    console.log('Payload:', state);
-    console.log('Current State:', payload.contact.id);
     const contactId = payload.contact.id;
     const chat = state.chats.find((item:Chat) => item.userId === contactId);
     return {

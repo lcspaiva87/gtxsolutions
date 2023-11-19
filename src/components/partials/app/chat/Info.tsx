@@ -1,7 +1,7 @@
 import Icon from "@/components//ui/icons/Icon";
 import Image from "next/image";
 import SimpleBar from "simplebar-react";
-import appChatStore from "./test";
+import appChatStore from "./store";
 
 const socials = [
   {

@@ -3,7 +3,7 @@ import Dropdown from "@/components/ui/Dropdown";
 import useWidth from "@/hooks/useWidth";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import appChat from "./test";
+import appChat from "./store";
 
 const chatAction = [
   {
