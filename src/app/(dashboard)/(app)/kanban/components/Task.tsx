@@ -9,7 +9,7 @@ interface Props {
   deleteTask: (id: string | number) => void
   // updateTask: (id: Id, content: string) => void;
 }
-export function Task({ task, deleteTask }: Props) {
+export default function  Task({ task, deleteTask }: Props) {
   const { title, user, message, startDate, endDate, assignee } = task
   return (
     <Card className=" bg-mainBackgroundColor  flex flex-col  rounded-xl hover:ring-2 hover:ring-inset hover:ring-rose-500 cursor-grab relative task">

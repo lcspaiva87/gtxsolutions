@@ -40,7 +40,7 @@ const reorderColumnList = (
   return updatedColumns
 }
 
-const Column = () => {
+export default function Column () {
   const { columns: initialColumns, removeMutation: deleteColumnMutation } =
     useColumns()
   const { tasks: initialTasks, saveMutation, removeMutation } = useTask()
@@ -120,4 +120,3 @@ const Column = () => {
   )
 }
 
-export default Column
