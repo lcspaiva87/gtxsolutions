@@ -10,12 +10,12 @@ import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
 import kabanStore from './sto'
 type FormValues = {
-  name: string
+  title: string
   color: string
 }
 const FormValidationSchema = yup
   .object({
-    name: yup.string().required('name is required'),
+    title: yup.string().required('name is required'),
     color: yup.string().required('color is required'),
   })
   .required()
@@ -34,9 +34,9 @@ const AddColumn = () => {
     mode: 'all',
   })
   console.log(errors)
-  const onSubmit = ({ color, name }: FormValues) => {
+  const onSubmit = ({ color, title }: FormValues) => {
     const id = `container-${uuidv4()}`
-    createMutation.mutate({ name, color, id })
+    createMutation.mutate({ title, color, id })
 
     toggleColumnModal(false)
     reset()
@@ -55,8 +55,8 @@ const AddColumn = () => {
             label="Column Name"
             placeholder="Column Name"
             register={register}
-            {...register('name', { required: 'Name is required' })}
-            error={errors.name}
+            {...register('title', { required: 'Name is required' })}
+            error={errors.title}
           />
           <div className="formGroup">
             <label className="form-label">Select Color</label>

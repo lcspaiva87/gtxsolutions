@@ -7,11 +7,11 @@ export const fetchColumns = async (): Promise<Column[]> => {
   return response
 }
 
-export const PostColumns = async ({ id, name, color }: Column) => {
+export const PostColumns = async ({ id, title, color }: Column) => {
   const response = await post(`/columns`, {
     id,
     color,
-    name,
+    title,
   })
   return response
 }

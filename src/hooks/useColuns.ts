@@ -6,14 +6,25 @@ import { useMutation, useQuery, useQueryClient } from 'react-query'
 
 export const useColumns = (id?: Column[]) => {
   const queryClient = useQueryClient()
-  const createMutation = useMutation(PostColumns, {
+  const createMutation = useMutation({
+    mutationFn: PostColumns,
+    mutationKey: ['column', id],
+
     onError: () => {
       enqueueSnackbar('Erro ao criar coluna, tente novamente', {
         variant: 'error',
       })
     },
-
-    onSuccess: () => {
+    onSuccess: (_, data) => {
+      queryClient.setQueryData(['column', undefined], (oldData: any) => {
+        if (Array.isArray(oldData)) {
+          return [...oldData, data]
+        } else {
+          // Handle the case where oldData is not an array
+          // For example, you could return a new array containing only the new data
+          return [data]
+        }
+      })
       enqueueSnackbar('column created successfully', { variant: 'success' })
     },
   })
