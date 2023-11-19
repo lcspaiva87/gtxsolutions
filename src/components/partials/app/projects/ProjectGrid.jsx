@@ -1,34 +1,34 @@
-import React, { useEffect, useState } from "react";
-import Card from "@/components/ui/Card";
-import Dropdown from "@/components/ui/Dropdown";
+import Card from '@/components/ui/Card'
+import Dropdown from '@/components/ui/Dropdown'
+import React, { useEffect, useState } from 'react'
 // import menu form headless ui
-import { Menu } from "@headlessui/react";
-import Icon from "@/components//ui/icons/Icon";
-import ProgressBar from "@/components/ui/ProgressBar";
-import { removeProject, updateProject } from "./store";
-import { useDispatch, useSelector } from "react-redux";
-import { useRouter } from "next/navigation";
+import Icon from '@/components//ui/icons/Icon'
+import ProgressBar from '@/components/ui/ProgressBar'
+import { Menu } from '@headlessui/react'
+import { useRouter } from 'next/navigation'
+import { useDispatch } from 'react-redux'
+import { removeProject, updateProject } from './store'
 
 const ProjectGrid = ({ project }) => {
   const { name, progress, status, members, assignee, des, startDate, endDate } =
-    project;
-  const dispatch = useDispatch();
+    project
+  const dispatch = useDispatch()
 
-  const [start, setStart] = useState(new Date(startDate));
-  const [end, setEnd] = useState(new Date(endDate));
-  const [totaldays, setTotaldays] = useState(0);
+  const [start, setStart] = useState(new Date(startDate))
+  const [end, setEnd] = useState(new Date(endDate))
+  const [totaldays, setTotaldays] = useState(0)
 
   useEffect(() => {
-    const diffTime = Math.abs(end - start);
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-    setTotaldays(diffDays);
-  }, [start, end]);
+    const diffTime = Math.abs(end - start)
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24))
+    setTotaldays(diffDays)
+  }, [start, end])
 
-  const router = useRouter();
+  const router = useRouter()
   // handleClick to view project single page
   const handleClick = (project) => {
-    router.push(`/projects/${project.id}`);
-  };
+    router.push(`/projects/${project.id}`)
+  }
 
   return (
     <Card>
@@ -148,7 +148,7 @@ const ProjectGrid = ({ project }) => {
         <div className="ltr:text-right rtl:text-left">
           <span className="inline-flex items-center space-x-1 bg-danger-500 bg-opacity-[0.16] text-danger-500 text-xs font-normal px-2 py-1 rounded-full rtl:space-x-reverse">
             <span>
-              {" "}
+              {' '}
               <Icon icon="heroicons-outline:clock" />
             </span>
             <span>{totaldays}</span>
@@ -157,7 +157,7 @@ const ProjectGrid = ({ project }) => {
         </div>
       </div>
     </Card>
-  );
-};
+  )
+}
 
-export default ProjectGrid;
+export default ProjectGrid

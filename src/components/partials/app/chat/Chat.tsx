@@ -53,7 +53,6 @@ const Chat = () => {
   const chatheight = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
-    // @ts-ignore
     chatheight.current.scrollTop = chatheight.current.scrollHeight
   }, [messFeed])
 

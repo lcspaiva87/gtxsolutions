@@ -1,9 +1,9 @@
+/* eslint-disable */
 'use client'
-import React from 'react'
-import { topMenu } from '@/constant/data'
 import Icon from '@/components//ui/icons/Icon'
-import { usePathname } from 'next/navigation'
+import { topMenu } from '@/constant/data'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 const HorizentalMenu = () => {
   const location = usePathname()
@@ -71,6 +71,7 @@ const HorizentalMenu = () => {
               <div className="rt-mega-menu">
                 <div className="flex flex-wrap space-x-8 justify-between rtl:space-x-reverse">
                   {item.megamenu.map((m_item, m_i) => (
+                    // eslint-disable-next-line camelcase
                     <div key={m_i}>
                       {/* mega menu title */}
                       <div className="text-sm font-medium text-slate-900 dark:text-white mb-2 flex space-x-1 items-center">

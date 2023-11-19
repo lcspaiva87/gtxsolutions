@@ -1,16 +1,16 @@
-import React from "react";
-import Link from "next/link";
-import useDarkMode from "@/hooks/useDarkMode";
+import useDarkMode from '@/hooks/useDarkMode'
+import Link from 'next/link'
+import React from 'react'
 
-import MainLogo from "@/assets/images/logo/logo.svg";
-import LogoWhite from "@/assets/images/logo/logo-white.svg";
+import LogoWhite from '@/assets/images/logo/logo-white.svg'
+import MainLogo from '@/assets/images/logo/logo.svg'
 const MobileLogo = () => {
-  const [isDark] = useDarkMode();
+  const [isDark] = useDarkMode()
   return (
     <Link href="/analytics">
       <img src={isDark ? LogoWhite : MainLogo} alt="" />
     </Link>
-  );
-};
+  )
+}
 
-export default MobileLogo;
+export default MobileLogo

@@ -1,32 +1,30 @@
-import React, { useState, useEffect } from "react";
-import { useRouter, usePathname } from "next/navigation";
-import Link from "next/link";
-import { menuItems } from "@/constant/data";
-import Icon from "@/components//ui/icons/Icon";
+import Icon from '@/components//ui/icons/Icon'
+import { menuItems } from '@/constant/data'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import React, { useEffect, useState } from 'react'
 
 const Breadcrumbs = () => {
-  const location = usePathname();
-  const locationName = location.replace("/", "");
+  const location = usePathname()
+  const locationName = location.replace('/', '')
 
-  const [isHide, setIsHide] = useState(null);
-  const [groupTitle, setGroupTitle] = useState("");
+  const [isHide, setIsHide] = useState(null)
+  const [groupTitle, setGroupTitle] = useState('')
 
   useEffect(() => {
-    const currentMenuItem = menuItems.find(
-      (item) => item.link === locationName
-    );
+    const currentMenuItem = menuItems.find((item) => item.link === locationName)
 
     const currentChild = menuItems.find((item) =>
-      item.child?.find((child) => child.childlink === locationName)
-    );
+      item.child?.find((child) => child.childlink === locationName),
+    )
 
     if (currentMenuItem) {
-      setIsHide(currentMenuItem.isHide);
+      setIsHide(currentMenuItem.isHide)
     } else if (currentChild) {
-      setIsHide(currentChild?.isHide || false);
-      setGroupTitle(currentChild?.title);
+      setIsHide(currentChild?.isHide || false)
+      setGroupTitle(currentChild?.title)
     }
-  }, [location, locationName]);
+  }, [location, locationName])
 
   return (
     <>
@@ -58,7 +56,7 @@ const Breadcrumbs = () => {
         </div>
       ) : null}
     </>
-  );
-};
+  )
+}
 
-export default Breadcrumbs;
+export default Breadcrumbs

@@ -1,28 +1,28 @@
-import React, { useState, useMemo, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import Card from "@/components/ui/Card";
-import Icon from "@/components//ui/icons/Icon";
-import Dropdown from "@/components/ui/Dropdown";
-import ProgressBar from "@/components/ui/ProgressBar";
-import { Menu } from "@headlessui/react";
-import { removeProject, updateProject } from "./store";
-import { useRouter } from "next/navigation";
+import Icon from '@/components//ui/icons/Icon'
+import Card from '@/components/ui/Card'
+import Dropdown from '@/components/ui/Dropdown'
+import ProgressBar from '@/components/ui/ProgressBar'
+import { Menu } from '@headlessui/react'
+import { useRouter } from 'next/navigation'
+import React, { useMemo } from 'react'
+import { useDispatch } from 'react-redux'
 import {
-  useTable,
-  useRowSelect,
-  useSortBy,
   useGlobalFilter,
   usePagination,
-} from "react-table";
+  useRowSelect,
+  useSortBy,
+  useTable,
+} from 'react-table'
+import { removeProject, updateProject } from './store'
 
 const ProjectList = ({ projects }) => {
-  const dispatch = useDispatch();
-  const router = useRouter();
+  const dispatch = useDispatch()
+  const router = useRouter()
 
   const COLUMNS = [
     {
-      Header: "Name",
-      accessor: "name",
+      Header: 'Name',
+      accessor: 'name',
       Cell: (row) => {
         return (
           <div className="flex space-x-3 items-center text-left rtl:space-x-reverse">
@@ -34,30 +34,30 @@ const ProjectList = ({ projects }) => {
             </div>
             <div className="flex-1 font-medium text-sm leading-4 whitespace-nowrap">
               {row?.cell?.value.length > 20
-                ? row?.cell?.value.substring(0, 20) + "..."
+                ? row?.cell?.value.substring(0, 20) + '...'
                 : row?.cell?.value}
             </div>
           </div>
-        );
+        )
       },
     },
     {
-      Header: "Start Date",
-      accessor: "startDate",
+      Header: 'Start Date',
+      accessor: 'startDate',
       Cell: (row) => {
-        return <span>{row?.cell?.value}</span>;
+        return <span>{row?.cell?.value}</span>
       },
     },
     {
-      Header: "End Date",
-      accessor: "endDate",
+      Header: 'End Date',
+      accessor: 'endDate',
       Cell: (row) => {
-        return <div>{row?.cell?.value}</div>;
+        return <div>{row?.cell?.value}</div>
       },
     },
     {
-      Header: "assignee",
-      accessor: "assignee",
+      Header: 'assignee',
+      accessor: 'assignee',
       Cell: (row) => {
         return (
           <div>
@@ -79,12 +79,12 @@ const ProjectList = ({ projects }) => {
               </div>
             </div>
           </div>
-        );
+        )
       },
     },
     {
-      Header: "Status",
-      accessor: "progress",
+      Header: 'Status',
+      accessor: 'progress',
       Cell: (row) => {
         return (
           <span className="min-w-[220px] block">
@@ -93,13 +93,13 @@ const ProjectList = ({ projects }) => {
               12/15 Task Completed
             </span>
           </span>
-        );
+        )
       },
     },
 
     {
-      Header: "action",
-      accessor: "action",
+      Header: 'action',
+      accessor: 'action',
       Cell: (row) => {
         return (
           <div>
@@ -121,9 +121,9 @@ const ProjectList = ({ projects }) => {
                       className={`
 
                   ${
-                    item.name === "delete"
-                      ? "bg-danger-500 text-danger-500 bg-opacity-30   hover:bg-opacity-100 hover:text-white"
-                      : "hover:bg-slate-900 hover:text-white dark:hover:bg-slate-600 dark:hover:bg-opacity-50"
+                    item.name === 'delete'
+                      ? 'bg-danger-500 text-danger-500 bg-opacity-30   hover:bg-opacity-100 hover:text-white'
+                      : 'hover:bg-slate-900 hover:text-white dark:hover:bg-slate-600 dark:hover:bg-opacity-50'
                   }
                    w-full border-b border-b-gray-500 border-opacity-10 px-4 py-2 text-sm  last:mb-0 cursor-pointer
                    first:rounded-t last:rounded-b flex  space-x-2 items-center rtl:space-x-reverse `}
@@ -138,30 +138,30 @@ const ProjectList = ({ projects }) => {
               </div>
             </Dropdown>
           </div>
-        );
+        )
       },
     },
-  ];
+  ]
   const actions = [
     {
-      name: "view",
-      icon: "heroicons-outline:eye",
+      name: 'view',
+      icon: 'heroicons-outline:eye',
       doit: (item) => router.push(`/projects/${item.id}`),
     },
     {
-      name: "edit",
-      icon: "heroicons:pencil-square",
+      name: 'edit',
+      icon: 'heroicons:pencil-square',
       doit: (item) => dispatch(updateProject(item)),
     },
     {
-      name: "delete",
-      icon: "heroicons-outline:trash",
+      name: 'delete',
+      icon: 'heroicons-outline:trash',
       doit: (item) => dispatch(removeProject(item.id)),
     },
-  ];
+  ]
 
-  const columns = useMemo(() => COLUMNS, []);
-  const data = useMemo(() => projects, [projects]);
+  const columns = useMemo(() => COLUMNS, [])
+  const data = useMemo(() => projects, [projects])
 
   const tableInstance = useTable(
     {
@@ -172,8 +172,8 @@ const ProjectList = ({ projects }) => {
     useGlobalFilter,
     useSortBy,
     usePagination,
-    useRowSelect
-  );
+    useRowSelect,
+  )
   const {
     getTableProps,
     getTableBodyProps,
@@ -191,9 +191,9 @@ const ProjectList = ({ projects }) => {
     setPageSize,
     setGlobalFilter,
     prepareRow,
-  } = tableInstance;
+  } = tableInstance
 
-  const { globalFilter, pageIndex, pageSize } = state;
+  const { globalFilter, pageIndex, pageSize } = state
   return (
     <>
       <Card noborder>
@@ -216,19 +216,19 @@ const ProjectList = ({ projects }) => {
                       {headerGroup.headers.map((column) => (
                         <th
                           {...column.getHeaderProps(
-                            column.getSortByToggleProps()
+                            column.getSortByToggleProps(),
                           )}
                           key={`ex-th-${column.id}`}
                           scope="col"
                           className=" table-th "
                         >
-                          {column.render("Header")}
+                          {column.render('Header')}
                           <span>
                             {column.isSorted
                               ? column.isSortedDesc
-                                ? " 🔽"
-                                : " 🔼"
-                              : ""}
+                                ? ' 🔽'
+                                : ' 🔼'
+                              : ''}
                           </span>
                         </th>
                       ))}
@@ -240,7 +240,7 @@ const ProjectList = ({ projects }) => {
                   {...getTableBodyProps}
                 >
                   {page.map((row) => {
-                    prepareRow(row);
+                    prepareRow(row)
                     return (
                       <tr
                         key={`ex-tr2-${row.id}`}
@@ -254,12 +254,12 @@ const ProjectList = ({ projects }) => {
                               className="table-td"
                               key={`ex-td-${cell.column.id}`}
                             >
-                              {cell.render("Cell")}
+                              {cell.render('Cell')}
                             </td>
-                          );
+                          )
                         })}
                       </tr>
-                    );
+                    )
                   })}
                 </tbody>
               </table>
@@ -280,15 +280,15 @@ const ProjectList = ({ projects }) => {
                   onChange={(e) => {
                     const pageNumber = e.target.value
                       ? Number(e.target.value) - 1
-                      : 0;
-                    gotoPage(pageNumber);
+                      : 0
+                    gotoPage(pageNumber)
                   }}
-                  style={{ width: "50px" }}
+                  style={{ width: '50px' }}
                 />
               </span>
             </span>
             <span className="text-sm font-medium text-slate-600 dark:text-slate-300">
-              Page{" "}
+              Page{' '}
               <span>
                 {pageIndex + 1} of {pageOptions.length}
               </span>
@@ -298,7 +298,7 @@ const ProjectList = ({ projects }) => {
             <li className="text-xl leading-4 text-slate-900 dark:text-white rtl:rotate-180">
               <button
                 className={` ${
-                  !canPreviousPage ? "opacity-50 cursor-not-allowed" : ""
+                  !canPreviousPage ? 'opacity-50 cursor-not-allowed' : ''
                 }`}
                 onClick={() => previousPage()}
                 disabled={!canPreviousPage}
@@ -313,8 +313,8 @@ const ProjectList = ({ projects }) => {
                   aria-current="page"
                   className={` ${
                     pageIdx === pageIndex
-                      ? "bg-slate-900 dark:bg-slate-600  dark:text-slate-200 text-white font-medium "
-                      : "bg-slate-100  dark:text-slate-400 text-slate-900  font-normal "
+                      ? 'bg-slate-900 dark:bg-slate-600  dark:text-slate-200 text-white font-medium '
+                      : 'bg-slate-100  dark:text-slate-400 text-slate-900  font-normal '
                   }    text-sm rounded leading-[16px] flex h-6 w-6 items-center justify-center transition-all duration-150`}
                   onClick={() => gotoPage(pageIdx)}
                 >
@@ -325,7 +325,7 @@ const ProjectList = ({ projects }) => {
             <li className="text-xl leading-4 text-slate-900 dark:text-white rtl:rotate-180">
               <button
                 className={` ${
-                  !canNextPage ? "opacity-50 cursor-not-allowed" : ""
+                  !canNextPage ? 'opacity-50 cursor-not-allowed' : ''
                 }`}
                 onClick={() => nextPage()}
                 disabled={!canNextPage}
@@ -337,7 +337,7 @@ const ProjectList = ({ projects }) => {
         </div>
       </Card>
     </>
-  );
-};
+  )
+}
 
-export default ProjectList;
+export default ProjectList

@@ -1,82 +1,81 @@
-import React, { useState, useEffect } from "react";
-import Select, { components } from "react-select";
-import Modal from "@/components/ui/Modal";
-import { useSelector, useDispatch } from "react-redux";
-import { updateProject, toggleEditModal } from "./store";
-import Icon from "@/components//ui/icons/Icon";
-import Textarea from "@/components/ui/Textarea";
-import Flatpickr from "react-flatpickr";
-import { useForm, Controller } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
-import { toast } from "react-toastify";
-import FormGroup from "@/components/ui/FormGroup";
+import FormGroup from '@/components/ui/FormGroup'
+import Modal from '@/components/ui/Modal'
+import Textarea from '@/components/ui/Textarea'
+import { yupResolver } from '@hookform/resolvers/yup'
+import React, { useEffect, useState } from 'react'
+import Flatpickr from 'react-flatpickr'
+import { Controller, useForm } from 'react-hook-form'
+import { useDispatch, useSelector } from 'react-redux'
+import Select, { components } from 'react-select'
+import { toast } from 'react-toastify'
+import * as yup from 'yup'
+import { toggleEditModal, updateProject } from './store'
 
 const styles = {
   multiValue: (base, state) => {
-    return state.data.isFixed ? { ...base, opacity: "0.5" } : base;
+    return state.data.isFixed ? { ...base, opacity: '0.5' } : base
   },
   multiValueLabel: (base, state) => {
     return state.data.isFixed
-      ? { ...base, color: "#626262", paddingRight: 6 }
-      : base;
+      ? { ...base, color: '#626262', paddingRight: 6 }
+      : base
   },
   multiValueRemove: (base, state) => {
-    return state.data.isFixed ? { ...base, display: "none" } : base;
+    return state.data.isFixed ? { ...base, display: 'none' } : base
   },
   option: (provided, state) => ({
     ...provided,
-    fontSize: "14px",
+    fontSize: '14px',
   }),
-};
+}
 
 const assigneeOptions = [
   {
-    value: "mahedi",
-    label: "Mahedi Amin",
-    image: "/assets/images/avatar/av-1.svg",
+    value: 'mahedi',
+    label: 'Mahedi Amin',
+    image: '/assets/images/avatar/av-1.svg',
   },
   {
-    value: "sovo",
-    label: "Sovo Haldar",
-    image: "/assets/images/avatar/av-2.svg",
+    value: 'sovo',
+    label: 'Sovo Haldar',
+    image: '/assets/images/avatar/av-2.svg',
   },
   {
-    value: "rakibul",
-    label: "Rakibul Islam",
-    image: "/assets/images/avatar/av-3.svg",
+    value: 'rakibul',
+    label: 'Rakibul Islam',
+    image: '/assets/images/avatar/av-3.svg',
   },
   {
-    value: "pritom",
-    label: "Pritom Miha",
-    image: "/assets/images/avatar/av-4.svg",
+    value: 'pritom',
+    label: 'Pritom Miha',
+    image: '/assets/images/avatar/av-4.svg',
   },
-];
+]
 const options = [
   {
-    value: "team",
-    label: "team",
+    value: 'team',
+    label: 'team',
   },
   {
-    value: "low",
-    label: "low",
+    value: 'low',
+    label: 'low',
   },
   {
-    value: "medium",
-    label: "medium",
+    value: 'medium',
+    label: 'medium',
   },
   {
-    value: "high",
-    label: "high",
+    value: 'high',
+    label: 'high',
   },
   {
-    value: "update",
-    label: "update",
+    value: 'update',
+    label: 'update',
   },
-];
+]
 
 const OptionComponent = ({ data, ...props }) => {
-  //const Icon = data.icon;
+  // const Icon = data.icon;
 
   return (
     <components.Option {...props}>
@@ -93,29 +92,29 @@ const OptionComponent = ({ data, ...props }) => {
         <span className="flex-1">{data.label}</span>
       </span>
     </components.Option>
-  );
-};
+  )
+}
 
 const EditProject = () => {
-  const { editModal, editItem } = useSelector((state) => state.project);
-  const dispatch = useDispatch();
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
+  const { editModal, editItem } = useSelector((state) => state.project)
+  const dispatch = useDispatch()
+  const [startDate, setStartDate] = useState(new Date())
+  const [endDate, setEndDate] = useState(new Date())
 
   const FormValidationSchema = yup
     .object({
-      name: yup.string().required("Name is required"),
-      assign: yup.mixed().required("Assignee is required"),
+      name: yup.string().required('Name is required'),
+      assign: yup.mixed().required('Assignee is required'),
       startDate: yup
         .date()
-        .required("Start date is required")
-        .min(new Date(), "Start date must be greater than today"),
+        .required('Start date is required')
+        .min(new Date(), 'Start date must be greater than today'),
       endDate: yup
         .date()
-        .required("End date is required")
-        .min(new Date(), "End date must be greater than today"),
+        .required('End date is required')
+        .min(new Date(), 'End date must be greater than today'),
     })
-    .required();
+    .required()
 
   const {
     register,
@@ -126,38 +125,38 @@ const EditProject = () => {
   } = useForm({
     resolver: yupResolver(FormValidationSchema),
 
-    mode: "all",
-  });
+    mode: 'all',
+  })
 
   useEffect(() => {
-    reset(editItem);
-  }, [editItem]);
+    reset(editItem)
+  }, [editItem])
 
   const onSubmit = (data) => {
     dispatch(
       updateProject({
         id: editItem.id,
         name: data.name,
-        des: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        des: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
         assignee: data.assign,
         category: null,
-        startDate: startDate.toISOString().split("T")[0],
-        endDate: endDate.toISOString().split("T")[0],
+        startDate: startDate.toISOString().split('T')[0],
+        endDate: endDate.toISOString().split('T')[0],
         progress: Math.floor(Math.random() * (100 - 10 + 1) + 10),
-      })
-    );
-    dispatch(toggleEditModal(false));
-    toast.info("Edit Successfully", {
-      position: "top-right",
+      }),
+    )
+    dispatch(toggleEditModal(false))
+    toast.info('Edit Successfully', {
+      position: 'top-right',
       autoClose: 1500,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
       draggable: true,
       progress: undefined,
-      theme: "dark",
-    });
-  };
+      theme: 'dark',
+    })
+  }
 
   return (
     <Modal
@@ -171,7 +170,7 @@ const EditProject = () => {
             type="text"
             defaultValue={editItem.name}
             className="form-control py-2"
-            {...register("name")}
+            {...register('name')}
           />
         </FormGroup>
         <div className="grid lg:grid-cols-2 gap-4 grid-cols-1">
@@ -190,12 +189,12 @@ const EditProject = () => {
                   placeholder="yyyy, dd M"
                   value={startDate}
                   onChange={(date) => {
-                    field.onChange(date);
+                    field.onChange(date)
                   }}
                   options={{
                     altInput: true,
-                    altFormat: "F j, Y",
-                    dateFormat: "Y-m-d",
+                    altFormat: 'F j, Y',
+                    dateFormat: 'Y-m-d',
                   }}
                 />
               )}
@@ -216,19 +215,19 @@ const EditProject = () => {
                   placeholder="yyyy, dd M"
                   value={endDate}
                   onChange={(date) => {
-                    field.onChange(date);
+                    field.onChange(date)
                   }}
                   options={{
                     altInput: true,
-                    altFormat: "F j, Y",
-                    dateFormat: "Y-m-d",
+                    altFormat: 'F j, Y',
+                    dateFormat: 'Y-m-d',
                   }}
                 />
               )}
             />
           </FormGroup>
         </div>
-        <div className={errors.assign ? "has-error" : ""}>
+        <div className={errors.assign ? 'has-error' : ''}>
           <label className="form-label" htmlFor="icon_s">
             Assignee
           </label>
@@ -259,7 +258,7 @@ const EditProject = () => {
           )}
         </div>
 
-        <div className={errors.tags ? "has-error" : ""}>
+        <div className={errors.tags ? 'has-error' : ''}>
           <label className="form-label" htmlFor="icon_s">
             Tag
           </label>
@@ -291,7 +290,7 @@ const EditProject = () => {
         </div>
       </form>
     </Modal>
-  );
-};
+  )
+}
 
-export default EditProject;
+export default EditProject

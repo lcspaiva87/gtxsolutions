@@ -5,7 +5,6 @@ import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
 import Button from '../ui/Button'
 import { Input } from '../ui/Input'
-import { LoadingSpinner } from '../ui/LoadingSpinner'
 
 type FormValues = {
   email: string
@@ -30,7 +29,9 @@ export function SignintoForm() {
       password: '',
     },
   })
-  async function handleSignIn(data: FormValues) {}
+  async function handleSignIn(data: FormValues) {
+    return data
+  }
   return (
     <form onSubmit={handleSubmit(handleSignIn)}>
       <Input
@@ -64,7 +65,8 @@ export function SignintoForm() {
         type="submit"
         disabled={false || !errors}
       >
-        {false ? <LoadingSpinner className="mx-auto" /> : ' Sign in'}
+        {/* {false ? <LoadingSpinner className="mx-auto" /> : ' Sign in'} */}
+        Sign in
       </Button>
     </form>
   )
