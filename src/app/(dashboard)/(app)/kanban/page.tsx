@@ -1,8 +1,7 @@
 'use client'
 import { Button } from '@/components/Button'
-import AddColumn from '@/components/partials/app/kanban/AddColumn'
 import kabanStore from '@/components/partials/app/kanban/sto'
-import Column from './components/Colum'
+
 
 export default function Kanban() {
   const { toggleColumnModal } = kabanStore()
@@ -22,8 +21,6 @@ export default function Kanban() {
           />
         </div>
       </div>
-      <Column />
-      <AddColumn />
     </>
   )
 }
