@@ -3,7 +3,6 @@ import { Card } from '@/components/ui/Card'
 import Dropdown from '@/components/ui/Dropdown'
 import { Menu } from '@headlessui/react'
 import { Icon } from '@iconify/react/dist/iconify.js'
-type Id = string | number
 
 interface Props {
   task: Itask

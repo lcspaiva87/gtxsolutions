@@ -4,7 +4,7 @@ import AddColumn from '@/components/partials/app/kanban/AddColumn'
 import kabanStore from '@/components/partials/app/kanban/sto'
 import Column from './components/Colum'
 
-export default function Kaban() {
+export default function Kanban() {
   const { toggleColumnModal } = kabanStore()
   return (
     <>

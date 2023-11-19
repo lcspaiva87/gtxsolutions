@@ -5,8 +5,6 @@ type TagType = {
 }
 
 export function Tag({ title }: TagType) {
-  console.log(title)
-
   // Mapeia as opções para classes CSS correspondentes em inglês
   const colorClasses: Record<string, string> = {
     low: 'bg-blue-100 text-blue-800',

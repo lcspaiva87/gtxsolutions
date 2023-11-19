@@ -14,7 +14,6 @@ interface IContact {
 }
 
 const Contacts = ({ contact }: { contact: IContact }) => {
-  console.log(contact)
   const { avatar, fullName, lastmessage, status, unredmessage } = contact
   const { openChat } = appChatStore()
 

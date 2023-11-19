@@ -33,7 +33,7 @@ const AddColumn = () => {
     resolver: yupResolver(FormValidationSchema),
     mode: 'all',
   })
-  console.log(errors)
+
   const onSubmit = ({ color, title }: FormValues) => {
     const id = `container-${uuidv4()}`
     createMutation.mutate({ title, color, id })
