@@ -2,16 +2,7 @@
 import Image from "next/image";
 import appChatStore from "./store";
 
-type Contact = {
-  id: number;
-  fullName: string;
-  role: string;
-  lastmessage: string;
-  lastmessageTime: string;
-  unredmessage: number;
-  avatar: string;
-  status: string;
-};
+
 interface IContact {
   id: number;
   fullName: string;
