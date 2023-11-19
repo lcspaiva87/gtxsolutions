@@ -14,7 +14,5 @@ export const Lock = ({ className }: { className?: string }) => {
         clipRule="evenodd"
       />
     </svg>
-  );
-};
-
-
+  )
+}

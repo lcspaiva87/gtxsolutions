@@ -1,10 +1,8 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { v4 as uuidv4 } from "uuid";
-
-
+import { createSlice } from '@reduxjs/toolkit'
+import { v4 as uuidv4 } from 'uuid'
 
 export const appProjectSlice = createSlice({
-  name: "approject",
+  name: 'approject',
   initialState: {
     openProjectModal: false,
     isLoading: null,
@@ -15,31 +13,31 @@ export const appProjectSlice = createSlice({
         id: uuidv4(),
         assignee: [
           {
-            image: "/assets/images/avatar/av-1.svg",
-            label: "Mahedi Amin",
+            image: '/assets/images/avatar/av-1.svg',
+            label: 'Mahedi Amin',
           },
           {
-            image: "/assets/images/avatar/av-2.svg",
-            label: "Sovo Haldar",
+            image: '/assets/images/avatar/av-2.svg',
+            label: 'Sovo Haldar',
           },
           {
-            image: "/assets/images/avatar/av-3.svg",
-            label: "Rakibul Islam",
+            image: '/assets/images/avatar/av-3.svg',
+            label: 'Rakibul Islam',
           },
         ],
-        name: "Management Dashboard ",
-        des: "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.",
-        startDate: "2022-10-03",
-        endDate: "2022-10-06",
+        name: 'Management Dashboard ',
+        des: 'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.',
+        startDate: '2022-10-03',
+        endDate: '2022-10-06',
         progress: 75,
         category: [
           {
-            value: "team",
-            label: "team",
+            value: 'team',
+            label: 'team',
           },
           {
-            value: "low",
-            label: "low",
+            value: 'low',
+            label: 'low',
           },
         ],
       },
@@ -47,32 +45,32 @@ export const appProjectSlice = createSlice({
         id: uuidv4(),
         assignee: [
           {
-            image: "/assets/images/avatar/av-1.svg",
-            label: "Mahedi Amin",
+            image: '/assets/images/avatar/av-1.svg',
+            label: 'Mahedi Amin',
           },
           {
-            image: "/assets/images/avatar/av-2.svg",
-            label: "Sovo Haldar",
+            image: '/assets/images/avatar/av-2.svg',
+            label: 'Sovo Haldar',
           },
           {
-            image: "/assets/images/avatar/av-3.svg",
-            label: "Rakibul Islam",
+            image: '/assets/images/avatar/av-3.svg',
+            label: 'Rakibul Islam',
           },
         ],
-        name: "Business Dashboard ",
-        des: "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.",
-        startDate: "2022-10-03",
-        endDate: "2022-10-10",
+        name: 'Business Dashboard ',
+        des: 'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.',
+        startDate: '2022-10-03',
+        endDate: '2022-10-10',
         progress: 50,
 
         category: [
           {
-            value: "team",
-            label: "team",
+            value: 'team',
+            label: 'team',
           },
           {
-            value: "low",
-            label: "low",
+            value: 'low',
+            label: 'low',
           },
         ],
       },
@@ -80,32 +78,29 @@ export const appProjectSlice = createSlice({
   },
   reducers: {
     toggleAddModal: (state, action) => {
-      state.openProjectModal = action.payload;
+      state.openProjectModal = action.payload
     },
     toggleEditModal: (state, action) => {
-      state.editModal = action.payload;
+      state.editModal = action.payload
     },
     pushProject: (state, action) => {
-      state.projects.unshift(action.payload);
-
-
+      state.projects.unshift(action.payload)
     },
     removeProject: (state, action) => {
       state.projects = state.projects.filter(
-        (item) => item.id !== action.payload
-      );
-
+        (item) => item.id !== action.payload,
+      )
     },
     updateProject: (state, action) => {
       // update project and  store it into editItem when click edit button
 
-      state.editItem = action.payload;
+      state.editItem = action.payload
       // toggle edit modal
-      state.editModal = !state.editModal;
+      state.editModal = !state.editModal
       // find index
-      let index = state.projects.findIndex(
-        (item) => item.id === action.payload.id
-      );
+      const index = state.projects.findIndex(
+        (item) => item.id === action.payload.id,
+      )
       // update project
       state.projects.splice(index, 1, {
         id: action.payload.id,
@@ -116,10 +111,10 @@ export const appProjectSlice = createSlice({
         assignee: action.payload.assignee,
         progress: action.payload.progress,
         category: action.payload.category,
-      });
+      })
     },
   },
-});
+})
 
 export const {
   openModal,
@@ -128,5 +123,5 @@ export const {
   removeProject,
   toggleEditModal,
   updateProject,
-} = appProjectSlice.actions;
-export default appProjectSlice.reducer;
+} = appProjectSlice.actions
+export default appProjectSlice.reducer

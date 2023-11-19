@@ -1,4 +1,4 @@
-export const DiaryIcon: React.FC<React.SVGAttributes<{}>> = (props) => (
+export const DiaryIcon = (props: any) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="16.199"
@@ -14,4 +14,4 @@ export const DiaryIcon: React.FC<React.SVGAttributes<{}>> = (props) => (
       strokeWidth=".2"
     />
   </svg>
-);
+)

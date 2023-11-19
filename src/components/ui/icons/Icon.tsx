@@ -1,6 +1,5 @@
-import React from "react";
-import { Icon } from "@iconify/react";
-const Icons = ({ icon, className, width, rotate, hFlip, vFlip }:any) => {
+import { Icon } from '@iconify/react'
+const Icons = ({ icon, className, width, rotate, hFlip, vFlip }: any) => {
   return (
     <>
       <Icon
@@ -12,7 +11,7 @@ const Icons = ({ icon, className, width, rotate, hFlip, vFlip }:any) => {
         vFlip={vFlip}
       />
     </>
-  );
-};
+  )
+}
 
-export default Icons;
+export default Icons

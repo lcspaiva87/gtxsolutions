@@ -1,51 +1,53 @@
-import Icon from "@/components//ui/icons/Icon";
-import { toggleActiveChat } from "@/components/partials/app/chat/store";
-import useMobileMenu from "@/hooks/useMobileMenu";
-import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import Submenu from "./Submenu";
+import Icon from '@/components//ui/icons/Icon'
+import appChatStore from '@/components/partials/app/chat/store'
+import useMobileMenu from '@/hooks/useMobileMenu'
+import Link from 'next/link'
+import { usePathname, useRouter } from 'next/navigation'
+import { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux'
+import Submenu from './Submenu'
 const Navmenu = ({ menus }) => {
-  const router = useRouter();
-  const [activeSubmenu, setActiveSubmenu] = useState(null);
+  const router = useRouter()
+  const [activeSubmenu, setActiveSubmenu] = useState(null)
 
   const toggleSubmenu = (i) => {
     if (activeSubmenu === i) {
-      setActiveSubmenu(null);
+      setActiveSubmenu(null)
     } else {
-      setActiveSubmenu(i);
+      setActiveSubmenu(i)
     }
-  };
+  }
 
-  const location = usePathname();
-  const locationName = location.replace("/", "");
+  const location = usePathname()
+  const locationName = location.replace('/', '')
 
-  const [mobileMenu, setMobileMenu] = useMobileMenu();
-  const dispatch = useDispatch();
-
+  const [mobileMenu, setMobileMenu] = useMobileMenu()
+  const dispatch = useDispatch()
+  const { toggleActiveChat } = appChatStore()
   useEffect(() => {
-    let submenuIndex = null;
+    let submenuIndex = null
+    // eslint-disable-next-line array-callback-return
     menus.map((item, i) => {
-      if (!item.child) return;
+      // eslint-disable-next-line array-callback-return
+      if (!item.child) return
       if (item.link === locationName) {
-        submenuIndex = null;
+        submenuIndex = null
       } else {
         const ciIndex = item.child.findIndex(
-          (ci) => ci.childlink === locationName
-        );
+          (ci) => ci.childlink === locationName,
+        )
         if (ciIndex !== -1) {
-          submenuIndex = i;
+          submenuIndex = i
         }
       }
-    });
+    })
 
-    setActiveSubmenu(submenuIndex);
-    dispatch(toggleActiveChat(false));
+    setActiveSubmenu(submenuIndex)
+    toggleActiveChat(false)
     if (mobileMenu) {
-      setMobileMenu(false);
+      setMobileMenu(false)
     }
-  }, [router, location]);
+  }, [router, location])
 
   return (
     <>
@@ -54,11 +56,11 @@ const Navmenu = ({ menus }) => {
           <li
             key={i}
             className={` single-sidebar-menu
-              ${item.child ? "item-has-children" : ""}
-              ${activeSubmenu === i ? "open" : ""}
-              ${locationName === item.link ? "menu-item-active" : ""}`}
+              ${item.child ? 'item-has-children' : ''}
+              ${activeSubmenu === i ? 'open' : ''}
+              ${locationName === item.link ? 'menu-item-active' : ''}`}
           >
-            {/* single menu with no childred*/}
+            {/* single menu with no childred */}
             {!item.child && !item.isHeadr && (
               <Link className="menu-link" href={item.link}>
                 <span className="menu-icon flex-grow-0">
@@ -77,8 +79,8 @@ const Navmenu = ({ menus }) => {
               <div
                 className={`menu-link ${
                   activeSubmenu === i
-                    ? "parent_active not-collapsed"
-                    : "collapsed"
+                    ? 'parent_active not-collapsed'
+                    : 'collapsed'
                 }`}
                 onClick={() => toggleSubmenu(i)}
               >
@@ -91,7 +93,7 @@ const Navmenu = ({ menus }) => {
                 <div className="flex-0">
                   <div
                     className={`menu-arrow transform transition-all duration-300 ${
-                      activeSubmenu === i ? " rotate-90" : ""
+                      activeSubmenu === i ? ' rotate-90' : ''
                     }`}
                   >
                     <Icon icon="heroicons-outline:chevron-right" />
@@ -108,10 +110,9 @@ const Navmenu = ({ menus }) => {
             />
           </li>
         ))}
-
       </ul>
     </>
-  );
-};
+  )
+}
 
-export default Navmenu;
+export default Navmenu

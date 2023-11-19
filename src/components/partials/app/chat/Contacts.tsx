@@ -1,35 +1,41 @@
-import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { openChat } from "./store";
+'use client'
+import Image from 'next/image'
+import appChatStore from './store'
 
-const Contacts = ({ contact }) => {
-  const { fullName, avatar, status, lastmessage, unredmessage } = contact;
+interface IContact {
+  id: number
+  fullName: string
+  role: string
+  lastmessage: string
+  lastmessageTime: string
+  unredmessage: number
+  avatar: string
+  status: string
+}
 
-  const dispatch = useDispatch();
+const Contacts = ({ contact }: { contact: IContact }) => {
+  console.log(contact)
+  const { avatar, fullName, lastmessage, status, unredmessage } = contact
+  const { openChat } = appChatStore()
 
   return (
     <div
       className="block w-full py-5 focus:ring-0 outline-none cursor-pointer group transition-all duration-150 hover:bg-slate-100 dark:hover:bg-slate-600 dark:hover:bg-opacity-70"
-      onClick={() => {
-        dispatch(
-          openChat({
-            contact,
-            activechat: true,
-          })
-        );
-      }}
+      onClick={() => openChat({ contact, activechat: true })}
     >
       <div className="flex space-x-3 px-6 rtl:space-x-reverse">
         <div className="flex-none">
           <div className="h-10 w-10 rounded-full relative">
             <span
               className={`  status ring-1 ring-white inline-block h-[10px] w-[10px] rounded-full absolute -right-0 top-0
-                ${status === "active" ? "bg-success-500" : "bg-secondary-500"}
+                ${status === 'active' ? 'bg-success-500' : 'bg-secondary-500'}
               `}
             ></span>
-            <img
+            <Image
+              width={100}
+              height={100}
               src={avatar}
-              alt=""
+              alt={fullName}
               className="block w-full h-full object-cover rounded-full"
             />
           </div>
@@ -40,7 +46,7 @@ const Contacts = ({ contact }) => {
               {fullName}
             </span>
             <span className="block text-slate-600 dark:text-slate-300 text-xs font-normal">
-              {lastmessage.slice(0, 14) + "..."}
+              {lastmessage.slice(0, 14) + '...'}
             </span>
           </div>
           <div className="flex-none ltr:text-right rtl:text-end">
@@ -56,7 +62,7 @@ const Contacts = ({ contact }) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Contacts;
+export default Contacts

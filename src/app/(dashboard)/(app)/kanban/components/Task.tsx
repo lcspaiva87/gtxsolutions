@@ -1,18 +1,17 @@
-import { Itask } from "@/@types/Task";
-import { Card } from "@/components/ui/Card";
-import Dropdown from "@/components/ui/Dropdown";
-import { Menu } from "@headlessui/react";
-import { Icon } from "@iconify/react/dist/iconify.js";
-type Id = string | number;
-
+import { Itask } from '@/@types/Task'
+import { Card } from '@/components/ui/Card'
+import Dropdown from '@/components/ui/Dropdown'
+import { Menu } from '@headlessui/react'
+import { Icon } from '@iconify/react/dist/iconify.js'
+type Id = string | number
 
 interface Props {
-  task: Itask;
-  deleteTask: (id: string | number) => void;
+  task: Itask
+  deleteTask: (id: string | number) => void
   // updateTask: (id: Id, content: string) => void;
 }
 export function Task({ task, deleteTask }: Props) {
-  const { title, user, message, startDate, endDate, assignee } = task;
+  const { title, user, message, startDate, endDate, assignee } = task
   return (
     <Card className=" bg-mainBackgroundColor  flex flex-col  rounded-xl hover:ring-2 hover:ring-inset hover:ring-rose-500 cursor-grab relative task">
       <header className="flex justify-between items-end">
@@ -78,5 +77,5 @@ export function Task({ task, deleteTask }: Props) {
         </div>
       </header>
     </Card>
-  );
+  )
 }

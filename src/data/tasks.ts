@@ -1,28 +1,50 @@
-import { Itask } from "@/@types/Task";
-import axios from "axios";
+import { Itask } from '@/@types/Task'
+import { del, get, patch, post } from './client/http-client'
 
-export const fetchTask= async (): Promise<Itask[]> => {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/task`);
-  const data = await response.json();
-  return data;
-};
-
-export const postTask= async ({camera,company,file,message,phone,responsible,avatar,columnId,id,priority}:Itask) => {
-  const response = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/task`,{
-   camera,company,message,priority,id,columnId,phone,responsible,avatar,file
-  });
+export const fetchTask = async (): Promise<Itask[]> => {
+  const response = await get(`/task`)
   return response
+}
 
-};
-export const deleteTaskId= async (id:number | string) => {
-  const response = await axios.delete(`${process.env.NEXT_PUBLIC_BASE_URL}/task/${id}`);
+export const postTask = async ({
+  camera,
+  company,
+  file,
+  message,
+  phone,
+  responsible,
+  avatar,
+  columnId,
+  id,
+  priority,
+}: Itask) => {
+  const response = await post(`${process.env.NEXT_PUBLIC_BASE_URL}/task`, {
+    camera,
+    company,
+    message,
+    priority,
+    id,
+    columnId,
+    phone,
+    responsible,
+    avatar,
+    file,
+  })
   return response
-
-};
-export const pathTask= async ({id, columnId }:{id:string | number ,columnId:string  | number}) => {
-
-  const response = await axios.patch(`${process.env.NEXT_PUBLIC_BASE_URL}/task/${id}`,{
-    columnId:columnId,
-  });
+}
+export const deleteTaskId = async (id: number | string) => {
+  const response = await del(`/task/${id}`)
   return response
-};
+}
+export const pathTask = async ({
+  id,
+  columnId,
+}: {
+  id: string | number
+  columnId: string | number
+}) => {
+  const response = await patch(`/task/${id}`, {
+    columnId,
+  })
+  return response
+}

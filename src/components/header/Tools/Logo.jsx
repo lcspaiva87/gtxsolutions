@@ -1,13 +1,13 @@
-"use client";
+'use client'
 
-import React, { Fragment } from "react";
-import useDarkMode from "@/hooks/useDarkMode";
-import Link from "next/link";
-import useWidth from "@/hooks/useWidth";
+import useDarkMode from '@/hooks/useDarkMode'
+import useWidth from '@/hooks/useWidth'
+import Link from 'next/link'
+import React from 'react'
 
 const Logo = () => {
-  const [isDark] = useDarkMode();
-  const { width, breakpoints } = useWidth();
+  const [isDark] = useDarkMode()
+  const { width, breakpoints } = useWidth()
 
   return (
     <div>
@@ -17,8 +17,8 @@ const Logo = () => {
             <img
               src={
                 isDark
-                  ? "/assets/images/logo/logo-white.svg"
-                  : "/assets/images/logo/logo.svg"
+                  ? '/assets/images/logo/logo-white.svg'
+                  : '/assets/images/logo/logo.svg'
               }
               alt=""
             />
@@ -26,8 +26,8 @@ const Logo = () => {
             <img
               src={
                 isDark
-                  ? "/assets/images/logo/logo-c-white.svg"
-                  : "/assets/images/logo/logo-c.svg"
+                  ? '/assets/images/logo/logo-c-white.svg'
+                  : '/assets/images/logo/logo-c.svg'
               }
               alt=""
             />
@@ -35,7 +35,7 @@ const Logo = () => {
         </React.Fragment>
       </Link>
     </div>
-  );
-};
+  )
+}
 
-export default Logo;
+export default Logo

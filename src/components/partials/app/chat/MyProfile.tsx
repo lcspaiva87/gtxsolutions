@@ -1,41 +1,40 @@
-import React, { useRef, useState } from "react";
-import Icon from "@/components//ui/icons/Icon";
-import { CSSTransition } from "react-transition-group";
-import { useSelector, useDispatch } from "react-redux";
-import Textarea from "@/components/ui/Textarea";
-import Button from "@/components/ui/Button";
-import Radio from "@/components/ui/Radio";
-import { toggleProfile } from "./store";
+import Icon from '@/components//ui/icons/Icon'
+import { Button } from '@/components/button'
+
+import Radio from '@/components/ui/Radio'
+import Textarea from '@/components/ui/Textarea'
+import { useRef, useState } from 'react'
+import { CSSTransition } from 'react-transition-group'
+
+import SimpleBar from 'simplebar-react'
+import appChatStore from './store'
 
 const allStatus = [
   {
-    value: "online",
-    label: "Active",
-    activeClass: "ring-success-500 border-success-500",
+    value: 'online',
+    label: 'Active',
+    activeClass: 'ring-success-500 border-success-500',
   },
   {
-    value: "busy",
-    label: "Do Not Disturb",
-    activeClass: "ring-danger-500 border-danger-500",
+    value: 'busy',
+    label: 'Do Not Disturb',
+    activeClass: 'ring-danger-500 border-danger-500',
   },
   {
-    value: "away",
-    label: "Away",
-    activeClass: "ring-warning-500 border-warning-500",
+    value: 'away',
+    label: 'Away',
+    activeClass: 'ring-warning-500 border-warning-500',
   },
   {
-    value: "offline",
-    label: "Offline",
-    activeClass: "ring-warning-500 border-warning-500",
+    value: 'offline',
+    label: 'Offline',
+    activeClass: 'ring-warning-500 border-warning-500',
   },
-];
-
-import SimpleBar from "simplebar-react";
+]
 const MyProfile = () => {
-  const { openProfile } = useSelector((state) => state.chat);
-  const [status, setStatus] = useState("online");
-  const nodeRef = useRef(null);
-  const dispatch = useDispatch();
+  const { toggleProfile, openProfile } = appChatStore()
+  const [status, setStatus] = useState('online')
+  const nodeRef = useRef(null)
 
   return (
     <div>
@@ -66,7 +65,7 @@ const MyProfile = () => {
           <div className="flex-none">
             <div
               className="h-8 w-8 bg-slate-100 dark:bg-slate-900 dark:text-slate-400 flex flex-col justify-center items-center text-xl rounded-full cursor-pointer"
-              onClick={() => dispatch(toggleProfile(true))}
+              onClick={() => toggleProfile(true)}
             >
               <Icon icon="heroicons-outline:dots-horizontal" />
             </div>
@@ -87,7 +86,7 @@ const MyProfile = () => {
               <div className="text-right">
                 <div
                   className="h-8 w-8 bg-slate-100 dark:bg-slate-900 dark:text-slate-400 inline-flex ml-auto flex-col justify-center items-center text-xl rounded-full cursor-pointer"
-                  onClick={() => dispatch(toggleProfile(false))}
+                  onClick={() => toggleProfile(false)}
                 >
                   <Icon icon="heroicons-outline:x" />
                 </div>
@@ -101,10 +100,10 @@ const MyProfile = () => {
                   />
                   <span
                     className={`status inline-block h-3 w-3 rounded-full absolute -right-1 top-3 border border-white
-                ${status === "online" ? "bg-success-500" : ""}
-                ${status === "away" ? "bg-warning-500" : ""}
-                ${status === "busy" ? "bg-danger-500" : ""}
-                ${status === "offline" ? "bg-secondary-500" : ""}
+                ${status === 'online' ? 'bg-success-500' : ''}
+                ${status === 'away' ? 'bg-warning-500' : ''}
+                ${status === 'busy' ? 'bg-danger-500' : ''}
+                ${status === 'offline' ? 'bg-secondary-500' : ''}
 
 
                 `}
@@ -118,7 +117,24 @@ const MyProfile = () => {
                 </span>
               </header>
               <div className="my-8">
-                <Textarea label="About" placeholder="About ypur self" />
+                <Textarea
+                  label="About"
+                  placeholder="About ypur self"
+                  register={undefined}
+                  name={undefined}
+                  readonly={undefined}
+                  dvalue={undefined}
+                  error={undefined}
+                  icon={undefined}
+                  disabled={undefined}
+                  id={undefined}
+                  horizontal={undefined}
+                  validate={undefined}
+                  msgTooltip={undefined}
+                  description={undefined}
+                  cols={undefined}
+                  onChange={undefined}
+                />
               </div>
               <div className="mb-8">
                 <span className="form-label">Status</span>
@@ -129,8 +145,12 @@ const MyProfile = () => {
                     name="status"
                     value={item.value}
                     checked={status === item.value}
-                    onChange={(e) => setStatus(e.target.value)}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                      setStatus(e.target.value)
+                    }
                     activeClass={item.activeClass}
+                    id={undefined}
+                    disabled={undefined}
                   />
                 ))}
               </div>
@@ -140,7 +160,7 @@ const MyProfile = () => {
         </CSSTransition>
       </header>
     </div>
-  );
-};
+  )
+}
 
-export default MyProfile;
+export default MyProfile

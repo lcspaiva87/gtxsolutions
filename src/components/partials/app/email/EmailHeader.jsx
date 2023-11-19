@@ -1,33 +1,33 @@
-import React, { useState } from "react";
-import Icon from "@/components//ui/icons/Icon";
-import Dropdown from "@/components/ui/Dropdown";
-import Checkbox from "@/components/ui/Checkbox";
-import { Menu } from "@headlessui/react";
-import useWidth from "@/hooks/useWidth";
-import { toggleMobileEmailSidebar, setAllCheck } from "./store";
-import { useDispatch, useSelector } from "react-redux";
+import Icon from '@/components//ui/icons/Icon'
+import Checkbox from '@/components/ui/Checkbox'
+import Dropdown from '@/components/ui/Dropdown'
+import useWidth from '@/hooks/useWidth'
+import { Menu } from '@headlessui/react'
+import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { setAllCheck, toggleMobileEmailSidebar } from './store'
 const EmailHeader = ({ onChange, checkboxChange, emails }) => {
-  const { width, breakpoints } = useWidth();
-  const { mobileEmailSidebar } = useSelector((state) => state.email);
+  const { width, breakpoints } = useWidth()
+  const { mobileEmailSidebar } = useSelector((state) => state.email)
 
   const actions = [
     {
-      name: "Reset Sort",
-      icon: "heroicons-outline:sort-ascending",
+      name: 'Reset Sort',
+      icon: 'heroicons-outline:sort-ascending',
     },
     {
-      name: "Sort A-Z ",
-      icon: "heroicons-outline:sort-ascending",
+      name: 'Sort A-Z ',
+      icon: 'heroicons-outline:sort-ascending',
     },
     {
-      name: " Sort Z-A ",
-      icon: "heroicons-outline:sort-descending",
+      name: ' Sort Z-A ',
+      icon: 'heroicons-outline:sort-descending',
     },
-  ];
-  const dispatch = useDispatch();
+  ]
+  const dispatch = useDispatch()
   const handleCheckAll = () => {
-    dispatch(setAllCheck());
-  };
+    dispatch(setAllCheck())
+  }
 
   return (
     <div className="md:flex justify-between items-center sticky bg-white dark:bg-slate-800 top-0 pt-6 pb-4 px-6 z-[44] border-b border-slate-100 dark:border-slate-700 rounded-t-md">
@@ -76,7 +76,7 @@ const EmailHeader = ({ onChange, checkboxChange, emails }) => {
               <div
                 className={`
 
-                  ${"hover:bg-slate-900 dark:hover:bg-slate-600 dark:hover:bg-opacity-70  dark:text-slate-300 hover:text-white"}
+                  ${'hover:bg-slate-900 dark:hover:bg-slate-600 dark:hover:bg-opacity-70  dark:text-slate-300 hover:text-white'}
                    w-full border-b border-b-gray-500 border-opacity-10   px-4 py-2 text-sm  last:mb-0 cursor-pointer first:rounded-t last:rounded-b flex  space-x-2 items-center  text-slate-600 capitalize rtl:space-x-reverse `}
               >
                 <span className="text-base">
@@ -89,7 +89,7 @@ const EmailHeader = ({ onChange, checkboxChange, emails }) => {
         </Dropdown>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default EmailHeader;
+export default EmailHeader

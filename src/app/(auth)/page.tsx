@@ -1,12 +1,12 @@
-import { SignintoForm } from "@/components/form/SignintoForm";
-import { Metadata } from "next";
-import Image from "next/image";
-import Link from "next/link";
-import '../scss/app.scss';
+import { SignintoForm } from '@/components/form/SignintoForm'
+import { Metadata } from 'next'
+import Image from 'next/image'
+import Link from 'next/link'
+import '../scss/app.scss'
 export const metadata: Metadata = {
-  title: 'GTX | Login',
-  description: '...',
+  title: 'Login',
 }
+
 export default function Home() {
   return (
     <main className="bg-light flex h-screen items-center justify-center sm:bg-gray-100">
@@ -23,9 +23,11 @@ export default function Home() {
         </div>
         <SignintoForm />
         <div className="mt-4 text-small-label text-center ">
-          <Link href="/register"  className="hidden md:inline">Don{"'"}t have an account? </Link>
+          <Link href="/register" className="hidden md:inline">
+            Don{"'"}t have an account?{' '}
+          </Link>
         </div>
       </div>
     </main>
-  );
+  )
 }

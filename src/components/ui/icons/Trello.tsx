@@ -1,5 +1,5 @@
-import clsx from "clsx";
-export function Trello({ className }: { className?: string }) {
+import clsx from 'clsx'
+export function Trello() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -11,11 +11,11 @@ export function Trello({ className }: { className?: string }) {
       stroke-width="2"
       stroke-linecap="round"
       stroke-linejoin="round"
-      className={clsx("lucide lucide-trello")}
+      className={clsx('lucide lucide-trello')}
     >
       <rect width="18" height="18" x="3" y="3" rx="2" ry="2" />
       <rect width="3" height="9" x="7" y="7" />
       <rect width="3" height="5" x="14" y="7" />
     </svg>
-  );
+  )
 }

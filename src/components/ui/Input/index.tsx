@@ -1,5 +1,5 @@
-import React from 'react';
-import InputProps from './input.type';
+import React from 'react'
+import InputProps from './input.type'
 
 const Input = ({ name, value, placeholder, onChange }: InputProps) => {
   return (
@@ -10,7 +10,7 @@ const Input = ({ name, value, placeholder, onChange }: InputProps) => {
       onChange={onChange}
       className="border p-2 w-full rounded-lg  hover:shadow-xl"
     ></input>
-  );
-};
+  )
+}
 
-export default Input;
+export default Input

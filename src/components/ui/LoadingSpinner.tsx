@@ -1,17 +1,19 @@
-import React from "react";
-import clsx from "clsx";
+import clsx from 'clsx'
+import React from 'react'
 interface LoadingSpinnerProps {
-  size?: number;
-  className?: string;
+  size?: number
+  className?: string
 }
 export const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({
   size = 16,
   className,
 }) => (
-  <div role="status" className={clsx("flex items-center", className)}>
+  <div role="status" className={clsx('flex items-center', className)}>
     <svg
       aria-hidden="true"
-      className={clsx("animate-spin fill-current text-primary text-secondary-100")}
+      className={clsx(
+        'animate-spin fill-current text-primary text-secondary-100',
+      )}
       viewBox="0 0 100 101"
       width={size}
       height={size}
@@ -27,5 +29,4 @@ export const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({
     </svg>
     <span className="ml-2">Loading...</span>
   </div>
-);
-
+)

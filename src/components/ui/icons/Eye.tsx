@@ -1,4 +1,4 @@
-import clsx from "clsx";
+import clsx from 'clsx'
 
 export const Eye = ({ className }: { className?: string }) => {
   return (
@@ -8,7 +8,7 @@ export const Eye = ({ className }: { className?: string }) => {
       viewBox="0 0 24 24"
       stroke-width="1.5"
       stroke="currentColor"
-      className={clsx(className, "w-6 h-6")}
+      className={clsx(className, 'w-6 h-6')}
     >
       <path
         stroke-linecap="round"
@@ -22,5 +22,5 @@ export const Eye = ({ className }: { className?: string }) => {
         d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
       />
     </svg>
-  );
-};
+  )
+}

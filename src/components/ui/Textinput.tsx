@@ -1,14 +1,41 @@
-import React, { useState } from "react";
-import Icon from "@/components/ui/Icon";
-import Cleave from "cleave.js/react";
-import "cleave.js/dist/addons/cleave-phone.us";
+import Icon from '@/components/ui/Icon'
+import 'cleave.js/dist/addons/cleave-phone.us'
+import Cleave from 'cleave.js/react'
+import { useState } from 'react'
+interface ITextInput {
+  type?: string
+  label?: string
+  placeholder?: string
+  classLabel?: string
+  className?: string
+  classGroup?: string
+  register?: any
+  name?: string
+  readonly?: boolean
+  value?: string | number
+  error: any
+  icon?: string
+  disabled?: boolean
+  id?: string
+  horizontal?: boolean
+  validate?: string
+  isMask?: boolean
+  msgTooltip?: string
+  description?: string
+  hasicon?: boolean
+  onChange?: (e: any) => void
+  options?: any
+  onFocus?: (e: any) => void
+  defaultValue?: string | number
+  [key: string]: any
+}
 const Textinput = ({
   type,
   label,
-  placeholder = "Add placeholder",
-  classLabel = "form-label",
-  className = "",
-  classGroup = "",
+  placeholder = 'Add placeholder',
+  classLabel = 'form-label',
+  className = '',
+  classGroup = '',
   register,
   name,
   readonly,
@@ -27,39 +54,38 @@ const Textinput = ({
   options,
   onFocus,
   defaultValue,
-
   ...rest
-}) => {
-  const [open, setOpen] = useState(false);
+}: ITextInput) => {
+  const [open, setOpen] = useState(false)
   const handleOpen = () => {
-    setOpen(!open);
-  };
+    setOpen(!open)
+  }
 
   return (
     <div
-      className={`fromGroup  ${error ? "has-error" : ""}  ${
-        horizontal ? "flex" : ""
-      }  ${validate ? "is-valid" : ""} `}
+      className={`fromGroup  ${error ? 'has-error' : ''}  ${
+        horizontal ? 'flex' : ''
+      }  ${validate ? 'is-valid' : ''} `}
     >
       {label && (
         <label
           htmlFor={id}
           className={`block capitalize ${classLabel}  ${
-            horizontal ? "flex-0 mr-6 md:w-[100px] w-[60px] break-words" : ""
+            horizontal ? 'flex-0 mr-6 md:w-[100px] w-[60px] break-words' : ''
           }`}
         >
           {label}
         </label>
       )}
-      <div className={`relative ${horizontal ? "flex-1" : ""}`}>
+      <div className={`relative ${horizontal ? 'flex-1' : ''}`}>
         {name && !isMask && (
           <input
-            type={type === "password" && open === true ? "text" : type}
+            type={type === 'password' && open === true ? 'text' : type}
             {...register(name)}
             {...rest}
             className={`${
-              error ? " has-error" : " "
-            } form-control py-2 ${className}  `}
+              error ? ' has-error' : ' '
+            } form-control py-2 px-[1.3rem] ${className}  `}
             placeholder={placeholder}
             readOnly={readonly}
             defaultValue={defaultValue}
@@ -70,8 +96,8 @@ const Textinput = ({
         )}
         {!name && !isMask && (
           <input
-            type={type === "password" && open === true ? "text" : type}
-            className={`form-control py-2 ${className}`}
+            type={type === 'password' && open === true ? 'text' : type}
+            className={`form-control py-2  ${className}`}
             placeholder={placeholder}
             readOnly={readonly}
             disabled={disabled}
@@ -87,7 +113,7 @@ const Textinput = ({
             placeholder={placeholder}
             options={options}
             className={`${
-              error ? " has-error" : " "
+              error ? ' has-error' : ' '
             } form-control py-2 ${className}  `}
             onFocus={onFocus}
             id={id}
@@ -101,8 +127,8 @@ const Textinput = ({
             placeholder={placeholder}
             options={options}
             className={`${
-              error ? " has-error" : " "
-            } form-control py-2 ${className}  `}
+              error ? ' has-error' : ' '
+            } form-control  py-2 ${className}  `}
             onFocus={onFocus}
             id={id}
             readOnly={readonly}
@@ -117,17 +143,17 @@ const Textinput = ({
               className="cursor-pointer text-secondary-500"
               onClick={handleOpen}
             >
-              {open && type === "password" && (
+              {open && type === 'password' && (
                 <Icon icon="heroicons-outline:eye" />
               )}
-              {!open && type === "password" && (
+              {!open && type === 'password' && (
                 <Icon icon="heroicons-outline:eye-off" />
               )}
             </span>
           )}
 
           {error && (
-            <span className="text-danger-500">
+            <span className="text-danger-500 pl-[0.2rem]">
               <Icon icon="heroicons-outline:information-circle" />
             </span>
           )}
@@ -138,25 +164,25 @@ const Textinput = ({
           )}
         </div>
       </div>
-      {/* error and success message*/}
+      {/* error and success message */}
       {error && (
         <div
           className={` mt-2 ${
             msgTooltip
-              ? " inline-block bg-danger-500 text-white text-[10px] px-2 py-1 rounded"
-              : " text-danger-500 block text-sm"
+              ? ' inline-block bg-danger-500 text-white text-[10px] px-2 py-1 rounded'
+              : ' text-danger-500 block text-sm'
           }`}
         >
           {error.message}
         </div>
       )}
-      {/* validated and success message*/}
+      {/* validated and success message */}
       {validate && (
         <div
           className={` mt-2 ${
             msgTooltip
-              ? " inline-block bg-success-500 text-white text-[10px] px-2 py-1 rounded"
-              : " text-success-500 block text-sm"
+              ? ' inline-block bg-success-500 text-white text-[10px] px-2 py-1 rounded'
+              : ' text-success-500 block text-sm'
           }`}
         >
           {validate}
@@ -165,7 +191,7 @@ const Textinput = ({
       {/* only description */}
       {description && <span className="input-description">{description}</span>}
     </div>
-  );
-};
+  )
+}
 
-export default Textinput;
+export default Textinput

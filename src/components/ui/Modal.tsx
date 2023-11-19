@@ -1,36 +1,52 @@
-import { Dialog, Transition } from "@headlessui/react";
-import React, { Fragment, useState } from "react";
-import Icon from "@/components/ui/Icon";
-
+import Icon from '@/components/ui/Icon'
+import { Dialog, Transition } from '@headlessui/react'
+import { Fragment, useState } from 'react'
+interface IModal {
+  activeModal: boolean
+  onClose: () => void
+  noFade?: boolean
+  disableBackdrop?: boolean
+  className?: string
+  children: React.ReactNode
+  footerContent?: React.ReactNode
+  centered?: boolean
+  scrollContent?: boolean
+  themeClass?: string
+  title?: string
+  uncontrol?: boolean
+  label?: string
+  labelClass?: string
+  ref?: any
+}
 const Modal = ({
   activeModal,
   onClose,
   noFade,
   disableBackdrop,
-  className = "max-w-xl",
+  className = 'max-w-xl',
   children,
   footerContent,
   centered,
   scrollContent,
-  themeClass = "bg-slate-900 dark:bg-slate-800 dark:border-b dark:border-slate-700",
-  title = "Basic Modal",
+  themeClass = 'bg-slate-900 dark:bg-slate-800 dark:border-b dark:border-slate-700',
+  title = 'Basic Modal',
   uncontrol,
-  label = "Basic Modal",
+  label = 'Basic Modal',
   labelClass,
   ref,
-}) => {
-  const [showModal, setShowModal] = useState(false);
+}: IModal) => {
+  const [showModal, setShowModal] = useState(false)
 
   const closeModal = () => {
-    setShowModal(false);
-  };
+    setShowModal(false)
+  }
 
   const openModal = () => {
-    setShowModal(!showModal);
-  };
+    setShowModal(!showModal)
+  }
   const returnNull = () => {
-    return null;
-  };
+    return null
+  }
 
   return (
     <>
@@ -52,12 +68,12 @@ const Modal = ({
               {!disableBackdrop && (
                 <Transition.Child
                   as={Fragment}
-                  enter={noFade ? "" : "duration-300 ease-out"}
-                  enterFrom={noFade ? "" : "opacity-0"}
-                  enterTo={noFade ? "" : "opacity-100"}
-                  leave={noFade ? "" : "duration-200 ease-in"}
-                  leaveFrom={noFade ? "" : "opacity-100"}
-                  leaveTo={noFade ? "" : "opacity-0"}
+                  enter={noFade ? '' : 'duration-300 ease-out'}
+                  enterFrom={noFade ? '' : 'opacity-0'}
+                  enterTo={noFade ? '' : 'opacity-100'}
+                  leave={noFade ? '' : 'duration-200 ease-in'}
+                  leaveFrom={noFade ? '' : 'opacity-100'}
+                  leaveTo={noFade ? '' : 'opacity-0'}
                 >
                   <div className="fixed inset-0 bg-slate-900/50 backdrop-filter backdrop-blur-sm" />
                 </Transition.Child>
@@ -66,17 +82,17 @@ const Modal = ({
               <div className="fixed inset-0 overflow-y-auto">
                 <div
                   className={`flex min-h-full justify-center text-center p-6 ${
-                    centered ? "items-center" : "items-start "
+                    centered ? 'items-center' : 'items-start '
                   }`}
                 >
                   <Transition.Child
                     as={Fragment}
-                    enter={noFade ? "" : "duration-300  ease-out"}
-                    enterFrom={noFade ? "" : "opacity-0 scale-95"}
-                    enterTo={noFade ? "" : "opacity-100 scale-100"}
-                    leave={noFade ? "" : "duration-200 ease-in"}
-                    leaveFrom={noFade ? "" : "opacity-100 scale-100"}
-                    leaveTo={noFade ? "" : "opacity-0 scale-95"}
+                    enter={noFade ? '' : 'duration-300  ease-out'}
+                    enterFrom={noFade ? '' : 'opacity-0 scale-95'}
+                    enterTo={noFade ? '' : 'opacity-100 scale-100'}
+                    leave={noFade ? '' : 'duration-200 ease-in'}
+                    leaveFrom={noFade ? '' : 'opacity-100 scale-100'}
+                    leaveTo={noFade ? '' : 'opacity-0 scale-95'}
                   >
                     <Dialog.Panel
                       className={`w-full transform overflow-hidden rounded-md
@@ -94,7 +110,7 @@ const Modal = ({
                       </div>
                       <div
                         className={`px-6 py-8 ${
-                          scrollContent ? "overflow-y-auto max-h-[400px]" : ""
+                          scrollContent ? 'overflow-y-auto max-h-[400px]' : ''
                         }`}
                       >
                         {children}
@@ -116,12 +132,12 @@ const Modal = ({
           <Dialog as="div" className="relative z-[99999]" onClose={onClose}>
             <Transition.Child
               as={Fragment}
-              enter={noFade ? "" : "duration-300 ease-out"}
-              enterFrom={noFade ? "" : "opacity-0"}
-              enterTo={noFade ? "" : "opacity-100"}
-              leave={noFade ? "" : "duration-200 ease-in"}
-              leaveFrom={noFade ? "" : "opacity-100"}
-              leaveTo={noFade ? "" : "opacity-0"}
+              enter={noFade ? '' : 'duration-300 ease-out'}
+              enterFrom={noFade ? '' : 'opacity-0'}
+              enterTo={noFade ? '' : 'opacity-100'}
+              leave={noFade ? '' : 'duration-200 ease-in'}
+              leaveFrom={noFade ? '' : 'opacity-100'}
+              leaveTo={noFade ? '' : 'opacity-0'}
             >
               {!disableBackdrop && (
                 <div className="fixed inset-0 bg-slate-900/50 backdrop-filter backdrop-blur-sm" />
@@ -131,17 +147,17 @@ const Modal = ({
             <div className="fixed inset-0 overflow-y-auto">
               <div
                 className={`flex min-h-full justify-center text-center p-6 ${
-                  centered ? "items-center" : "items-start "
+                  centered ? 'items-center' : 'items-start '
                 }`}
               >
                 <Transition.Child
                   as={Fragment}
-                  enter={noFade ? "" : "duration-300  ease-out"}
-                  enterFrom={noFade ? "" : "opacity-0 scale-95"}
-                  enterTo={noFade ? "" : "opacity-100 scale-100"}
-                  leave={noFade ? "" : "duration-200 ease-in"}
-                  leaveFrom={noFade ? "" : "opacity-100 scale-100"}
-                  leaveTo={noFade ? "" : "opacity-0 scale-95"}
+                  enter={noFade ? '' : 'duration-300  ease-out'}
+                  enterFrom={noFade ? '' : 'opacity-0 scale-95'}
+                  enterTo={noFade ? '' : 'opacity-100 scale-100'}
+                  leave={noFade ? '' : 'duration-200 ease-in'}
+                  leaveFrom={noFade ? '' : 'opacity-100 scale-100'}
+                  leaveTo={noFade ? '' : 'opacity-0 scale-95'}
                 >
                   <Dialog.Panel
                     className={`w-full transform overflow-hidden rounded-md
@@ -159,7 +175,7 @@ const Modal = ({
                     </div>
                     <div
                       className={`px-6 py-8 ${
-                        scrollContent ? "overflow-y-auto max-h-[400px]" : ""
+                        scrollContent ? 'overflow-y-auto max-h-[400px]' : ''
                       }`}
                     >
                       {children}
@@ -177,7 +193,7 @@ const Modal = ({
         </Transition>
       )}
     </>
-  );
-};
+  )
+}
 
-export default Modal;
+export default Modal

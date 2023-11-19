@@ -1,11 +1,11 @@
-import { useSelector, useDispatch } from "react-redux";
-import { handleNavBarType } from "@/store/layoutReducer";
+import { handleNavBarType } from '@/store/layoutReducer'
+import { useDispatch, useSelector } from 'react-redux'
 
 const useNavbarType = () => {
-  const dispatch = useDispatch();
-  const navbarType = useSelector((state) => state.layout.navBarType);
-  const setNavbarType = (val) => dispatch(handleNavBarType(val));
-  return [navbarType, setNavbarType];
-};
+  const dispatch = useDispatch()
+  const navbarType = useSelector((state) => state.layout.navBarType)
+  const setNavbarType = (val) => dispatch(handleNavBarType(val))
+  return [navbarType, setNavbarType]
+}
 
-export default useNavbarType;
+export default useNavbarType
