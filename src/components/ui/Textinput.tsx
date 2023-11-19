@@ -2,6 +2,33 @@ import Icon from '@/components/ui/Icon'
 import 'cleave.js/dist/addons/cleave-phone.us'
 import Cleave from 'cleave.js/react'
 import { useState } from 'react'
+interface ITextInput {
+  type?: string
+  label?: string
+  placeholder?: string
+  classLabel?: string
+  className?: string
+  classGroup?: string
+  register?: any
+  name?: string
+  readonly?: boolean
+  value?: string | number
+  error: any
+  icon?: string
+  disabled?: boolean
+  id?: string
+  horizontal?: boolean
+  validate?: string
+  isMask?: boolean
+  msgTooltip?: string
+  description?: string
+  hasicon?: boolean
+  onChange?: (e: any) => void
+  options?: any
+  onFocus?: (e: any) => void
+  defaultValue?: string | number
+  [key: string]: any
+}
 const Textinput = ({
   type,
   label,
@@ -27,9 +54,8 @@ const Textinput = ({
   options,
   onFocus,
   defaultValue,
-
   ...rest
-}) => {
+}: ITextInput) => {
   const [open, setOpen] = useState(false)
   const handleOpen = () => {
     setOpen(!open)

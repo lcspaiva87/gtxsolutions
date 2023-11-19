@@ -1,51 +1,50 @@
-import React, { useState } from "react";
-import { toast } from "react-toastify";
-import Textinput from "@/components/ui/Textinput";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
-import { useRouter } from "next/navigation";
-import Checkbox from "@/components/ui/Checkbox";
-import { useDispatch, useSelector } from "react-redux";
-import { handleRegister } from "./store";
+import Checkbox from '@/components/ui/Checkbox'
+import Textinput from '@/components/ui/Textinput'
+import { yupResolver } from '@hookform/resolvers/yup'
+import { useRouter } from 'next/navigation'
+import React, { useState } from 'react'
+import { useForm } from 'react-hook-form'
+import { useDispatch } from 'react-redux'
+import * as yup from 'yup'
+import { handleRegister } from './store'
 
 const schema = yup
   .object({
-    name: yup.string().required("Name is Required"),
-    email: yup.string().email("Invalid email").required("Email is Required"),
+    name: yup.string().required('Name is Required'),
+    email: yup.string().email('Invalid email').required('Email is Required'),
     password: yup
       .string()
-      .min(6, "Password must be at least 8 characters")
+      .min(6, 'Password must be at least 8 characters')
       .max(20, "Password shouldn't be more than 20 characters")
-      .required("Please enter password"),
+      .required('Please enter password'),
     // confirm password
     confirmpassword: yup
       .string()
-      .oneOf([yup.ref("password"), null], "Passwords must match"),
+      .oneOf([yup.ref('password'), null], 'Passwords must match'),
   })
-  .required();
+  .required()
 
 const RegForm = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
-  const [checked, setChecked] = useState(false);
+  const [checked, setChecked] = useState(false)
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm({
     resolver: yupResolver(schema),
-    mode: "all",
-  });
+    mode: 'all',
+  })
 
-  const router = useRouter();
+  const router = useRouter()
 
   const onSubmit = (data) => {
-    dispatch(handleRegister(data));
+    dispatch(handleRegister(data))
     setTimeout(() => {
-      router.push("/");
-    }, 1500);
-  };
+      router.push('/')
+    }, 1500)
+  }
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-5 ">
       <Textinput
@@ -55,7 +54,7 @@ const RegForm = () => {
         placeholder=" Enter your name"
         register={register}
         error={errors.name}
-      />{" "}
+      />{' '}
       <Textinput
         name="email"
         label="email"
@@ -81,7 +80,7 @@ const RegForm = () => {
         Create an account
       </button>
     </form>
-  );
-};
+  )
+}
 
-export default RegForm;
+export default RegForm

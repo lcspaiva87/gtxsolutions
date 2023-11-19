@@ -46,7 +46,7 @@ const AddColumn = () => {
     <div>
       <Modal
         title="Create New Column"
-        labelclassName="btn-outline-dark"
+        labelClass="btn-outline-dark"
         activeModal={columModal}
         onClose={() => toggleColumnModal(false)}
       >

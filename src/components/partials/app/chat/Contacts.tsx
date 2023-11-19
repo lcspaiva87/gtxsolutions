@@ -1,35 +1,34 @@
-"use client";
-import Image from "next/image";
-import appChatStore from "./store";
-
+'use client'
+import Image from 'next/image'
+import appChatStore from './store'
 
 interface IContact {
-  id: number;
-  fullName: string;
-  role: string;
-  lastmessage: string;
-  lastmessageTime: string;
-  unredmessage: number;
-  avatar: string;
-  status: string;
+  id: number
+  fullName: string
+  role: string
+  lastmessage: string
+  lastmessageTime: string
+  unredmessage: number
+  avatar: string
+  status: string
 }
 
 const Contacts = ({ contact }: { contact: IContact }) => {
-  console.log(contact);
-  const { avatar,fullName, lastmessage, status, unredmessage } = contact;
-  const { openChat } = appChatStore();
+  console.log(contact)
+  const { avatar, fullName, lastmessage, status, unredmessage } = contact
+  const { openChat } = appChatStore()
 
   return (
     <div
       className="block w-full py-5 focus:ring-0 outline-none cursor-pointer group transition-all duration-150 hover:bg-slate-100 dark:hover:bg-slate-600 dark:hover:bg-opacity-70"
-      onClick={() => openChat({ contact: contact, activechat: true })}
+      onClick={() => openChat({ contact, activechat: true })}
     >
       <div className="flex space-x-3 px-6 rtl:space-x-reverse">
         <div className="flex-none">
           <div className="h-10 w-10 rounded-full relative">
             <span
               className={`  status ring-1 ring-white inline-block h-[10px] w-[10px] rounded-full absolute -right-0 top-0
-                ${status === "active" ? "bg-success-500" : "bg-secondary-500"}
+                ${status === 'active' ? 'bg-success-500' : 'bg-secondary-500'}
               `}
             ></span>
             <Image
@@ -47,7 +46,7 @@ const Contacts = ({ contact }: { contact: IContact }) => {
               {fullName}
             </span>
             <span className="block text-slate-600 dark:text-slate-300 text-xs font-normal">
-              {lastmessage.slice(0, 14) + "..."}
+              {lastmessage.slice(0, 14) + '...'}
             </span>
           </div>
           <div className="flex-none ltr:text-right rtl:text-end">
@@ -63,7 +62,7 @@ const Contacts = ({ contact }: { contact: IContact }) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Contacts;
+export default Contacts

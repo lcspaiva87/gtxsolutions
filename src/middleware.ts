@@ -1,10 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
 
 export function middleware(request: NextRequest) {
-	const token = request.cookies.get('auth_token')?.value
+  const token = request.cookies.get('auth_token')?.value
 
   const signInUrl = new URL('/?signin', request.url)
-
 
   if (!token) {
     if (request.nextUrl.pathname === '/?signin') {
@@ -14,7 +13,6 @@ export function middleware(request: NextRequest) {
   }
 }
 
-
-export const config =  {
+export const config = {
   matcher: '/dashboard/:path*',
 }

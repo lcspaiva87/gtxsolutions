@@ -14,4 +14,4 @@ export const FountainPenIcon: React.FC<React.SVGAttributes<{}>> = (props) => (
       strokeWidth=".2"
     />
   </svg>
-);
+)

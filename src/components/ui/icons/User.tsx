@@ -14,7 +14,5 @@ export const User = ({ className }: { className?: string }) => {
         clipRule="evenodd"
       />
     </svg>
-  );
-};
-
-
+  )
+}

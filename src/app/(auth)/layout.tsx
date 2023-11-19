@@ -1,11 +1,11 @@
-import { ReduxProvider } from "@/utils/provider";
-import { Inter } from "next/font/google";
-const inter = Inter({ subsets: ["latin"] });
+import { ReduxProvider } from '@/utils/provider'
+import { Inter } from 'next/font/google'
+const inter = Inter({ subsets: ['latin'] })
 
 export default function AuthLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
   return (
     <html lang="en">
@@ -13,5 +13,5 @@ export default function AuthLayout({
         <ReduxProvider>{children}</ReduxProvider>
       </body>
     </html>
-  );
+  )
 }

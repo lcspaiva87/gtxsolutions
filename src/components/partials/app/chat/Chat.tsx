@@ -1,56 +1,61 @@
-import Icon from "@/components//ui/icons/Icon";
-import Dropdown from "@/components/ui/Dropdown";
-import useWidth from "@/hooks/useWidth";
-import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
-import appChat from "./store";
+import Icon from '@/components//ui/icons/Icon'
+import Dropdown from '@/components/ui/Dropdown'
+import useWidth from '@/hooks/useWidth'
+import Image from 'next/image'
+import { useEffect, useRef, useState } from 'react'
+import appChat from './store'
 
 const chatAction = [
   {
-    label: "Remove",
-    link: "#",
+    label: 'Remove',
+    link: '#',
   },
   {
-    label: "Forward",
-    link: "#",
+    label: 'Forward',
+    link: '#',
   },
-];
+]
 const time = () => {
-  const date = new Date();
-  const hours = date.getHours();
-  const minutes = date.getMinutes();
-  const ampm = hours >= 12 ? "pm" : "am";
-  const hours12 = hours % 12 || 12;
-  const minutesStr = minutes < 10 ? "0" + minutes : minutes;
-  return hours12 + ":" + minutesStr + " " + ampm;
-};
+  const date = new Date()
+  const hours = date.getHours()
+  const minutes = date.getMinutes()
+  const ampm = hours >= 12 ? 'pm' : 'am'
+  const hours12 = hours % 12 || 12
+  const minutesStr = minutes < 10 ? '0' + minutes : minutes
+  return hours12 + ':' + minutesStr + ' ' + ampm
+}
 
 const Chat = () => {
-  const { width, breakpoints } = useWidth();
+  const { width, breakpoints } = useWidth()
 
-  const [message, setMessage] = useState("");
-  const { user, messFeed, sendMessage, infoToggle, openinfo ,toggleMobileChatSidebar} = appChat();
-
-
+  const [message, setMessage] = useState('')
+  const {
+    user,
+    messFeed,
+    sendMessage,
+    infoToggle,
+    openinfo,
+    toggleMobileChatSidebar,
+  } = appChat()
 
   const handleSendMessage = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+    e.preventDefault()
     if (message.trim()) {
       sendMessage({
         content: message.trim(),
-        sender: "me",
-        img: "/assets/images/users/user-1.jpg",
-      });
+        sender: 'me',
+        img: '/assets/images/users/user-1.jpg',
+      })
 
-      setMessage("");
+      setMessage('')
     }
-  };
-  const chatheight = useRef<HTMLDivElement | null>(null);
+  }
+  const chatheight = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
-    //@ts-ignore
-    chatheight.current.scrollTop = chatheight.current.scrollHeight;
-  }, [messFeed]);
+    // @ts-ignore
+    chatheight.current.scrollTop = chatheight.current.scrollHeight
+  }, [messFeed])
 
   return (
     <div className="h-full">
@@ -71,9 +76,9 @@ const Chat = () => {
                   <span
                     className={` status ring-1 ring-white inline-block h-[10px] w-[10px] rounded-full absolute -right-0 top-0
                   ${
-                    user.status === "active"
-                      ? "bg-success-500"
-                      : "bg-secondary-500"
+                    user.status === 'active'
+                      ? 'bg-success-500'
+                      : 'bg-secondary-500'
                   }
                   `}
                   ></span>
@@ -120,7 +125,7 @@ const Chat = () => {
         >
           {messFeed.map((item, i) => (
             <div className="block md:px-6 px-4" key={i}>
-              {item.sender === "them" && (
+              {item.sender === 'them' && (
                 <div className="flex space-x-2 items-start group rtl:space-x-reverse">
                   <div className="flex-none">
                     <div className="h-8 w-8 rounded-full">
@@ -157,7 +162,7 @@ const Chat = () => {
                 </div>
               )}
               {/* sender */}
-              {item.sender === "me" && (
+              {item.sender === 'me' && (
                 <div className="flex space-x-2 items-start justify-end group w-full rtl:space-x-reverse">
                   <div className="no flex space-x-4 rtl:space-x-reverse">
                     <div className="opacity-0 invisible group-hover:opacity-100 group-hover:visible">
@@ -219,10 +224,10 @@ const Chat = () => {
               className="focus:ring-0 focus:outline-0 block w-full bg-transparent dark:text-white resize-none"
               onChange={(e) => setMessage(e.target.value)}
               onKeyDown={(e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-                if (e.key === "Enter" && !e.shiftKey) {
-                  e.preventDefault();
-                  //@ts-ignore
-                  handleSendMessage(e);
+                if (e.key === 'Enter' && !e.shiftKey) {
+                  e.preventDefault()
+                  // @ts-ignore
+                  handleSendMessage(e)
                 }
               }}
             />
@@ -238,7 +243,7 @@ const Chat = () => {
         </form>
       </footer>
     </div>
-  );
-};
+  )
+}
 
-export default Chat;
+export default Chat

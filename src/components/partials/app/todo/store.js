@@ -1,40 +1,38 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { v4 as uuidv4 } from "uuid";
-
-
+import { createSlice } from '@reduxjs/toolkit'
+import { v4 as uuidv4 } from 'uuid'
 
 export const appTodoSlice = createSlice({
-  name: "apptodo",
+  name: 'apptodo',
   initialState: {
     todos: [
       {
         id: uuidv4(),
         image: [
           {
-            image: "/assets/images/avatar/av-1.svg",
-            label: "Mahedi Amin",
-            value: "mahedi",
+            image: '/assets/images/avatar/av-1.svg',
+            label: 'Mahedi Amin',
+            value: 'mahedi',
           },
           {
-            image: "/assets/images/avatar/av-2.svg",
-            label: "Sovo Haldar",
-            value: "sovo",
+            image: '/assets/images/avatar/av-2.svg',
+            label: 'Sovo Haldar',
+            value: 'sovo',
           },
           {
-            image: "/assets/images/avatar/av-3.svg",
-            label: "Rakibul Islam",
-            value: "rakibul",
+            image: '/assets/images/avatar/av-3.svg',
+            label: 'Rakibul Islam',
+            value: 'rakibul',
           },
         ],
         title:
-          "laboriosam mollitia et enim quasi adipisci quia provident illum",
+          'laboriosam mollitia et enim quasi adipisci quia provident illum',
         isDone: false,
         isfav: false,
         isTrash: false,
         category: [
           {
-            value: "team",
-            label: "team",
+            value: 'team',
+            label: 'team',
           },
         ],
       },
@@ -42,20 +40,20 @@ export const appTodoSlice = createSlice({
         id: uuidv4(),
         image: [
           {
-            image: "/assets/images/avatar/av-2.svg",
-            label: "Rakibul Islam",
-            value: "rakibul",
+            image: '/assets/images/avatar/av-2.svg',
+            label: 'Rakibul Islam',
+            value: 'rakibul',
           },
         ],
         title:
-          "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.",
+          'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.',
         isDone: false,
         isfav: true,
         isTrash: false,
         category: [
           {
-            value: "low",
-            label: "low",
+            value: 'low',
+            label: 'low',
           },
         ],
       },
@@ -63,63 +61,29 @@ export const appTodoSlice = createSlice({
         id: uuidv4(),
         image: [
           {
-            image: "/assets/images/avatar/av-1.svg",
-            label: "Sovo Haldar",
-            value: "sovo",
+            image: '/assets/images/avatar/av-1.svg',
+            label: 'Sovo Haldar',
+            value: 'sovo',
           },
           {
-            image: "/assets/images/avatar/av-2.svg",
-            label: "Rakibul Islam",
-            value: "rakibul",
+            image: '/assets/images/avatar/av-2.svg',
+            label: 'Rakibul Islam',
+            value: 'rakibul',
           },
         ],
         title:
-          "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.",
+          'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.',
         isDone: true,
         isfav: true,
         isTrash: false,
         category: [
           {
-            value: "medium",
-            label: "medium",
+            value: 'medium',
+            label: 'medium',
           },
           {
-            value: "low",
-            label: "low",
-          },
-        ],
-      },
-      {
-        id: uuidv4(),
-        image: [
-          {
-            image: "/assets/images/avatar/av-3.svg",
-            label: "Mahedi Amin",
-            value: "mahedi",
-          },
-          {
-            image: "/assets/images/avatar/av-4.svg",
-            label: "Sovo Haldar",
-            value: "sovo",
-          },
-          {
-            image: "/assets/images/avatar/av-1.svg",
-            label: "Rakibul Islam",
-            value: "rakibul",
-          },
-        ],
-        title: "illo expedita consequatur quia in",
-        isDone: false,
-        isfav: false,
-        isTrash: false,
-        category: [
-          {
-            value: "high",
-            label: "high",
-          },
-          {
-            value: "low",
-            label: "low",
+            value: 'low',
+            label: 'low',
           },
         ],
       },
@@ -127,78 +91,104 @@ export const appTodoSlice = createSlice({
         id: uuidv4(),
         image: [
           {
-            image: "/assets/images/avatar/av-4.svg",
-            label: "Rakibul Islam",
-            value: "rakibul",
+            image: '/assets/images/avatar/av-3.svg',
+            label: 'Mahedi Amin',
+            value: 'mahedi',
+          },
+          {
+            image: '/assets/images/avatar/av-4.svg',
+            label: 'Sovo Haldar',
+            value: 'sovo',
+          },
+          {
+            image: '/assets/images/avatar/av-1.svg',
+            label: 'Rakibul Islam',
+            value: 'rakibul',
           },
         ],
-        title: "illo expedita consequatur quia in",
+        title: 'illo expedita consequatur quia in',
         isDone: false,
         isfav: false,
         isTrash: false,
         category: [
           {
-            value: "update",
-            label: "update",
+            value: 'high',
+            label: 'high',
+          },
+          {
+            value: 'low',
+            label: 'low',
+          },
+        ],
+      },
+      {
+        id: uuidv4(),
+        image: [
+          {
+            image: '/assets/images/avatar/av-4.svg',
+            label: 'Rakibul Islam',
+            value: 'rakibul',
+          },
+        ],
+        title: 'illo expedita consequatur quia in',
+        isDone: false,
+        isfav: false,
+        isTrash: false,
+        category: [
+          {
+            value: 'update',
+            label: 'update',
           },
         ],
       },
     ],
-    filter: "all",
+    filter: 'all',
     addModal: false,
     editModal: false,
-    todoSearch: "",
+    todoSearch: '',
     isLoading: false,
     editItem: {},
     trashTodo: [],
-    todoSearch: "",
+    // eslint-disable-next-line no-dupe-keys
+    todoSearch: '',
     mobileTodoSidebar: false,
   },
   reducers: {
     // open add modal
     openAddModal: (state, action) => {
-      state.addModal = action.payload;
+      state.addModal = action.payload
     },
 
     addTodo: (state, action) => {
-      state.todos.unshift(action.payload);
-      toast.success("Add Successfully", {
-        position: "top-right",
+      state.todos.unshift(action.payload)
+      // eslint-disable-next-line no-undef
+      toast.success('Add Successfully', {
+        position: 'top-right',
         autoClose: 1500,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-        theme: "light",
-      });
+        theme: 'light',
+      })
     },
     setFilter: (state, action) => {
-      state.filter = action.payload;
+      state.filter = action.payload
     },
     deleteTodo: (state, action) => {
-      state.todos = state.todos.filter((todo) => todo.id !== action.payload);
+      state.todos = state.todos.filter((todo) => todo.id !== action.payload)
       // store it into trash todo
-      state.trashTodo.unshift(action.payload);
-
-      toast.warning("Delete Successfully", {
-        position: "top-right",
-        autoClose: 1500,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
+      state.trashTodo.unshift(action.payload)
     },
     editTodo: (state, action) => {
+      // eslint-disable-next-line array-callback-return
       state.todos.findIndex((item) => {
         if (item.id === action.payload.id) {
-          state.editItem = item;
-          state.editModal = !state.editModal;
+          state.editItem = item
+          state.editModal = !state.editModal
           // find index
-          let index = state.todos.indexOf(item);
+          const index = state.todos.indexOf(item)
           state.todos.splice(index, 1, {
             // give a id into eidtModalId
             id: action.payload.id,
@@ -207,33 +197,33 @@ export const appTodoSlice = createSlice({
             isfav: action.payload.isfav,
             image: action.payload.image,
             category: action.payload.category,
-          });
+          })
         }
-      });
+      })
     },
     isCheck: (state, action) => {
       state.todos = state.todos.map((todo) =>
-        todo.id === action.payload ? { ...todo, isDone: !todo.isDone } : todo
-      );
+        todo.id === action.payload ? { ...todo, isDone: !todo.isDone } : todo,
+      )
     },
     isFaveCheck: (state, action) => {
       state.todos = state.todos.map((todo) =>
-        todo.id === action.payload ? { ...todo, isfav: !todo.isfav } : todo
-      );
+        todo.id === action.payload ? { ...todo, isfav: !todo.isfav } : todo,
+      )
     },
     // search todo
     setSearch: (state, action) => {
-      state.todoSearch = action.payload;
+      state.todoSearch = action.payload
     },
     // mobile todo sidebar
     toggleMobileTodoSidebar: (state, action) => {
-      state.mobileTodoSidebar = action.payload;
+      state.mobileTodoSidebar = action.payload
     },
     closeEditModal: (state, action) => {
-      state.editModal = action.payload;
+      state.editModal = action.payload
     },
   },
-});
+})
 
 export const {
   addTodo,
@@ -246,5 +236,5 @@ export const {
   setSearch,
   toggleMobileTodoSidebar,
   closeEditModal,
-} = appTodoSlice.actions;
-export default appTodoSlice.reducer;
+} = appTodoSlice.actions
+export default appTodoSlice.reducer

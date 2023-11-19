@@ -1,89 +1,89 @@
-import React, { useState, useEffect } from "react";
-import Select, { components } from "react-select";
-import Modal from "@/components/ui/Modal";
-import { useSelector, useDispatch } from "react-redux";
-import { editTodo, closeEditModal } from "./store";
-import Icon from "@/components//ui/icons/Icon";
-import Textarea from "@/components/ui/Textarea";
-import Flatpickr from "react-flatpickr";
-import { useForm, Controller } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
-import { toast } from "react-toastify";
+import Icon from '@/components//ui/icons/Icon'
+import Modal from '@/components/ui/Modal'
+import Textarea from '@/components/ui/Textarea'
+import { yupResolver } from '@hookform/resolvers/yup'
+import React, { useEffect } from 'react'
+import Flatpickr from 'react-flatpickr'
+import { Controller, useForm } from 'react-hook-form'
+import { useDispatch, useSelector } from 'react-redux'
+import Select, { components } from 'react-select'
+import { toast } from 'react-toastify'
+import * as yup from 'yup'
+import { closeEditModal, editTodo } from './store'
 
 const FormValidationSchema = yup
   .object({
-    title: yup.string().required("Title is required"),
-    assign: yup.mixed().required("Assignee is required"),
-    tags: yup.mixed().required("Tag is required"),
+    title: yup.string().required('Title is required'),
+    assign: yup.mixed().required('Assignee is required'),
+    tags: yup.mixed().required('Tag is required'),
   })
-  .required();
+  .required()
 
 const styles = {
   multiValue: (base, state) => {
-    return state.data.isFixed ? { ...base, opacity: "0.5" } : base;
+    return state.data.isFixed ? { ...base, opacity: '0.5' } : base
   },
   multiValueLabel: (base, state) => {
     return state.data.isFixed
-      ? { ...base, color: "#626262", paddingRight: 6 }
-      : base;
+      ? { ...base, color: '#626262', paddingRight: 6 }
+      : base
   },
   multiValueRemove: (base, state) => {
-    return state.data.isFixed ? { ...base, display: "none" } : base;
+    return state.data.isFixed ? { ...base, display: 'none' } : base
   },
   option: (provided, state) => ({
     ...provided,
-    fontSize: "14px",
+    fontSize: '14px',
   }),
-};
+}
 
 const assigneeOptions = [
   {
-    value: "mahedi",
-    label: "Mahedi Amin",
-    image: "/assets/images/avatar/av-1.svg",
+    value: 'mahedi',
+    label: 'Mahedi Amin',
+    image: '/assets/images/avatar/av-1.svg',
   },
   {
-    value: "sovo",
-    label: "Sovo Haldar",
-    image: "/assets/images/avatar/av-2.svg",
+    value: 'sovo',
+    label: 'Sovo Haldar',
+    image: '/assets/images/avatar/av-2.svg',
   },
   {
-    value: "rakibul",
-    label: "Rakibul Islam",
-    image: "/assets/images/avatar/av-3.svg",
+    value: 'rakibul',
+    label: 'Rakibul Islam',
+    image: '/assets/images/avatar/av-3.svg',
   },
   {
-    value: "pritom",
-    label: "Pritom Miha",
-    image: "/assets/images/avatar/av-4.svg",
+    value: 'pritom',
+    label: 'Pritom Miha',
+    image: '/assets/images/avatar/av-4.svg',
   },
-];
+]
 const options = [
   {
-    value: "team",
-    label: "team",
+    value: 'team',
+    label: 'team',
   },
   {
-    value: "low",
-    label: "low",
+    value: 'low',
+    label: 'low',
   },
   {
-    value: "medium",
-    label: "medium",
+    value: 'medium',
+    label: 'medium',
   },
   {
-    value: "high",
-    label: "high",
+    value: 'high',
+    label: 'high',
   },
   {
-    value: "update",
-    label: "update",
+    value: 'update',
+    label: 'update',
   },
-];
+]
 
 const OptionComponent = ({ data, ...props }) => {
-  //const Icon = data.icon;
+  // const Icon = data.icon;
 
   return (
     <components.Option {...props}>
@@ -100,12 +100,12 @@ const OptionComponent = ({ data, ...props }) => {
         <span className="flex-1">{data.label}</span>
       </span>
     </components.Option>
-  );
-};
+  )
+}
 
 const EditTodoModal = () => {
-  const { editModal, editItem } = useSelector((state) => state.todo);
-  const dispatch = useDispatch();
+  const { editModal, editItem } = useSelector((state) => state.todo)
+  const dispatch = useDispatch()
 
   const {
     register,
@@ -116,12 +116,12 @@ const EditTodoModal = () => {
   } = useForm({
     resolver: yupResolver(FormValidationSchema),
 
-    mode: "all",
-  });
+    mode: 'all',
+  })
 
   useEffect(() => {
-    reset(editItem);
-  }, [editItem]);
+    reset(editItem)
+  }, [editItem])
 
   const onSubmit = (data) => {
     dispatch(
@@ -130,20 +130,20 @@ const EditTodoModal = () => {
         title: data.title,
         image: data.assign,
         category: data.tags,
-      })
-    );
-    dispatch(closeEditModal(false));
-    toast.info("Edit Successfully", {
-      position: "top-right",
+      }),
+    )
+    dispatch(closeEditModal(false))
+    toast.info('Edit Successfully', {
+      position: 'top-right',
       autoClose: 1500,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
       draggable: true,
       progress: undefined,
-      theme: "dark",
-    });
-  };
+      theme: 'dark',
+    })
+  }
 
   return (
     <Modal
@@ -152,12 +152,12 @@ const EditTodoModal = () => {
       onClose={() => dispatch(closeEditModal(false))}
     >
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 ">
-        <div className={`fromGroup  ${errors.title ? "has-error" : ""}`}>
+        <div className={`fromGroup  ${errors.title ? 'has-error' : ''}`}>
           <div className=" relative">
             <input
               type="text"
               defaultValue={editItem.title}
-              {...register("title")}
+              {...register('title')}
               className="form-control py-2"
             />
             {errors.title && (
@@ -175,7 +175,7 @@ const EditTodoModal = () => {
           )}
         </div>
 
-        <div className={errors.assign ? "has-error" : ""}>
+        <div className={errors.assign ? 'has-error' : ''}>
           <label className="form-label" htmlFor="icon_s">
             Assignee
           </label>
@@ -211,7 +211,7 @@ const EditTodoModal = () => {
           </label>
           <Flatpickr className="form-control py-2" id="default-picker" />
         </div>
-        <div className={errors.tags ? "has-error" : ""}>
+        <div className={errors.tags ? 'has-error' : ''}>
           <label className="form-label" htmlFor="icon_s">
             Tag
           </label>
@@ -244,7 +244,7 @@ const EditTodoModal = () => {
         </div>
       </form>
     </Modal>
-  );
-};
+  )
+}
 
-export default EditTodoModal;
+export default EditTodoModal

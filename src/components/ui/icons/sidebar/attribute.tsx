@@ -68,4 +68,4 @@ export const AttributeIcon: React.FC<React.SVGAttributes<{}>> = (props) => (
       </g>
     </g>
   </svg>
-);
+)

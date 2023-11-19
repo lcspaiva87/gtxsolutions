@@ -1,21 +1,21 @@
-import React from "react";
-import Icon from "@/components//ui/icons/Icon"
-import Link from "next/link";
+import React from 'react'
+import Icon from '@/components//ui/icons/Icon'
+import Link from 'next/link'
 export function Button({
   text,
-  type = "button",
+  type = 'button',
   isLoading,
   disabled,
-  className = "bg-primary-500 text-white",
+  className = 'bg-primary-500 text-white',
   children,
   icon,
-  loadingClass = "unset-classname",
-  iconPosition = "left",
-  iconClass = "text-[20px]",
+  loadingClass = 'unset-classname',
+  iconPosition = 'left',
+  iconClass = 'text-[20px]',
   link,
   onClick,
   div,
-}:any) {
+}: any) {
   return (
     <>
       {!link && !div && (
@@ -23,23 +23,23 @@ export function Button({
           type={type}
           onClick={onClick}
           className={`btn btn inline-flex justify-center   ${
-            isLoading ? " pointer-events-none" : ""
+            isLoading ? ' pointer-events-none' : ''
           }
-        ${disabled ? " opacity-40 cursor-not-allowed" : ""}
+        ${disabled ? ' opacity-40 cursor-not-allowed' : ''}
         ${className}`}
         >
-          {/* if has children and not loading*/}
+          {/* if has children and not loading */}
           {children && !isLoading && children}
 
-          {/* if no children and  loading*/}
+          {/* if no children and  loading */}
           {!children && !isLoading && (
             <span className="flex items-center">
               {/* if has icon */}
               {icon && (
                 <span
                   className={`
-          ${iconPosition === "right" ? "order-1 ltr:ml-2 rtl:mr-2" : " "}
-          ${text && iconPosition === "left" ? "ltr:mr-2 rtl:ml-2" : ""}
+          ${iconPosition === 'right' ? 'order-1 ltr:ml-2 rtl:mr-2' : ' '}
+          ${text && iconPosition === 'left' ? 'ltr:mr-2 rtl:ml-2' : ''}
 
           ${iconClass}
 
@@ -52,7 +52,7 @@ export function Button({
             </span>
           )}
 
-          {/* if loading*/}
+          {/* if loading */}
           {isLoading && (
             <>
               <svg
@@ -84,23 +84,23 @@ export function Button({
         <div
           onClick={onClick}
           className={`btn btn inline-flex justify-center   ${
-            isLoading ? " pointer-events-none" : ""
+            isLoading ? ' pointer-events-none' : ''
           }
-        ${disabled ? " opacity-40 cursor-not-allowed" : ""}
+        ${disabled ? ' opacity-40 cursor-not-allowed' : ''}
         ${className}`}
         >
-          {/* if has children and not loading*/}
+          {/* if has children and not loading */}
           {children && !isLoading && children}
 
-          {/* if no children and  loading*/}
+          {/* if no children and  loading */}
           {!children && !isLoading && (
             <span className="flex items-center">
               {/* if has icon */}
               {icon && (
                 <span
                   className={`
-          ${iconPosition === "right" ? "order-1 ltr:ml-2 rtl:mr-2" : " "}
-          ${text && iconPosition === "left" ? "ltr:mr-2 rtl:ml-2" : ""}
+          ${iconPosition === 'right' ? 'order-1 ltr:ml-2 rtl:mr-2' : ' '}
+          ${text && iconPosition === 'left' ? 'ltr:mr-2 rtl:ml-2' : ''}
 
           ${iconClass}
 
@@ -113,7 +113,7 @@ export function Button({
             </span>
           )}
 
-          {/* if loading*/}
+          {/* if loading */}
           {isLoading && (
             <>
               <svg
@@ -145,23 +145,23 @@ export function Button({
         <Link
           href={link}
           className={`btn btn inline-flex justify-center   ${
-            isLoading ? " pointer-events-none" : ""
+            isLoading ? ' pointer-events-none' : ''
           }
-        ${disabled ? " opacity-40 cursor-not-allowed" : ""}
+        ${disabled ? ' opacity-40 cursor-not-allowed' : ''}
         ${className}`}
         >
-          {/* if has children and not loading*/}
+          {/* if has children and not loading */}
           {children && !isLoading && children}
 
-          {/* if no children and  loading*/}
+          {/* if no children and  loading */}
           {!children && !isLoading && (
             <span className="flex items-center">
               {/* if has icon */}
               {icon && (
                 <span
                   className={`
-          ${iconPosition === "right" ? "order-1 ltr:ml-2 rtl:mr-2" : " "}
-          ${text && iconPosition === "left" ? "ltr:mr-2 rtl:ml-2" : ""}
+          ${iconPosition === 'right' ? 'order-1 ltr:ml-2 rtl:mr-2' : ' '}
+          ${text && iconPosition === 'left' ? 'ltr:mr-2 rtl:ml-2' : ''}
 
           ${iconClass}
 
@@ -174,7 +174,7 @@ export function Button({
             </span>
           )}
 
-          {/* if loading*/}
+          {/* if loading */}
           {isLoading && (
             <>
               <svg
@@ -203,7 +203,5 @@ export function Button({
         </Link>
       )}
     </>
-  );
+  )
 }
-
-

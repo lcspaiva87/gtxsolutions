@@ -88,7 +88,7 @@ const Column = () => {
       task.columnId = destination.droppableId
     }
 
-    setColumns(updatedColumns)
+    // setColumns(updatedColumns)
   }
   return (
     <>

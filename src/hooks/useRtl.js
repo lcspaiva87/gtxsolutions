@@ -1,14 +1,13 @@
-import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { handleRtl } from "@/store/layoutReducer";
+import { handleRtl } from '@/store/layoutReducer'
+import { useDispatch, useSelector } from 'react-redux'
 
 const useRtl = () => {
-  const dispatch = useDispatch();
-  const isRtl = useSelector((state) => state.layout.isRTL);
+  const dispatch = useDispatch()
+  const isRtl = useSelector((state) => state.layout.isRTL)
 
-  const setRtl = (val) => dispatch(handleRtl(val));
+  const setRtl = (val) => dispatch(handleRtl(val))
 
-  return [isRtl, setRtl];
-};
+  return [isRtl, setRtl]
+}
 
-export default useRtl;
+export default useRtl
