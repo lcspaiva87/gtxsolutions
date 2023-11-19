@@ -1,24 +1,24 @@
-import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { handleMonoChrome } from "@/store/layoutReducer";
+import { handleMonoChrome } from '@/store/layoutReducer'
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
 const useMonoChrome = () => {
-  const dispatch = useDispatch();
-  const isMonoChrome = useSelector((state) => state.layout.isMonochrome);
+  const dispatch = useDispatch()
+  const isMonoChrome = useSelector((state) => state.layout.isMonochrome)
 
   const setMonoChrome = (val) => {
-    dispatch(handleMonoChrome(val));
-    localStorage.setItem("monochrome", JSON.stringify(val));
-  };
+    dispatch(handleMonoChrome(val))
+    localStorage.setItem('monochrome', JSON.stringify(val))
+  }
 
   useEffect(() => {
-    const storedMode = localStorage.getItem("monochrome");
+    const storedMode = localStorage.getItem('monochrome')
     if (storedMode !== null) {
-      dispatch(handleMonoChrome(JSON.parse(storedMode)));
+      dispatch(handleMonoChrome(JSON.parse(storedMode)))
     }
-  }, []);
+  }, [])
 
-  return [isMonoChrome, setMonoChrome];
-};
+  return [isMonoChrome, setMonoChrome]
+}
 
-export default useMonoChrome;
+export default useMonoChrome

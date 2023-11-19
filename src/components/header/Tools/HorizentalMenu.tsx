@@ -1,12 +1,12 @@
-"use client";
-import React from "react";
-import { topMenu } from "@/constant/data";
-import Icon from "@/components//ui/icons/Icon";
-import { usePathname } from "next/navigation";
-import Link from "next/link";
+/* eslint-disable */
+'use client'
+import Icon from '@/components//ui/icons/Icon'
+import { topMenu } from '@/constant/data'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 const HorizentalMenu = () => {
-  const location = usePathname();
+  const location = usePathname()
   return (
     <div className="main-menu">
       <ul>
@@ -15,13 +15,13 @@ const HorizentalMenu = () => {
             key={i}
             className={
               item.child
-                ? "menu-item-has-children"
-                : "" || item.megamenu
-                ? "menu-item-has-children has-megamenu"
-                : ""
+                ? 'menu-item-has-children'
+                : '' || item.megamenu
+                  ? 'menu-item-has-children has-megamenu'
+                  : ''
             }
           >
-            {/* Single menu*/}
+            {/* Single menu */}
             {!item.child && !item.megamenu && (
               <Link href={`${item.link}`}>
                 <div className="flex flex-1 items-center space-x-[6px] rtl:space-x-reverse">
@@ -32,7 +32,7 @@ const HorizentalMenu = () => {
                 </div>
               </Link>
             )}
-            {/* has dropdown*/}
+            {/* has dropdown */}
             {(item.child || item.megamenu) && (
               <a>
                 <div className="flex flex-1 items-center space-x-[6px] rtl:space-x-reverse">
@@ -46,7 +46,7 @@ const HorizentalMenu = () => {
                 </div>
               </a>
             )}
-            {/* Dropdown menu*/}
+            {/* Dropdown menu */}
             {item.child && (
               <ul className="sub-menu">
                 {item.child.map((childitem, index) => (
@@ -66,33 +66,34 @@ const HorizentalMenu = () => {
                 ))}
               </ul>
             )}
-            {/* Megamenu*/}
+            {/* Megamenu */}
             {item.megamenu && (
               <div className="rt-mega-menu">
                 <div className="flex flex-wrap space-x-8 justify-between rtl:space-x-reverse">
                   {item.megamenu.map((m_item, m_i) => (
+                    // eslint-disable-next-line camelcase
                     <div key={m_i}>
-                      {/* mega menu title*/}
+                      {/* mega menu title */}
                       <div className="text-sm font-medium text-slate-900 dark:text-white mb-2 flex space-x-1 items-center">
                         {/* <Icon icon={m_item.megamenuicon} /> */}
                         <span> {m_item.megamenutitle}</span>
                       </div>
-                      {/* single menu item*/}
+                      {/* single menu item */}
                       {m_item.singleMegamenu?.map((ms_item, ms_i) => (
                         <Link href={`${ms_item.m_childlink}`} key={ms_i}>
                           <div className="flex items-center space-x-2 text-[15px] leading-6 rtl:space-x-reverse">
                             <span
                               className={`h-[6px] w-[6px] rounded-full border border-slate-600 dark:border-white inline-block flex-none ${
                                 location === ms_item.m_childlink
-                                  ? " bg-slate-900 dark:bg-white"
-                                  : ""
+                                  ? ' bg-slate-900 dark:bg-white'
+                                  : ''
                               }`}
                             ></span>
                             <span
                               className={`capitalize ${
                                 location === ms_item.m_childlink
-                                  ? " text-slate-900 dark:text-white font-medium"
-                                  : "text-slate-600 dark:text-slate-300"
+                                  ? ' text-slate-900 dark:text-white font-medium'
+                                  : 'text-slate-600 dark:text-slate-300'
                               }`}
                             >
                               {ms_item.m_childtitle}
@@ -109,7 +110,7 @@ const HorizentalMenu = () => {
         ))}
       </ul>
     </div>
-  );
-};
+  )
+}
 
-export default HorizentalMenu;
+export default HorizentalMenu

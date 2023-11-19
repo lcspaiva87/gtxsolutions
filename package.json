@@ -22,6 +22,7 @@
     "@reduxjs/toolkit": "^1.9.7",
     "@sentry/nextjs": "^7.73.0",
     "@tippyjs/react": "^4.2.6",
+    "@types/cleave.js": "^1.4.11",
     "@types/react-beautiful-dnd": "^13.1.7",
     "@types/react-flatpickr": "^3.8.11",
     "@types/uuid": "^9.0.5",

@@ -1,10 +1,10 @@
-import React, { Children } from "react";
-import Icon from "@/components/ui/Icon";
+import Icon from '@/components/ui/Icon'
+import React from 'react'
 
 const FormGroup = ({
   label,
-  classLabel = "form-label",
-  className = "",
+  classLabel = 'form-label',
+  className = '',
   error,
   id,
   horizontal,
@@ -16,21 +16,21 @@ const FormGroup = ({
 }) => {
   return (
     <div
-      className={`fromGroup  ${error ? "has-error" : ""}  ${
-        horizontal ? "flex" : ""
-      }  ${validate ? "is-valid" : ""} ${className} `}
+      className={`fromGroup  ${error ? 'has-error' : ''}  ${
+        horizontal ? 'flex' : ''
+      }  ${validate ? 'is-valid' : ''} ${className} `}
     >
       {label && (
         <label
           htmlFor={id}
           className={`block capitalize ${classLabel}  ${
-            horizontal ? "flex-0 mr-6 md:w-[100px] w-[60px] break-words" : ""
+            horizontal ? 'flex-0 mr-6 md:w-[100px] w-[60px] break-words' : ''
           }`}
         >
           {label}
         </label>
       )}
-      <div className={`relative ${horizontal ? "flex-1" : ""}`}>
+      <div className={`relative ${horizontal ? 'flex-1' : ''}`}>
         {children}
 
         {/* icon */}
@@ -48,25 +48,25 @@ const FormGroup = ({
           )}
         </div>
       </div>
-      {/* error and success message*/}
+      {/* error and success message */}
       {error && (
         <div
           className={` mt-2 ${
             msgTooltip
-              ? " inline-block bg-danger-500 text-white text-[10px] px-2 py-1 rounded"
-              : " text-danger-500 block text-sm"
+              ? ' inline-block bg-danger-500 text-white text-[10px] px-2 py-1 rounded'
+              : ' text-danger-500 block text-sm'
           }`}
         >
           {error.message}
         </div>
       )}
-      {/* validated and success message*/}
+      {/* validated and success message */}
       {validate && (
         <div
           className={` mt-2 ${
             msgTooltip
-              ? " inline-block bg-success-500 text-white text-[10px] px-2 py-1 rounded"
-              : " text-success-500 block text-sm"
+              ? ' inline-block bg-success-500 text-white text-[10px] px-2 py-1 rounded'
+              : ' text-success-500 block text-sm'
           }`}
         >
           {validate}
@@ -75,7 +75,7 @@ const FormGroup = ({
       {/* only description */}
       {description && <span className="input-description">{description}</span>}
     </div>
-  );
-};
+  )
+}
 
-export default FormGroup;
+export default FormGroup

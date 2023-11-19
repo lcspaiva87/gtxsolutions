@@ -1,15 +1,15 @@
-import React, { useState } from "react";
-import Textinput from "@/components/ui/Textinput";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
+import Textinput from '@/components/ui/Textinput'
+import { yupResolver } from '@hookform/resolvers/yup'
+import React from 'react'
+import { useForm } from 'react-hook-form'
+import * as yup from 'yup'
 
 const schema = yup
   .object({
-    email: yup.string().email("Invalid email").required("Email is Required"),
-    password: yup.string().required("Password is Required"),
+    email: yup.string().email('Invalid email').required('Email is Required'),
+    password: yup.string().required('Password is Required'),
   })
-  .required();
+  .required()
 const ForgotPass = () => {
   const {
     register,
@@ -17,11 +17,11 @@ const ForgotPass = () => {
     handleSubmit,
   } = useForm({
     resolver: yupResolver(schema),
-  });
+  })
 
   const onSubmit = (data) => {
-    //console.log(data);
-  };
+    // console.log(data);
+  }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 ">
@@ -37,7 +37,7 @@ const ForgotPass = () => {
         Send recovery email
       </button>
     </form>
-  );
-};
+  )
+}
 
-export default ForgotPass;
+export default ForgotPass

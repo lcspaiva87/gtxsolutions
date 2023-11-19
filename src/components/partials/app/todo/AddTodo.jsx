@@ -1,89 +1,89 @@
-import React, { useState } from "react";
-import Select, { components } from "react-select";
-import Modal from "@/components/ui/Modal";
-import { useSelector, useDispatch } from "react-redux";
-import { openAddModal, addTodo } from "./store";
-import Textinput from "@/components/ui/Textinput";
-import Textarea from "@/components/ui/Textarea";
-import Flatpickr from "react-flatpickr";
-import { useForm, Controller } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
-import { v4 as uuidv4 } from "uuid";
+import Modal from '@/components/ui/Modal'
+import Textarea from '@/components/ui/Textarea'
+import Textinput from '@/components/ui/Textinput'
+import { yupResolver } from '@hookform/resolvers/yup'
+import React from 'react'
+import Flatpickr from 'react-flatpickr'
+import { Controller, useForm } from 'react-hook-form'
+import { useDispatch, useSelector } from 'react-redux'
+import Select, { components } from 'react-select'
+import { v4 as uuidv4 } from 'uuid'
+import * as yup from 'yup'
+import { addTodo, openAddModal } from './store'
 
 const FormValidationSchema = yup
   .object({
-    title: yup.string().required("Title is required"),
-    assign: yup.mixed().required("Assignee is required"),
-    tags: yup.mixed().required("Tag is required"),
+    title: yup.string().required('Title is required'),
+    assign: yup.mixed().required('Assignee is required'),
+    tags: yup.mixed().required('Tag is required'),
   })
-  .required();
+  .required()
 
 const styles = {
   multiValue: (base, state) => {
-    return state.data.isFixed ? { ...base, opacity: "0.5" } : base;
+    return state.data.isFixed ? { ...base, opacity: '0.5' } : base
   },
   multiValueLabel: (base, state) => {
     return state.data.isFixed
-      ? { ...base, color: "#626262", paddingRight: 6 }
-      : base;
+      ? { ...base, color: '#626262', paddingRight: 6 }
+      : base
   },
   multiValueRemove: (base, state) => {
-    return state.data.isFixed ? { ...base, display: "none" } : base;
+    return state.data.isFixed ? { ...base, display: 'none' } : base
   },
   option: (provided, state) => ({
     ...provided,
-    fontSize: "14px",
+    fontSize: '14px',
   }),
-};
+}
 
 const assigneeOptions = [
   {
-    value: "mahedi",
-    label: "Mahedi Amin",
-    image: "/assets/images/avatar/av-1.svg",
+    value: 'mahedi',
+    label: 'Mahedi Amin',
+    image: '/assets/images/avatar/av-1.svg',
   },
   {
-    value: "sovo",
-    label: "Sovo Haldar",
-    image: "/assets/images/avatar/av-2.svg",
+    value: 'sovo',
+    label: 'Sovo Haldar',
+    image: '/assets/images/avatar/av-2.svg',
   },
   {
-    value: "rakibul",
-    label: "Rakibul Islam",
-    image: "/assets/images/avatar/av-3.svg",
+    value: 'rakibul',
+    label: 'Rakibul Islam',
+    image: '/assets/images/avatar/av-3.svg',
   },
   {
-    value: "pritom",
-    label: "Pritom Miha",
-    image: "/assets/images/avatar/av-4.svg",
+    value: 'pritom',
+    label: 'Pritom Miha',
+    image: '/assets/images/avatar/av-4.svg',
   },
-];
+]
 const options = [
   {
-    value: "team",
-    label: "team",
+    value: 'team',
+    label: 'team',
   },
   {
-    value: "low",
-    label: "low",
+    value: 'low',
+    label: 'low',
   },
   {
-    value: "medium",
-    label: "medium",
+    value: 'medium',
+    label: 'medium',
   },
   {
-    value: "high",
-    label: "high",
+    value: 'high',
+    label: 'high',
   },
   {
-    value: "update",
-    label: "update",
+    value: 'update',
+    label: 'update',
   },
-];
+]
 
 const OptionComponent = ({ data, ...props }) => {
-  //const Icon = data.icon;
+  // const Icon = data.icon;
 
   return (
     <components.Option {...props}>
@@ -100,12 +100,12 @@ const OptionComponent = ({ data, ...props }) => {
         <span className="flex-1">{data.label}</span>
       </span>
     </components.Option>
-  );
-};
+  )
+}
 
 const AddTodo = () => {
-  const { addModal } = useSelector((state) => state.todo);
-  const dispatch = useDispatch();
+  const { addModal } = useSelector((state) => state.todo)
+  const dispatch = useDispatch()
 
   const {
     register,
@@ -114,8 +114,8 @@ const AddTodo = () => {
     handleSubmit,
   } = useForm({
     resolver: yupResolver(FormValidationSchema),
-    mode: "all",
-  });
+    mode: 'all',
+  })
 
   const onSubmit = (data) => {
     dispatch(
@@ -126,14 +126,14 @@ const AddTodo = () => {
         image: data.assign,
         title: data.title,
         category: data.tags,
-      })
-    );
+      }),
+    )
 
-    dispatch(openAddModal(false));
-    data.title = "";
-    data.tags = "";
-    data.assign = "";
-  };
+    dispatch(openAddModal(false))
+    data.title = ''
+    data.tags = ''
+    data.assign = ''
+  }
   return (
     <div>
       <Modal
@@ -151,7 +151,7 @@ const AddTodo = () => {
             register={register}
             error={errors.title}
           />
-          <div className={errors.assign ? "has-error" : ""}>
+          <div className={errors.assign ? 'has-error' : ''}>
             <label className="form-label" htmlFor="icon_s">
               Assignee
             </label>
@@ -185,7 +185,7 @@ const AddTodo = () => {
             </label>
             <Flatpickr className="form-control py-2" id="default-picker" />
           </div>
-          <div className={errors.tags ? "has-error" : ""}>
+          <div className={errors.tags ? 'has-error' : ''}>
             <label className="form-label" htmlFor="icon_s">
               Tag
             </label>
@@ -218,7 +218,7 @@ const AddTodo = () => {
         </form>
       </Modal>
     </div>
-  );
-};
+  )
+}
 
-export default AddTodo;
+export default AddTodo

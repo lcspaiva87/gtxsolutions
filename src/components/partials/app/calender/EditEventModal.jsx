@@ -1,18 +1,17 @@
-import React, { useEffect, useState } from "react";
-import Modal from "@/components/ui/Modal";
-import Textinput from "@/components/ui/Textinput";
-import { useForm, Controller } from "react-hook-form";
-import Select from "@/components/ui/Select";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
-import { useSelector, useDispatch } from "react-redux";
-import { updateEvent, removeEvent } from "./store";
-import Flatpickr from "react-flatpickr";
-import FormGroup from "@/components/ui/FormGroup";
+import FormGroup from '@/components/ui/FormGroup'
+import Modal from '@/components/ui/Modal'
+import Select from '@/components/ui/Select'
+import { yupResolver } from '@hookform/resolvers/yup'
+import React, { useEffect, useState } from 'react'
+import Flatpickr from 'react-flatpickr'
+import { Controller, useForm } from 'react-hook-form'
+import { useDispatch, useSelector } from 'react-redux'
+import * as yup from 'yup'
+import { removeEvent, updateEvent } from './store'
 
 const FormValidationSchema = yup
   .object({
-    title: yup.string().required("Event Name is required"),
+    title: yup.string().required('Event Name is required'),
     cata: yup
       .string()
       // .when("title", {
@@ -21,22 +20,22 @@ const FormValidationSchema = yup
 
       //   otherwise: yup.string().notRequired(),
       // })
-      .required("Category is required"),
+      .required('Category is required'),
   })
-  .required();
+  .required()
 const EditEventModal = ({ editModal, onCloseEditModal, editItem }) => {
-  const { categories } = useSelector((state) => state.calendar);
-  const dispatch = useDispatch();
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
+  const { categories } = useSelector((state) => state.calendar)
+  const dispatch = useDispatch()
+  const [startDate, setStartDate] = useState(new Date())
+  const [endDate, setEndDate] = useState(new Date())
 
   useEffect(() => {
     if (editItem) {
-      setStartDate(editItem.event.start);
-      setEndDate(editItem.event.end);
+      setStartDate(editItem.event.start)
+      setEndDate(editItem.event.end)
     }
-    reset(editItem);
-  }, [editModal]);
+    reset(editItem)
+  }, [editModal])
 
   const {
     register,
@@ -46,15 +45,15 @@ const EditEventModal = ({ editModal, onCloseEditModal, editItem }) => {
     handleSubmit,
   } = useForm({
     resolver: yupResolver(FormValidationSchema),
-    mode: "all",
-  });
+    mode: 'all',
+  })
 
   const onSubmit = (data) => {
-    dispatch(updateEvent({ data, editItem, startDate, endDate }));
+    dispatch(updateEvent({ data, editItem, startDate, endDate }))
     // close modal
-    onCloseEditModal();
-    reset();
-  };
+    onCloseEditModal()
+    reset()
+  }
   return (
     <div>
       <Modal
@@ -71,7 +70,7 @@ const EditEventModal = ({ editModal, onCloseEditModal, editItem }) => {
               placeholder="Enter Event Name"
               defaultValue={editItem?.event?.title}
               className="form-control py-2"
-              {...register("title")}
+              {...register('title')}
             />
           </FormGroup>
           <FormGroup
@@ -91,8 +90,8 @@ const EditEventModal = ({ editModal, onCloseEditModal, editItem }) => {
                   onChange={(date) => setStartDate(date[0])}
                   options={{
                     altInput: true,
-                    altFormat: "F j, Y",
-                    dateFormat: "Y-m-d",
+                    altFormat: 'F j, Y',
+                    dateFormat: 'Y-m-d',
                   }}
                 />
               )}
@@ -115,8 +114,8 @@ const EditEventModal = ({ editModal, onCloseEditModal, editItem }) => {
                   onChange={(date) => setEndDate(date[0])}
                   options={{
                     altInput: true,
-                    altFormat: "F j, Y",
-                    dateFormat: "Y-m-d",
+                    altFormat: 'F j, Y',
+                    dateFormat: 'Y-m-d',
                   }}
                 />
               )}
@@ -138,9 +137,9 @@ const EditEventModal = ({ editModal, onCloseEditModal, editItem }) => {
                 dispatch(
                   removeEvent({
                     editItem,
-                  })
-                );
-                onCloseEditModal();
+                  }),
+                )
+                onCloseEditModal()
               }}
             >
               Delete
@@ -150,7 +149,7 @@ const EditEventModal = ({ editModal, onCloseEditModal, editItem }) => {
         </form>
       </Modal>
     </div>
-  );
-};
+  )
+}
 
-export default EditEventModal;
+export default EditEventModal

@@ -1,6 +1,4 @@
-export const CalendarScheduleIcon: React.FC<React.SVGAttributes<{}>> = (
-  props
-) => (
+export const CalendarScheduleIcon = (props: any) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="18.2"
@@ -33,4 +31,4 @@ export const CalendarScheduleIcon: React.FC<React.SVGAttributes<{}>> = (
       </g>
     </g>
   </svg>
-);
+)

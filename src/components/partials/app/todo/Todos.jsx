@@ -1,30 +1,30 @@
-import React from "react";
-import Icon from "@/components//ui/icons/Icon";
-import Tooltip from "@/components/ui/Tooltip";
-import Checkbox from "@/components/ui/Checkbox";
-import { useDispatch, useSelector } from "react-redux";
-import { deleteTodo, editTodo, isCheck, isFaveCheck } from "./store";
+import Icon from '@/components//ui/icons/Icon'
+import Checkbox from '@/components/ui/Checkbox'
+import Tooltip from '@/components/ui/Tooltip'
+import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { deleteTodo, editTodo, isCheck, isFaveCheck } from './store'
 
 const Tasks = ({ todo }) => {
-  const { id, title, image, isDone, category, isfav } = todo;
-  const { editModal } = useSelector((state) => state.todo);
-  const [checked, setChecked] = React.useState(isDone);
-  const [fav, setFav] = React.useState(isfav);
+  const { id, title, image, isDone, category, isfav } = todo
+  const { editModal } = useSelector((state) => state.todo)
+  const [checked, setChecked] = React.useState(isDone)
+  const [fav, setFav] = React.useState(isfav)
   const handleCheck = (id) => {
     return (event) => {
-      setChecked(event.target.checked);
-      dispatch(isCheck(id));
-    };
-  };
+      setChecked(event.target.checked)
+      dispatch(isCheck(id))
+    }
+  }
 
   const handleFav = (id) => {
     return (event) => {
-      setFav(event.target.checked);
-      dispatch(isFaveCheck(id));
-    };
-  };
+      setFav(event.target.checked)
+      dispatch(isFaveCheck(id))
+    }
+  }
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
   return (
     <>
       <li className="flex items-center px-6 space-x-4 py-6 hover:-translate-y-1 hover:shadow-todo transition-all duration-200 rtl:space-x-reverse">
@@ -54,7 +54,7 @@ const Tasks = ({ todo }) => {
 
         <span
           className={` ${
-            isDone ? "line-through dark:text-slate-300" : ""
+            isDone ? 'line-through dark:text-slate-300' : ''
           } flex-1 text-sm text-slate-600 dark:text-slate-300 truncate`}
         >
           {title}
@@ -67,7 +67,7 @@ const Tasks = ({ todo }) => {
                 <div
                   key={i}
                   className={` ${
-                    isDone ? " opacity-40" : " opacity-100"
+                    isDone ? ' opacity-40' : ' opacity-100'
                   } h-6 w-6 rounded-full ring-1 ring-secondary-500`}
                 >
                   <Tooltip placement="top" arrow content={img.label}>
@@ -85,21 +85,21 @@ const Tasks = ({ todo }) => {
                 <span
                   className={` bg-opacity-20 capitalize font-normal text-xs leading-4 px-[10px] py-[2px] rounded-full inline-block
 
-             ${cta.value === "team" ? "bg-danger-500 text-danger-500" : ""}
+             ${cta.value === 'team' ? 'bg-danger-500 text-danger-500' : ''}
                   ${
-                    cta.value === "low" ? "bg-success-500 text-success-500" : ""
+                    cta.value === 'low' ? 'bg-success-500 text-success-500' : ''
                   }
                   ${
-                    cta.value === "medium"
-                      ? "bg-warning-500 text-warning-500"
-                      : ""
+                    cta.value === 'medium'
+                      ? 'bg-warning-500 text-warning-500'
+                      : ''
                   }
                   ${
-                    cta.value === "high"
-                      ? "bg-primary-500 text-primary-500"
-                      : ""
+                    cta.value === 'high'
+                      ? 'bg-primary-500 text-primary-500'
+                      : ''
                   }
-                  ${cta.value === "update" ? "bg-info-500 text-info-500" : ""}
+                  ${cta.value === 'update' ? 'bg-info-500 text-info-500' : ''}
             `}
                 >
                   {cta.label}
@@ -125,7 +125,7 @@ const Tasks = ({ todo }) => {
         </div>
       </li>
     </>
-  );
-};
+  )
+}
 
-export default Tasks;
+export default Tasks

@@ -1,9 +1,9 @@
-import Icon from "@/components//ui/icons/Icon";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
+import Icon from '@/components//ui/icons/Icon'
+import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 
 const MobileFooter = () => {
-  const router = useRouter();
+  const router = useRouter()
   return (
     <div className="bg-white bg-no-repeat custom-dropshadow footer-bg dark:bg-slate-700 flex justify-around items-center backdrop-filter backdrop-blur-[40px] fixed left-0 w-full z-[9999] bottom-0 py-[12px] px-4">
       <Link href="chat">
@@ -11,9 +11,9 @@ const MobileFooter = () => {
           <span
             className={` relative cursor-pointer rounded-full text-[20px] flex flex-col items-center justify-center mb-1
          ${
-           router.pathname === "chat"
-             ? "text-primary-500"
-             : "dark:text-white text-slate-900"
+           router.pathname === 'chat'
+             ? 'text-primary-500'
+             : 'dark:text-white text-slate-900'
          }
           `}
           >
@@ -25,9 +25,9 @@ const MobileFooter = () => {
           <span
             className={` block text-[11px]
           ${
-            router.pathname === "chat"
-              ? "text-primary-500"
-              : "text-slate-600 dark:text-slate-300"
+            router.pathname === 'chat'
+              ? 'text-primary-500'
+              : 'text-slate-600 dark:text-slate-300'
           }
           `}
           >
@@ -45,9 +45,9 @@ const MobileFooter = () => {
             alt=""
             className={` w-full h-full rounded-full
           ${
-            router.pathname === "profile"
-              ? "border-2 border-primary-500"
-              : "border-2 border-slate-100"
+            router.pathname === 'profile'
+              ? 'border-2 border-primary-500'
+              : 'border-2 border-slate-100'
           }
               `}
           />
@@ -58,9 +58,9 @@ const MobileFooter = () => {
           <span
             className={` relative cursor-pointer rounded-full text-[20px] flex flex-col items-center justify-center mb-1
       ${
-        router.pathname === "notifications"
-          ? "text-primary-500"
-          : "dark:text-white text-slate-900"
+        router.pathname === 'notifications'
+          ? 'text-primary-500'
+          : 'dark:text-white text-slate-900'
       }
           `}
           >
@@ -72,9 +72,9 @@ const MobileFooter = () => {
           <span
             className={` block text-[11px]
          ${
-           router.pathname === "notifications"
-             ? "text-primary-500"
-             : "text-slate-600 dark:text-slate-300"
+           router.pathname === 'notifications'
+             ? 'text-primary-500'
+             : 'text-slate-600 dark:text-slate-300'
          }
         `}
           >
@@ -83,7 +83,7 @@ const MobileFooter = () => {
         </div>
       </Link>
     </div>
-  );
-};
+  )
+}
 
-export default MobileFooter;
+export default MobileFooter

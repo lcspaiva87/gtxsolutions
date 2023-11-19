@@ -1,5 +1,3 @@
-
-
 export const siteSettings = {
   name: 'PickBazar',
   description: '',
@@ -61,7 +59,7 @@ export const siteSettings = {
         icon: 'TypesIcon',
       },
       {
-        href:'Routes.profileUpdate',
+        href: 'Routes.profileUpdate',
         label: 'Categories',
         icon: 'CategoriesIcon',
       },
@@ -70,9 +68,7 @@ export const siteSettings = {
         label: 'Tags',
         icon: 'TagIcon',
       },
-
     ],
-
   },
   product: {
     placeholder: '/product-placeholder.svg',
@@ -80,4 +76,4 @@ export const siteSettings = {
   avatar: {
     placeholder: '/avatar-placeholder.svg',
   },
-};
+}

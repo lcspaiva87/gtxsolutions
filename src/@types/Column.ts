@@ -1,4 +1,5 @@
 export type Column = {
-  id: string;
-  title: string;
-};
+  title: string
+  color: string
+  id: string
+}

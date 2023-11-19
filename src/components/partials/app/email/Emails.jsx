@@ -1,38 +1,40 @@
-import React, { useState } from "react";
-import Icon from "@/components//ui/icons/Icon";
-import { useDispatch, useSelector } from "react-redux";
-import Checkbox from "@/components/ui/Checkbox";
+/* eslint-disable camelcase */
+import Icon from '@/components//ui/icons/Icon'
+import Checkbox from '@/components/ui/Checkbox'
+import React from 'react'
+import { useDispatch } from 'react-redux'
 import {
+  deleteEmail,
   setCheck,
   setFaveCheck,
-  deleteEmail,
-  toggleSingleModal,
   toggleReadMail,
-} from "./store";
+  toggleSingleModal,
+} from './store'
 
 const Emails = ({ email }) => {
-  const { isread, image, title, desc, lastime, is_checked, isfav, id } = email;
+  // eslint-disable-next-line camelcase
+  const { isread, image, title, desc, lastime, is_checked, isfav, id } = email
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
   const handleCheck = (id) => {
     return (event) => {
-      dispatch(setCheck(id));
-    };
-  };
+      dispatch(setCheck(id))
+    }
+  }
   const handleFavorite = (id) => {
     return (event) => {
-      dispatch(setFaveCheck(id));
-    };
-  };
+      dispatch(setFaveCheck(id))
+    }
+  }
 
   return (
     <li
       className="flex px-7 space-x-6 group md:py-6 py-3 relative cursor-pointer hover:bg-slate-50 dark:hover:bg-transparent group items-center rtl:space-x-reverse"
       onClick={() => {
-        dispatch(toggleSingleModal(email));
+        dispatch(toggleSingleModal(email))
         // make is read true when clicked
-        dispatch(toggleReadMail(id));
+        dispatch(toggleReadMail(id))
       }}
     >
       <div>
@@ -74,8 +76,8 @@ const Emails = ({ email }) => {
         <div
           className={` flex-1 text-sm min-w-max  ${
             isread === true
-              ? "font-normal text-slate-800 dark:text-slate-400"
-              : "font-medium text-slate-900 dark:text-slate-300"
+              ? 'font-normal text-slate-800 dark:text-slate-400'
+              : 'font-medium text-slate-900 dark:text-slate-300'
           }
     `}
         >
@@ -88,8 +90,8 @@ const Emails = ({ email }) => {
           className={` text-sm
             ${
               isread === true
-                ? "font-normal dark:text-slate-300"
-                : "font-medium text-slate-900 dark:text-slate-300"
+                ? 'font-normal dark:text-slate-300'
+                : 'font-medium text-slate-900 dark:text-slate-300'
             }
           `}
         >
@@ -112,8 +114,8 @@ const Emails = ({ email }) => {
         <span
           className="absolute ltr:right-0 rtl:left-0 top-1/2 -translate-y-1/2 dark:text-slate-300 group-hover:bg-slate-100 dark:group-hover:bg-slate-800 bg-white h-full w-[100px] flex flex-col items-center justify-center opacity-0 invisible group-hover:opacity-100 group-hover:visible"
           onClick={(e) => {
-            dispatch(deleteEmail(id));
-            e.stopPropagation();
+            dispatch(deleteEmail(id))
+            e.stopPropagation()
           }}
         >
           <Icon
@@ -123,7 +125,7 @@ const Emails = ({ email }) => {
         </span>
       </span>
     </li>
-  );
-};
+  )
+}
 
-export default Emails;
+export default Emails

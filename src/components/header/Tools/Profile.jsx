@@ -1,9 +1,9 @@
-import Icon from "@/components//ui/icons/Icon";
-import { handleLogout } from "@/components/partials/auth/store";
-import Dropdown from "@/components/ui/Dropdown";
-import { Menu } from "@headlessui/react";
-import { useRouter } from "next/navigation";
-import { useDispatch } from "react-redux";
+import Icon from '@/components//ui/icons/Icon'
+import { handleLogout } from '@/components/partials/auth/store'
+import Dropdown from '@/components/ui/Dropdown'
+import { Menu } from '@headlessui/react'
+import { useRouter } from 'next/navigation'
+import { useDispatch } from 'react-redux'
 
 const ProfileLabel = () => {
   return (
@@ -26,72 +26,72 @@ const ProfileLabel = () => {
         </span>
       </div>
     </div>
-  );
-};
+  )
+}
 
 const Profile = () => {
-  const dispatch = useDispatch();
-  const router = useRouter();
+  const dispatch = useDispatch()
+  const router = useRouter()
 
   const ProfileMenu = [
     {
-      label: "Profile",
-      icon: "heroicons-outline:user",
+      label: 'Profile',
+      icon: 'heroicons-outline:user',
 
       action: () => {
-        router.push("/profile");
+        router.push('/profile')
       },
     },
     {
-      label: "Chat",
-      icon: "heroicons-outline:chat",
+      label: 'Chat',
+      icon: 'heroicons-outline:chat',
       action: () => {
-        router.push("/chat");
+        router.push('/chat')
       },
     },
     {
-      label: "Email",
-      icon: "heroicons-outline:mail",
+      label: 'Email',
+      icon: 'heroicons-outline:mail',
       action: () => {
-        router.push("email");
+        router.push('email')
       },
     },
     {
-      label: "Todo",
-      icon: "heroicons-outline:clipboard-check",
+      label: 'Todo',
+      icon: 'heroicons-outline:clipboard-check',
       action: () => {
-        router.push("/todo");
+        router.push('/todo')
       },
     },
     {
-      label: "Settings",
-      icon: "heroicons-outline:cog",
+      label: 'Settings',
+      icon: 'heroicons-outline:cog',
       action: () => {
-        router.push("/settings");
+        router.push('/settings')
       },
     },
     {
-      label: "Price",
-      icon: "heroicons-outline:credit-card",
+      label: 'Price',
+      icon: 'heroicons-outline:credit-card',
       action: () => {
-        router.push("/pricing");
+        router.push('/pricing')
       },
     },
     {
-      label: "Faq",
-      icon: "heroicons-outline:information-circle",
+      label: 'Faq',
+      icon: 'heroicons-outline:information-circle',
       action: () => {
-        router.push("/faq");
+        router.push('/faq')
       },
     },
     {
-      label: "Logout",
-      icon: "heroicons-outline:login",
+      label: 'Logout',
+      icon: 'heroicons-outline:login',
       action: () => {
-        dispatch(handleLogout(false));
+        dispatch(handleLogout(false))
       },
     },
-  ];
+  ]
 
   return (
     <Dropdown label={ProfileLabel()} classMenuItems="w-[180px] top-[58px]">
@@ -102,12 +102,12 @@ const Profile = () => {
               onClick={() => item.action()}
               className={`${
                 active
-                  ? "bg-slate-100 text-slate-900 dark:bg-slate-600 dark:text-slate-300 dark:bg-opacity-50"
-                  : "text-slate-600 dark:text-slate-300"
+                  ? 'bg-slate-100 text-slate-900 dark:bg-slate-600 dark:text-slate-300 dark:bg-opacity-50'
+                  : 'text-slate-600 dark:text-slate-300'
               } block     ${
                 item.hasDivider
-                  ? "border-t border-slate-100 dark:border-slate-700"
-                  : ""
+                  ? 'border-t border-slate-100 dark:border-slate-700'
+                  : ''
               }`}
             >
               <div className={`block cursor-pointer px-4 py-2`}>
@@ -123,7 +123,7 @@ const Profile = () => {
         </Menu.Item>
       ))}
     </Dropdown>
-  );
-};
+  )
+}
 
-export default Profile;
+export default Profile

@@ -1,15 +1,15 @@
-import { Eye } from "./Eye";
-import { Lock } from "./Lock";
-import { Envelope } from "./Envelope";
-import { User } from "./User";
-import { Search } from "./Search";
-import { Plus } from "./Plus";
-import { Chat } from "./Chat";
-import { PlusIcon } from "./KanbanBoard/PlusIcon";
-import {TrashIcon} from "./KanbanBoard/TrashIcon";
-import {EditIcon} from "./KanbanBoard/EditIcon"
-import {EyeSlash} from "./EyeSlash"
-import {Bell} from "./Bell"
+import { Eye } from './Eye'
+import { Lock } from './Lock'
+import { Envelope } from './Envelope'
+import { User } from './User'
+import { Search } from './Search'
+import { Plus } from './Plus'
+import { Chat } from './Chat'
+import { PlusIcon } from './KanbanBoard/PlusIcon'
+import { TrashIcon } from './KanbanBoard/TrashIcon'
+import { EditIcon } from './KanbanBoard/EditIcon'
+import { EyeSlash } from './EyeSlash'
+import { Bell } from './Bell'
 export const Icons = {
   Eye,
   Lock,
@@ -22,5 +22,5 @@ export const Icons = {
   TrashIcon,
   EditIcon,
   EyeSlash,
-  Bell
-};
+  Bell,
+}

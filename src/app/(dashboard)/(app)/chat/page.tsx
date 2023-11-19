@@ -1,29 +1,33 @@
-"use client";
+'use client'
 
-import Contacts from "@/components/partials/app/chat/Contacts";
-import Info from "@/components/partials/app/chat/Info";
-import MyProfile from "@/components/partials/app/chat/MyProfile";
+import Contacts from '@/components/partials/app/chat/Contacts'
+import Info from '@/components/partials/app/chat/Info'
+import MyProfile from '@/components/partials/app/chat/MyProfile'
 
-import Blank from "@/components/partials/app/chat/Blank";
-import Chat from "@/components/partials/app/chat/Chat";
+import Blank from '@/components/partials/app/chat/Blank'
+import Chat from '@/components/partials/app/chat/Chat'
+import appChatStore from '@/components/partials/app/chat/store'
+import { Card } from '@/components/ui/Card'
+import Icon from '@/components/ui/Icon'
+import useWidth from '@/hooks/useWidth'
+import { Key } from 'react'
+import SimpleBar from 'simplebar-react'
 
-import { default as appChat, default as appChatStore } from "@/components/partials/app/chat/store";
-import { Card } from "@/components/ui/Card";
-import Icon from "@/components/ui/Icon";
-import useWidth from "@/hooks/useWidth";
-import { Key } from "react";
-import SimpleBar from "simplebar-react";
+export default function ChatPage() {
+  const { width, breakpoints } = useWidth()
+  const {
+    searchContact,
+    mobileChatSidebar,
+    activechat,
+    contacts,
+    openinfo,
+    setContactSearch,
+    toggleMobileChatSidebar,
+  } = appChatStore()
 
-
-export default function ChatPage () {
-  const { width, breakpoints } = useWidth();
-    const{searchContact,mobileChatSidebar} = appChatStore()
-    const{activechat,contacts,openinfo,setContactSearch,toggleMobileChatSidebar } = appChat()
-
-
-  const searchContacts = contacts?.filter((item: { fullName: string; }) =>
-    item.fullName.toLowerCase().includes(searchContact.toLowerCase())
-  );
+  const searchContacts = contacts?.filter((item: { fullName: string }) =>
+    item.fullName.toLowerCase().includes(searchContact.toLowerCase()),
+  )
 
   return (
     <div className="flex lg:space-x-5 chat-height overflow-hidden relative rtl:space-x-reverse">
@@ -31,13 +35,13 @@ export default function ChatPage () {
         className={`transition-all duration-150 flex-none min-w-[260px]
         ${
           width < parseInt(breakpoints.lg)
-            ? "absolute h-full top-0 md:w-[260px] w-[200px] z-[999]"
-            : "flex-none min-w-[260px]"
+            ? 'absolute h-full top-0 md:w-[260px] w-[200px] z-[999]'
+            : 'flex-none min-w-[260px]'
         }
         ${
-          width <parseInt(breakpoints.lg) && mobileChatSidebar
-            ? "left-0 "
-            : "-left-full "
+          width < parseInt(breakpoints.lg) && mobileChatSidebar
+            ? 'left-0 '
+            : '-left-full '
         }
         `}
       >
@@ -77,10 +81,10 @@ export default function ChatPage () {
         ></div>
       )}
 
-      {/* mai  chat box*/}
+      {/* mai  chat box */}
       <div className="flex-1">
         <div className="parent flex space-x-5 h-full rtl:space-x-reverse">
-          {/* main message body*/}
+          {/* main message body */}
           <div className="flex-1">
             <Card bodyClass="p-0 h-full" className="h-full bg-white">
               {activechat ? (
@@ -92,7 +96,7 @@ export default function ChatPage () {
               )}
             </Card>
           </div>
-          {/* right side information*/}
+          {/* right side information */}
           {width > parseInt(breakpoints.lg) && openinfo && activechat && (
             <div className="flex-none w-[285px]">
               <Card bodyClass="p-0 h-full" className="h-full bg-white">
@@ -103,6 +107,5 @@ export default function ChatPage () {
         </div>
       </div>
     </div>
-  );
-};
-
+  )
+}

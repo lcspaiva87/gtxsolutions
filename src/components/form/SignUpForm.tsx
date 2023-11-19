@@ -1,24 +1,25 @@
-"use client";
-import { useForm } from "react-hook-form";
-import Link from "next/link";
-import { InputCustomer } from "../ui/inputs";
-import * as yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
-import Button from "../ui/Button";
-import { LoadingSpinner } from "../ui/LoadingSpinner";
+/* eslint-disable */
+'use client'
+import { yupResolver } from '@hookform/resolvers/yup'
+import Link from 'next/link'
+import { useForm } from 'react-hook-form'
+import * as yup from 'yup'
+import Button from '../ui/Button'
+import { Input } from '../ui/Input'
+import { LoadingSpinner } from '../ui/LoadingSpinner'
 
 type FormValues = {
-  email: string;
-  password: string;
-};
+  email: string
+  password: string
+}
 
 const signInFormSchema = yup.object().shape({
-  email: yup.string().required("E-mail obrigatório").email("E-mail inválido"),
+  email: yup.string().required('E-mail obrigatório').email('E-mail inválido'),
   password: yup
     .string()
-    .required("Senha obrigatória")
-    .min(8, "A senha deve ter pelo menos 8 caracteres"),
-});
+    .required('Senha obrigatória')
+    .min(8, 'A senha deve ter pelo menos 8 caracteres'),
+})
 export function SignUpForm() {
   const {
     handleSubmit,
@@ -29,13 +30,13 @@ export function SignUpForm() {
   } = useForm<FormValues>({
     resolver: yupResolver(signInFormSchema),
     defaultValues: {
-      email: "",
-      password: "",
+      email: '',
+      password: '',
     },
-  });
+  })
   return (
     <>
-     <InputCustomer
+      <Input
         type="username"
         name="email"
         placeholder="Digite seu nome Completo"
@@ -44,7 +45,7 @@ export function SignUpForm() {
         className="mt-6"
         // disabled={loading}
       />
-      <InputCustomer
+      <Input
         type="email"
         name="email"
         placeholder="Digite seu endereço de e-mail"
@@ -53,14 +54,14 @@ export function SignUpForm() {
         className="mt-6"
         // disabled={loading}
       />
-      <InputCustomer
+      <Input
         type="password"
         name="password"
         placeholder="Digite sua senha"
         className="mt-6"
         required
         control={control}
-        //disabled={loading}
+        // disabled={loading}
       />
 
       <Link
@@ -75,8 +76,8 @@ export function SignUpForm() {
         type="submit"
         disabled={false || !errors}
       >
-        {false ? <LoadingSpinner className="mx-auto" /> : " Sign in"}
+        {false ? <LoadingSpinner className="mx-auto" /> : ' Sign in'}
       </Button>
     </>
-  );
+  )
 }

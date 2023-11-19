@@ -1,31 +1,31 @@
-import React, { useEffect, useState } from "react";
-import Modal from "@/components/ui/Modal";
-import Textinput from "@/components/ui/Textinput";
-import { useForm, Controller } from "react-hook-form";
-import Select from "@/components/ui/Select";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
-import { useSelector, useDispatch } from "react-redux";
-import { dateClick } from "./store";
-import Flatpickr from "react-flatpickr";
-import FormGroup from "@/components/ui/FormGroup";
+import FormGroup from '@/components/ui/FormGroup'
+import Modal from '@/components/ui/Modal'
+import Select from '@/components/ui/Select'
+import Textinput from '@/components/ui/Textinput'
+import { yupResolver } from '@hookform/resolvers/yup'
+import React, { useEffect, useState } from 'react'
+import Flatpickr from 'react-flatpickr'
+import { Controller, useForm } from 'react-hook-form'
+import { useDispatch, useSelector } from 'react-redux'
+import * as yup from 'yup'
+import { dateClick } from './store'
 
 const EventModal = ({ activeModal, onClose, selectedEvent }) => {
-  const { categories } = useSelector((state) => state.calendar);
-  const dispatch = useDispatch();
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
+  const { categories } = useSelector((state) => state.calendar)
+  const dispatch = useDispatch()
+  const [startDate, setStartDate] = useState(new Date())
+  const [endDate, setEndDate] = useState(new Date())
 
   useEffect(() => {
     if (selectedEvent) {
-      setStartDate(selectedEvent.date);
-      setEndDate(selectedEvent.date);
+      setStartDate(selectedEvent.date)
+      setEndDate(selectedEvent.date)
     }
-  }, [selectedEvent]);
+  }, [selectedEvent])
 
   const FormValidationSchema = yup
     .object({
-      title: yup.string().required("Event Name is required"),
+      title: yup.string().required('Event Name is required'),
       cata: yup
         .string()
         // .when("title", {
@@ -34,9 +34,9 @@ const EventModal = ({ activeModal, onClose, selectedEvent }) => {
 
         //   otherwise: yup.string().notRequired(),
         // })
-        .required("Category is required"),
+        .required('Category is required'),
     })
-    .required();
+    .required()
 
   const {
     register,
@@ -46,15 +46,15 @@ const EventModal = ({ activeModal, onClose, selectedEvent }) => {
     handleSubmit,
   } = useForm({
     resolver: yupResolver(FormValidationSchema),
-    mode: "all",
-  });
+    mode: 'all',
+  })
 
   const onSubmit = (data) => {
-    dispatch(dateClick({ data, selectedEvent, startDate, endDate }));
+    dispatch(dateClick({ data, selectedEvent, startDate, endDate }))
 
-    onClose();
-    reset();
-  };
+    onClose()
+    reset()
+  }
   return (
     <div>
       <Modal
@@ -89,8 +89,8 @@ const EventModal = ({ activeModal, onClose, selectedEvent }) => {
                   onChange={(date) => setStartDate(date[0])}
                   options={{
                     altInput: true,
-                    altFormat: "F j, Y",
-                    dateFormat: "Y-m-d",
+                    altFormat: 'F j, Y',
+                    dateFormat: 'Y-m-d',
                   }}
                 />
               )}
@@ -113,8 +113,8 @@ const EventModal = ({ activeModal, onClose, selectedEvent }) => {
                   onChange={(date) => setEndDate(date[0])}
                   options={{
                     altInput: true,
-                    altFormat: "F j, Y",
-                    dateFormat: "Y-m-d",
+                    altFormat: 'F j, Y',
+                    dateFormat: 'Y-m-d',
                   }}
                 />
               )}
@@ -134,7 +134,7 @@ const EventModal = ({ activeModal, onClose, selectedEvent }) => {
         </form>
       </Modal>
     </div>
-  );
-};
+  )
+}
 
-export default EventModal;
+export default EventModal

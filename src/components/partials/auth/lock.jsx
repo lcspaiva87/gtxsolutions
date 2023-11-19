@@ -1,15 +1,15 @@
-import React, { useState } from "react";
-import Textinput from "@/components/ui/Textinput";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
+import Textinput from '@/components/ui/Textinput'
+import { yupResolver } from '@hookform/resolvers/yup'
+import React from 'react'
+import { useForm } from 'react-hook-form'
+import * as yup from 'yup'
 
 const schema = yup
   .object({
-    email: yup.string().email("Invalid email").required("Email is Required"),
-    password: yup.string().required("Password is Required"),
+    email: yup.string().email('Invalid email').required('Email is Required'),
+    password: yup.string().required('Password is Required'),
   })
-  .required();
+  .required()
 const Lock = () => {
   const {
     register,
@@ -17,11 +17,11 @@ const Lock = () => {
     handleSubmit,
   } = useForm({
     resolver: yupResolver(schema),
-  });
+  })
 
   const onSubmit = (data) => {
-    console.log(data);
-  };
+    console.log(data)
+  }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 ">
@@ -35,7 +35,7 @@ const Lock = () => {
 
       <button className="btn btn-dark block w-full text-center">Unlock</button>
     </form>
-  );
-};
+  )
+}
 
-export default Lock;
+export default Lock

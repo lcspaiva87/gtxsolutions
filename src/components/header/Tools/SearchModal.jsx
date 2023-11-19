@@ -1,50 +1,50 @@
-import React, { Fragment, useState } from "react";
-import { Dialog, Transition, Combobox } from "@headlessui/react";
-import Icon from "@/components//ui/icons/Icon";
+import Icon from '@/components//ui/icons/Icon'
+import { Combobox, Dialog, Transition } from '@headlessui/react'
+import { Fragment, useState } from 'react'
 const SearchModal = () => {
-  let [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false)
 
   function closeModal() {
-    setIsOpen(false);
+    setIsOpen(false)
   }
 
   function openModal() {
-    setIsOpen(true);
+    setIsOpen(true)
   }
-  const [query, setQuery] = useState(" ");
+  const [query, setQuery] = useState(' ')
   const searchList = [
     {
       id: 1,
-      name: "What is Dashcode ?",
+      name: 'What is Dashcode ?',
     },
     {
       id: 2,
-      name: "Our Services",
+      name: 'Our Services',
     },
     {
       id: 3,
-      name: "Our Team",
+      name: 'Our Team',
     },
     {
       id: 4,
-      name: "Our Clients",
+      name: 'Our Clients',
     },
     {
       id: 5,
-      name: "Our Partners",
+      name: 'Our Partners',
     },
     {
       id: 6,
-      name: "Our Blog",
+      name: 'Our Blog',
     },
     {
       id: 7,
-      name: "Our Contact",
+      name: 'Our Contact',
     },
-  ];
+  ]
   const filteredsearchList = searchList.filter((item) =>
-    item.name.toLowerCase().includes(query.toLowerCase())
-  );
+    item.name.toLowerCase().includes(query.toLowerCase()),
+  )
 
   return (
     <>
@@ -107,7 +107,7 @@ const SearchModal = () => {
                       leaveTo="opacity-0"
                     >
                       <Combobox.Options className="max-h-40 overflow-y-auto text-sm py-2">
-                        {filteredsearchList.length === 0 && query !== "" && (
+                        {filteredsearchList.length === 0 && query !== '' && (
                           <div>
                             <div className=" text-base py-2 px-4">
                               <p className="text-slate-500 text-base dark:text-white">
@@ -123,8 +123,8 @@ const SearchModal = () => {
                               <div
                                 className={`px-4 text-[15px] font-normal capitalize py-2 ${
                                   active
-                                    ? "bg-slate-900 dark:bg-slate-600 dark:bg-opacity-60 text-white"
-                                    : "text-slate-900 dark:text-white"
+                                    ? 'bg-slate-900 dark:bg-slate-600 dark:bg-opacity-60 text-white'
+                                    : 'text-slate-900 dark:text-white'
                                 }`}
                               >
                                 <span>{item.name}</span>
@@ -142,7 +142,7 @@ const SearchModal = () => {
         </Dialog>
       </Transition>
     </>
-  );
-};
+  )
+}
 
-export default SearchModal;
+export default SearchModal

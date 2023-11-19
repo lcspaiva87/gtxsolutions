@@ -36,7 +36,7 @@ const Social = () => {
         </li>
       </ul>
     </>
-  );
-};
+  )
+}
 
-export default Social;
+export default Social

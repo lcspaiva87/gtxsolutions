@@ -1,23 +1,20 @@
-"use client";
-import { yupResolver } from "@hookform/resolvers/yup";
-import Link from "next/link";
-import { useForm } from "react-hook-form";
-import * as yup from "yup";
-import Button from "../ui/Button";
-import { LoadingSpinner } from "../ui/LoadingSpinner";
-import { InputCustomer } from "../ui/inputs";
+'use client'
+import { yupResolver } from '@hookform/resolvers/yup'
+import Link from 'next/link'
+import { useForm } from 'react-hook-form'
+import * as yup from 'yup'
+import Button from '../ui/Button'
+import { Input } from '../ui/Input'
 
 type FormValues = {
-  email: string;
-  password: string;
-};
+  email: string
+  password: string
+}
 
 const signInFormSchema = yup.object().shape({
-  email: yup.string().required("E-mail obrigatório").email("E-mail inválido"),
-  password: yup
-    .string()
-    .required("Senha obrigatória")
-});
+  email: yup.string().required('E-mail obrigatório').email('E-mail inválido'),
+  password: yup.string().required('Senha obrigatória'),
+})
 export function SignintoForm() {
   const {
     handleSubmit,
@@ -28,16 +25,16 @@ export function SignintoForm() {
   } = useForm<FormValues>({
     resolver: yupResolver(signInFormSchema),
     defaultValues: {
-      email: "",
-      password: "",
+      email: '',
+      password: '',
     },
-  });
+  })
   async function handleSignIn(data: FormValues) {
-
+    return data
   }
   return (
-    <form onSubmit={handleSubmit(handleSignIn)}  >
-     <InputCustomer
+    <form onSubmit={handleSubmit(handleSignIn)}>
+      <Input
         type="email"
         name="email"
         placeholder="Digite seu nome Completo"
@@ -46,7 +43,7 @@ export function SignintoForm() {
         className="mt-6"
         // disabled={loading}
       />
-      <InputCustomer
+      <Input
         type="password"
         name="password"
         placeholder="Digite sua senha"
@@ -55,7 +52,6 @@ export function SignintoForm() {
         className="mt-6"
         // disabled={loading}
       />
-
 
       <Link
         href="#"
@@ -69,8 +65,9 @@ export function SignintoForm() {
         type="submit"
         disabled={false || !errors}
       >
-        {false ? <LoadingSpinner className="mx-auto" /> : " Sign in"}
+        {/* {false ? <LoadingSpinner className="mx-auto" /> : ' Sign in'} */}
+        Sign in
       </Button>
     </form>
-  );
+  )
 }

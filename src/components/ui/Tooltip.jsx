@@ -1,34 +1,31 @@
-import React from "react";
-import Tippy from "@tippyjs/react";
-import "tippy.js/dist/tippy.css";
-import "tippy.js/dist/tippy.css";
-import "tippy.js/themes/light.css";
-import "tippy.js/themes/light-border.css";
-import "tippy.js/animations/shift-away.css";
-import "tippy.js/animations/scale-subtle.css";
-import "tippy.js/animations/perspective-extreme.css";
-import "tippy.js/animations/perspective-subtle.css";
-import "tippy.js/animations/perspective.css";
-import "tippy.js/animations/scale-extreme.css";
-import "tippy.js/animations/scale-subtle.css";
-import "tippy.js/animations/scale.css";
-import "tippy.js/animations/shift-away-extreme.css";
-import "tippy.js/animations/shift-away-subtle.css";
-import "tippy.js/animations/shift-away.css";
-import "tippy.js/animations/shift-toward-extreme.css";
-import "tippy.js/animations/shift-toward-subtle.css";
-import "tippy.js/animations/shift-toward.css";
+import Tippy from '@tippyjs/react'
+import React from 'react'
+import 'tippy.js/animations/perspective-extreme.css'
+import 'tippy.js/animations/perspective-subtle.css'
+import 'tippy.js/animations/perspective.css'
+import 'tippy.js/animations/scale-extreme.css'
+import 'tippy.js/animations/scale-subtle.css'
+import 'tippy.js/animations/scale.css'
+import 'tippy.js/animations/shift-away-extreme.css'
+import 'tippy.js/animations/shift-away-subtle.css'
+import 'tippy.js/animations/shift-away.css'
+import 'tippy.js/animations/shift-toward-extreme.css'
+import 'tippy.js/animations/shift-toward-subtle.css'
+import 'tippy.js/animations/shift-toward.css'
+import 'tippy.js/dist/tippy.css'
+import 'tippy.js/themes/light-border.css'
+import 'tippy.js/themes/light.css'
 
 const Tooltip = ({
   children,
-  content = "content",
+  content = 'content',
   title,
-  className = "btn btn-dark",
-  placement = "top",
+  className = 'btn btn-dark',
+  placement = 'top',
   arrow = true,
-  theme = "dark",
-  animation = "shift-away",
-  trigger = "mouseenter focus",
+  theme = 'dark',
+  animation = 'shift-away',
+  trigger = 'mouseenter focus',
   interactive = false,
   allowHTML = false,
   maxWidth = 300,
@@ -48,10 +45,10 @@ const Tooltip = ({
         maxWidth={maxWidth}
         duration={duration}
       >
-        {children ? children : <button className={className}>{title}</button>}
+        {children || <button className={className}>{title}</button>}
       </Tippy>
     </div>
-  );
-};
+  )
+}
 
-export default Tooltip;
+export default Tooltip

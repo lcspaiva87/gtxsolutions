@@ -1,47 +1,46 @@
-import { TextArea } from "@/components/Textarea";
-import Modal from "@/components/ui/Modal";
-import { useTask } from "@/hooks/useTask";
-import { yupResolver } from "@hookform/resolvers/yup";
+import { TextArea } from '@/components/Textarea'
+import Modal from '@/components/ui/Modal'
+import { useTask } from '@/hooks/useTask'
+import { yupResolver } from '@hookform/resolvers/yup'
 
-import 'flatpickr/dist/flatpickr.min.css';
-import { useState } from "react";
-import Flatpickr from "react-flatpickr";
-import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
-import { v4 as uuidv4 } from "uuid";
-import * as yup from "yup";
-import { toggleTaskModal } from "../partials/app/kanban/store";
-import { InputCustomer } from "../ui/inputs";
+import 'flatpickr/dist/flatpickr.min.css'
+import { useState } from 'react'
+import Flatpickr from 'react-flatpickr'
+import { useForm } from 'react-hook-form'
+import { useDispatch, useSelector } from 'react-redux'
+import { v4 as uuidv4 } from 'uuid'
+import * as yup from 'yup'
+import { toggleTaskModal } from '../partials/app/kanban/store'
+import { Input } from '../ui/Input'
 type FormValues = {
-  company: string;
-  camera: string;
-  phone: string;
-  responsible: string;
-  message: string;
-  priority: string;
-  startDate:any
-};
+  company: string
+  camera: string
+  phone: string
+  responsible: string
+  message: string
+  priority: string
+  startDate: any
+}
 const FormSchema = yup.object().shape({
-  company: yup.string().required("Digite o nome da empresa"),
-  camera: yup.string().required("Digite o número da camera"),
-  phone: yup.string().required("Digite o número da camera"),
+  company: yup.string().required('Digite o nome da empresa'),
+  camera: yup.string().required('Digite o número da camera'),
+  phone: yup.string().required('Digite o número da camera'),
   responsible: yup
     .string()
-    .required("Digite o nome do responsavel pelo sentor"),
-  message: yup.string().required("Digite a mensagem"),
-  priority: yup.string().required("Digite a mensagem"),
+    .required('Digite o nome do responsavel pelo sentor'),
+  message: yup.string().required('Digite a mensagem'),
+  priority: yup.string().required('Digite a mensagem'),
   startDate: yup
-  .date()
-  .required("Start date is required")
-  .min(new Date(), "Start date must be greater than today"),
-});
-
+    .date()
+    .required('Start date is required')
+    .min(new Date(), 'Start date must be greater than today'),
+})
 
 export function FormCreateTask() {
-  const { createMutation } = useTask();
-  const [picker, setPicker] = useState(new Date());
-  const { taskModal } = useSelector((state: any) => state.kanban);
-  const dispatch = useDispatch();
+  const { createMutation } = useTask()
+  const [picker, setPicker] = useState(new Date())
+  const { taskModal } = useSelector((state: any) => state.kanban)
+  const dispatch = useDispatch()
   const {
     handleSubmit,
     control,
@@ -50,15 +49,15 @@ export function FormCreateTask() {
   } = useForm<FormValues>({
     resolver: yupResolver(FormSchema),
     defaultValues: {
-      camera: "",
-      company: "",
-      message: "",
-      phone: "",
-      responsible: "",
-      priority: "",
-      startDate: "",
+      camera: '',
+      company: '',
+      message: '',
+      phone: '',
+      responsible: '',
+      priority: '',
+      startDate: '',
     },
-  });
+  })
   async function onSubmit({
     camera,
     company,
@@ -67,7 +66,7 @@ export function FormCreateTask() {
     responsible,
     priority,
   }: FormValues) {
-    const id = uuidv4();
+    const id = uuidv4()
     try {
       // await createMutation.mutate({
       //   camera: camera,
@@ -83,11 +82,10 @@ export function FormCreateTask() {
       //   priority: priority,
       // });
     } catch (error) {
-      console.error("Ocorreu um erro ao enviar a tarefa:", error);
+      console.error('Ocorreu um erro ao enviar a tarefa:', error)
     }
   }
   return (
-    //@ts-ignore
     <Modal
       title="Create Project"
       labelClass="btn-outline-dark"
@@ -96,21 +94,20 @@ export function FormCreateTask() {
         dispatch(
           toggleTaskModal({
             open: false,
-          })
+          }),
         )
       }
     >
-      <form >
+      <form>
         <div className="flex flex-col w-full items-start gap-y-4">
           <h1 className="text-gray-800 text-lg font-bold">Relatório</h1>
           <Flatpickr
-              className="form-control py-2"
-              value={picker}
-              // @ts-ignore
-              onChange={(date) => setPicker(date)}
-              id="default-picker"
-            />
-          <InputCustomer
+            className="form-control py-2"
+            // value={picker}
+            // onChange={(date) => setPicker([date])}
+            id="default-picker"
+          />
+          <Input
             type="text"
             name="priority"
             placeholder="Nivel de prioridade"
@@ -118,14 +115,14 @@ export function FormCreateTask() {
             control={control}
           />
 
-          <InputCustomer
+          <Input
             type="text"
             name="company"
             placeholder="Empresa"
             required
             control={control}
           />
-          <InputCustomer
+          <Input
             type="text"
             name="camera"
             placeholder="Camera"
@@ -133,15 +130,14 @@ export function FormCreateTask() {
             control={control}
           />
 
-
-          <InputCustomer
+          <Input
             type="text"
             name="phone"
             placeholder="Telefone"
             required
             control={control}
           />
-          <InputCustomer
+          <Input
             type="text"
             name="responsible"
             placeholder="responsible"
@@ -213,5 +209,5 @@ export function FormCreateTask() {
         </div>
       </form>
     </Modal>
-  );
+  )
 }
