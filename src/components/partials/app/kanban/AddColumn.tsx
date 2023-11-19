@@ -20,7 +20,7 @@ const FormValidationSchema = yup
   })
   .required()
 
-const AddColumn = () => {
+export function AddColumn  () {
   const [color, setColor] = useState('#4669fa')
   const { columModal, toggleColumnModal } = kabanStore()
   const { createMutation } = useColumns()
@@ -79,4 +79,3 @@ const AddColumn = () => {
   )
 }
 
-export default AddColumn

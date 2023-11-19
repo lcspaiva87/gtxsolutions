@@ -1,5 +1,7 @@
 'use client'
 import { Button } from '@/components/Button'
+import { AddColumn } from '@/components/partials/app/kanban/AddColumn'
+import Column from '@/components/partials/app/kanban/Colum'
 import kabanStore from '@/components/partials/app/kanban/sto'
 
 
@@ -21,6 +23,8 @@ export default function Kanban() {
           />
         </div>
       </div>
+        <Column />
+        <AddColumn/>
     </>
   )
 }
