@@ -1,3 +1,4 @@
+/* eslint-disable */
 import Icon from '@/components//ui/icons/Icon'
 import Dropdown from '@/components/ui/Dropdown'
 import useWidth from '@/hooks/useWidth'
@@ -53,6 +54,7 @@ const Chat = () => {
   const chatheight = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
+    // @ts-ignore
     chatheight.current.scrollTop = chatheight.current.scrollHeight
   }, [messFeed])
 

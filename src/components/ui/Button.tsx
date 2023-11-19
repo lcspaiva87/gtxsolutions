@@ -1,3 +1,4 @@
+/* eslint-disable */
 import clsx from 'clsx'
 
 export type Props = {

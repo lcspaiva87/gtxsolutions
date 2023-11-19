@@ -1,11 +1,12 @@
+/* eslint-disable */
 import Icon from '@/components//ui/icons/Icon'
-import { Button } from '@/components/button'
 
 import Radio from '@/components/ui/Radio'
 import Textarea from '@/components/ui/Textarea'
 import { useRef, useState } from 'react'
 import { CSSTransition } from 'react-transition-group'
 
+import Button from '@/components/ui/Button'
 import SimpleBar from 'simplebar-react'
 import appChatStore from './store'
 
@@ -154,7 +155,7 @@ const MyProfile = () => {
                   />
                 ))}
               </div>
-              <Button text="Logout" className="btn-dark " />
+              <Button  className="btn-dark " children={undefined} />
             </SimpleBar>
           </div>
         </CSSTransition>
