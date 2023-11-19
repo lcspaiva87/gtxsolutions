@@ -1,7 +1,9 @@
 import { SignUpForm } from "@/components/form/SignUpForm";
-import { SignintoForm } from "@/components/form/SignintoForm";
-
+import { Metadata } from "next";
 import Image from "next/image";
+export const metadata: Metadata = {
+  title: "Register",
+ }
 
 export default function Home() {
   return (

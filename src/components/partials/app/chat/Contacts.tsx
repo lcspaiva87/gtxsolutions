@@ -1,15 +1,28 @@
-'use client';
-import appChat from "./test";
+"use client";
+import Image from "next/image";
+import appChatStore from "./store";
 
 
-const Contacts = ({ contact }) => {
-  const { fullName, avatar, status, lastmessage, unredmessage } = contact;
-  const{openChat} = appChat()
+interface IContact {
+  id: number;
+  fullName: string;
+  role: string;
+  lastmessage: string;
+  lastmessageTime: string;
+  unredmessage: number;
+  avatar: string;
+  status: string;
+}
+
+const Contacts = ({ contact }: { contact: IContact }) => {
+  console.log(contact);
+  const { avatar,fullName, lastmessage, status, unredmessage } = contact;
+  const { openChat } = appChatStore();
 
   return (
     <div
       className="block w-full py-5 focus:ring-0 outline-none cursor-pointer group transition-all duration-150 hover:bg-slate-100 dark:hover:bg-slate-600 dark:hover:bg-opacity-70"
-      onClick={() => openChat({activechat:true,contact})}
+      onClick={() => openChat({ contact: contact, activechat: true })}
     >
       <div className="flex space-x-3 px-6 rtl:space-x-reverse">
         <div className="flex-none">
@@ -19,9 +32,11 @@ const Contacts = ({ contact }) => {
                 ${status === "active" ? "bg-success-500" : "bg-secondary-500"}
               `}
             ></span>
-            <img
+            <Image
+              width={100}
+              height={100}
               src={avatar}
-              alt=""
+              alt={fullName}
               className="block w-full h-full object-cover rounded-full"
             />
           </div>

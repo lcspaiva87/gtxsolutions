@@ -3,7 +3,7 @@ import { create } from 'zustand';
 interface Message {
   img: string;
   content: string;
-  time: string;
+  time?: string;
   sender: string;
 }
 
@@ -32,12 +32,18 @@ interface AppState {
   mobileChatSidebar: boolean;
   profileinfo: Record<string, unknown>;
   messFeed: Message[];
-  user: Record<string, unknown>;
+  user: Contact
   contacts: Contact[];
   chats: Chat[];
+  sendMessage: (payload: Message) => void;
+  toggleMobileChatSidebar: (payload: boolean) => void;
+  infoToggle: (openinfo: boolean) => void;
+  toggleProfile: (openProfile: boolean) => void;
+  setContactSearch: (searchContact: string) => void;
+  openChat: (payload: { contact: Contact; activechat: boolean }) => void;
 }
 
-const appChat = create<AppState>((set) => ({
+const appChatStore = create<AppState>((set) => ({
   openProfile: false,
   openinfo: true,
   activechat: false,
@@ -45,7 +51,16 @@ const appChat = create<AppState>((set) => ({
   mobileChatSidebar: false,
   profileinfo: {},
   messFeed: [],
-  user: {},
+  user: {
+    id: 0,
+    fullName: '',
+    role: '',
+    lastmessage: '',
+    lastmessageTime: '',
+    unredmessage: 0,
+    avatar: '',
+    status: ''
+  },
   contacts: [
     {
       id: 1,
@@ -235,10 +250,8 @@ const appChat = create<AppState>((set) => ({
     },
   ],
 
-  openChat: (payload:any) =>
+openChat: (payload:any) =>
   set((state: AppState) => {
-    console.log('Payload:', state);
-    console.log('Current State:', payload.contact.id);
     const contactId = payload.contact.id;
     const chat = state.chats.find((item:Chat) => item.userId === contactId);
     return {
@@ -247,10 +260,9 @@ const appChat = create<AppState>((set) => ({
       user: payload.contact,
       messFeed: chat?.messages || [],
 
-
     };
   }),
-  toggleMobileChatSidebar: (payload:boolean) =>
+toggleMobileChatSidebar: (payload:boolean) =>
     set(() => ({
       mobileChatSidebar: payload,
     })),
@@ -266,14 +278,15 @@ const appChat = create<AppState>((set) => ({
     set(() => ({
       openProfile: payload,
     })),
-  setContactSearch: (payload) =>
+  setContactSearch: (payload:string) =>
     set(() => ({
       searchContact: payload,
     })),
-  toggleActiveChat: (payload:boolean) =>
-    set(() => ({
+    toggleActiveChat: (payload: boolean) =>
+    set((state) => ({
+      ...state,
       activechat: payload,
     })),
 }));
-
-export default appChat;
+;
+export default appChatStore;

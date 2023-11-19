@@ -4,9 +4,9 @@ import Image from "next/image";
 import Link from "next/link";
 import '../scss/app.scss';
 export const metadata: Metadata = {
-  title: 'GTX | Login',
-  description: '...',
-}
+  title: "Login",
+ }
+
 export default function Home() {
   return (
     <main className="bg-light flex h-screen items-center justify-center sm:bg-gray-100">

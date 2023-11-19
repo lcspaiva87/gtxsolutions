@@ -4,9 +4,7 @@ import { Button } from "@/components/button";
 import Radio from "@/components/ui/Radio";
 import Textarea from "@/components/ui/Textarea";
 import { useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { CSSTransition } from "react-transition-group";
-import { toggleProfile } from "./store";
 
 const allStatus = [
   {
@@ -32,11 +30,13 @@ const allStatus = [
 ];
 
 import SimpleBar from "simplebar-react";
+import appChatStore from "./store";
 const MyProfile = () => {
-  const { openProfile } = useSelector((state) => state.chat);
+
+  const{toggleProfile,openProfile} = appChatStore()
   const [status, setStatus] = useState("online");
   const nodeRef = useRef(null);
-  const dispatch = useDispatch();
+
 
   return (
     <div>
@@ -67,7 +67,7 @@ const MyProfile = () => {
           <div className="flex-none">
             <div
               className="h-8 w-8 bg-slate-100 dark:bg-slate-900 dark:text-slate-400 flex flex-col justify-center items-center text-xl rounded-full cursor-pointer"
-              onClick={() => dispatch(toggleProfile(true))}
+              onClick={() => toggleProfile(true)}
             >
               <Icon icon="heroicons-outline:dots-horizontal" />
             </div>
@@ -88,7 +88,7 @@ const MyProfile = () => {
               <div className="text-right">
                 <div
                   className="h-8 w-8 bg-slate-100 dark:bg-slate-900 dark:text-slate-400 inline-flex ml-auto flex-col justify-center items-center text-xl rounded-full cursor-pointer"
-                  onClick={() => dispatch(toggleProfile(false))}
+                  onClick={() => toggleProfile(false)}
                 >
                   <Icon icon="heroicons-outline:x" />
                 </div>
@@ -119,7 +119,7 @@ const MyProfile = () => {
                 </span>
               </header>
               <div className="my-8">
-                <Textarea label="About" placeholder="About ypur self" />
+                <Textarea label="About" placeholder="About ypur self" register={undefined} name={undefined} readonly={undefined} dvalue={undefined} error={undefined} icon={undefined} disabled={undefined} id={undefined} horizontal={undefined} validate={undefined} msgTooltip={undefined} description={undefined} cols={undefined} onChange={undefined} />
               </div>
               <div className="mb-8">
                 <span className="form-label">Status</span>
@@ -130,9 +130,8 @@ const MyProfile = () => {
                     name="status"
                     value={item.value}
                     checked={status === item.value}
-                    onChange={(e) => setStatus(e.target.value)}
-                    activeClass={item.activeClass}
-                  />
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setStatus(e.target.value)}
+                    activeClass={item.activeClass} id={undefined} disabled={undefined}                  />
                 ))}
               </div>
               <Button text="Logout" className="btn-dark " />

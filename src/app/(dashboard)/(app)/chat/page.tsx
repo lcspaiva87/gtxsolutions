@@ -6,24 +6,20 @@ import MyProfile from "@/components/partials/app/chat/MyProfile";
 
 import Blank from "@/components/partials/app/chat/Blank";
 import Chat from "@/components/partials/app/chat/Chat";
-import {
-  setContactSearch, toggleMobileChatSidebar
-} from "@/components/partials/app/chat/store";
-import appChat from "@/components/partials/app/chat/test";
+
+import { default as appChat, default as appChatStore } from "@/components/partials/app/chat/store";
 import { Card } from "@/components/ui/Card";
 import Icon from "@/components/ui/Icon";
 import useWidth from "@/hooks/useWidth";
 import { Key } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import SimpleBar from "simplebar-react";
 
 
 export default function ChatPage () {
   const { width, breakpoints } = useWidth();
-  const dispatch = useDispatch();
-  const {  openinfo, mobileChatSidebar, searchContact } =
-    useSelector((state:any) => state.chat);
-    const{activechat,contacts } = appChat()
+    const{searchContact,mobileChatSidebar} = appChatStore()
+    const{activechat,contacts,openinfo,setContactSearch,toggleMobileChatSidebar } = appChat()
+
 
   const searchContacts = contacts?.filter((item: { fullName: string; }) =>
     item.fullName.toLowerCase().includes(searchContact.toLowerCase())
@@ -58,7 +54,7 @@ export default function ChatPage () {
                 <Icon icon="bytesize:search" />
               </div>
               <input
-                onChange={(e) => dispatch(setContactSearch(e.target.value))}
+                onChange={(e) => setContactSearch(e.target.value)}
                 placeholder="Search..."
                 className="w-full flex-1 block bg-transparent placeholder:font-normal placeholder:text-slate-400 py-2 focus:ring-0 focus:outline-none dark:text-slate-200 dark:placeholder:text-slate-400"
               />
@@ -77,7 +73,7 @@ export default function ChatPage () {
         <div
           className="overlay bg-slate-900 dark:bg-slate-900 dark:bg-opacity-60 bg-opacity-60 backdrop-filter
          backdrop-blur-sm absolute w-full flex-1 inset-0 z-[99] rounded-md"
-          onClick={() => dispatch(toggleMobileChatSidebar(!mobileChatSidebar))}
+          onClick={() => toggleMobileChatSidebar(!mobileChatSidebar)}
         ></div>
       )}
 
