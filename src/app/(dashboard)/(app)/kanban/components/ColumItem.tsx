@@ -8,7 +8,7 @@ import { Card } from '@/components/ui/Card'
 import { Key, useState } from 'react'
 import { Draggable, Droppable } from 'react-beautiful-dnd'
 import { useDispatch } from 'react-redux'
-export function ColumItem({ column, tasks }: any) {
+ function ColumItem({ column, tasks }: any) {
   const { title, user, message, startDate, endDate, assignee } = tasks
   const [start, setStart] = useState(new Date(Number(startDate)))
   const [end, setEnd] = useState(new Date(endDate))
@@ -209,3 +209,4 @@ export function ColumItem({ column, tasks }: any) {
     </div>
   )
 }
+export default ColumItem

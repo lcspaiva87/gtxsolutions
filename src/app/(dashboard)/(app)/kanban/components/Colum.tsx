@@ -4,7 +4,7 @@ import { useColumns } from '@/hooks/useColuns'
 import { useTask } from '@/hooks/useTask'
 import { useEffect, useState } from 'react'
 import { DragDropContext } from 'react-beautiful-dnd'
-import { ColumItem } from './ColumItem'
+import  ColumItem  from './ColumItem'
 type Column = {
   id: string
   title: string
