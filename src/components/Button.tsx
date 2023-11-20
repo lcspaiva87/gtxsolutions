@@ -1,9 +1,25 @@
-import React from 'react'
-import Icon from '@/components//ui/icons/Icon'
-import Link from 'next/link'
-export function Button({
+'use client'
+import Icon from '@/components//ui/icons/Icon';
+import Link from 'next/link';
+import { ReactNode } from 'react';
+interface IButton {
+  text: string;
+  type: "submit" | "reset" | "button" | undefined;
+  isLoading?: boolean;
+  disabled?: boolean;
+  className?: string;
+  children?: ReactNode;
+  icon?: string;
+  loadingClass?: string;
+  iconPosition?: string;
+  iconClass?: string;
+  link?: string;
+  onClick?: () => void;
+  div?: boolean;
+ }
+export default function Button({
   text,
-  type = 'button',
+  type ="button" ,
   isLoading,
   disabled,
   className = 'bg-primary-500 text-white',
@@ -15,7 +31,7 @@ export function Button({
   link,
   onClick,
   div,
-}: any) {
+}: IButton) {
   return (
     <>
       {!link && !div && (

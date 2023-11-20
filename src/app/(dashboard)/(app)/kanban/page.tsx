@@ -1,12 +1,11 @@
-
-import { Button } from '@/components/Button'
-import  AddColumn  from '@/components/partials/app/kanban/AddColumn'
-import Column from '@/components/partials/app/kanban/Colum'
-
-
+'use client'
+import Button from "@/components/Button";
+import AddColumn from "@/components/partials/app/kanban/AddColumn";
+import Column from "@/components/partials/app/kanban/Colum";
+import kabanStore from "@/components/partials/app/kanban/sto";
 
 export default function Kanban() {
-
+  const { toggleColumnModal } = kabanStore()
   return (
     <>
       <div className="flex flex-wrap justify-between items-center mb-4">
@@ -15,16 +14,17 @@ export default function Kanban() {
         </h4>
         <div className="flex space-x-4 justify-end items-center rtl:space-x-reverse">
           <Button
+            type="button"
             icon="heroicons-outline:plus"
             text="Create new task"
             className="bg-slate-800 dark:hover:bg-opacity-70   h-min text-sm font-medium text-slate-50 hover:ring-2 hover:ring-opacity-80 ring-slate-900  hover:ring-offset-1  dark:hover:ring-0 dark:hover:ring-offset-0"
-            iconclassName=" text-lg"
-    
+            iconClass=" text-lg"
+            onClick={() => toggleColumnModal(true)}
           />
         </div>
       </div>
-        <Column />
-        <AddColumn/>
+      <Column />
+      <AddColumn />
     </>
-  )
+  );
 }
