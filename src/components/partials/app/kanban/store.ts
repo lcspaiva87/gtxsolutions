@@ -34,10 +34,13 @@ interface IKabanStore {
   toggleColumnModal: (value: boolean) => void
   addColumnBoard: (value: Column) => void
   toggleTaskModal: (value: boolean) => void
+  toggleEditModal: (value: boolean) => void
+
   columModal: boolean
   taskModal: boolean
   isLoading: boolean | null
   openTaskId: string | null
+  editModal:boolean
   columns: Column[]
 }
 const kabanStore = create<IKabanStore>((set) => ({
@@ -45,11 +48,13 @@ const kabanStore = create<IKabanStore>((set) => ({
   taskModal: false,
   isLoading: null,
   openTaskId: null,
+  editModal:false,
   columns: [],
   toggleColumnModal: (value) => set(() => ({ columModal: value })),
   addColumnBoard: (value) =>
     set((state) => ({ columns: [...state.columns, value] })),
     toggleTaskModal: (value) => set(() => ({ taskModal: value })),
+    toggleEditModal: (value) => set(() => ({ editModal: value })),
 }))
 
 export default kabanStore

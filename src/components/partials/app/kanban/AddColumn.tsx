@@ -9,7 +9,7 @@ import { useColumns } from '@/hooks/useColuns'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
-import kabanStore from './sto'
+import kabanStore from './store'
 type FormValues = {
   title: string
   color: string

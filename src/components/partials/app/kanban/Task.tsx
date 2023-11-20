@@ -10,7 +10,7 @@ interface Props {
   // updateTask: (id: Id, content: string) => void;
 }
 export default function  Task({ task, deleteTask }: Props) {
-  const { title, user, message, startDate, endDate, assignee } = task
+  const { title } = task
   return (
     <Card className=" bg-mainBackgroundColor  flex flex-col  rounded-xl hover:ring-2 hover:ring-inset hover:ring-rose-500 cursor-grab relative task">
       <header className="flex justify-between items-end">

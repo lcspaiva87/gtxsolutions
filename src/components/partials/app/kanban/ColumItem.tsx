@@ -1,4 +1,4 @@
-import { toggleTaskModal } from '@/components/partials/app/kanban/store'
+
 import Dropdown from '@/components/ui/Dropdown'
 import { Menu } from '@headlessui/react'
 import { Icon } from '@iconify/react/dist/iconify.js'
@@ -8,10 +8,12 @@ import { Card } from '@/components/ui/Card'
 import { Key, useState } from 'react'
 import { Draggable, Droppable } from 'react-beautiful-dnd'
 import { useDispatch } from 'react-redux'
+import kabanStore from './store'
 export default function  ({ column, tasks }: any) {
   const { title, user, message, startDate, endDate, assignee } = tasks
   const [start, setStart] = useState(new Date(Number(startDate)))
   const [end, setEnd] = useState(new Date(endDate))
+  const {toggleTaskModal} = kabanStore()
   const dispatch = useDispatch()
   return (
     <div className="bg-columnBackgroundColor w-[350px]  h-[45rem] max-h-[45rem] rounded-md flex flex-col">
@@ -32,14 +34,7 @@ export default function  ({ column, tasks }: any) {
 
           <button
             className="border border-slate-200 dark:border-slate-700 dark:text-slate-400 rounded h-6 w-6 flex flex-col  items-center justify-center text-base text-slate-600"
-            onClick={() =>
-              dispatch(
-                toggleTaskModal({
-                  open: true,
-                  columnId: column.id,
-                }),
-              )
-            }
+            onClick={() =>toggleTaskModal(true) }
           >
             <Icon icon="heroicons-outline:plus-sm" />
           </button>

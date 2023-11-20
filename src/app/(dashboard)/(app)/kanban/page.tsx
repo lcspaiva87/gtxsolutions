@@ -1,28 +1,20 @@
-'use client'
-import Button from "@/components/Button";
-import AddColumn from "@/components/partials/app/kanban/AddColumn";
 import Column from "@/components/partials/app/kanban/Colum";
-import kabanStore from "@/components/partials/app/kanban/sto";
+import { Metadata } from "next";
+import dynamic from "next/dynamic";
+export const metadata: Metadata = {
+  title: 'Kanban',
+}
+
 
 export default function Kanban() {
-  const { toggleColumnModal } = kabanStore()
+  const AddColumn = dynamic(
+    () => import('@/components/partials/app/kanban/AddColumn'),
+    {
+      ssr: false,
+    },
+  )
   return (
     <>
-      <div className="flex flex-wrap justify-between items-center mb-4">
-        <h4 className="font-medium lg:text-2xl text-xl capitalize text-slate-900 inline-block ltr:pr-4 rtl:pl-4">
-          Task
-        </h4>
-        <div className="flex space-x-4 justify-end items-center rtl:space-x-reverse">
-          <Button
-            type="button"
-            icon="heroicons-outline:plus"
-            text="Create new task"
-            className="bg-slate-800 dark:hover:bg-opacity-70   h-min text-sm font-medium text-slate-50 hover:ring-2 hover:ring-opacity-80 ring-slate-900  hover:ring-offset-1  dark:hover:ring-0 dark:hover:ring-offset-0"
-            iconClass=" text-lg"
-            onClick={() => toggleColumnModal(true)}
-          />
-        </div>
-      </div>
       <Column />
       <AddColumn />
     </>

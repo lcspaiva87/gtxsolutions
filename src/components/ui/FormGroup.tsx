@@ -1,32 +1,34 @@
-import Icon from '@/components/ui/Icon'
-const Textarea = ({
+import Icon from '@/components/ui/Icon';
+import React from 'react';
+interface IFormGroup {
+  label: string;
+  classLabel?: string;
+  className?: string;
+  error?: any;
+  id?: string;
+  horizontal?: boolean;
+  validate?: any
+  msgTooltip?: string;
+  description?: string;
+  children?: React.ReactNode;
+ }
+const FormGroup = ({
   label,
-  placeholder,
   classLabel = 'form-label',
   className = '',
-  classGroup = '',
-  register,
-  name,
-  readonly,
-  dvalue,
   error,
-  icon,
-  disabled,
   id,
   horizontal,
   validate,
   msgTooltip,
   description,
-  cols,
-  row = 3,
-  onChange,
-  ...rest
-}) => {
+  children,
+}:IFormGroup) => {
   return (
     <div
       className={`fromGroup  ${error ? 'has-error' : ''}  ${
         horizontal ? 'flex' : ''
-      }  ${validate ? 'is-valid' : ''} `}
+      }  ${validate ? 'is-valid' : ''} ${className} `}
     >
       {label && (
         <label
@@ -39,38 +41,10 @@ const Textarea = ({
         </label>
       )}
       <div className={`relative ${horizontal ? 'flex-1' : ''}`}>
-        {name && (
-          <textarea
-            {...register(name)}
-            {...rest}
-            className={`${
-              error ? ' has-error' : ' '
-            } form-control py-2 ${className}  `}
-            placeholder={placeholder}
-            readOnly={readonly}
-            disabled={disabled}
-            id={id}
-            cols={cols}
-            rows={row}
-            onChange={onChange}
-          ></textarea>
-        )}
-        {!name && (
-          <textarea
-            className={`${
-              error ? ' has-error' : ' '
-            } form-control py-2 ${className}  `}
-            placeholder={placeholder}
-            readOnly={readonly}
-            disabled={disabled}
-            id={id}
-            cols={cols}
-            rows={row}
-            onChange={onChange}
-          ></textarea>
-        )}
+        {children}
 
         {/* icon */}
+
         <div className="flex text-xl absolute ltr:right-[14px] rtl:left-[14px] top-1/2 -translate-y-1/2  space-x-1 rtl:space-x-reverse">
           {error && (
             <span className="text-danger-500">
@@ -114,4 +88,4 @@ const Textarea = ({
   )
 }
 
-export default Textarea
+export default FormGroup

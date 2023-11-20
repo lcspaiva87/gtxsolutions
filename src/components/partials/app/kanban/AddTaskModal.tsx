@@ -6,24 +6,22 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { useState } from 'react'
 import Flatpickr from 'react-flatpickr'
 import { Controller, useForm } from 'react-hook-form'
-import { useDispatch, useSelector } from 'react-redux'
 import Select, { components } from 'react-select'
-import { v4 as uuidv4 } from 'uuid'
 import * as yup from 'yup'
-import { addTask, toggleTaskModal } from './store'
+import kabanStore from './store'
 const styles = {
-  multiValue: (base, state) => {
+  multiValue: (base:any, state:any) => {
     return state.data.isFixed ? { ...base, opacity: '0.5' } : base
   },
-  multiValueLabel: (base, state) => {
+  multiValueLabel: (base:any, state:any) => {
     return state.data.isFixed
       ? { ...base, color: '#626262', paddingRight: 6 }
       : base
   },
-  multiValueRemove: (base, state) => {
+  multiValueRemove: (base:any, state:any) => {
     return state.data.isFixed ? { ...base, display: 'none' } : base
   },
-  option: (provided, state) => ({
+  option: (provided:any, state:any) => ({
     ...provided,
     fontSize: '14px',
   }),
@@ -73,7 +71,7 @@ const options = [
     label: 'update',
   },
 ]
-const OptionComponent = ({ data, ...props }) => {
+const OptionComponent = ({ data, ...props }:any) => {
   // const Icon = data.icon;
 
   return (
@@ -94,8 +92,7 @@ const OptionComponent = ({ data, ...props }) => {
   )
 }
 export const AddTaskModal = () => {
-  const { taskModal } = useSelector((state) => state.kanban)
-  const dispatch = useDispatch()
+  const {toggleTaskModal,taskModal} = kabanStore()
   const [startDate, setStartDate] = useState(new Date())
   const [endDate, setEndDate] = useState(new Date())
 
@@ -126,41 +123,18 @@ export const AddTaskModal = () => {
     mode: 'all',
   })
 
-  const onSubmit = (data) => {
-    dispatch(
-      addTask({
-        id: uuidv4(),
-        name: data.title,
-        assignee: data.assign,
-        // get only data value from startDate and endDate
-        category: null,
-        startDate: startDate.toISOString().split('T')[0],
-        endDate: endDate.toISOString().split('T')[0],
-        des: 'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.',
-        progress: Math.floor(Math.random() * (100 - 10 + 1) + 10),
-      }),
-    )
-    dispatch(
-      toggleTaskModal({
-        open: false,
-      }),
-    )
-    reset()
+  const onSubmit = (data:any) => {
+  toggleTaskModal( false)
   }
 
   return (
     <div>
       <Modal
         title="Create Project"
-        labelclassName="btn-outline-dark"
-        activeModal={false}
+        labelClass="btn-outline-dark"
+        activeModal={taskModal}
         onClose={() =>
-          dispatch(
-            toggleTaskModal({
-              open: false,
-            }),
-          )
-        }
+            toggleTaskModal( false)}
       >
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 ">
           <Textinput
@@ -249,7 +223,7 @@ export const AddTaskModal = () => {
             />
             {errors.assign && (
               <div className=" mt-2  text-danger-500 block text-sm">
-                {errors.assign?.message || errors.assign?.label.message}
+                {/* {errors.assign?.message || errors.assign?.label.message} */}
               </div>
             )}
           </div>
@@ -274,7 +248,7 @@ export const AddTaskModal = () => {
             />
             {errors.assign && (
               <div className=" mt-2  text-danger-500 block text-sm">
-                {errors.tags?.message || errors.tags?.label.message}
+                {/* {errors.tags?.message || errors.title?.label.message} */}
               </div>
             )}
           </div>
