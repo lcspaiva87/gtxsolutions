@@ -1,3 +1,4 @@
+'use client'
 import { useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 
@@ -20,7 +21,7 @@ const FormValidationSchema = yup
   })
   .required()
 
-export function AddColumn  () {
+export default function AddColumn  () {
   const [color, setColor] = useState('#4669fa')
   const { columModal, toggleColumnModal } = kabanStore()
   const { createMutation } = useColumns()
