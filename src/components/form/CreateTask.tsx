@@ -7,10 +7,11 @@ import 'flatpickr/dist/flatpickr.min.css'
 import { useState } from 'react'
 import Flatpickr from 'react-flatpickr'
 import { useForm } from 'react-hook-form'
-import { useDispatch, useSelector } from 'react-redux'
+
 import { v4 as uuidv4 } from 'uuid'
 import * as yup from 'yup'
-import { toggleTaskModal } from '../partials/app/kanban/store'
+
+import kabanStore from '../partials/app/kanban/store'
 import { Input } from '../ui/Input'
 type FormValues = {
   company: string
@@ -39,8 +40,8 @@ const FormSchema = yup.object().shape({
 export function FormCreateTask() {
   const { createMutation } = useTask()
   const [picker, setPicker] = useState(new Date())
-  const { taskModal } = useSelector((state: any) => state.kanban)
-  const dispatch = useDispatch()
+
+  const {toggleTaskModal,taskModal} = kabanStore()
   const {
     handleSubmit,
     control,
@@ -91,11 +92,7 @@ export function FormCreateTask() {
       labelClass="btn-outline-dark"
       activeModal={taskModal}
       onClose={() =>
-        dispatch(
-          toggleTaskModal({
-            open: false,
-          }),
-        )
+          toggleTaskModal(false)
       }
     >
       <form>
