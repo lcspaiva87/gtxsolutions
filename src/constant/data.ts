@@ -59,6 +59,12 @@ export const menuItems: MenuItem[] = [
     icon: 'heroicons-outline:chat',
     link: 'chat',
   },
+  {
+    title: "Calender",
+    isHide: true,
+    icon: "heroicons-outline:calendar",
+    link: "calender",
+  },
 ]
 
 export const topMenu: Idata[] = [
