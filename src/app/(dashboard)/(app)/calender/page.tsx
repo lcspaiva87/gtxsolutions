@@ -12,21 +12,25 @@ import { useDispatch, useSelector } from "react-redux";
 import EditEventModal from "@/components/partials/app/calender/EditEventModal";
 import EventModal from "@/components/partials/app/calender/EventModal";
 import Button from "@/components/ui/Button";
-import Card from "@/components/ui/Card";
+
+import { Card } from "@/components/ui/Card";
 import Checkbox from "@/components/ui/Checkbox";
 
 const CalenderPage = () => {
-  const { calendarEvents, categories } = useSelector((state) => state.calendar);
+  const { calendarEvents, categories } = useSelector(
+    (state: any) => state.calendar,
+  );
   const [activeModal, setActiveModal] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [editItem, setEditItem] = useState(null);
   const [editModal, setEditModal] = useState(false);
+  const[state, setState] = useState({date: new Date()})
 
   const [selectedCategories, setSelectedCategories] = useState(
-    categories.map((c) => c.value)
+    categories.map((c: any) => c.value),
   );
 
-  const handleCategorySelection = (category) => {
+  const handleCategorySelection = (category: any) => {
     if (selectedCategories.includes(category)) {
       setSelectedCategories(selectedCategories.filter((c) => c !== category));
     } else {
@@ -61,17 +65,17 @@ const CalenderPage = () => {
   //     eventsSet: {},
   //   };
 
-  const handleDateClick = (arg) => {
+  const handleDateClick = (arg: any) => {
     setActiveModal(true);
     setSelectedEvent(arg);
   };
 
-  const handleEventClick = (arg) => {
+  const handleEventClick = (arg: any) => {
     setEditModal(true);
     setEditItem(arg);
   };
 
-  const handleClassName = (arg) => {
+  const handleClassName: any = (arg: any) => {
     if (arg.event.extendedProps.calendar === "holiday") {
       return "danger";
     } else if (arg.event.extendedProps.calendar === "business") {
@@ -88,8 +92,8 @@ const CalenderPage = () => {
   };
 
   // filter events
-  const filteredEvents = calendarEvents.filter((event) =>
-    selectedCategories.includes(event.extendedProps.calendar)
+  const filteredEvents = calendarEvents.filter((event: any) =>
+    selectedCategories.includes(event.extendedProps.calendar),
   );
 
   return (
@@ -101,15 +105,17 @@ const CalenderPage = () => {
         <Card className="lg:col-span-3 col-span-12 bg-white">
           <Button
             icon="heroicons-outline:plus"
-            text=" Add Event"
             className="btn-dark w-full block  "
             onClick={() => {
               setActiveModal(true);
             }}
-          />
+          >
+            Add Task
+          </Button>
           <div className="block py-4 text-slate-800 dark:text-slate-400 font-semibold text-xs uppercase mt-4">
             FILTER
           </div>
+
           <ul className=" space-y-2 ">
             <li>
               <Checkbox
@@ -120,14 +126,20 @@ const CalenderPage = () => {
                   if (selectedCategories.length === categories.length) {
                     setSelectedCategories([]);
                   } else {
-                    setSelectedCategories(categories.map((c) => c.value));
+                    setSelectedCategories(categories.map((c: any) => c.value));
                   }
                 }}
+                id={undefined}
+                disabled={undefined}
+                name={undefined}
               />
             </li>
-            {categories.map((category) => (
+            {categories.map((category: any) => (
               <li key={category.value}>
                 <Checkbox
+                  id={undefined}
+                  disabled={undefined}
+                  name={undefined}
                   activeClass={category.activeClass}
                   label={category.label}
                   value={selectedCategories.includes(category.value)}

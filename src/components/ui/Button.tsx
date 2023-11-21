@@ -6,10 +6,11 @@ export type Props = {
   className?: string
   // eslint-disable-next-line no-use-before-define
   variant?: Variant
-  children: React.ReactNode
+  children?: React.ReactNode
   // eslint-disable-next-line no-use-before-define
   type?: Type
   disabled?: boolean
+  icon?: string
 }
 
 type Type = 'button' | 'submit'

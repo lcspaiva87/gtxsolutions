@@ -1,21 +1,19 @@
-import FormGroup from '@/components/ui/FormGroup'
 import Modal from '@/components/ui/Modal'
 import Select from '@/components/ui/Select'
 import Textinput from '@/components/ui/Textinput'
 import { yupResolver } from '@hookform/resolvers/yup'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import Flatpickr from 'react-flatpickr'
 import { Controller, useForm } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
 import * as yup from 'yup'
 import { dateClick } from './store'
-
 const EventModal = ({ activeModal, onClose, selectedEvent }) => {
   const { categories } = useSelector((state) => state.calendar)
   const dispatch = useDispatch()
   const [startDate, setStartDate] = useState(new Date())
   const [endDate, setEndDate] = useState(new Date())
-
+  const [picker, setPicker] = useState(new Date());
   useEffect(() => {
     if (selectedEvent) {
       setStartDate(selectedEvent.date)
@@ -72,11 +70,15 @@ const EventModal = ({ activeModal, onClose, selectedEvent }) => {
             register={register}
             error={errors.title}
           />
-          <FormGroup
-            label="Start Date"
+
+          <Flatpickr
+            className="form-control py-2"
+            value={picker}
+            onChange={(date) => setPicker(date)}
             id="default-picker"
-            error={errors.startDate}
-          >
+          />
+
+
             <Controller
               name="startDate"
               control={control}
@@ -89,37 +91,13 @@ const EventModal = ({ activeModal, onClose, selectedEvent }) => {
                   onChange={(date) => setStartDate(date[0])}
                   options={{
                     altInput: true,
-                    altFormat: 'F j, Y',
-                    dateFormat: 'Y-m-d',
+                    altFormat: "F j, Y",
+                    dateFormat: "Y-m-d",
                   }}
                 />
               )}
             />
-          </FormGroup>
-          <FormGroup
-            label="End Date"
-            id="default-picker2"
-            error={errors.endDate}
-          >
-            <Controller
-              name="endDate"
-              control={control}
-              render={({ field }) => (
-                <Flatpickr
-                  className="form-control py-2"
-                  id="default-picker2"
-                  placeholder="yyyy, dd M"
-                  value={endDate}
-                  onChange={(date) => setEndDate(date[0])}
-                  options={{
-                    altInput: true,
-                    altFormat: 'F j, Y',
-                    dateFormat: 'Y-m-d',
-                  }}
-                />
-              )}
-            />
-          </FormGroup>
+
 
           <Select
             label="Basic Select"

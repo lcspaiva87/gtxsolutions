@@ -1,41 +1,40 @@
+import Icon from "@/components//ui/icons/Icon";
 
-import Icon from '@/components//ui/icons/Icon'
+import Radio from "@/components/ui/Radio";
+import Textarea from "@/components/ui/Textarea";
+import { useRef, useState } from "react";
+import { CSSTransition } from "react-transition-group";
 
-import Radio from '@/components/ui/Radio'
-import Textarea from '@/components/ui/Textarea'
-import { useRef, useState } from 'react'
-import { CSSTransition } from 'react-transition-group'
-
-import Button from '@/components/ui/Button'
-import SimpleBar from 'simplebar-react'
-import appChatStore from './store'
+import Button from "@/components/ui/Button";
+import SimpleBar from "simplebar-react";
+import appChatStore from "./store";
 
 const allStatus = [
   {
-    value: 'online',
-    label: 'Active',
-    activeClass: 'ring-success-500 border-success-500',
+    value: "online",
+    label: "Active",
+    activeClass: "ring-success-500 border-success-500",
   },
   {
-    value: 'busy',
-    label: 'Do Not Disturb',
-    activeClass: 'ring-danger-500 border-danger-500',
+    value: "busy",
+    label: "Do Not Disturb",
+    activeClass: "ring-danger-500 border-danger-500",
   },
   {
-    value: 'away',
-    label: 'Away',
-    activeClass: 'ring-warning-500 border-warning-500',
+    value: "away",
+    label: "Away",
+    activeClass: "ring-warning-500 border-warning-500",
   },
   {
-    value: 'offline',
-    label: 'Offline',
-    activeClass: 'ring-warning-500 border-warning-500',
+    value: "offline",
+    label: "Offline",
+    activeClass: "ring-warning-500 border-warning-500",
   },
-]
+];
 const MyProfile = () => {
-  const { toggleProfile, openProfile } = appChatStore()
-  const [status, setStatus] = useState('online')
-  const nodeRef = useRef(null)
+  const { toggleProfile, openProfile } = appChatStore();
+  const [status, setStatus] = useState("online");
+  const nodeRef = useRef(null);
 
   return (
     <div>
@@ -101,10 +100,10 @@ const MyProfile = () => {
                   />
                   <span
                     className={`status inline-block h-3 w-3 rounded-full absolute -right-1 top-3 border border-white
-                ${status === 'online' ? 'bg-success-500' : ''}
-                ${status === 'away' ? 'bg-warning-500' : ''}
-                ${status === 'busy' ? 'bg-danger-500' : ''}
-                ${status === 'offline' ? 'bg-secondary-500' : ''}
+                ${status === "online" ? "bg-success-500" : ""}
+                ${status === "away" ? "bg-warning-500" : ""}
+                ${status === "busy" ? "bg-danger-500" : ""}
+                ${status === "offline" ? "bg-secondary-500" : ""}
 
 
                 `}
@@ -155,13 +154,15 @@ const MyProfile = () => {
                   />
                 ))}
               </div>
-              <Button  className="btn-dark " children={undefined} />
+              <Button className="btn-dark " >
+                Logout
+              </Button>
             </SimpleBar>
           </div>
         </CSSTransition>
       </header>
     </div>
-  )
-}
+  );
+};
 
-export default MyProfile
+export default MyProfile;
