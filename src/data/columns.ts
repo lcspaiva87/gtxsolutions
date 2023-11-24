@@ -2,13 +2,13 @@ import { Column } from '@/@types/Column'
 import { del, get, post } from './client/http-client'
 
 export const fetchColumns = async (): Promise<Column[]> => {
-  const response = await get(`/columns`)
+  const response = await get('/columns')
 
   return response
 }
 
 export const PostColumns = async ({ id, title, color }: Column) => {
-  const response = await post(`/columns`, {
+  const response = await post('/columns', {
     id,
     color,
     title,
