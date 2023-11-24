@@ -26,21 +26,14 @@ export const menuItems: MenuItem[] = [
         childlink: 'analytics',
       },
       {
-        childtitle: 'Ecommerce Dashboard',
-        childlink: 'ecommerce',
+        childtitle: 'Task',
+        childlink: 'task',
       },
       {
-        childtitle: 'Project  Dashbaord',
-        childlink: 'project',
+        childtitle: 'Ocorrência',
+        childlink: 'ocorrência',
       },
-      {
-        childtitle: ' CRM Dashbaord',
-        childlink: 'crm',
-      },
-      {
-        childtitle: 'Banking Dashboard',
-        childlink: 'banking',
-      },
+
     ],
   },
   {
