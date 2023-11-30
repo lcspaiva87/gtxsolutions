@@ -1,20 +1,18 @@
-import React from 'react'
 import Icon from '@/components//ui/icons/Icon'
-import SwitchDark from './Tools/SwitchDark'
-import HorizentalMenu from './Tools/HorizentalMenu'
-import useWidth from '@/hooks/useWidth'
-import useSidebar from '@/hooks/useSidebar'
-import useNavbarType from '@/hooks/useNavbarType'
 import useMenulayout from '@/hooks/useMenulayout'
-import useSkin from '@/hooks/useSkin'
-import Logo from './Tools/Logo'
-import SearchModal from './Tools/SearchModal'
-import Profile from './Tools/Profile'
-import Notification from './Tools/Notification'
-import Message from './Tools/Message'
-import Language from './Tools/Language'
-import useRtl from '@/hooks/useRtl'
 import useMobileMenu from '@/hooks/useMobileMenu'
+import useNavbarType from '@/hooks/useNavbarType'
+import useRtl from '@/hooks/useRtl'
+import useSidebar from '@/hooks/useSidebar'
+import useSkin from '@/hooks/useSkin'
+import useWidth from '@/hooks/useWidth'
+import HorizentalMenu from './Tools/HorizentalMenu'
+import Logo from './Tools/Logo'
+import Message from './Tools/Message'
+import Notification from './Tools/Notification'
+import Profile from './Tools/Profile'
+import SearchModal from './Tools/SearchModal'
+import SwitchDark from './Tools/SwitchDark'
 
 const Header = ({ className = 'custom-class' }) => {
   const [collapsed, setMenuCollapsed] = useSidebar()
@@ -119,7 +117,7 @@ const Header = ({ className = 'custom-class' }) => {
           ) : null}
           {/* Nav Tools  */}
           <div className="nav-tools flex items-center lg:space-x-6 space-x-3 rtl:space-x-reverse">
-            <Language />
+
             <SwitchDark />
 
             {width >= parseInt(breakpoints.md) && <Message />}
