@@ -4,10 +4,11 @@ import Contacts from "@/components/partials/app/chat/Contacts";
 import Info from "@/components/partials/app/chat/Info";
 import appChatStore from "@/components/partials/app/chat/store";
 import { CreateUser } from "@/components/partials/forms/register-user/CreateUser";
+import { FormRegister } from "@/components/partials/forms/register-user/FormRegister";
+import createUserStore from "@/components/partials/forms/register-user/store";
 import { Card } from "@/components/ui/Card";
-import { Chat } from "@/components/ui/icons/Chat";
+import Icon from "@/components/ui/Icon";
 import useWidth from "@/hooks/useWidth";
-import { Icon } from "@iconify/react/dist/iconify.js";
 import { Key } from "react";
 import SimpleBar from "simplebar-react";
 
@@ -16,22 +17,22 @@ export default function ResgisterUser() {
   const {
     searchContact,
     mobileChatSidebar,
-    activechat,
     contacts,
     openinfo,
     setContactSearch,
     toggleMobileChatSidebar,
   } = appChatStore();
+  const { activeModal } = createUserStore();
 
   const searchContacts = contacts?.filter((item: { fullName: string }) =>
     item.fullName.toLowerCase().includes(searchContact.toLowerCase()),
   );
   return (
     <>
-    <h4 className="font-medium lg:text-2xl text-xl capitalize text-slate-900 inline-block ltr:pr-4 rtl:pl-4 mb-3">
-      Cadastro De Usuário
-    </h4>
-    <div className="flex lg:space-x-5 chat-height overflow-hidden relative rtl:space-x-reverse">
+      <h4 className="font-medium lg:text-2xl text-xl capitalize text-slate-900 inline-block ltr:pr-4 rtl:pl-4 mb-3">
+        Cadastro De Usuário
+      </h4>
+      <div className="flex lg:space-x-5 chat-height overflow-hidden relative rtl:space-x-reverse">
         <div
           className={`transition-all duration-150 flex-none min-w-[260px]
         ${
@@ -90,9 +91,9 @@ export default function ResgisterUser() {
             {/* main message body */}
             <div className="flex-1">
               <Card bodyClass="p-0 h-full" className="h-full bg-white">
-                {activechat ? (
+                {activeModal ? (
                   <div className="divide-y divide-slate-100 dark:divide-slate-700 h-full">
-                    <Chat />
+                    <FormRegister />
                   </div>
                 ) : (
                   <Blank />
@@ -100,7 +101,7 @@ export default function ResgisterUser() {
               </Card>
             </div>
             {/* right side information */}
-            {width > parseInt(breakpoints.lg) && openinfo && activechat && (
+            {width > parseInt(breakpoints.lg) && openinfo && activeModal && (
               <div className="flex-none w-[285px]">
                 <Card bodyClass="p-0 h-full" className="h-full bg-white">
                   <Info />
