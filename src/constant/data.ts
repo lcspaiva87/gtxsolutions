@@ -66,7 +66,7 @@ export const menuItems: MenuItem[] = [
     title: "Usuários",
     isHide: true,
     icon: "heroicons-outline:user",
-    link: "usuarios",
+    link: "register-user",
   },
 ]
 
