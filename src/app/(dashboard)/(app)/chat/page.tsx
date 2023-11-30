@@ -32,7 +32,7 @@ export default function ChatPage() {
   return (
     <>
       <h4 className="font-medium lg:text-2xl text-xl capitalize text-slate-900 inline-block ltr:pr-4 rtl:pl-4 mb-3">
-        Task
+        Chat
       </h4>
       <div className="flex lg:space-x-5 chat-height overflow-hidden relative rtl:space-x-reverse">
         <div
