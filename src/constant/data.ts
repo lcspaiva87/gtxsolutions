@@ -62,6 +62,12 @@ export const menuItems: MenuItem[] = [
     isHeadr: true,
     title: 'Cadastros',
   },
+  {
+    title: "Usuários",
+    isHide: true,
+    icon: "heroicons-outline:user",
+    link: "usuarios",
+  },
 ]
 
 export const topMenu: Idata[] = [
