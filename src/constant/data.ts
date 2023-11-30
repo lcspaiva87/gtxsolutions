@@ -58,6 +58,10 @@ export const menuItems: MenuItem[] = [
     icon: "heroicons-outline:calendar",
     link: "calender",
   },
+  {
+    isHeadr: true,
+    title: 'Cadastros',
+  },
 ]
 
 export const topMenu: Idata[] = [
