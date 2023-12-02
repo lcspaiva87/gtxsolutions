@@ -27,9 +27,7 @@ interface Column {
   tasks: Task[]
 }
 
-interface Data {
-  columns: Column[]
-}
+
 interface IKabanStore {
   toggleColumnModal: (value: boolean) => void
   addColumnBoard: (value: Column) => void
