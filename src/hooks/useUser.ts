@@ -13,7 +13,9 @@ export const useUser = () =>{
       })
 
     },
-    onSuccess: (_, data) => {}
+    onSuccess: (_, data) => {
+      console.log(data)
+    }
   })
   const {
     isLoading,
