@@ -20,7 +20,7 @@ type Variant = 'primary' | 'ghost'
 const defaultClassName = 'text-label'
 
 export const primaryClassName =
-  'border-secondary-300 border text-secondary-400 border-secondary-300 rounded-md  disabled:bg-gray-700 text-white py-2 px-[26.5px] rounded-sm hover:bg-gray-700  '
+  'border-secondary-300 bg-gray-700 border text-secondary-100 border-secondary-300 rounded-md  disabled:bg-gray-700 text-white py-2 px-[26.5px] rounded-sm hover:bg-gray-600 hover:text-gray-100  '
 const ghostClassName =
   'bg-transparent hover:underline active:text-secondary-900 transition-colors'
 

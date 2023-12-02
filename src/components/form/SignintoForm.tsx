@@ -1,36 +1,34 @@
-'use client'
-import { yupResolver } from '@hookform/resolvers/yup'
-import Link from 'next/link'
-import { useForm } from 'react-hook-form'
-import * as yup from 'yup'
-import Button from '../ui/Button'
-import { Input } from '../ui/Input'
+"use client";
+import { yupResolver } from "@hookform/resolvers/yup";
+import Link from "next/link";
+import { useForm } from "react-hook-form";
+import * as yup from "yup";
+import Button from "../ui/Button";
+import { Input } from "../ui/Input";
 
 type FormValues = {
-  email: string
-  password: string
-}
+  email: string;
+  password: string;
+};
 
 const signInFormSchema = yup.object().shape({
-  email: yup.string().required('E-mail obrigatório').email('E-mail inválido'),
-  password: yup.string().required('Senha obrigatória'),
-})
+  email: yup.string().required("E-mail obrigatório").email("E-mail inválido"),
+  password: yup.string().required("Senha obrigatória"),
+});
 export function SignintoForm() {
   const {
     handleSubmit,
     control,
-    setError,
-
     formState: { errors },
   } = useForm<FormValues>({
     resolver: yupResolver(signInFormSchema),
     defaultValues: {
-      email: '',
-      password: '',
+      email: "",
+      password: "",
     },
-  })
+  });
   async function handleSignIn(data: FormValues) {
-    return data
+    return data;
   }
   return (
     <form onSubmit={handleSubmit(handleSignIn)}>
@@ -52,7 +50,6 @@ export function SignintoForm() {
         className="mt-6"
         // disabled={loading}
       />
-
       <Link
         href="#"
         className="ml-auto mt-[9px] block w-max text-small-label text-secondary hover:underline"
@@ -61,6 +58,7 @@ export function SignintoForm() {
       </Link>
 
       <Button
+        variant="primary"
         className="mt-4 w-full py-3 "
         type="submit"
         disabled={false || !errors}
@@ -69,5 +67,5 @@ export function SignintoForm() {
         Sign in
       </Button>
     </form>
-  )
+  );
 }
