@@ -32,7 +32,7 @@ const CalenderPage = () => {
 
   const handleCategorySelection = (category: any) => {
     if (selectedCategories.includes(category)) {
-      setSelectedCategories(selectedCategories.filter((c) => c !== category));
+      setSelectedCategories(selectedCategories.filter((c:any) => c !== category));
     } else {
       setSelectedCategories([...selectedCategories, category]);
     }

@@ -6,6 +6,12 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import createUserStore from "./store";
+interface Icompany {
+  id: string;
+  value: string;
+  label: string;
+}
+
 type FormValues = {
   name: string;
   email: string;
@@ -59,7 +65,13 @@ export function FormRegister() {
     console.log("data", data);
   }
   const { company } = createUserStore();
-  console.log(company);
+
+  const options:Icompany[]= [
+    { id: '1', value: "option1", label: "Opção 1" },
+    { id: '2', value: "option2", label: "Opção 2" },
+    { id: '3', value: "option3", label: "Opção 3" },
+    // Adicione mais opções conforme necessário
+  ];
   return (
     <form onSubmit={handleSubmit(handleRegisterUser)}>
       <div className="p-[1rem] ">
@@ -114,7 +126,7 @@ export function FormRegister() {
             control={control}
             placeholder="Setor/Departamento:"
           />
-          <MultiSelect name="valuesOption" placeholder="select" required />
+          <MultiSelect   />
         </div>
       </div>
       <div className="flex  items-center justify-center">
