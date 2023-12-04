@@ -1,7 +1,8 @@
-import { LoginUser, RefreshToken } from "@/data/user"
-import { setCookie } from "nookies"
-import { enqueueSnackbar } from "notistack"
-import { useMutation, useQuery, useQueryClient } from "react-query"
+
+import { LoginUser, RefreshToken } from "@/data/user";
+import nookies, { setCookie } from "nookies";
+import { enqueueSnackbar } from "notistack";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 export const useUser = () =>{
   const queryClient = useQueryClient()
 
@@ -10,15 +11,23 @@ export const useUser = () =>{
       enqueueSnackbar('Erro ao tentar fazer login', {
         variant: 'error',
       })
-
+      console.log("erro",erro)
     },
     onSuccess: ( data) => {
-      setCookie(undefined,'auth_token',data.token,{
+      const{token,refreshToken} =data
+      const {refresh_Token} = refreshToken
+
+      setCookie(undefined,'auth_token',token,{
         maxAge: 60 * 60 * 24, // 1 hour
         path: '/',
       })
-      // router.push('/home')
-      console.log("data",data)
+
+      nookies.set(undefined,'refresh_token',refresh_Token,{
+        maxAge: 60 * 60 * 24, // 1 hour
+        path: '/',
+        sameSite:'lax'
+      })
+
     }
   })
   const RefreshTokenMutation = useMutation(RefreshToken,{
@@ -29,13 +38,22 @@ export const useUser = () =>{
 
     },
     onSuccess: ( data) => {
-      setCookie(undefined,'auth_token',data.token,{
+      const{token,refreshToken} =data
+      const {refresh_Token} = refreshToken
+
+      console.log("refresh_Token",refresh_Token)
+      setCookie(undefined,'auth_token',token,{
         maxAge: 60 * 60 * 24, // 1 hour
         path: '/',
       })
-      // router.push('/home')
-      console.log("data",data)
-    }
+      nookies.set(undefined,'refresh_token',refresh_Token,{
+        maxAge: 60 * 60 * 24, // 1 hour
+        path: '/',
+        httpOnly:true,
+        sameSite:'lax'
+      })
+
+  }
   })
   const {
     isLoading,

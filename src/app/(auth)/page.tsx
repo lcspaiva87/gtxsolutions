@@ -1,7 +1,8 @@
-import { SignintoForm } from '@/components/form/SignintoForm'
-import { Metadata } from 'next'
-import Image from 'next/image'
-import '../scss/app.scss'
+
+import { SignintoForm } from '@/components/form/SignintoForm';
+import { Metadata } from 'next';
+import Image from 'next/image';
+import '../scss/app.scss';
 export const metadata: Metadata = {
   title: 'Login',
 }
