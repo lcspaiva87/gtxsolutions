@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <main className="bg-light flex h-screen items-center justify-center sm:bg-gray-100">
+    <section  className="bg-light flex h-screen items-center justify-center sm:bg-gray-100">
       <div className="bg-light m-auto w-full max-w-[420px] rounded p-5 sm:p-8 sm:shadow">
         <div className="mb-2 flex justify-center">
           <Image
@@ -23,6 +23,6 @@ export default function Home() {
         <SignintoForm />
 
       </div>
-    </main>
+    </section>
   )
 }

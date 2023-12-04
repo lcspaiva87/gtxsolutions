@@ -19,3 +19,11 @@ export const ListnUser = async () => {
   const response = await get('/user')
   return response
 }
+
+
+export const RefreshToken = async (token:string) => {
+  const response = await post('/refresh-token',{
+    token
+  })
+  return response
+}

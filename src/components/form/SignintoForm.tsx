@@ -1,18 +1,15 @@
 "use client";
 import { useUser } from "@/hooks/useUser";
 import { yupResolver } from "@hookform/resolvers/yup";
-import bcrypt from 'bcrypt';
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import Button from "../ui/Button";
 import { Input } from "../ui/Input";
-
 type FormValues = {
   email: string;
   password: string;
 };
-
 const signInFormSchema = yup.object().shape({
   email: yup.string().required("E-mail obrigatório").email("E-mail inválido"),
   password: yup.string().required("Senha obrigatória"),
@@ -31,11 +28,11 @@ export function SignintoForm() {
   });
   const {createMutation} = useUser()
   async function handleSignIn({email,password}: FormValues) {
-    const hashedPassword = await bcrypt.hash(password, 10)
-    await createMutation.mutateAsync({
+  createMutation.mutate({
       email,
-      password: hashedPassword
+      password
     })
+
   }
   return (
     <form onSubmit={handleSubmit(handleSignIn)}>
