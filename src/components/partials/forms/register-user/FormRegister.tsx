@@ -1,7 +1,5 @@
 "use client";
-import Button from "@/components/ui/Button";
-import { Input } from "@/components/ui/Input";
-import { MultiSelect } from "@/components/ui/MultiSelect";
+import Textinput from "@/components/ui/Textinput";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
@@ -66,10 +64,10 @@ export function FormRegister() {
   }
   const { company } = createUserStore();
 
-  const options:Icompany[]= [
-    { id: '1', value: "option1", label: "Opção 1" },
-    { id: '2', value: "option2", label: "Opção 2" },
-    { id: '3', value: "option3", label: "Opção 3" },
+  const options: Icompany[] = [
+    { id: "1", value: "option1", label: "Opção 1" },
+    { id: "2", value: "option2", label: "Opção 2" },
+    { id: "3", value: "option3", label: "Opção 3" },
     // Adicione mais opções conforme necessário
   ];
   return (
@@ -77,68 +75,82 @@ export function FormRegister() {
       <div className="p-[1rem] ">
         <label htmlFor="">Dados do usario</label>
         <div className="grid grid-cols-2  gap-[1rem] mt-[1rem]">
-          <Input
-            type="text"
-            name="name"
-            control={control}
-            placeholder="nome completo"
+          <Textinput
+            label="Nome Funcionario"
+            placeholder="Nome Funcionario"
+            register={register}
+            {...register("name", { required: "Name is required" })}
+            error={errors.name}
           />
-          <Input type="date" name="dat_of_birth" control={control} />
 
-          <Input
-            type="email"
-            name="email"
-            control={control}
-            placeholder="Digite seu email"
+          <Textinput
+            label="Data de nascimento"
+            placeholder="dat_of_birth"
+            register={register}
+            {...register("dat_of_birth", { required: "Name is required" })}
+            error={errors.dat_of_birth}
           />
-          <Input
-            type="text"
-            name="phone"
+          <Textinput
+            label="Email"
+            placeholder="email"
+            register={register}
+            {...register("email", { required: "email is required" })}
+            error={errors.email}
+          />
+          <Textinput
+            label="Telefone"
             placeholder="(xx) xxxx-xxxx"
-            control={control}
+            register={register}
+            {...register("phone", { required: "email is required" })}
+            error={errors.phone}
           />
-          <Input
-            type="password"
-            name="password"
+
+          <Textinput
+            label="password"
             placeholder="Digite sua senha"
-            control={control}
+            register={register}
+            {...register("password", { required: "email is required" })}
+            error={errors.password}
+            type="password"
           />
         </div>
       </div>
       <div className="p-[1rem] ">
         <label htmlFor="">Informações da Empresa</label>
         <div className="grid grid-cols-2  gap-[1rem] mt-[1rem]">
-          <Input
-            type="text"
-            name="branch"
-            control={control}
+          <Textinput
+            label="Filial"
             placeholder="Filial"
+            register={register}
+            {...register("branch", { required: "email is required" })}
+            error={errors.branch}
           />
-          <Input
-            type="text"
-            name="Position_in_the_Company"
-            control={control}
+          <Textinput
+            label="Cargo na Empresa:"
             placeholder="Cargo na Empresa:"
+            register={register}
+            {...register("Position_in_the_Company", {
+              required: "email is required",
+            })}
+            error={errors.Position_in_the_Company}
           />
-          <Input
-            type="text"
-            name="Sector_Department"
-            control={control}
+          <Textinput
+            label="Setor/Departamento:"
             placeholder="Setor/Departamento:"
+            register={register}
+            {...register("Sector_Department", {
+              required: "email is required",
+            })}
+            error={errors.Sector_Department}
           />
-          <MultiSelect   />
         </div>
       </div>
-      <div className="flex  items-center justify-center">
-        <div className="flex w-[15rem] ">
-          <Button
-            className="mt-4 w-[35rem] py-3 "
-            type="submit"
-            disabled={false || !errors}
-          >
-            {/* {false ? <LoadingSpinner className="mx-auto" /> : ' Sign in'} */}
-            Registrar usuario{" "}
-          </Button>
+      <div className="flex  items-center justify-start p-[1rem]">
+        <div className="ltr:text-right rtl:text-left">
+          <button className="btn btn-dark  text-center">
+            {" "}
+            Registrar usuario
+          </button>
         </div>
       </div>
     </form>

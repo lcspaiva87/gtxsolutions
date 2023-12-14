@@ -1,7 +1,6 @@
 "use client";
 import Blank from "@/components/partials/app/chat/Blank";
 import Contacts from "@/components/partials/app/chat/Contacts";
-import Info from "@/components/partials/app/chat/Info";
 import appChatStore from "@/components/partials/app/chat/store";
 import { CreateUser } from "@/components/partials/forms/register-user/CreateUser";
 import { FormRegister } from "@/components/partials/forms/register-user/FormRegister";
@@ -29,9 +28,9 @@ export default function ResgisterUser() {
   );
   return (
     <>
-      <h4 className="font-medium lg:text-2xl text-xl capitalize text-slate-900 inline-block ltr:pr-4 rtl:pl-4 mb-3">
+      {/* <h4 className="font-medium lg:text-2xl text-xl capitalize text-slate-900 inline-block ltr:pr-4 rtl:pl-4 mb-3">
         Cadastro De Usuário
-      </h4>
+      </h4> */}
       <div className="flex lg:space-x-5 chat-height overflow-hidden relative rtl:space-x-reverse">
         <div
           className={`transition-all duration-150 flex-none min-w-[260px]
@@ -100,14 +99,7 @@ export default function ResgisterUser() {
                 )}
               </Card>
             </div>
-            {/* right side information */}
-            {width > parseInt(breakpoints.lg) && openinfo && activeModal && (
-              <div className="flex-none w-[285px]">
-                <Card bodyClass="p-0 h-full" className="h-full bg-white">
-                  <Info />
-                </Card>
-              </div>
-            )}
+
           </div>
         </div>
       </div>
