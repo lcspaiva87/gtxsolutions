@@ -60,7 +60,7 @@ export function FormRegister() {
   });
 
   async function handleRegisterUser(data: FormValues) {
-    console.log("data", data);
+
   }
   const { company } = createUserStore();
 
@@ -147,7 +147,7 @@ export function FormRegister() {
       </div>
       <div className="flex  items-center justify-start p-[1rem]">
         <div className="ltr:text-right rtl:text-left">
-          <button className="btn btn-dark  text-center">
+          <button className="btn bg-black-450 text-center">
             {" "}
             Registrar usuario
           </button>

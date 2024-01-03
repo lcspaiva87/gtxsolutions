@@ -67,7 +67,7 @@ const Navmenu = ({ menus }) => {
                 {item.badge && <span className="menu-badge">{item.badge}</span>}
               </Link>
             )}
-            {/* only for menulabel */}
+
             {item.isHeadr && !item.child && (
               <div className="menulabel">{item.title}</div>
             )}
