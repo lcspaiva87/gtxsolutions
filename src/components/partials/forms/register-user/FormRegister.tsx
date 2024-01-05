@@ -140,7 +140,7 @@ export function FormRegister() {
       </div>
       <div className="flex  items-center justify-start p-[1rem]">
         <div className="ltr:text-right rtl:text-left">
-          <button className="btn bg-black-450 text-center" onClick={()=>('alert  FormRegister')}>
+          <button className="btn bg-black-450 text-center" onClick={()=>alert('alert  FormRegister')}>
             {" "}
             Registrar usuario
           </button>
