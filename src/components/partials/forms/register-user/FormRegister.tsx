@@ -3,7 +3,6 @@ import Textinput from "@/components/ui/Textinput";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
-import createUserStore from "./store";
 interface Icompany {
   id: string;
   value: string;
@@ -62,14 +61,8 @@ export function FormRegister() {
   async function handleRegisterUser(data: FormValues) {
 
   }
-  const { company } = createUserStore();
 
-  const options: Icompany[] = [
-    { id: "1", value: "option1", label: "Opção 1" },
-    { id: "2", value: "option2", label: "Opção 2" },
-    { id: "3", value: "option3", label: "Opção 3" },
-    // Adicione mais opções conforme necessário
-  ];
+
   return (
     <form onSubmit={handleSubmit(handleRegisterUser)}>
       <div className="p-[1rem] ">
@@ -147,7 +140,7 @@ export function FormRegister() {
       </div>
       <div className="flex  items-center justify-start p-[1rem]">
         <div className="ltr:text-right rtl:text-left">
-          <button className="btn bg-black-450 text-center">
+          <button className="btn bg-black-450 text-center" onClick={()=>('alert  FormRegister')}>
             {" "}
             Registrar usuario
           </button>
