@@ -29,7 +29,7 @@ const Contacts = ({ contact }: { contact: IContact }) => {
   return (
     <>
       {isClicado ? (
-        <div className="bg-red-900 block w-full py-5 ">
+        <div className="bg-red-900 block w-full py-8 focus:ring-0 outline-none group transition-all duration-150 ">
           <div className="flex space-x-3 px-6 rtl:space-x-reverse">
             <div className="flex-none">
               <div className="-10 rounded-full relative">

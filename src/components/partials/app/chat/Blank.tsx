@@ -6,7 +6,7 @@ const Blank = () => {
   const { width, breakpoints } = useWidth()
   const { toggleMobileChatSidebar } = appChatStore()
   return (
-    <div className="h-full flex flex-col items-center justify-center xl:space-y-2 space-y-6">
+    <div className="h-screen flex flex-col items-center justify-center xl:space-y-2 space-y-6">
       <Image
         src="/assets/images/svg/blank.svg"
         alt="blanck"
