@@ -1,7 +1,6 @@
 "use client";
 import Blank from "@/components/partials/app/chat/Blank";
 import Contacts from "@/components/partials/app/chat/Contacts";
-import Info from "@/components/partials/app/chat/Info";
 import appChatStore from "@/components/partials/app/chat/store";
 import { CreateUser } from "@/components/partials/forms/register-user/CreateUser";
 import { FormRegister } from "@/components/partials/forms/register-user/FormRegister";
@@ -29,9 +28,6 @@ export default function ResgisterUser() {
   );
   return (
     <>
-      <h4 className="font-medium lg:text-2xl text-xl capitalize text-slate-900 inline-block ltr:pr-4 rtl:pl-4 mb-3">
-        Cadastro De Usuário
-      </h4>
       <div className="flex lg:space-x-5 chat-height overflow-hidden relative rtl:space-x-reverse">
         <div
           className={`transition-all duration-150 flex-none min-w-[260px]
@@ -51,11 +47,8 @@ export default function ResgisterUser() {
             bodyClass=" relative p-0 h-full overflow-hidden "
             className="h-full bg-white"
           >
-            <div className="border-b border-slate-100 dark:border-slate-700 pb-4">
-              <CreateUser />
-            </div>
-            <div className="border-b border-slate-100 dark:border-slate-700 py-1">
-              <div className="search px-3 mx-6 rounded flex items-center space-x-3 rtl:space-x-reverse">
+            <div className="border-b border-slate-100 dark:border-slate-700 pb-4 flex items-center p-[1rem]">
+              <div className="search px-3 mx-6 rounded flex items-center space-x-3 rtl:space-x-reverse bg-black-450">
                 <div className="flex-none text-base text-slate-900 dark:text-slate-400">
                   <Icon icon="bytesize:search" />
                 </div>
@@ -65,7 +58,10 @@ export default function ResgisterUser() {
                   className="w-full flex-1 block bg-transparent placeholder:font-normal placeholder:text-slate-400 py-2 focus:ring-0 focus:outline-none dark:text-slate-200 dark:placeholder:text-slate-400"
                 />
               </div>
+
+              <CreateUser />
             </div>
+
             <SimpleBar className="contact-height">
               {searchContacts?.map(
                 (contact: any, i: Key | null | undefined) => (
@@ -80,7 +76,7 @@ export default function ResgisterUser() {
         {width < parseInt(breakpoints.lg) && mobileChatSidebar && (
           <div
             className="overlay bg-slate-900 dark:bg-slate-900 dark:bg-opacity-60 bg-opacity-60 backdrop-filter
-         backdrop-blur-sm absolute w-full flex-1 inset-0 z-[99] rounded-md"
+            backdrop-blur-sm absolute w-full flex-1 inset-0 z-[99] rounded-md"
             onClick={() => toggleMobileChatSidebar(!mobileChatSidebar)}
           ></div>
         )}
@@ -100,14 +96,6 @@ export default function ResgisterUser() {
                 )}
               </Card>
             </div>
-            {/* right side information */}
-            {width > parseInt(breakpoints.lg) && openinfo && activeModal && (
-              <div className="flex-none w-[285px]">
-                <Card bodyClass="p-0 h-full" className="h-full bg-white">
-                  <Info />
-                </Card>
-              </div>
-            )}
           </div>
         </div>
       </div>
