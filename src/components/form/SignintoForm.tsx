@@ -39,7 +39,7 @@ export function SignintoForm() {
       <Input
         type="email"
         name="email"
-        placeholder="Digite seu nome Completo"
+        placeholder="Digite email"
         required
         control={control}
         className="mt-6"
@@ -68,7 +68,7 @@ export function SignintoForm() {
         disabled={false || !errors}
       >
         {/* {false ? <LoadingSpinner className="mx-auto" /> : ' Sign in'} */}
-        Sign in
+        Login
       </Button>
     </form>
   );
