@@ -1,15 +1,15 @@
 "use client";
 import Textinput from "@/components/ui/Textinput";
+import { useUser } from "@/hooks/useUser";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
-interface Icompany {
-  id: string;
-  value: string;
-  label: string;
-}
+import createUserStore from "./store";
+import { useEffect } from "react";
+import { generatePassword } from "@/utils/utils";
 
 type FormValues = {
+  id: string;
   name: string;
   email: string;
   dat_of_birth: Date;
@@ -18,10 +18,11 @@ type FormValues = {
   branch: string;
   Position_in_the_Company: string;
   Sector_Department: string;
-  valuesOption: any;
 };
+
 const FormValidationSchema = yup
   .object({
+    id: yup.string(),
     name: yup.string().required("name is required"),
     email: yup.string().email().required("email is required"),
     dat_of_birth: yup.date().required("email is required"),
@@ -35,39 +36,70 @@ const FormValidationSchema = yup
     Sector_Department: yup.string().required("Sector_Department is required"),
   })
   .required();
+
 export function FormRegister() {
+  const { createUserMutation, createUserUpdateMutation } = useUser();
+  const { modalAction, userInitialData } = createUserStore();
+
+  let defaultValues: FormValues = {
+    id: "0",
+    name: "",
+    email: "",
+    branch: "",
+    password: generatePassword(8),
+    phone: "",
+    Position_in_the_Company: "",
+    Sector_Department: "",
+    dat_of_birth: new Date()
+  };
+  
   const {
     register,
     reset,
     control,
     formState: { errors },
     handleSubmit,
+    setValue,
   } = useForm({
     resolver: yupResolver(FormValidationSchema),
-    defaultValues: {
-      name: "",
-      email: "",
-      branch: "",
-      password: "",
-      phone: "",
-      Position_in_the_Company: "",
-      Sector_Department: "",
-      dat_of_birth: new Date(),
-      valuesOption: [],
-    },
+    defaultValues: { ...defaultValues },
     mode: "all",
   });
 
-  async function handleRegisterUser(data: FormValues) {
+  useEffect(() => {
+    let formFields = Object.entries(defaultValues);
+    formFields.forEach(([fieldName, fieldValue]) => {
+      if(userInitialData) {
 
+      }
+      setValue(fieldName, userInitialData?[fieldName] : "");
+    });
+  }, [userInitialData]);
+
+  async function handleRegisterUser(data: any) {
+    console.log("aqui")
+    // if(modalAction === "create") {
+    //   return createUserMutation.mutate({
+    //     email: data.email,
+    //     password: data.password
+    //   });
+    // }
+    // else {
+    //   return createUserUpdateMutation.mutate({
+    //     id: 0,
+    //     email: data.email,
+    //     password: data.password
+    //   });
+    // }
   }
-
 
   return (
     <form onSubmit={handleSubmit(handleRegisterUser)}>
       <div className="p-[1rem] ">
-        <label htmlFor="">Dados do usario</label>
-        <div className="grid grid-cols-2  gap-[1rem] mt-[1rem]">
+        <label htmlFor="">Adicionando usuário</label>
+        <div className="grid grid-cols-2  gap-[1rem] mt-[2rem]">
+          <input {...register("id")} type="hidden" />
+
           <Textinput
             label="Nome Funcionario"
             placeholder="Nome Funcionario"
@@ -140,8 +172,7 @@ export function FormRegister() {
       </div>
       <div className="flex  items-center justify-start p-[1rem]">
         <div className="ltr:text-right rtl:text-left">
-          <button className="btn bg-black-450 text-center" onClick={()=>alert('alert  FormRegister')}>
-            {" "}
+          <button type="submit">
             Registrar usuario
           </button>
         </div>

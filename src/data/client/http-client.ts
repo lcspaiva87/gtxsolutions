@@ -6,6 +6,7 @@ invariant(
   process.env.NEXT_PUBLIC_REST_API_ENDPOINT,
   "NEXT_PUBLIC_REST_API_ENDPOINT is not defined, please define it in your .env file",
 );
+
 async function request<T>(
   method: "get" | "post" | "put" | "delete" | "patch",
   path: string,

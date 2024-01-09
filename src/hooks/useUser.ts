@@ -1,5 +1,5 @@
 
-import { LoginUser, RefreshToken } from "@/data/user";
+import { addUser, ListnUser, LoginUser, RefreshToken, updateUser } from "@/data/user";
 import nookies, { setCookie } from "nookies";
 import { enqueueSnackbar } from "notistack";
 import { useMutation, useQuery, useQueryClient } from "react-query";
@@ -11,7 +11,7 @@ export const useUser = () => {
   const queryClient = useQueryClient();
   const router = useRouter();
 
-  const createMutation = useMutation<SuccessResult, ErrorResult>(LoginUser,{
+  const createMutation = useMutation(LoginUser, {
     onError: (erro) => {
       console.log(erro, "erro")
       enqueueSnackbar(erro?.message || 'Erro ao tentar fazer login', {
@@ -38,6 +38,41 @@ export const useUser = () => {
     }
   })
 
+  const createUserMutation = useMutation(addUser, {
+    onError: (erro) => {
+      console.log(erro, "erro")
+      enqueueSnackbar(erro?.message || 'Erro ao criar usuário', {
+        variant: 'error',
+      })
+      console.log("erro",erro)
+    },
+    onSuccess: (response) => {
+      const{ data: token } = response;
+
+      console.log("add user response", response);
+      enqueueSnackbar("Usuário adicionado com sucesso", {
+        variant: 'success',
+      })
+    }
+  });
+
+  const createUserUpdateMutation = useMutation(updateUser, {
+    onError: (erro) => {
+      console.log(erro, "erro")
+      enqueueSnackbar(erro?.message || 'Erro ao editar usuário', {
+        variant: 'error',
+      })
+      console.log("erro",erro)
+    },
+    onSuccess: (response) => {
+      const{ data: token } = response;
+
+      enqueueSnackbar("Usuário editado com sucesso", {
+        variant: 'success',
+      })
+    }
+  });
+
   const RefreshTokenMutation = useMutation(RefreshToken,{
     onError: (erro) => {
       enqueueSnackbar('Erro ao tentar fazer login', {
@@ -63,19 +98,24 @@ export const useUser = () => {
 
   }
   })
+
   const {
     isLoading,
     isError,
+    data: list
   } = useQuery({
     queryKey: ['user'],
-
+    queryFn: () => ListnUser() 
   })
+  
   return {
-
     isLoading,
     isError,
     createMutation,
-    RefreshTokenMutation
+    createUserMutation,
+    createUserUpdateMutation,
+    RefreshTokenMutation,
+    users: list ?? []
   }
 }
 
