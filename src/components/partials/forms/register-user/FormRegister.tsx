@@ -29,7 +29,6 @@ const FormValidationSchema = yup
     password: yup.string().required("password is required"),
     phone: yup.string().required("phone is required"),
     branch: yup.string().required("phone is required"),
-    valuesOption: yup.array().required("valuesOption is required"),
     Position_in_the_Company: yup
       .string()
       .required("Position_in_the_Company is required"),
@@ -50,9 +49,9 @@ export function FormRegister() {
     phone: "",
     Position_in_the_Company: "",
     Sector_Department: "",
-    dat_of_birth: new Date()
+    dat_of_birth: new Date(),
   };
-  
+
   const {
     register,
     reset,
@@ -62,35 +61,44 @@ export function FormRegister() {
     setValue,
   } = useForm({
     resolver: yupResolver(FormValidationSchema),
-    defaultValues: { ...defaultValues },
+    defaultValues: {
+      id: "0",
+      name: "",
+      email: "",
+      branch: "",
+      password: generatePassword(8),
+      phone: "",
+      Position_in_the_Company: "",
+      Sector_Department: "",
+      dat_of_birth: new Date(),
+    },
     mode: "all",
   });
 
   useEffect(() => {
     let formFields = Object.entries(defaultValues);
     formFields.forEach(([fieldName, fieldValue]) => {
-      if(userInitialData) {
-
+      if (userInitialData) {
       }
-      setValue(fieldName, userInitialData?[fieldName] : "");
+      setValue(fieldName, userInitialData ? [fieldName] : "");
     });
   }, [userInitialData]);
 
   async function handleRegisterUser(data: any) {
-    console.log("aqui")
-    // if(modalAction === "create") {
-    //   return createUserMutation.mutate({
-    //     email: data.email,
-    //     password: data.password
-    //   });
-    // }
-    // else {
-    //   return createUserUpdateMutation.mutate({
-    //     id: 0,
-    //     email: data.email,
-    //     password: data.password
-    //   });
-    // }
+    if(modalAction === "create") {
+      return createUserMutation.mutate({
+        name: data.name,
+        email: data.email,
+        password: data.password
+      });
+    }
+    else {
+      return createUserUpdateMutation.mutate({
+        id: data.id,
+        email: data.email,
+        password: data.password
+      });
+    }
   }
 
   return (
@@ -172,7 +180,11 @@ export function FormRegister() {
       </div>
       <div className="flex  items-center justify-start p-[1rem]">
         <div className="ltr:text-right rtl:text-left">
-          <button type="submit">
+          <button
+            className="btn bg-sky-700 hover:bg-sky-600 text-center"
+            type="submit"
+          >
+            {" "}
             Registrar usuario
           </button>
         </div>

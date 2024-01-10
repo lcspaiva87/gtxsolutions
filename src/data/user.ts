@@ -20,12 +20,14 @@ interface TokenData {
 }
 
 interface AddUser {
+  name: string,
   email: string,
   password: string,
 }
 
 interface UpdateUser {
   id: number,
+  name?: string,
   email?: string,
   password?: string,
 }
@@ -46,10 +48,10 @@ export const ListnUser = async () => {
 };
 
 
-export const addUser = async ({ email, password }: AddUser) => {
+export const addUser = async ({ name, email, password }: AddUser) => {
   const token = Cookies.get("auth_token");
   console.log("token", token)
-  const response = await post("/users", { email, password }, token);
+  const response = await post("/users", { name, email, password }, token);
 
   return response;
 };
