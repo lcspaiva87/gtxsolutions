@@ -7,6 +7,7 @@ import { FormRegister } from "@/components/partials/forms/register-user/FormRegi
 import createUserStore from "@/components/partials/forms/register-user/store";
 import { Card } from "@/components/ui/Card";
 import Icon from "@/components/ui/Icon";
+import { useUser } from "@/hooks/useUser";
 import useWidth from "@/hooks/useWidth";
 import { Key } from "react";
 import SimpleBar from "simplebar-react";
@@ -22,9 +23,10 @@ export default function ResgisterUser() {
     toggleMobileChatSidebar,
   } = appChatStore();
   const { isOpenModal } = createUserStore();
-
-  const searchContacts = contacts?.filter((item: { fullName: string }) =>
-    item.fullName.toLowerCase().includes(searchContact.toLowerCase()),
+  const { users } = useUser();
+  console.log("users", users);
+  const searchContacts = users?.filter((item: { name: string }) =>
+    item.name.toLowerCase().includes(searchContact.toLowerCase()),
   );
 
   return (

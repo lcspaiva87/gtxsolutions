@@ -1,6 +1,8 @@
 import * as yup from "yup";
 import { get, post } from "./client/http-client";
 
+import { IUser } from "@/@types/Use";
+import { AxiosResponse } from "axios";
 import Cookies from "js-cookie";
 
 // Definição do esquema com yup
@@ -43,15 +45,16 @@ export const LoginUser = async ({ email, password }: YupFormType) => {
 };
 
 export const ListnUser = async () => {
-  const response = await get("/users", );
-  return response;
+  const token = Cookies.get("auth_token");
+  const response:AxiosResponse<IUser[]> = await get<IUser>("/users",token );
+  return response.data;
 };
 
 
 export const addUser = async ({ name, email, password }: AddUser) => {
   const token = Cookies.get("auth_token");
   console.log("token", token)
-  const response = await post("/users", { name, email, password }, token);
+  const response = await post<IUser>("/users", { name, email, password }, token);
 
   return response;
 };
