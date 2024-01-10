@@ -9,7 +9,6 @@ import { Card } from "@/components/ui/Card";
 import Icon from "@/components/ui/Icon";
 import { useUser } from "@/hooks/useUser";
 import useWidth from "@/hooks/useWidth";
-import { Key } from "react";
 import SimpleBar from "simplebar-react";
 
 export default function ResgisterUser() {
@@ -65,8 +64,8 @@ export default function ResgisterUser() {
           </div>
 
           <SimpleBar className="contact-height">
-            {searchContacts?.map((contact: any, i: Key | null | undefined) => (
-              <Contacts key={i} contact={contact} />
+            {searchContacts?.map((contact,index) => (
+              <Contacts key={index} contact={contact} />
             ))}
           </SimpleBar>
         </Card>
