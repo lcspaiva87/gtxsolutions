@@ -46,11 +46,7 @@ const Contacts = ({ contact }: { contact: IUser }) => {
               <div
                 className="h-7 w-7 bg-slate-100 dark:bg-black-450 dark:hover:bg-white dark:text-slate-400 dark:hover:text-black flex flex-col justify-center items-center text-xl rounded-full cursor-pointer"
                 onClick={() => {
-                  setUserInitialData({
-                    id: 1,
-                    email: "tem email",
-                    password: "teste",
-                  });
+
                   toggleModal(true, "update");
                 }}
               >

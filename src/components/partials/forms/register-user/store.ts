@@ -7,20 +7,22 @@ interface Icompany{
 
 interface IuserUpdate {
   id: number,
-  email: string,
-  password: string
+  description: string,
+  ip: string,
+  site: string,
+  id_camera_group: string,
 }
 
 
-interface ICreateUser {
+interface ICameras {
   isOpenModal: boolean,
   modalAction: "create" | "update",
-  toggleModal: (open: ICreateUser["isOpenModal"], action: ICreateUser["modalAction"]) => void
+  toggleModal: (open: ICameras["isOpenModal"], action: ICameras["modalAction"]) => void
   userInitialData: IuserUpdate | null,
-  setUserInitialData: (user: IuserUpdate) => void 
+  setUserInitialData: (user: IuserUpdate) => void
 }
 
-const createUserStore = create<ICreateUser>((set) => ({
+const createUserStore = create<ICameras>((set) => ({
   isOpenModal: false,
   modalAction: "create",
   userInitialData: null,
