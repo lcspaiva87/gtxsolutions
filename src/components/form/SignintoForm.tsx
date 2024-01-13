@@ -1,43 +1,45 @@
-'use client'
-import { yupResolver } from '@hookform/resolvers/yup'
-import Link from 'next/link'
-import { useForm } from 'react-hook-form'
-import * as yup from 'yup'
-import Button from '../ui/Button'
-import { Input } from '../ui/Input'
-
+"use client";
+import { useUser } from "@/hooks/useUser";
+import { yupResolver } from "@hookform/resolvers/yup";
+import Link from "next/link";
+import { useForm } from "react-hook-form";
+import * as yup from "yup";
+import Button from "../ui/Button";
+import { Input } from "../ui/Input";
 type FormValues = {
-  email: string
-  password: string
-}
-
+  email: string;
+  password: string;
+};
 const signInFormSchema = yup.object().shape({
-  email: yup.string().required('E-mail obrigatório').email('E-mail inválido'),
-  password: yup.string().required('Senha obrigatória'),
-})
+  email: yup.string().required("E-mail obrigatório").email("E-mail inválido"),
+  password: yup.string().required("Senha obrigatória"),
+});
 export function SignintoForm() {
   const {
     handleSubmit,
     control,
-    setError,
-
     formState: { errors },
   } = useForm<FormValues>({
     resolver: yupResolver(signInFormSchema),
     defaultValues: {
-      email: '',
-      password: '',
+      email: "",
+      password: "",
     },
-  })
-  async function handleSignIn(data: FormValues) {
-    return data
+  });
+  const {createMutation} = useUser()
+  async function handleSignIn({email,password}: FormValues) {
+  createMutation.mutate({
+      email,
+      password
+    })
+
   }
   return (
     <form onSubmit={handleSubmit(handleSignIn)}>
       <Input
         type="email"
         name="email"
-        placeholder="Digite seu nome Completo"
+        placeholder="Digite email"
         required
         control={control}
         className="mt-6"
@@ -52,7 +54,6 @@ export function SignintoForm() {
         className="mt-6"
         // disabled={loading}
       />
-
       <Link
         href="#"
         className="ml-auto mt-[9px] block w-max text-small-label text-secondary hover:underline"
@@ -61,13 +62,14 @@ export function SignintoForm() {
       </Link>
 
       <Button
+        variant="primary"
         className="mt-4 w-full py-3 "
         type="submit"
         disabled={false || !errors}
       >
         {/* {false ? <LoadingSpinner className="mx-auto" /> : ' Sign in'} */}
-        Sign in
+        Login
       </Button>
     </form>
-  )
+  );
 }

@@ -4,7 +4,6 @@ import useMobileMenu from '@/hooks/useMobileMenu'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux'
 import Submenu from './Submenu'
 const Navmenu = ({ menus }) => {
   const router = useRouter()
@@ -17,12 +16,10 @@ const Navmenu = ({ menus }) => {
       setActiveSubmenu(i)
     }
   }
-
   const location = usePathname()
   const locationName = location.replace('/', '')
-
   const [mobileMenu, setMobileMenu] = useMobileMenu()
-  const dispatch = useDispatch()
+
   const { toggleActiveChat } = appChatStore()
   useEffect(() => {
     let submenuIndex = null
@@ -70,7 +67,7 @@ const Navmenu = ({ menus }) => {
                 {item.badge && <span className="menu-badge">{item.badge}</span>}
               </Link>
             )}
-            {/* only for menulabel */}
+
             {item.isHeadr && !item.child && (
               <div className="menulabel">{item.title}</div>
             )}

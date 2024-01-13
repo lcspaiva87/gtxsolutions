@@ -1,18 +1,15 @@
 "use client";
-import Button from "@/components/ui/Button";
-import { Input } from "@/components/ui/Input";
-import { MultiSelect } from "@/components/ui/MultiSelect";
+import Textinput from "@/components/ui/Textinput";
+import { useUser } from "@/hooks/useUser";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import createUserStore from "./store";
-interface Icompany {
-  id: string;
-  value: string;
-  label: string;
-}
+import { useEffect } from "react";
+import { generatePassword } from "@/utils/utils";
 
 type FormValues = {
+  id: string;
   name: string;
   email: string;
   dat_of_birth: Date;
@@ -21,124 +18,175 @@ type FormValues = {
   branch: string;
   Position_in_the_Company: string;
   Sector_Department: string;
-  valuesOption: any;
 };
+
 const FormValidationSchema = yup
   .object({
+    id: yup.string(),
     name: yup.string().required("name is required"),
     email: yup.string().email().required("email is required"),
     dat_of_birth: yup.date().required("email is required"),
     password: yup.string().required("password is required"),
     phone: yup.string().required("phone is required"),
     branch: yup.string().required("phone is required"),
-    valuesOption: yup.array().required("valuesOption is required"),
     Position_in_the_Company: yup
       .string()
       .required("Position_in_the_Company is required"),
     Sector_Department: yup.string().required("Sector_Department is required"),
   })
   .required();
+
 export function FormRegister() {
+  const { createUserMutation, createUserUpdateMutation } = useUser();
+  const { modalAction, userInitialData } = createUserStore();
+
+  let defaultValues: FormValues = {
+    id: "0",
+    name: "",
+    email: "",
+    branch: "",
+    password: generatePassword(8),
+    phone: "",
+    Position_in_the_Company: "",
+    Sector_Department: "",
+    dat_of_birth: new Date(),
+  };
+
   const {
     register,
     reset,
     control,
     formState: { errors },
     handleSubmit,
+    setValue,
   } = useForm({
     resolver: yupResolver(FormValidationSchema),
     defaultValues: {
+      id: "0",
       name: "",
       email: "",
       branch: "",
-      password: "",
+      password: generatePassword(8),
       phone: "",
       Position_in_the_Company: "",
       Sector_Department: "",
       dat_of_birth: new Date(),
-      valuesOption: [],
     },
     mode: "all",
   });
 
-  async function handleRegisterUser(data: FormValues) {
-    console.log("data", data);
-  }
-  const { company } = createUserStore();
+  useEffect(() => {
+    let formFields = Object.entries(defaultValues);
+    formFields.forEach(([fieldName, fieldValue]) => {
+      if (userInitialData) {
+      }
+      setValue(fieldName, userInitialData ? [fieldName] : "");
+    });
+  }, [userInitialData]);
 
-  const options:Icompany[]= [
-    { id: '1', value: "option1", label: "Opção 1" },
-    { id: '2', value: "option2", label: "Opção 2" },
-    { id: '3', value: "option3", label: "Opção 3" },
-    // Adicione mais opções conforme necessário
-  ];
+  async function handleRegisterUser(data: any) {
+    if(modalAction === "create") {
+      return createUserMutation.mutate({
+        name: data.name,
+        email: data.email,
+        password: data.password
+      });
+    }
+    else {
+      return createUserUpdateMutation.mutate({
+        id: data.id,
+        email: data.email,
+        password: data.password
+      });
+    }
+  }
+
   return (
     <form onSubmit={handleSubmit(handleRegisterUser)}>
       <div className="p-[1rem] ">
-        <label htmlFor="">Dados do usario</label>
-        <div className="grid grid-cols-2  gap-[1rem] mt-[1rem]">
-          <Input
-            type="text"
-            name="name"
-            control={control}
-            placeholder="nome completo"
-          />
-          <Input type="date" name="dat_of_birth" control={control} />
+        <label htmlFor="">Adicionando usuário</label>
+        <div className="grid grid-cols-2  gap-[1rem] mt-[2rem]">
+          <input {...register("id")} type="hidden" />
 
-          <Input
-            type="email"
-            name="email"
-            control={control}
-            placeholder="Digite seu email"
+          <Textinput
+            label="Nome Funcionario"
+            placeholder="Nome Funcionario"
+            register={register}
+            {...register("name", { required: "Name is required" })}
+            error={errors.name}
           />
-          <Input
-            type="text"
-            name="phone"
+
+          <Textinput
+            label="Data de nascimento"
+            placeholder="dat_of_birth"
+            register={register}
+            {...register("dat_of_birth", { required: "Name is required" })}
+            error={errors.dat_of_birth}
+          />
+          <Textinput
+            label="Email"
+            placeholder="email"
+            register={register}
+            {...register("email", { required: "email is required" })}
+            error={errors.email}
+          />
+          <Textinput
+            label="Telefone"
             placeholder="(xx) xxxx-xxxx"
-            control={control}
+            register={register}
+            {...register("phone", { required: "email is required" })}
+            error={errors.phone}
           />
-          <Input
-            type="password"
-            name="password"
+
+          <Textinput
+            label="password"
             placeholder="Digite sua senha"
-            control={control}
+            register={register}
+            {...register("password", { required: "email is required" })}
+            error={errors.password}
+            type="password"
           />
         </div>
       </div>
       <div className="p-[1rem] ">
         <label htmlFor="">Informações da Empresa</label>
         <div className="grid grid-cols-2  gap-[1rem] mt-[1rem]">
-          <Input
-            type="text"
-            name="branch"
-            control={control}
+          <Textinput
+            label="Filial"
             placeholder="Filial"
+            register={register}
+            {...register("branch", { required: "email is required" })}
+            error={errors.branch}
           />
-          <Input
-            type="text"
-            name="Position_in_the_Company"
-            control={control}
+          <Textinput
+            label="Cargo na Empresa:"
             placeholder="Cargo na Empresa:"
+            register={register}
+            {...register("Position_in_the_Company", {
+              required: "email is required",
+            })}
+            error={errors.Position_in_the_Company}
           />
-          <Input
-            type="text"
-            name="Sector_Department"
-            control={control}
+          <Textinput
+            label="Setor/Departamento:"
             placeholder="Setor/Departamento:"
+            register={register}
+            {...register("Sector_Department", {
+              required: "email is required",
+            })}
+            error={errors.Sector_Department}
           />
-          <MultiSelect   />
         </div>
       </div>
-      <div className="flex  items-center justify-center">
-        <div className="flex w-[15rem] ">
-          <Button
-            className="mt-4 w-[35rem] py-3 "
+      <div className="flex  items-center justify-start p-[1rem]">
+        <div className="ltr:text-right rtl:text-left">
+          <button
+            className="btn bg-sky-700 hover:bg-sky-600 text-center"
             type="submit"
-            disabled={false || !errors}
           >
-            {/* {false ? <LoadingSpinner className="mx-auto" /> : ' Sign in'} */}
-            Registrar usuario{" "}
-          </Button>
+            {" "}
+            Registrar usuario
+          </button>
         </div>
       </div>
     </form>

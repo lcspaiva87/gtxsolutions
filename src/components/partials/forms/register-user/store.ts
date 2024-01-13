@@ -4,20 +4,36 @@ interface Icompany{
   value: string,
   label: string
 }
-interface ICreateUser {
-  toggleModalUser: (value: boolean) => void
-  activeModal: boolean,
-  company: Icompany[] | string[],
-  setCompany: (value: Icompany[]) => void
+
+interface IuserUpdate {
+  id: number,
+  description: string,
+  ip: string,
+  site: string,
+  id_camera_group: string,
 }
 
-const createUserStore = create<ICreateUser>((set) => ({
-  activeModal: false,
-  company: [],
 
-  setCompany: (value) => set({ company: value }),
-  toggleModalUser: (value) => set({ activeModal: value })
+interface ICameras {
+  isOpenModal: boolean,
+  modalAction: "create" | "update",
+  toggleModal: (open: ICameras["isOpenModal"], action: ICameras["modalAction"]) => void
+  userInitialData: IuserUpdate | null,
+  setUserInitialData: (user: IuserUpdate) => void
+}
+
+const createUserStore = create<ICameras>((set) => ({
+  isOpenModal: false,
+  modalAction: "create",
+  userInitialData: null,
+  toggleModal: (open, action) => {
+    if(action === "create") {
+      set({ userInitialData: null })
+    }
+
+    set({ isOpenModal: open, modalAction: action });
+  },
+  setUserInitialData: (user) => set({ userInitialData: user })
 }))
-
 
 export default createUserStore

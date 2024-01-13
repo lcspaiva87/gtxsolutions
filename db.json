@@ -34,12 +34,27 @@
       "id": "container-14aeb0e4-bd83-4090-b4cd-20d8a0597a76",
       "color": "#4669fa",
       "title": "quarta"
+    },
+    {
+      "id": "container-2552b7e8-153a-478e-81cd-19bb8603b9c3",
+      "color": "#0b2798",
+      "title": "Aberto"
+    },
+    {
+      "id": "container-2b6ae062-22be-4b39-a49e-f0e43c752dc3",
+      "color": "#0b2798",
+      "title": "Em progresso"
+    },
+    {
+      "id": "container-a20cefa0-8ace-475e-8ba3-2fb0ae70f4cd",
+      "color": "#0b2798",
+      "title": "Finalizados"
     }
   ],
   "task": [
     {
       "user": "dev",
-      "columnId": "container-555671e6-665d-415d-a6de-1a692f92c4",
+      "columnId": "container-555671e6-665d-415d-a6de-1a692f92c48",
       "message": "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.",
       "avatar": "https://images.unsplash.com/photo-1492633423870-43d1cd2775eb?&w=128&h=128&dpr=2&q=80",
       "priority": "hard",

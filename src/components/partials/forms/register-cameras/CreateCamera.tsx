@@ -1,8 +1,9 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
-import createUserStore from "./store";
+import createCameraStore from "./store";
 
-export function CreateUser() {
-  const { toggleModal } = createUserStore();
+
+export function CreateCamera() {
+  const { toggleModal } = createCameraStore();
 
   return (
     <div>

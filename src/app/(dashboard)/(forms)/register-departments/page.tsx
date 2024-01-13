@@ -1,17 +1,20 @@
 "use client";
+import { IUser } from "@/@types/Use";
 import Blank from "@/components/partials/app/chat/Blank";
 import Contacts from "@/components/partials/app/chat/Contacts";
 import appChatStore from "@/components/partials/app/chat/store";
-import { CreateUser } from "@/components/partials/forms/register-user/CreateUser";
-import { FormRegister } from "@/components/partials/forms/register-user/FormRegister";
-import createUserStore from "@/components/partials/forms/register-user/store";
+import { CreateDepartments } from "@/components/partials/forms/register-departments/CreateDepartments";
+import { FormRegister } from "@/components/partials/forms/register-departments/FormDepartments";
+import createDepartmentsStore from "@/components/partials/forms/register-departments/store";
+
 import { Card } from "@/components/ui/Card";
 import Icon from "@/components/ui/Icon";
-import { useUser } from "@/hooks/useUser";
+import { useDepartments } from "@/hooks/useDepartments";
 import useWidth from "@/hooks/useWidth";
+import { Key } from "react";
 import SimpleBar from "simplebar-react";
 
-export default function ResgisterUser() {
+export default function ResgisterDepartments() {
   const { width, breakpoints } = useWidth();
   const {
     searchContact,
@@ -21,11 +24,10 @@ export default function ResgisterUser() {
     setContactSearch,
     toggleMobileChatSidebar,
   } = appChatStore();
-  const { isOpenModal } = createUserStore();
-  const { users } = useUser();
-  console.log("users", users);
-  const searchContacts = users?.filter((item: { name: string }) =>
-    item.name.toLowerCase().includes(searchContact.toLowerCase()),
+  const { isOpenModal } = createDepartmentsStore();
+  const { departments } = useDepartments();
+  const searchContacts = departments?.filter((item: { ip: string }) =>
+    item?.ip?.toLowerCase().includes(searchContact.toLowerCase()),
   );
 
   return (
@@ -60,11 +62,11 @@ export default function ResgisterUser() {
               />
             </div>
 
-            <CreateUser />
+            <CreateDepartments />
           </div>
 
           <SimpleBar className="contact-height">
-            {searchContacts?.map((contact,index) => (
+            {searchContacts?.map((contact: IUser,index: Key | null | undefined) => (
               <Contacts key={index} contact={contact} />
             ))}
           </SimpleBar>

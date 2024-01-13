@@ -68,6 +68,25 @@ export const menuItems: MenuItem[] = [
     icon: "heroicons-outline:user",
     link: "register-user",
   },
+  {
+    title: "Cameras",
+    isHide: true,
+    icon: "heroicons-outline:user",
+    link: "register-cameras",
+  },
+  {
+    title: "Departamentos",
+    isHide: true,
+    icon: "heroicons-outline:user",
+    link: "register-departments",
+  },
+  {
+    title: "Ocorrência",
+    isHide: true,
+    icon: "heroicons-outline:user",
+    link: "register-event",
+  },
+
 ]
 
 export const topMenu: Idata[] = [
