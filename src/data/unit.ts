@@ -17,14 +17,14 @@ interface UpdateUnit {
 
 
 
-export const addCamera= async ({ email,password }: AddUnit) => {
+export const addUnit= async ({ email,password }: AddUnit) => {
   const token = Cookies.get("auth_token");
   console.log("token", token)
   const response = await post<IUser>("/units", { email,password}, token);
 
   return response;
 };
-export const ListnCameras = async () => {
+export const ListnUnit = async () => {
   const token = Cookies.get("auth_token");
   const response:AxiosResponse = await get("/units",token );
   return response.data;
@@ -33,12 +33,12 @@ export const ListnCameras = async () => {
 
 
 
-export const updateCamera = async ({ email,id,password}: UpdateUnit) => {
+export const updateUnit= async ({ email,id,password}: UpdateUnit) => {
   const response = await post(`/units/${id}`, { email,password});
   return response;
 };
 
-export const deleteCamera = async (id:string) => {
+export const deleteUnit = async (id:string) => {
   const response = await del(`/units/${id}`);
   return response;
 };
