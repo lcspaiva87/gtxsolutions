@@ -22,7 +22,7 @@ export default function Kanban() {
   return (
     <>
       <Column />
-      <AddColumn />
+      {/* <AddColumn /> */}
     </>
   );
 }
