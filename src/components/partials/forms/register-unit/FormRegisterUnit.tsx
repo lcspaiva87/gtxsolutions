@@ -1,32 +1,31 @@
 "use client";
 import Textinput from "@/components/ui/Textinput";
-import { useEvent } from "@/hooks/useEvent";
+import { useUnit } from "@/hooks/useUnit";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
-import createUserStore from "./store";
+import creatIunitStore from "./store";
 
 type FormValues = {
-  id: string;
-  description: string;
+  name: string;
+  email: string;
 };
 
 const FormValidationSchema = yup
   .object({
-    id: yup.string(),
-    description: yup.string().email().required("email is required"),
-
+    name: yup.string().required("name is required"),
+    email: yup.string().email().required("email is required"),
   })
   .required();
 
-export function FormRegisterEvent() {
-  const { createMutation,updateMutation } = useEvent();
-  const { modalAction, userInitialData } = createUserStore();
+export function FormRegisterUnit() {
+  const { createMutation, updateMutation } = useUnit();
+  const { modalAction, unitInitialData } = creatIunitStore();
 
   let defaultValues: FormValues = {
-    id: "0",
-    description: "",
+    name: "",
+    email: "",
   };
 
   const {
@@ -39,32 +38,32 @@ export function FormRegisterEvent() {
   } = useForm({
     resolver: yupResolver(FormValidationSchema),
     defaultValues: {
-      id: "0",
-      description: "",
+      name: "",
+      email: "",
     },
     mode: "all",
   });
 
   useEffect(() => {
     let formFields = Object.entries(defaultValues);
-    formFields.forEach(([fieldName, fieldValue]) => {
-      if (userInitialData) {
+    formFields.forEach(([name, fieldValue]) => {
+      if (unitInitialData) {
       }
-      setValue(fieldName, userInitialData ? [fieldName] : "");
+      setValue(name, unitInitialData ? [name] : "");
     });
-  }, [userInitialData]);
+  }, [unitInitialData]);
 
   async function handleRegisterUser(data: any) {
     if (modalAction === "create") {
       return createMutation.mutate({
-        description: data.description,
-
+        email: data.description,
+        name: data.password,
       });
     } else {
       return updateMutation.mutate({
-        id: data.id,
-        description: data.description,
-
+        id: "",
+        email: "",
+        name: ""
       });
     }
   }
@@ -72,17 +71,25 @@ export function FormRegisterEvent() {
   return (
     <form onSubmit={handleSubmit(handleRegisterUser)}>
       <div className="p-[1rem] ">
-        <label htmlFor="">Cadastro de Tipo de ocorrência</label>
+        <label htmlFor="">Cadastro de Unidades</label>
         <div className="grid grid-cols-2  gap-[1rem] mt-[2rem]">
-          <input {...register("id")} type="hidden" />
           <Textinput
-            label="descriçao"
-            placeholder="Seg. patrimonial, Seg. de Processo etc."
+            label="Nome"
+            placeholder="Digite o nome da unidade"
             register={register}
-            {...register("description", { required: "description is required" })}
-            error={errors.description}
+            {...register("name", { required: "description is required" })}
+            error={errors.name}
           />
-
+        </div>
+        <div className="grid grid-cols-2  gap-[1rem] mt-[2rem]">
+          <input {...register("email")} type="hidden" />
+          <Textinput
+            label="Email"
+            placeholder="Digite o email da unidade"
+            register={register}
+            {...register("email", { required: "description is required" })}
+            error={errors.email}
+          />
         </div>
       </div>
 
@@ -93,7 +100,7 @@ export function FormRegisterEvent() {
             type="submit"
           >
             {" "}
-            Registrar Ocorrência
+            Registrar Unidade
           </button>
         </div>
       </div>

@@ -6,21 +6,18 @@ import Cookies from "js-cookie";
 
 interface AddUnit {
   email: string,
-  password: string,
+  name: string,
 }
-
 interface UpdateUnit {
   id:string,
   email: string,
-  password: string,
+  name: string,
 }
 
-
-
-export const addUnit= async ({ email,password }: AddUnit) => {
+export const addUnit= async ({ email,name }: AddUnit) => {
   const token = Cookies.get("auth_token");
   console.log("token", token)
-  const response = await post<IUser>("/units", { email,password}, token);
+  const response = await post<IUser>("/units", { email,name}, token);
 
   return response;
 };
@@ -30,11 +27,8 @@ export const ListnUnit = async () => {
   return response.data;
 };
 
-
-
-
-export const updateUnit= async ({ email,id,password}: UpdateUnit) => {
-  const response = await post(`/units/${id}`, { email,password});
+export const updateUnit= async ({id, email,name}: UpdateUnit) => {
+  const response = await post(`/units/${id}`, { email,name});
   return response;
 };
 

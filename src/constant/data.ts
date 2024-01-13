@@ -86,9 +86,21 @@ export const menuItems: MenuItem[] = [
     icon: "heroicons-outline:document-duplicate",
     link: "register-event",
   },
+  {
+    title: "Unidades",
+    isHide: true,
+    icon: "heroicons-outline:building-storefront",
+    link: "register-unit",
+  },
+  {
+    title: "Tipoe de ocorrência",
+    isHide: true,
+    icon: "heroicons-outline:document-duplicate",
+    link: "register-event-type",
+  },
 
 ]
-
+//register-unit
 export const topMenu: Idata[] = [
   {
     title: 'Dashboard',

@@ -1,31 +1,31 @@
 "use client";
+import { IUser } from "@/@types/Use";
 import Blank from "@/components/partials/app/chat/Blank";
 import Contacts from "@/components/partials/app/chat/Contacts";
 import appChatStore from "@/components/partials/app/chat/store";
-import { CreateUnit } from "@/components/partials/forms/register-unit/CreateUnit";
-import { FormRegisterUnit } from "@/components/partials/forms/register-unit/FormRegisterUnit";
-import creatIunitStore from "@/components/partials/forms/register-unit/store";
+import { FormRegisterEventType } from "@/components/partials/forms/register-event-type/FormRegisterEventType";
+import { CreateEventType } from "@/components/partials/forms/register-user/CreateUser";
+import createEventTypeStore from "@/components/partials/forms/register-user/store";
 
 import { Card } from "@/components/ui/Card";
 import Icon from "@/components/ui/Icon";
-import { useUnit } from "@/hooks/useUnit";
+import { useEvent } from "@/hooks/useEvent";
 import useWidth from "@/hooks/useWidth";
+import { Key } from "react";
 import SimpleBar from "simplebar-react";
 
-export default function ResgisterUser() {
+export default function ResgisterEvent() {
   const { width, breakpoints } = useWidth();
   const {
     searchContact,
     mobileChatSidebar,
-    contacts,
-    openinfo,
     setContactSearch,
     toggleMobileChatSidebar,
   } = appChatStore();
-  const { isOpenModal } = creatIunitStore();
-  const { unit } = useUnit();
-  const searchContacts = unit?.filter((item: { name: string }) =>
-    item.name.toLowerCase().includes(searchContact.toLowerCase()),
+  const { isOpenModal } = createEventTypeStore();
+  const {  event} = useEvent();
+  const searchContacts = event?.filter((item: { description: string }) =>
+    item?.description?.toLowerCase().includes(searchContact.toLowerCase()),
   );
 
   return (
@@ -60,11 +60,11 @@ export default function ResgisterUser() {
               />
             </div>
 
-            <CreateUnit />
+            <CreateEventType />
           </div>
 
           <SimpleBar className="contact-height">
-            {searchContacts?.map((contact:any,index:any) => (
+            {searchContacts?.map((contact: IUser,index: Key | null | undefined) => (
               <Contacts key={index} contact={contact} />
             ))}
           </SimpleBar>
@@ -88,7 +88,7 @@ export default function ResgisterUser() {
             <Card bodyClass="p-0 h-full" className="h-full bg-white">
               {isOpenModal ? (
                 <div className="divide-y divide-slate-100 dark:divide-slate-700 h-full overflow-auto">
-                  <FormRegisterUnit />
+                  <FormRegisterEventType />
                 </div>
               ) : (
                 <Blank />

@@ -4,7 +4,7 @@ import { useMutation, useQuery, useQueryClient } from "react-query";
 
 import { ListnUnit, addUnit, updateUnit } from "@/data/unit";
 
-export const useEvent = () => {
+export const useUnit = () => {
   const queryClient = useQueryClient();
 
   const createMutation = useMutation(addUnit, {

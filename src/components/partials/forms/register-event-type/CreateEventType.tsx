@@ -1,9 +1,8 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
-import creatIunitStore from "./store";
+import createUserStore from "./store";
 
-
-export function CreateUnit() {
-  const { toggleModal } = creatIunitStore();
+export function CreateUser() {
+  const { toggleModal } = createUserStore();
 
   return (
     <div>
