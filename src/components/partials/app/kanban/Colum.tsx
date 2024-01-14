@@ -21,18 +21,42 @@ export default function Column() {
   const { toggleColumnModal } = kabanStore()
 
   useEffect(() => {
-    if (initialColumns) {
-      setColumns(initialColumns);
-    }
+    setColumns([
+      {
+        id: "0",
+        title: "Aberto",
+        color: "green"
+      },
+      {
+        id: "1",
+        title: "Em andamento",
+        color: "blue"
+      },
+      {
+        id: "2",
+        title: "Finalizado",
+        color: "gray"
+      }
+    ])
+  }, []);
+
+  useEffect(() => {
+    console.log(initialColumns, "initialColumns");
+    // if (initialColumns) {
+    //   setColumns(initialColumns);
+    // }
   }, [initialColumns]);
 
   useEffect(() => {
-    if (initialTasks) {
-      setTasks(initialTasks);
-    }
+    console.log(initialTasks, "initialTasks");
+    // if (initialTasks) {
+    //   setTasks(initialTasks);
+    // }
   }, [initialTasks]);
+
   const filterTasks = (columnId: string) =>
     tasks.filter((task) => task.columnId === columnId);
+
   const onDragEnd = (result: any) => {
     const { destination, source } = result;
 
@@ -54,17 +78,18 @@ export default function Column() {
 
     // setColumns(updatedColumns)
   };
+
   return (
     <>
       <div className="flex flex-wrap justify-between items-center mb-4">
         <h4 className="font-medium lg:text-2xl text-xl capitalize text-slate-900 inline-block ltr:pr-4 rtl:pl-4">
-          Task
+          Registros de Ocorrências
         </h4>
         <div className="flex space-x-4 justify-end items-center rtl:space-x-reverse">
           <Button
             type="button"
             icon="heroicons-outline:plus"
-            text="Create new task"
+            text="Criar nova ocorrência"
             className="bg-slate-800 dark:hover:bg-opacity-70   h-min text-sm font-medium text-slate-50 hover:ring-2 hover:ring-opacity-80 ring-slate-900  hover:ring-offset-1  dark:hover:ring-0 dark:hover:ring-offset-0"
             iconClass=" text-lg"
             onClick={() => toggleColumnModal(true)}
@@ -92,7 +117,7 @@ export default function Column() {
       {!columns?.length && (
         <div className="w-full flex h-[45rem] lg:h-[35rem] justify-center items-center ">
           <div className="flex items-center justify-center">
-            <span>nao tem task disponivel</span>
+            <span>Não existem status disponível</span>
           </div>
         </div>
       )}

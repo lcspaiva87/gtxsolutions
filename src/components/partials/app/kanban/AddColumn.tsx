@@ -1,30 +1,43 @@
-'use client'
-import { useState } from 'react'
-import { v4 as uuidv4 } from 'uuid'
+"use client";
+import { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
-import Modal from '@/components/ui/Modal'
-import Textinput from '@/components/ui/Textinput'
+import Modal from "@/components/ui/Modal";
+import Textinput from "@/components/ui/Textinput";
+import Textarea from "@/components/ui/Textarea";
+import Select from "@/components/ui/Select";
+import ImagesGroupSelect from "@/components/ui/ImagesGroupSelect";
 
-import { useColumns } from '@/hooks/useColuns'
-import { yupResolver } from '@hookform/resolvers/yup'
-import { useForm } from 'react-hook-form'
-import * as yup from 'yup'
-import kabanStore from './store'
+import { useColumns } from "@/hooks/useColuns";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
+import * as yup from "yup";
+import kabanStore from "./store";
+
 type FormValues = {
-  title: string
-  color: string
-}
+  branch: number;
+  unit: number;
+  description: string;
+  // cameras: number[];
+  // images: any[];
+};
+
 const FormValidationSchema = yup
   .object({
-    title: yup.string().required('name is required'),
-    color: yup.string().required('color is required'),
+    unit: yup.number().required("Unidade é obrigatório"),
+    branch: yup.number().required("Filial é obrigatório"),
+    description: yup
+      .string()
+      .min(10, "Minimo 10 caracteres")
+      .required("Descrição é obrigatório"),
   })
-  .required()
+  .required();
 
-export default function AddColumn  () {
-  const [color, setColor] = useState('#4669fa')
-  const { columModal, toggleColumnModal } = kabanStore()
-  const { createMutation } = useColumns()
+export default function AddColumn() {
+  const [color, setColor] = useState("#4669fa");
+  const { columModal, toggleColumnModal } = kabanStore();
+  const { createMutation } = useColumns();
+
   const {
     register,
     reset,
@@ -32,44 +45,146 @@ export default function AddColumn  () {
     handleSubmit,
   } = useForm({
     resolver: yupResolver(FormValidationSchema),
-    mode: 'all',
-  })
+    mode: "all",
+  });
 
-  const onSubmit = ({ color, title }: FormValues) => {
-    const id = `container-${uuidv4()}`
-    createMutation.mutate({ title, color, id })
+  const onSubmit = ({
+    branch,
+    unit,
+    description,
+    // cameras,
+    // images,
+  }: FormValues) => {
+    // console.log({ branch, unit, description, cameras, images }, "submit");
+    const id = `container-${uuidv4()}`;
+    // createMutation.mutate({ branch, unit, description, cameras, images })
 
-    toggleColumnModal(false)
-    reset()
-  }
+    toggleColumnModal(false);
+    reset();
+  };
 
   return (
     <div>
       <Modal
-        title="Create New Column"
+        title="Criar nova ocorrência"
         labelClass="btn-outline-dark"
         activeModal={columModal}
         onClose={() => toggleColumnModal(false)}
       >
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 ">
-          <Textinput
-            label="Column Name"
-            placeholder="Column Name"
+          <Select
+            label="Filial"
+            options={[
+              {
+                label: "test1",
+                value: "test1",
+              },
+              {
+                label: "test2",
+                value: "test2",
+              },
+              {
+                label: "test3",
+                value: "test3",
+              },
+            ]}
             register={register}
-            {...register('title', { required: 'Name is required' })}
-            error={errors.title}
+            {...register("branch", { required: "Filial é obrigatório" })}
+            name="branch"
+            placeholder="Selecione uma filial"
+            readonly={undefined}
+            value={undefined}
+            error={undefined}
+            icon={undefined}
+            disabled={undefined}
+            id={undefined}
+            horizontal={undefined}
+            validate={undefined}
+            msgTooltip={undefined}
+            description={undefined}
+            onChange={undefined}
+            defaultValue={undefined}
+            size={undefined}
           />
-          <div className="formGroup">
-            <label className="form-label">Select Color</label>
-            <input
-              required
-              {...register('color', { required: 'Color is required' })}
-              onChange={(e) => setColor(e.target.value)}
-              type="color"
-              className="form-control"
-              value={color}
-            />
-          </div>
+          <Select
+            label="Unidade"
+            options={[
+              {
+                label: "test1",
+                value: "test1",
+              },
+              {
+                label: "test2",
+                value: "test2",
+              },
+              {
+                label: "test3",
+                value: "test3",
+              },
+            ]}
+            register={register}
+            {...register("unit", { required: "Unidade é obrigatório" })}
+            name="unit"
+            placeholder="Selecione uma unidade"
+            readonly={undefined}
+            value={undefined}
+            error={undefined}
+            icon={undefined}
+            disabled={undefined}
+            id={undefined}
+            horizontal={undefined}
+            validate={undefined}
+            msgTooltip={undefined}
+            description={undefined}
+            onChange={undefined}
+            defaultValue={undefined}
+            size={undefined}
+          />
+          <Select
+            label="Cameras"
+            options={[
+              {
+                label: "test1",
+                value: "test1",
+              },
+              {
+                label: "test2",
+                value: "test2",
+              },
+              {
+                label: "test3",
+                value: "test3",
+              },
+            ]}
+            register={register}
+            // {...register("cata", { required: "cata is required" })}
+            name="cata"
+            placeholder="Selecione uma filial"
+            readonly={undefined}
+            value={undefined}
+            error={undefined}
+            icon={undefined}
+            disabled={undefined}
+            id={undefined}
+            horizontal={undefined}
+            validate={undefined}
+            msgTooltip={undefined}
+            description={undefined}
+            onChange={undefined}
+            defaultValue={undefined}
+            size={undefined}
+          />
+          <Textarea
+            label="Descrição"
+            placeholder="Descrição da ocorrência"
+            register={register}
+            {...register("description", {
+              required: "Description é obrigatório",
+            })}
+            error={errors.description}
+          />
+
+          <ImagesGroupSelect label="Anexar imagens"></ImagesGroupSelect>
 
           <div className="ltr:text-right rtl:text-left">
             <button className="btn btn-dark  text-center">Add</button>
@@ -77,6 +192,5 @@ export default function AddColumn  () {
         </form>
       </Modal>
     </div>
-  )
+  );
 }
-
