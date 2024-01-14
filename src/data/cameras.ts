@@ -28,7 +28,7 @@ export const addCamera= async ({ description,id_camera_group,ip,site }: AddCamer
 
   return response;
 };
-export const ListnCameras = async () => {
+export const ListCameras = async () => {
   const token = Cookies.get("auth_token");
   const response:AxiosResponse = await get("/cameras",token );
   return response.data;

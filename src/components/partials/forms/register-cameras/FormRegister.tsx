@@ -102,7 +102,7 @@ export function FormRegister() {
 
           <Textinput
             label="Descrição"
-            placeholder="descrição"
+            placeholder="Descrição"
             register={register}
             {...register("description", {
               required: "Description is required",
@@ -111,8 +111,8 @@ export function FormRegister() {
           />
           <Textinput
 
-            label="id camera group"
-            placeholder="id camera group"
+            label="ID do Grupo de Câmeras"
+            placeholder="ID do Grupo de Câmeras"
             register={register}
             {...register("id_camera_group", {
               required: "id camera group is required",
@@ -120,7 +120,7 @@ export function FormRegister() {
             error={errors.id_camera_group}
           />
           <Textinput
-            label="site"
+            label="Site"
             placeholder="http://localhost:3000/register-cameras"
             register={register}
             {...register("site", { required: "site is required" })}
