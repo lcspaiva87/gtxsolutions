@@ -16,9 +16,7 @@ interface UpdatEvent {
 
 export const addEvent= async ({ description  }: AddEvent) => {
   const token = Cookies.get("auth_token");
-  console.log("token", token)
   const response = await post("/event_origin", { description}, token);
-
   return response;
 };
 export const listEvent = async () => {
@@ -26,9 +24,6 @@ export const listEvent = async () => {
   const response:AxiosResponse = await get("/event_origin",token );
   return response.data;
 };
-
-
-
 
 export const updateEvent = async ({ id,description }: UpdatEvent) => {
   const response = await post(`/event_origin/${id}`, {description});

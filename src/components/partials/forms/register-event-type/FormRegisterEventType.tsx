@@ -1,6 +1,6 @@
 "use client";
 import Textinput from "@/components/ui/Textinput";
-import { useEvent } from "@/hooks/useEvent";
+import { useEventType } from "@/hooks/useEventType";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
@@ -9,23 +9,26 @@ import createUserStore from "./store";
 
 type FormValues = {
   id: string;
+  name: string;
   description: string;
+
 };
 
 const FormValidationSchema = yup
   .object({
     id: yup.string(),
-    description: yup.string().email().required("email is required"),
-
+    name: yup.string().required("name is required"),
+    description: yup.string().required("description is required"),
   })
   .required();
 
-export function FormRegisterEvent() {
-  const { createMutation,updateMutation } = useEvent();
+export function FormRegisterEventType() {
+  const { createMutation, updateMutation } = useEventType();
   const { modalAction, userInitialData } = createUserStore();
 
   let defaultValues: FormValues = {
     id: "0",
+    name: "",
     description: "",
   };
 
@@ -40,6 +43,7 @@ export function FormRegisterEvent() {
     resolver: yupResolver(FormValidationSchema),
     defaultValues: {
       id: "0",
+      name: "",
       description: "",
     },
     mode: "all",
@@ -55,16 +59,17 @@ export function FormRegisterEvent() {
   }, [userInitialData]);
 
   async function handleRegisterUser(data: any) {
-    if (modalAction === "create") {
+    if(modalAction === "create") {
       return createMutation.mutate({
+        name: data.name,
         description: data.description,
-
       });
-    } else {
+    }
+    else {
       return updateMutation.mutate({
         id: data.id,
+        name: data.name,
         description: data.description,
-
       });
     }
   }
@@ -72,12 +77,21 @@ export function FormRegisterEvent() {
   return (
     <form onSubmit={handleSubmit(handleRegisterUser)}>
       <div className="p-[1rem] ">
-        <label htmlFor="">Cadastro de Tipo de ocorrência</label>
+        <label htmlFor="">Cadastro de Tipo de ocorrência.</label>
         <div className="grid grid-cols-2  gap-[1rem] mt-[2rem]">
           <input {...register("id")} type="hidden" />
+
           <Textinput
-            label="descriçao"
-            placeholder="Seg. patrimonial, Seg. de Processo etc."
+            label="Titulo da ocorrência "
+            placeholder="Nome Funcionario"
+            register={register}
+            {...register("name", { required: "Name is required" })}
+            error={errors.name}
+          />
+
+          <Textinput
+            label="Descrição"
+            placeholder="Digire a descrição"
             register={register}
             {...register("description", { required: "description is required" })}
             error={errors.description}
@@ -93,7 +107,7 @@ export function FormRegisterEvent() {
             type="submit"
           >
             {" "}
-            Registrar Ocorrência
+            Registrar ocorrência
           </button>
         </div>
       </div>

@@ -71,24 +71,36 @@ export const menuItems: MenuItem[] = [
   {
     title: "Cameras",
     isHide: true,
-    icon: "heroicons-outline:user",
+    icon: "heroicons-outline:camera",
     link: "register-cameras",
   },
   {
     title: "Departamentos",
     isHide: true,
-    icon: "heroicons-outline:user",
+    icon: "heroicons-outline:rectangle-stack",
     link: "register-departments",
   },
   {
     title: "Ocorrência",
     isHide: true,
-    icon: "heroicons-outline:user",
+    icon: "heroicons-outline:document-duplicate",
     link: "register-event",
+  },
+  {
+    title: "Unidades",
+    isHide: true,
+    icon: "heroicons-outline:building-storefront",
+    link: "register-unit",
+  },
+  {
+    title: "Tipoe de ocorrência",
+    isHide: true,
+    icon: "heroicons-outline:document-duplicate",
+    link: "register-event-type",
   },
 
 ]
-
+//register-unit
 export const topMenu: Idata[] = [
   {
     title: 'Dashboard',
