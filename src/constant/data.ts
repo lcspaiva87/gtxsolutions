@@ -93,7 +93,7 @@ export const menuItems: MenuItem[] = [
     link: "register-unit",
   },
   {
-    title: "Tipoe de ocorrência",
+    title: "Tipo de ocorrência",
     isHide: true,
     icon: "heroicons-outline:document-duplicate",
     link: "register-event-type",

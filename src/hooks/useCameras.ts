@@ -2,7 +2,7 @@
 import { enqueueSnackbar } from "notistack";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 
-import { addCamera, deleteCamera, ListnCameras, updateCamera } from "@/data/cameras";
+import { addCamera, deleteCamera, ListCameras, updateCamera } from "@/data/cameras";
 
 export const useCameras = () => {
   const queryClient = useQueryClient();
@@ -60,7 +60,7 @@ export const useCameras = () => {
     data: list
   } = useQuery({
     queryKey: ['user'],
-    queryFn: () => ListnCameras()
+    queryFn: () => ListCameras()
   })
 
   return {
