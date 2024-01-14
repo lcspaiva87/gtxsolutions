@@ -16,6 +16,7 @@ export const useTask = (id?: Itask[]) => {
       })
     },
   })
+
   const createMutation = useMutation(postTask, {
     onError: () => {
       enqueueSnackbar('Erro ao criar task , tente novamente', {
@@ -30,6 +31,7 @@ export const useTask = (id?: Itask[]) => {
       enqueueSnackbar('Task criada com sucesso!', { variant: 'success' })
     },
   })
+
   const removeMutation = useMutation(deleteTaskId, {
     onError: () => {
       enqueueSnackbar('Erro ao remover task, tente novamente', {
@@ -44,6 +46,7 @@ export const useTask = (id?: Itask[]) => {
       enqueueSnackbar('Task removido sucesso', { variant: 'success' })
     },
   })
+
   const {
     data: task,
     isLoading,
@@ -52,6 +55,7 @@ export const useTask = (id?: Itask[]) => {
     queryKey: ['task', id],
     queryFn: () => fetchTask(),
   })
+  
   return {
     tasks: task ?? [],
     isLoading,

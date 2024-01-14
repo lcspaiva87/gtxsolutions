@@ -40,13 +40,13 @@ export default function Column() {
     <>
       <div className="flex flex-wrap justify-between items-center mb-4">
         <h4 className="font-medium lg:text-2xl text-xl capitalize text-slate-900 inline-block ltr:pr-4 rtl:pl-4">
-          Task
+          Registros de Ocorrências
         </h4>
         <div className="flex space-x-4 justify-end items-center rtl:space-x-reverse">
           <Button
             type="button"
             icon="heroicons-outline:plus"
-            text="Create new task"
+            text="Criar nova ocorrência"
             className="bg-slate-800 dark:hover:bg-opacity-70   h-min text-sm font-medium text-slate-50 hover:ring-2 hover:ring-opacity-80 ring-slate-900  hover:ring-offset-1  dark:hover:ring-0 dark:hover:ring-offset-0"
             iconClass=" text-lg"
             onClick={() => toggleColumnModal(true)}
@@ -74,7 +74,7 @@ export default function Column() {
       {/* {!columns?.length && (
         <div className="w-full flex h-[45rem] lg:h-[35rem] justify-center items-center ">
           <div className="flex items-center justify-center">
-            <span>nao tem task disponivel</span>
+            <span>Não existem status disponível</span>
           </div>
         </div>
       )} */}

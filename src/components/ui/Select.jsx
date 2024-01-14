@@ -21,7 +21,6 @@ const Select = ({
   onChange,
   options,
   defaultValue,
-
   size,
   ...rest
 }) => {
@@ -50,7 +49,7 @@ const Select = ({
             {...rest}
             className={`${
               error ? " has-error" : " "
-            } form-control py-2  appearance-none ${className}  `}
+            } form-control py-2 px-7 appearance-none ${className}  `}
             placeholder={placeholder}
             readOnly={readonly}
             disabled={disabled}
@@ -82,7 +81,7 @@ const Select = ({
             onChange={onChange}
             className={`${
               error ? " has-error" : " "
-            } form-control py-2 appearance-none ${className}  `}
+            } form-control py-2 px-7 appearance-none ${className}  `}
             placeholder={placeholder}
             readOnly={readonly}
             disabled={disabled}
