@@ -10,7 +10,7 @@ import ImagesGroupSelect from "@/components/ui/ImagesGroupSelect";
 
 import { useColumns } from "@/hooks/useColuns";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import * as yup from "yup";
 import kabanStore from "./store";
 
@@ -19,11 +19,12 @@ type FormValues = {
   unit: number;
   description: string;
   // cameras: number[];
-  // images: any[];
+  images: any[];
 };
 
 const FormValidationSchema = yup
   .object({
+    images: yup.array(),
     unit: yup.number().required("Unidade é obrigatório"),
     branch: yup.number().required("Filial é obrigatório"),
     description: yup
@@ -39,6 +40,7 @@ export default function AddColumn() {
   const { createMutation } = useColumns();
 
   const {
+    control,
     register,
     reset,
     formState: { errors },
@@ -51,14 +53,15 @@ export default function AddColumn() {
   const onSubmit = ({
     branch,
     unit,
-    description,
-    // cameras,
-    // images,
-  }: FormValues) => {
+    description, // cameras,
+    images
+  } // images,
+  : FormValues) => {
     // console.log({ branch, unit, description, cameras, images }, "submit");
     const id = `container-${uuidv4()}`;
     // createMutation.mutate({ branch, unit, description, cameras, images })
 
+    console.log("IMAGES", images)
     toggleColumnModal(false);
     reset();
   };
@@ -77,24 +80,24 @@ export default function AddColumn() {
             options={[
               {
                 label: "test1",
-                value: "test1",
+                value: 1,
               },
               {
                 label: "test2",
-                value: "test2",
+                value: 2,
               },
               {
                 label: "test3",
-                value: "test3",
+                value: 3,
               },
             ]}
             register={register}
             {...register("branch", { required: "Filial é obrigatório" })}
+            error={errors.branch}
             name="branch"
             placeholder="Selecione uma filial"
             readonly={undefined}
             value={undefined}
-            error={undefined}
             icon={undefined}
             disabled={undefined}
             id={undefined}
@@ -111,15 +114,15 @@ export default function AddColumn() {
             options={[
               {
                 label: "test1",
-                value: "test1",
+                value: 1,
               },
               {
                 label: "test2",
-                value: "test2",
+                value: 2,
               },
               {
                 label: "test3",
-                value: "test3",
+                value: 3,
               },
             ]}
             register={register}
@@ -128,7 +131,7 @@ export default function AddColumn() {
             placeholder="Selecione uma unidade"
             readonly={undefined}
             value={undefined}
-            error={undefined}
+            error={errors.images}
             icon={undefined}
             disabled={undefined}
             id={undefined}
@@ -145,15 +148,15 @@ export default function AddColumn() {
             options={[
               {
                 label: "test1",
-                value: "test1",
+                value: 1,
               },
               {
                 label: "test2",
-                value: "test2",
+                value: 2,
               },
               {
                 label: "test3",
-                value: "test3",
+                value: 3,
               },
             ]}
             register={register}
@@ -184,7 +187,13 @@ export default function AddColumn() {
             error={errors.description}
           />
 
-          <ImagesGroupSelect label="Anexar imagens"></ImagesGroupSelect>
+          <Controller
+            control={control}
+            name="images"
+            render={({ field: { onChange, onBlur, value, ref } }) => (
+              <ImagesGroupSelect label="Anexar imagens" onChange={onChange}/>
+            )}
+          />
 
           <div className="ltr:text-right rtl:text-left">
             <button className="btn btn-dark  text-center">Add</button>
