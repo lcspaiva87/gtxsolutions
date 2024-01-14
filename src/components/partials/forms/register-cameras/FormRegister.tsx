@@ -136,7 +136,7 @@ export function FormRegister() {
             type="submit"
           >
             {" "}
-            Registrar usuario
+            Registrar Câmera
           </button>
         </div>
       </div>

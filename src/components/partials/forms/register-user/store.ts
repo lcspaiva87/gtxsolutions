@@ -1,23 +1,22 @@
 import { create } from "zustand"
 
-interface IEventTypeUpdate {
+
+interface IuserUpdate {
   id: number,
-  description: string,
-  ip: string,
-  site: string,
-  id_camera_group: string,
+  email: string,
+  password: string
 }
 
 
-interface IIEventType {
+interface ICreateUser {
   isOpenModal: boolean,
   modalAction: "create" | "update",
-  toggleModal: (open: IIEventType["isOpenModal"], action: IIEventType["modalAction"]) => void
-  userInitialData: IEventTypeUpdate | null,
-  setUserInitialData: (user: IEventTypeUpdate) => void
+  toggleModal: (open: ICreateUser["isOpenModal"], action: ICreateUser["modalAction"]) => void
+  userInitialData: IuserUpdate | null,
+  setUserInitialData: (user: IuserUpdate) => void
 }
 
-const createEventTypeStore = create<IIEventType>((set) => ({
+const createUser = create<ICreateUser>((set) => ({
   isOpenModal: false,
   modalAction: "create",
   userInitialData: null,
@@ -28,7 +27,7 @@ const createEventTypeStore = create<IIEventType>((set) => ({
 
     set({ isOpenModal: open, modalAction: action });
   },
-  setUserInitialData: (eventType) => set({ userInitialData: eventType })
+  setUserInitialData: (user) => set({ userInitialData: user })
 }))
 
-export default createEventTypeStore
+export default createUser

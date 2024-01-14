@@ -70,7 +70,7 @@ export function FormRegister() {
   return (
     <form onSubmit={handleSubmit(handleRegisterUser)}>
       <div className="p-[1rem] ">
-        <label htmlFor="">Cadastro de Setores </label>
+        <label htmlFor="">Cadastro de Departamentos </label>
         <div className="grid grid-cols-2  gap-[1rem] mt-[2rem]">
           <input {...register("id")} type="hidden" />
 
@@ -91,7 +91,7 @@ export function FormRegister() {
             type="submit"
           >
             {" "}
-            Registrar Setores
+            Registrar Departamentos
           </button>
         </div>
       </div>
