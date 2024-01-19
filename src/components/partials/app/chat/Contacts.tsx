@@ -13,7 +13,7 @@ interface ContactProps {
   toggleModal: (open: ItoogleModal["isOpenModal"], action: ItoogleModal["modalAction"]) => void
 }
 
-const Contacts = ({ contact, onDelete,toggleModal }: ContactProps) => {
+const Contacts = ({ contact, onDelete, toggleModal, seInitialData }: ContactProps) => {
   const { name, id } = contact;
   const [isOpenConfirmDelete, setIsOpenConfirmDelete] = useState(false);
 
@@ -51,6 +51,7 @@ const Contacts = ({ contact, onDelete,toggleModal }: ContactProps) => {
               <div
                 className="h-7 w-7 bg-slate-100 dark:bg-black-450 dark:hover:bg-white dark:text-slate-400 dark:hover:text-black flex flex-col justify-center items-center text-xl rounded-full cursor-pointer"
                 onClick={() => {
+                  seInitialData(contact)
                   toggleModal(true, "update");
                 }}
               >
