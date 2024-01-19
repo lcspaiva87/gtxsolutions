@@ -9,7 +9,7 @@ interface Iunit {
   modalAction: "create" | "update",
   toggleModal: (open: Iunit["isOpenModal"], action: Iunit["modalAction"]) => void
   unitInitialData: IunitUpdate | null,
-  setUserInitialData: (user: IunitUpdate) => void
+  setUserInitialData: (unit: IunitUpdate) => void
 }
 
 const creatIunitStore = create<Iunit>((set) => ({
@@ -23,7 +23,7 @@ const creatIunitStore = create<Iunit>((set) => ({
 
     set({ isOpenModal: open, modalAction: action });
   },
-  setUserInitialData: (Iunit) => set({ unitInitialData: Iunit })
+  setUserInitialData: (unit) => set({ unitInitialData: unit })
 }))
 
 export default creatIunitStore

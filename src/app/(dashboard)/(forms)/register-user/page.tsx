@@ -21,9 +21,8 @@ export default function ResgisterUser() {
     setContactSearch,
     toggleMobileChatSidebar,
   } = appChatStore();
-  const { isOpenModal } = createUserStore();
+  const { isOpenModal ,toggleModal} = createUserStore();
   const { users } = useUser();
-  console.log("users", users);
   const searchContacts = users?.filter((item: { name: string }) =>
     item.name.toLowerCase().includes(searchContact.toLowerCase()),
   );
@@ -65,7 +64,7 @@ export default function ResgisterUser() {
 
           <SimpleBar className="contact-height">
             {searchContacts?.map((contact,index) => (
-              <Contacts key={index} contact={contact} />
+              <Contacts key={index} contact={contact} toggleModal={toggleModal} />
             ))}
           </SimpleBar>
         </Card>

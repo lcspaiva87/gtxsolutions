@@ -20,9 +20,8 @@ const FormValidationSchema = yup
   .required();
 
 export function FormRegisterUnit() {
-  const { createMutation, updateMutation } = useUnit();
+  const { createMutation, updateMutation, refetch } = useUnit();
   const { modalAction, unitInitialData } = creatIunitStore();
-
   let defaultValues: FormValues = {
     name: "",
     email: "",
@@ -32,6 +31,7 @@ export function FormRegisterUnit() {
     register,
     reset,
     control,
+
     formState: { errors },
     handleSubmit,
     setValue,
@@ -46,21 +46,23 @@ export function FormRegisterUnit() {
 
   useEffect(() => {
     let formFields = Object.entries(defaultValues);
+    console.log("formFields", formFields); // Corrigido para usar formFields ao invés de userInitialData
     formFields.forEach(([name, fieldValue]) => {
       if (unitInitialData) {
+        setValue(name, unitInitialData ? unitInitialData[name] : "");
       }
-      setValue(name, unitInitialData ? [name] : "");
     });
   }, [unitInitialData]);
 
-  async function handleRegisterUser(data: any) {
+  async function handleRegisterUser({email,name}: FormValues) {
     if (modalAction === "create") {
-      return createMutation.mutate({
-        email: data.description,
-        name: data.password,
+    await createMutation.mutate({
+        name: name,
+        email: email,
       });
+      reset()
     } else {
-      return updateMutation.mutate({
+      return await updateMutation.mutate({
         id: "",
         email: "",
         name: ""

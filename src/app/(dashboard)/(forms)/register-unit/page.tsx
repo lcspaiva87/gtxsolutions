@@ -22,12 +22,14 @@ export default function ResgisterUser() {
     setContactSearch,
     toggleMobileChatSidebar,
   } = appChatStore();
-  const { isOpenModal } = creatIunitStore();
-  const { unit } = useUnit();
+  const { isOpenModal ,toggleModal} = creatIunitStore();
+  const { unit ,removeMutation} = useUnit();
   const searchContacts = unit?.filter((item: { name: string }) =>
     item.name.toLowerCase().includes(searchContact.toLowerCase()),
   );
-
+  function handleDelete (id:string) {
+    removeMutation.mutate(id);
+  }
   return (
     <div className="flex lg:space-x-5 chat-height overflow-hidden relative rtl:space-x-reverse">
       <div
@@ -65,7 +67,7 @@ export default function ResgisterUser() {
 
           <SimpleBar className="contact-height">
             {searchContacts?.map((contact:any,index:any) => (
-              <Contacts key={index} contact={contact} />
+              <Contacts key={index} contact={contact}   onDelete={() => handleDelete(contact.id) } toggleModal={toggleModal} />
             ))}
           </SimpleBar>
         </Card>

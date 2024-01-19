@@ -2,27 +2,26 @@
 import { enqueueSnackbar } from "notistack";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 
-import { ListnUnit, addUnit, updateUnit } from "@/data/unit";
+import { ListnUnit, addUnit, deleteUnit, updateUnit } from "@/data/unit";
 
 export const useUnit = () => {
   const queryClient = useQueryClient();
 
   const createMutation = useMutation(addUnit, {
-    onError: () => {
+    onError: (erro) => {
       enqueueSnackbar('Erro ao Salvar Unidade  , tente novamente', {
         variant: 'error',
       })
+      console.log("erro",erro)
+      return
     },
     onSuccess: (_, data) => {
-      queryClient.setQueryData(['unit', undefined], (oldData: any) => [
-        ...oldData,
-        data,
-      ])
       enqueueSnackbar('Unidade  Salvada com sucesso!', { variant: 'success' })
+      queryClient.invalidateQueries('unit')
     },
   })
 
-  const removeMutation = useMutation(ListnUnit, {
+  const removeMutation = useMutation(deleteUnit, {
     onError: () => {
       enqueueSnackbar('Erro ao remover Unidade, tente novamente', {
         variant: 'error',
@@ -30,9 +29,7 @@ export const useUnit = () => {
     },
 
     onSuccess: (_, id) => {
-      queryClient.setQueryData(['unit', undefined], (oldData: any) =>
-        oldData.filter((item: any) => item.id !== id),
-      )
+      queryClient.invalidateQueries(['unit'])
       enqueueSnackbar('Unidade removido sucesso', { variant: 'success' })
     },
   })
@@ -57,6 +54,7 @@ export const useUnit = () => {
   const {
     isLoading,
     isError,
+    refetch,
     data: list
   } = useQuery({
     queryKey: ['unit'],
@@ -69,7 +67,8 @@ export const useUnit = () => {
     createMutation,
     removeMutation,
     updateMutation,
-    unit: list ?? []
+    unit: list ?? [],
+    refetch
   }
 }
 

@@ -1,12 +1,12 @@
 "use client";
 import Textinput from "@/components/ui/Textinput";
 import { useUser } from "@/hooks/useUser";
+import { generatePassword } from "@/utils/utils";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import createUserStore from "./store";
-import { useEffect } from "react";
-import { generatePassword } from "@/utils/utils";
 
 type FormValues = {
   id: string;
@@ -77,10 +77,12 @@ export function FormRegister() {
 
   useEffect(() => {
     let formFields = Object.entries(defaultValues);
+
     formFields.forEach(([fieldName, fieldValue]) => {
       if (userInitialData) {
+        console.log("fieldName",userInitialData)
+        setValue(fieldName, userInitialData ? userInitialData[fieldName] : "");
       }
-      setValue(fieldName, userInitialData ? [fieldName] : "");
     });
   }, [userInitialData]);
 

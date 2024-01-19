@@ -1,17 +1,22 @@
 "use client";
-import { IUser } from "@/@types/Use";
+import { IList } from "@/@types/ListForms";
 import Icons from "@/components/ui/Icon";
 import Image from "next/image";
 import { useState } from "react";
-import createUserStore from "../../forms/register-user/store";
+interface ItoogleModal{
+  modalAction: "create" | "update",
+  isOpenModal: boolean,
+}
+interface ContactProps {
+  contact: IList;
+  onDelete: (id: string) => void;
+  toggleModal: (open: ItoogleModal["isOpenModal"], action: ItoogleModal["modalAction"]) => void
+}
 
-
-const Contacts = ({ contact }: { contact: IUser }) => {
-
-  const {  name } = contact;
+const Contacts = ({ contact, onDelete,toggleModal }: ContactProps) => {
+  const { name, id } = contact;
   const [isOpenConfirmDelete, setIsOpenConfirmDelete] = useState(false);
 
-  const { toggleModal, setUserInitialData } = createUserStore();
 
   const handleClick = () => {
     setIsOpenConfirmDelete(!isOpenConfirmDelete);
@@ -46,7 +51,6 @@ const Contacts = ({ contact }: { contact: IUser }) => {
               <div
                 className="h-7 w-7 bg-slate-100 dark:bg-black-450 dark:hover:bg-white dark:text-slate-400 dark:hover:text-black flex flex-col justify-center items-center text-xl rounded-full cursor-pointer"
                 onClick={() => {
-
                   toggleModal(true, "update");
                 }}
               >
@@ -77,15 +81,17 @@ const Contacts = ({ contact }: { contact: IUser }) => {
                 </div>
                 <div className="flex-none ltr:text-right rtl:text-end flex gap-2">
                   <button
-                    onClick={handleClick}
+                    onClick={() => {
+                      onDelete(String(id)), setIsOpenConfirmDelete(false);
+                    }}
                     className=" text-xs  cursor-pointer bg-gray-100 rounded-md px-[1rem] text-white bg-transparent border border-white hover:border-black hover:bg-white hover:text-black-900"
                   >
                     sim
                   </button>
                   <button
-                    onClick={() => setIsOpenConfirmDelete(false)}
-                    className=" text-xs  cursor-pointer bg-gray-100 rounded-md px-[1rem] text-white bg-transparent border border-white hover:border-black hover:bg-white hover:text-black-900"
-                  >
+                  onClick={() => setIsOpenConfirmDelete(false)}
+
+                  className=" text-xs  cursor-pointer bg-gray-100 rounded-md px-[1rem] text-white bg-transparent border border-white hover:border-black hover:bg-white hover:text-black-900">
                     não
                   </button>
                 </div>

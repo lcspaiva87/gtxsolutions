@@ -4,6 +4,7 @@ import { create } from "zustand"
 interface IuserUpdate {
   id: number,
   email: string,
+  name: string,
   password: string
 }
 
