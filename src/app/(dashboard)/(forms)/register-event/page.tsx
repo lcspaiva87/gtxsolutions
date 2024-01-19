@@ -1,7 +1,5 @@
 "use client";
-import { IUser } from "@/@types/Use";
 import Blank from "@/components/partials/app/chat/Blank";
-import Contacts from "@/components/partials/app/chat/Contacts";
 import appChatStore from "@/components/partials/app/chat/store";
 import { CreateEvent } from "@/components/partials/forms/register-event/CreateEvent";
 import { FormRegisterEvent } from "@/components/partials/forms/register-event/FormRegisterEvent";
@@ -66,8 +64,8 @@ export default function ResgisterEvent() {
           </div>
 
           <SimpleBar className="contact-height">
-            {searchContacts?.map((contact: IUser,index: Key | null | undefined) => (
-              <Contacts key={index} contact={contact} />
+            {searchContacts?.map((item: any,index: Key | null | undefined) => (
+              <h1 className="text-sm">{item.description}</h1>
             ))}
           </SimpleBar>
         </Card>

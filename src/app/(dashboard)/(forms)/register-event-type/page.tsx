@@ -3,8 +3,9 @@ import { IUser } from "@/@types/Use";
 import Blank from "@/components/partials/app/chat/Blank";
 import Contacts from "@/components/partials/app/chat/Contacts";
 import appChatStore from "@/components/partials/app/chat/store";
+import { CreateEventType } from "@/components/partials/forms/register-event-type/CreateEventType";
 import { FormRegisterEventType } from "@/components/partials/forms/register-event-type/FormRegisterEventType";
-import { CreateEventType } from "@/components/partials/forms/register-user/CreateUser";
+
 import createEventTypeStore from "@/components/partials/forms/register-user/store";
 
 import { Card } from "@/components/ui/Card";

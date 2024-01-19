@@ -14,11 +14,8 @@ export const useCameras = () => {
       })
     },
     onSuccess: (_, data) => {
-      queryClient.setQueryData(['camera', undefined], (oldData: any) => [
-        ...oldData,
-        data,
-      ])
       enqueueSnackbar('Camera Salvada com sucesso!', { variant: 'success' })
+      queryClient.invalidateQueries('cameras')
     },
   })
 
@@ -30,10 +27,9 @@ export const useCameras = () => {
     },
 
     onSuccess: (_, id) => {
-      queryClient.setQueryData(['camera', undefined], (oldData: any) =>
-        oldData.filter((item: any) => item.id !== id),
-      )
+
       enqueueSnackbar('camera removido sucesso', { variant: 'success' })
+      queryClient.invalidateQueries('cameras')
     },
   })
 
@@ -59,7 +55,7 @@ export const useCameras = () => {
     isError,
     data: list
   } = useQuery({
-    queryKey: ['user'],
+    queryKey: ['cameras'],
     queryFn: () => ListCameras()
   })
 

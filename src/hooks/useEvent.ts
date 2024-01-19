@@ -14,11 +14,9 @@ export const useEvent = () => {
       })
     },
     onSuccess: (_, data) => {
-      queryClient.setQueryData(['event', undefined], (oldData: any) => [
-        ...oldData,
-        data,
-      ])
       enqueueSnackbar('Evento Salvada com sucesso!', { variant: 'success' })
+      queryClient.invalidateQueries('event')
+
     },
   })
 

@@ -4,7 +4,6 @@ import nookies, { setCookie } from "nookies";
 import { enqueueSnackbar } from "notistack";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 
-import { ErrorResult, SuccessResult } from "@/@types/Request";
 import { useRouter } from "next/navigation";
 
 export const useUser = () => {
@@ -47,7 +46,7 @@ export const useUser = () => {
       console.log("erro",erro)
     },
     onSuccess: (response) => {
-      const{ data: token } = response;
+
 
       console.log("add user response", response);
       enqueueSnackbar("Usuário adicionado com sucesso", {
@@ -105,9 +104,9 @@ export const useUser = () => {
     data: list
   } = useQuery({
     queryKey: ['user'],
-    queryFn: () => ListnUser() 
+    queryFn: () => ListnUser()
   })
-  
+
   return {
     isLoading,
     isError,

@@ -76,6 +76,7 @@ export function FormRegisterEvent() {
         <div className="grid grid-cols-2  gap-[1rem] mt-[2rem]">
           <input {...register("id")} type="hidden" />
           <Textinput
+            type="text"
             label="descriçao"
             placeholder="Seg. patrimonial, Seg. de Processo etc."
             register={register}
