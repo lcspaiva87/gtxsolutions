@@ -9,57 +9,53 @@ export const useCameras = () => {
 
   const createMutation = useMutation(addCamera, {
     onError: () => {
-      enqueueSnackbar('Erro ao Salvar Camera , tente novamente', {
+      enqueueSnackbar('Ocorreu um erro ao adicionar a câmera, tente novamente', {
         variant: 'error',
       })
     },
     onSuccess: (_, data) => {
-      queryClient.setQueryData(['camera', undefined], (oldData: any) => [
-        ...oldData,
-        data,
-      ])
-      enqueueSnackbar('Camera Salvada com sucesso!', { variant: 'success' })
+      enqueueSnackbar('Camera adicionada com sucesso!', { variant: 'success' });
+      queryClient.invalidateQueries("camera");
     },
   })
 
   const removeMutation = useMutation(deleteCamera, {
     onError: () => {
-      enqueueSnackbar('Erro ao remover task, tente novamente', {
+      enqueueSnackbar('Ocorreu um erro ao remover a câmera, tente novamente', {
         variant: 'error',
       })
     },
 
     onSuccess: (_, id) => {
-      queryClient.setQueryData(['camera', undefined], (oldData: any) =>
-        oldData.filter((item: any) => item.id !== id),
-      )
-      enqueueSnackbar('camera removido sucesso', { variant: 'success' })
+      enqueueSnackbar('Camera removida sucesso', { variant: 'success' });
+      queryClient.invalidateQueries("camera");
     },
   })
 
   const updateMutation = useMutation(updateCamera, {
     onError: (erro) => {
       console.log(erro, "erro")
-      enqueueSnackbar(erro?.message || 'Erro ao editar usuário', {
+      enqueueSnackbar("Ocorreu um erro ao editar a câmera, tente novamente", {
         variant: 'error',
       })
+
       console.log("erro",erro)
     },
     onSuccess: (response) => {
-      enqueueSnackbar("Usuário editado com sucesso", {
+      enqueueSnackbar("Camera editada com sucesso", {
         variant: 'success',
       })
+      
+      queryClient.invalidateQueries("camera");
     }
   });
-
-
 
   const {
     isLoading,
     isError,
     data: list
   } = useQuery({
-    queryKey: ['user'],
+    queryKey: ['camera'],
     queryFn: () => ListCameras()
   })
 

@@ -15,7 +15,7 @@ interface ICamera {
   modalAction: "create" | "update",
   toggleModal: (open: ICamera["isOpenModal"], action: ICamera["modalAction"]) => void
   cameraInitialData: IcameraUpdate | null,
-  setCamaeraInitialData: (camera: IcameraUpdate) => void
+  setCamaraInitialData: (camera: IcameraUpdate) => void
 }
 
 const createCameraStore = create<ICamera>((set) => ({
@@ -29,7 +29,7 @@ const createCameraStore = create<ICamera>((set) => ({
 
     set({ isOpenModal: open, modalAction: action });
   },
-  setCamaeraInitialData: (camera) => set({ cameraInitialData: camera })
+  setCamaraInitialData: (camera) => set({ cameraInitialData: camera })
 }))
 
 export default createCameraStore

@@ -1,4 +1,4 @@
-import { del, get, post } from "./client/http-client";
+import { del, get, post, put } from "./client/http-client";
 
 import { IUser } from "@/@types/Use";
 import { AxiosResponse } from "axios";
@@ -38,7 +38,7 @@ export const ListCameras = async () => {
 
 
 export const updateCamera = async ({ id,ip,description,id_camera_group,site}: UpdateCameras) => {
-  const response = await post(`/cameras/${id}`, { ip,description,id_camera_group,site});
+  const response = await put(`/cameras/${id}`, { ip,description,id_camera_group,site});
   return response;
 };
 

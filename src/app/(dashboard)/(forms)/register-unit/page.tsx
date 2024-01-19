@@ -1,6 +1,7 @@
 "use client";
 import Blank from "@/components/partials/app/chat/Blank";
 import Contacts from "@/components/partials/app/chat/Contacts";
+import DefaultCard from "@/components/partials/app/chat/DefaultCard";
 import appChatStore from "@/components/partials/app/chat/store";
 import { CreateUnit } from "@/components/partials/forms/register-unit/CreateUnit";
 import { FormRegisterUnit } from "@/components/partials/forms/register-unit/FormRegisterUnit";
@@ -22,14 +23,16 @@ export default function ResgisterUser() {
     setContactSearch,
     toggleMobileChatSidebar,
   } = appChatStore();
-  const { isOpenModal ,toggleModal} = creatIunitStore();
+  const { isOpenModal ,toggleModal, setUserInitialData } = creatIunitStore();
   const { unit ,removeMutation} = useUnit();
   const searchContacts = unit?.filter((item: { name: string }) =>
     item.name.toLowerCase().includes(searchContact.toLowerCase()),
   );
+  
   function handleDelete (id:string) {
     removeMutation.mutate(id);
   }
+  
   return (
     <div className="flex lg:space-x-5 chat-height overflow-hidden relative rtl:space-x-reverse">
       <div
@@ -67,7 +70,7 @@ export default function ResgisterUser() {
 
           <SimpleBar className="contact-height">
             {searchContacts?.map((contact:any,index:any) => (
-              <Contacts key={index} contact={contact}   onDelete={() => handleDelete(contact.id) } toggleModal={toggleModal} />
+              <DefaultCard key={index} contact={contact} onDelete={() => handleDelete(contact.id) } toggleModal={toggleModal} seInitialData={setUserInitialData} />
             ))}
           </SimpleBar>
         </Card>

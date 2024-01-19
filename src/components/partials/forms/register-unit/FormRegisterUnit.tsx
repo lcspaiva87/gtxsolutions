@@ -14,8 +14,8 @@ type FormValues = {
 
 const FormValidationSchema = yup
   .object({
-    name: yup.string().required("name is required"),
-    email: yup.string().email().required("email is required"),
+    name: yup.string().required("Nome é obrigatório"),
+    email: yup.string().email().required("Email é obrigatório"),
   })
   .required();
 
@@ -23,6 +23,7 @@ export function FormRegisterUnit() {
   const { createMutation, updateMutation, refetch } = useUnit();
   const { modalAction, unitInitialData } = creatIunitStore();
   let defaultValues: FormValues = {
+    id: "",
     name: "",
     email: "",
   };
@@ -38,6 +39,7 @@ export function FormRegisterUnit() {
   } = useForm({
     resolver: yupResolver(FormValidationSchema),
     defaultValues: {
+      id: "",
       name: "",
       email: "",
     },
@@ -54,7 +56,7 @@ export function FormRegisterUnit() {
     });
   }, [unitInitialData]);
 
-  async function handleRegisterUser({email,name}: FormValues) {
+  async function handleRegisterUser({id, email,name}: FormValues) {
     if (modalAction === "create") {
     await createMutation.mutate({
         name: name,
@@ -63,9 +65,9 @@ export function FormRegisterUnit() {
       reset()
     } else {
       return await updateMutation.mutate({
-        id: "",
-        email: "",
-        name: ""
+        id: id,
+        email: email,
+        name: name
       });
     }
   }
@@ -83,8 +85,9 @@ export function FormRegisterUnit() {
             error={errors.name}
           />
         </div>
+        
         <div className="grid grid-cols-2  gap-[1rem] mt-[2rem]">
-          <input {...register("email")} type="hidden" />
+          <input {...register("id")} type="hidden" />
           <Textinput
             label="Email"
             placeholder="Digite o email da unidade"
@@ -97,12 +100,12 @@ export function FormRegisterUnit() {
 
       <div className="flex  items-center justify-start p-[1rem]">
         <div className="ltr:text-right rtl:text-left">
-          <button
-            className="btn bg-sky-700 hover:bg-sky-600 text-center"
+        <button
+            className="btn bg-sky-700 hover:bg-sky-600 text-white text-center"
             type="submit"
           >
             {" "}
-            Registrar Unidade
+            Registrar
           </button>
         </div>
       </div>

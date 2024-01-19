@@ -41,6 +41,10 @@ export async function post<T>(path: string, data: unknown, token?: string) {
   return request<T>("post", path, data, token);
 }
 
+export async function put<T>(path: string, data: unknown, token?: string) {
+  return request<T>("put", path, data, token);
+}
+
 export async function patch<T>(path: string, data: unknown, token?: string) {
   return request<T>("patch", path, data, token);
 }

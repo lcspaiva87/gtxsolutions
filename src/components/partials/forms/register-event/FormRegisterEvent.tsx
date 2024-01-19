@@ -15,8 +15,7 @@ type FormValues = {
 const FormValidationSchema = yup
   .object({
     id: yup.string(),
-    description: yup.string().email().required("email is required"),
-
+    description: yup.string().required("Descrição é obrigatório")
   })
   .required();
 
@@ -47,10 +46,10 @@ export function FormRegisterEvent() {
 
   useEffect(() => {
     let formFields = Object.entries(defaultValues);
-    formFields.forEach(([fieldName, fieldValue]) => {
+    formFields.forEach(([name, fieldValue]) => {
       if (userInitialData) {
+        setValue(name, userInitialData ? userInitialData[name] : "");
       }
-      setValue(fieldName, userInitialData ? [fieldName] : "");
     });
   }, [userInitialData]);
 
@@ -72,12 +71,12 @@ export function FormRegisterEvent() {
   return (
     <form onSubmit={handleSubmit(handleRegisterUser)}>
       <div className="p-[1rem] ">
-        <label htmlFor="">Cadastro de Tipo de ocorrência</label>
+        <label htmlFor="">Cadastro da Natureza de ocorrência</label>
         <div className="grid grid-cols-2  gap-[1rem] mt-[2rem]">
           <input {...register("id")} type="hidden" />
           <Textinput
-            label="descriçao"
-            placeholder="Seg. patrimonial, Seg. de Processo etc."
+            label="descrição"
+            placeholder="Seg. patrimonial"
             register={register}
             {...register("description", { required: "description is required" })}
             error={errors.description}
@@ -88,12 +87,12 @@ export function FormRegisterEvent() {
 
       <div className="flex  items-center justify-start p-[1rem]">
         <div className="ltr:text-right rtl:text-left">
-          <button
-            className="btn bg-sky-700 hover:bg-sky-600 text-center"
+        <button
+            className="btn bg-sky-700 hover:bg-sky-600 text-white text-center"
             type="submit"
           >
             {" "}
-            Registrar Ocorrência
+            Registrar
           </button>
         </div>
       </div>

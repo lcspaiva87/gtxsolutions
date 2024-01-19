@@ -15,7 +15,7 @@ type FormValues = {
 const FormValidationSchema = yup
   .object({
     id: yup.string(),
-    name: yup.string().required("name is required"),
+    name: yup.string().required("Nome é obrigatório"),
   })
   .required();
 
@@ -48,8 +48,8 @@ export function FormRegister() {
     let formFields = Object.entries(defaultValues);
     formFields.forEach(([name, fieldValue]) => {
       if (userInitialData) {
+        setValue(name, userInitialData ? userInitialData[name] : "");
       }
-      setValue(name, userInitialData ? [name] : "");
     });
   }, [userInitialData]);
 
@@ -62,7 +62,7 @@ export function FormRegister() {
     } else {
       return updateMutation.mutate({
         id: data.id,
-        name: data.ip,
+        name: data.name,
       });
     }
   }
@@ -86,12 +86,12 @@ export function FormRegister() {
 
       <div className="flex  items-center justify-start p-[1rem]">
         <div className="ltr:text-right rtl:text-left">
-          <button
-            className="btn bg-sky-700 hover:bg-sky-600 text-center"
+        <button
+            className="btn bg-sky-700 hover:bg-sky-600 text-white text-center"
             type="submit"
           >
             {" "}
-            Registrar Departamentos
+            Registrar
           </button>
         </div>
       </div>

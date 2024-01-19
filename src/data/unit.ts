@@ -1,4 +1,4 @@
-import { del, get, post } from "./client/http-client";
+import { del, get, post, put } from "./client/http-client";
 
 import { IUser } from "@/@types/Use";
 import { AxiosResponse } from "axios";
@@ -28,7 +28,7 @@ export const ListnUnit = async () => {
 };
 
 export const updateUnit= async ({id, email,name}: UpdateUnit) => {
-  const response = await post(`/units/${id}`, { email,name});
+  const response = await put(`/units/${id}`, { email,name});
   return response;
 };
 

@@ -2,6 +2,7 @@
 import { IUser } from "@/@types/Use";
 import Blank from "@/components/partials/app/chat/Blank";
 import Contacts from "@/components/partials/app/chat/Contacts";
+import DefaultCard from "@/components/partials/app/chat/DefaultCard";
 import appChatStore from "@/components/partials/app/chat/store";
 import { CreateEvent } from "@/components/partials/forms/register-event/CreateEvent";
 import { FormRegisterEvent } from "@/components/partials/forms/register-event/FormRegisterEvent";
@@ -16,6 +17,7 @@ import SimpleBar from "simplebar-react";
 
 export default function ResgisterEvent() {
   const { width, breakpoints } = useWidth();
+
   const {
     searchContact,
     mobileChatSidebar,
@@ -24,11 +26,16 @@ export default function ResgisterEvent() {
     setContactSearch,
     toggleMobileChatSidebar,
   } = appChatStore();
-  const { isOpenModal } = creatIeventStore();
-  const {  event} = useEvent();
+
+  const { isOpenModal, setUserInitialData, toggleModal } = creatIeventStore();
+  const { event, removeMutation } = useEvent();
   const searchContacts = event?.filter((item: { description: string }) =>
     item?.description?.toLowerCase().includes(searchContact.toLowerCase()),
   );
+
+  function handleDelete (id:string) {
+    removeMutation.mutate(id);
+  }
 
   return (
     <div className="flex lg:space-x-5 chat-height overflow-hidden relative rtl:space-x-reverse">
@@ -67,7 +74,7 @@ export default function ResgisterEvent() {
 
           <SimpleBar className="contact-height">
             {searchContacts?.map((contact: IUser,index: Key | null | undefined) => (
-              <Contacts key={index} contact={contact} />
+              <DefaultCard key={index} contact={contact} onDelete={() => handleDelete(contact.id) } toggleModal={toggleModal} seInitialData={setUserInitialData} />
             ))}
           </SimpleBar>
         </Card>

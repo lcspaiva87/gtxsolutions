@@ -2,31 +2,41 @@
 import { IUser } from "@/@types/Use";
 import Blank from "@/components/partials/app/chat/Blank";
 import Contacts from "@/components/partials/app/chat/Contacts";
+import DefaultCard from "@/components/partials/app/chat/DefaultCard";
 import appChatStore from "@/components/partials/app/chat/store";
 import { FormRegisterEventType } from "@/components/partials/forms/register-event-type/FormRegisterEventType";
-import { CreateEventType } from "@/components/partials/forms/register-user/CreateUser";
-import createEventTypeStore from "@/components/partials/forms/register-user/store";
+import { CreateEventType } from "@/components/partials/forms/register-event-type/CreateEventType";
+import createEventTypeStore from "@/components/partials/forms/register-event-type/store";
 
 import { Card } from "@/components/ui/Card";
 import Icon from "@/components/ui/Icon";
 import { useEvent } from "@/hooks/useEvent";
+import { useEventType } from "@/hooks/useEventType";
 import useWidth from "@/hooks/useWidth";
 import { Key } from "react";
 import SimpleBar from "simplebar-react";
 
-export default function ResgisterEvent() {
+export default function ResgisterEventType() {
   const { width, breakpoints } = useWidth();
+
   const {
     searchContact,
     mobileChatSidebar,
     setContactSearch,
     toggleMobileChatSidebar,
   } = appChatStore();
-  const { isOpenModal } = createEventTypeStore();
-  const {  event} = useEvent();
-  const searchContacts = event?.filter((item: { description: string }) =>
-    item?.description?.toLowerCase().includes(searchContact.toLowerCase()),
+  const { isOpenModal, toggleModal, setUserInitialData } = createEventTypeStore();
+
+  const { eventType, removeMutation } = useEventType();
+
+  const searchContacts = eventType?.filter(
+    (item: { description: string }) =>
+      item?.description?.toLowerCase().includes(searchContact.toLowerCase()),
   );
+
+  function handleDelete(id: string) {
+    removeMutation.mutate(id);
+  }
 
   return (
     <div className="flex lg:space-x-5 chat-height overflow-hidden relative rtl:space-x-reverse">
@@ -64,9 +74,17 @@ export default function ResgisterEvent() {
           </div>
 
           <SimpleBar className="contact-height">
-            {searchContacts?.map((contact: IUser,index: Key | null | undefined) => (
-              <Contacts key={index} contact={contact} />
-            ))}
+            {searchContacts?.map(
+              (contact: any, index: Key | null | undefined) => (
+                <DefaultCard
+                  key={index}
+                  contact={contact}
+                  onDelete={() => handleDelete(contact.id)}
+                  toggleModal={toggleModal}
+                  seInitialData={setUserInitialData}
+                />
+              ),
+            )}
           </SimpleBar>
         </Card>
       </div>

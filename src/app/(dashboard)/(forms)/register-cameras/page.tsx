@@ -2,6 +2,7 @@
 import { IUser } from "@/@types/Use";
 import Blank from "@/components/partials/app/chat/Blank";
 import Contacts from "@/components/partials/app/chat/Contacts";
+import DefaultCard from "@/components/partials/app/chat/DefaultCard";
 import appChatStore from "@/components/partials/app/chat/store";
 import { CreateCamera } from "@/components/partials/forms/register-cameras/CreateCamera";
 import { FormRegister } from "@/components/partials/forms/register-cameras/FormRegister";
@@ -24,11 +25,16 @@ export default function ResgisterCameras() {
     setContactSearch,
     toggleMobileChatSidebar,
   } = appChatStore();
-  const { isOpenModal } = createCameraStore();
-  const { camera } = useCameras();
+  const { isOpenModal, toggleModal, setCamaraInitialData } = createCameraStore();
+  const { camera, removeMutation } = useCameras();
+
   const searchContacts = camera?.filter((item: { ip: string }) =>
     item.ip.toLowerCase().includes(searchContact.toLowerCase()),
   );
+
+  function handleDelete (id:string) {
+    removeMutation.mutate(id);
+  }
 
   return (
     <div className="flex lg:space-x-5 chat-height overflow-hidden relative rtl:space-x-reverse">
@@ -67,7 +73,7 @@ export default function ResgisterCameras() {
 
           <SimpleBar className="contact-height">
             {searchContacts?.map((contact: IUser,index: Key | null | undefined) => (
-              <Contacts key={index} contact={contact} />
+              <DefaultCard key={index} contact={contact} onDelete={() => handleDelete(contact.id) } toggleModal={toggleModal} seInitialData={setCamaraInitialData}  />
             ))}
           </SimpleBar>
         </Card>

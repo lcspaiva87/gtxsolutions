@@ -14,9 +14,10 @@ export default function  ({ column, tasks }: any) {
   const [start, setStart] = useState(new Date(Number(startDate)))
   const [end, setEnd] = useState(new Date(endDate))
   const {toggleTaskModal} = kabanStore()
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+
   return (
-    <div className="bg-columnBackgroundColor w-[350px]  h-[45rem] max-h-[45rem] rounded-md flex flex-col">
+    <div className="bg-[#161c224d]  w-[350px]  h-[45rem] max-h-[45rem] rounded-md flex flex-col">
       <div className="relative flex justify-between items-center bg-white dark:bg-slate-800 rounded shadow-base px-6 py-5">
         <div
           className="absolute left-0 top-1/2 -translate-y-1/2 h-8 w-[2px]"
@@ -60,17 +61,17 @@ export default function  ({ column, tasks }: any) {
                       {...draggableProvided.draggableProps}
                       {...draggableProvided.dragHandleProps}
                     >
-                      <Card className=" bg-mainBackgroundColor  flex flex-col  rounded-xl hover:ring-2 hover:ring-inset hover:ring-rose-500 cursor-grab relative task">
+                      <Card className=" bg-[#f1f4f9]  flex flex-col  rounded-xl hover:ring-2 hover:ring-inset hover:ring-sky-500 cursor-grab relative task">
                         <header className="flex justify-between items-end">
                           <div className="flex space-x-4 items-center rtl:space-x-reverse">
                             <div className="flex-none">
-                              <div className="h-10 w-10 rounded-md text-lg bg-slate-100 text-slate-900 dark:bg-slate-600 dark:text-slate-200 flex flex-col items-center justify-center font-normal capitalize">
+                              <div className="h-10 w-10 rounded-md text-lg bg-slate-300 text-slate-600 dark:bg-slate-600 dark:text-slate-200 flex flex-col items-center justify-center font-normal capitalize">
                                 {task?.title?.charAt(0) +
                                   task?.title?.charAt(1)}
                               </div>
                             </div>
                             <div className="font-medium text-base leading-6">
-                              <div className="dark:text-slate-200 text-slate-900 max-w-[160px] truncate">
+                              <div className="dark:text-slate-200 text-white-200 max-w-[160px] truncate">
                                 {task.title}
                               </div>
                             </div>
@@ -103,7 +104,7 @@ export default function  ({ column, tasks }: any) {
                                     <span className="text-base">
                                       <Icon icon="heroicons-outline:pencil-alt" />
                                     </span>
-                                    <span>Edit</span>
+                                    <span>Editar</span>
                                   </div>
                                 </Menu.Item>
                                 <Menu.Item
@@ -117,7 +118,7 @@ export default function  ({ column, tasks }: any) {
                                     <span className="text-base">
                                       <Icon icon="heroicons-outline:trash" />
                                     </span>
-                                    <span>Delete</span>
+                                    <span>Encerrar</span>
                                   </div>
                                 </Menu.Item>
                               </div>
@@ -130,14 +131,14 @@ export default function  ({ column, tasks }: any) {
                         <div className="flex space-x-4 rtl:space-x-reverse">
                           {/* start date */}
                           <div>
-                            <span className="block date-label">Start date</span>
+                            <span className="block date-label">Data de inicio</span>
                             <span className="block date-text">
                               {task.startDate}
                             </span>
                           </div>
                           {/* end date */}
                           <div>
-                            <span className="block date-label">Start date</span>
+                            <span className="block date-label">Data de encerramento</span>
                             <span className="block date-text">
                               {task.endDate}
                             </span>
@@ -151,7 +152,7 @@ export default function  ({ column, tasks }: any) {
                           {/* assignee */}
                           <div>
                             <div className="text-slate-400 dark:text-slate-400 text-sm font-normal mb-3">
-                              Assigned to
+                              Participantes
                             </div>
                             <div className="flex justify-start -space-x-1.5 rtl:space-x-reverse">
                               {task.assignee?.map(
@@ -188,7 +189,7 @@ export default function  ({ column, tasks }: any) {
                                 <Icon icon="heroicons-outline:clock" />
                               </span>
 
-                              <span>days left</span>
+                              <span>3 dias</span>
                             </span>
                           </div>
                         </div>

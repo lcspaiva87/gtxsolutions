@@ -18,10 +18,10 @@ type FormValues = {
 const FormValidationSchema = yup
   .object({
     id: yup.string(),
-    description: yup.string().required("description is required"),
-    ip: yup.string().required("ip is required"),
-    site: yup.string().required("site is required"),
-    id_camera_group: yup.string().required("id_camera_group is required"),
+    description: yup.string().required("Descrição é obrigatório"),
+    ip: yup.string().required("IP é obrigatório"),
+    site: yup.string().required("Site é obrigatório"),
+    id_camera_group: yup.string().required("Grupo é obrigatório"),
   })
   .required();
 
@@ -58,10 +58,10 @@ export function FormRegister() {
 
   useEffect(() => {
     let formFields = Object.entries(defaultValues);
-    formFields.forEach(([site, fieldValue]) => {
+    formFields.forEach(([name, fieldValue]) => {
       if (cameraInitialData) {
+        setValue(name, cameraInitialData ? cameraInitialData[name] : "");
       }
-      setValue(site, cameraInitialData ? [name] : "");
     });
   }, [cameraInitialData]);
 
@@ -93,7 +93,7 @@ export function FormRegister() {
 
           <Textinput
 
-            label="Ip da câmeras "
+            label="IP"
             placeholder="000.000.000.000"
             register={register}
             {...register("ip", { required: "Ip is required" })}
@@ -105,23 +105,22 @@ export function FormRegister() {
             placeholder="Descrição"
             register={register}
             {...register("description", {
-              required: "Description is required",
+              required: "Descrição é obrigatório",
             })}
             error={errors.description}
           />
           <Textinput
-
-            label="ID do Grupo de Câmeras"
-            placeholder="ID do Grupo de Câmeras"
+            label="Grupo"
+            placeholder="Mandu"
             register={register}
             {...register("id_camera_group", {
-              required: "id camera group is required",
+              required: "Grupo é obrigatório",
             })}
             error={errors.id_camera_group}
           />
           <Textinput
             label="Site"
-            placeholder="http://localhost:3000/register-cameras"
+            placeholder="https://site.com"
             register={register}
             {...register("site", { required: "site is required" })}
             error={errors.site}

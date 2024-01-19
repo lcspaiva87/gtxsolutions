@@ -41,7 +41,7 @@ const MobileFooter = () => {
       >
         <div className="h-[50px] w-[50px] rounded-full relative left-[0px] top-[0px] custom-dropshadow">
           <img
-            src="https://avatars.githubusercontent.com/u/40870393?v=4"
+            src="https://lh3.googleusercontent.com/a/ACg8ocJzFnZEmgQkVZhJn7GK1_8JS4XLkf4v3-Gi8ylaDETEUA=s288-c-no"
             alt=""
             className={` w-full h-full rounded-full
           ${

@@ -10,38 +10,38 @@ import {
 } from './type'
 
 export const menuItems: MenuItem[] = [
-  {
-    isHeadr: true,
-    title: 'menu',
-  },
+  // {
+  //   isHeadr: true,
+  //   title: 'menu',
+  // },
 
-  {
-    title: 'Dashboard',
-    icon: 'heroicons-outline:home',
-    isOpen: true,
-    isHide: true,
-    child: [
-      {
-        childtitle: 'Analytics Dashboard',
-        childlink: 'analytics',
-      },
-      {
-        childtitle: 'Task',
-        childlink: 'task',
-      },
-      {
-        childtitle: 'Ocorrência',
-        childlink: 'ocorrência',
-      },
+  // {
+  //   title: 'Dashboard',
+  //   icon: 'heroicons-outline:home',
+  //   isOpen: true,
+  //   isHide: true,
+  //   child: [
+  //     {
+  //       childtitle: 'Analytics Dashboard',
+  //       childlink: 'analytics',
+  //     },
+  //     {
+  //       childtitle: 'Task',
+  //       childlink: 'task',
+  //     },
+  //     {
+  //       childtitle: 'Ocorrência',
+  //       childlink: 'ocorrência',
+  //     },
 
-    ],
-  },
+  //   ],
+  // },
   {
     isHeadr: true,
     title: 'apps',
   },
   {
-    title: 'Kanban',
+    title: 'Registro de Ocorrências',
     isHide: true,
     icon: 'heroicons-outline:view-boards',
     link: 'kanban',
@@ -52,12 +52,12 @@ export const menuItems: MenuItem[] = [
     icon: 'heroicons-outline:chat',
     link: 'chat',
   },
-  {
-    title: "Calender",
-    isHide: true,
-    icon: "heroicons-outline:calendar",
-    link: "calender",
-  },
+  // {
+  //   title: "Calender",
+  //   isHide: true,
+  //   icon: "heroicons-outline:calendar",
+  //   link: "calender",
+  // },
   {
     isHeadr: true,
     title: 'Cadastros',
@@ -81,16 +81,16 @@ export const menuItems: MenuItem[] = [
     link: "register-departments",
   },
   {
-    title: "Ocorrência",
-    isHide: true,
-    icon: "heroicons-outline:document-duplicate",
-    link: "register-event",
-  },
-  {
     title: "Unidades",
     isHide: true,
     icon: "heroicons-outline:building-storefront",
     link: "register-unit",
+  },
+  {
+    title: "Natureza da Ocorrência",
+    isHide: true,
+    icon: "heroicons-outline:document-duplicate",
+    link: "register-event",
   },
   {
     title: "Tipo de ocorrência",
@@ -102,92 +102,92 @@ export const menuItems: MenuItem[] = [
 ]
 //register-unit
 export const topMenu: Idata[] = [
-  {
-    title: 'Dashboard',
-    icon: 'heroicons-outline:home',
-    link: '/app/home',
-    child: [
-      {
-        childtitle: 'Analytics Dashboard',
-        childlink: 'dashboard',
-        childicon: 'heroicons:presentation-chart-line',
-      },
-      {
-        childtitle: 'Ecommerce Dashboard',
-        childlink: 'ecommerce',
-        childicon: 'heroicons:shopping-cart',
-      },
-      {
-        childtitle: 'Project  Dashboard',
-        childlink: 'project',
-        childicon: 'heroicons:briefcase',
-      },
-      {
-        childtitle: 'CRM Dashboard',
-        childlink: 'crm',
-        childicon: 'ri:customer-service-2-fill',
-      },
-      {
-        childtitle: 'Banking Dashboard',
-        childlink: 'banking',
-        childicon: 'heroicons:wrench-screwdriver',
-      },
-    ],
-  },
-  {
-    title: 'App',
-    icon: 'heroicons-outline:chip',
-    link: '/app/home',
-    child: [
-      {
-        childtitle: 'Calendar',
-        childlink: 'calender',
-        childicon: 'heroicons-outline:calendar',
-      },
-      {
-        childtitle: 'Kanban',
-        childlink: 'kanban',
-        childicon: 'heroicons-outline:view-boards',
-      },
-      {
-        childtitle: 'Todo',
-        childlink: 'todo',
-        childicon: 'heroicons-outline:clipboard-check',
-      },
-      {
-        childtitle: 'Projects',
-        childlink: 'projects',
-        childicon: 'heroicons-outline:document',
-      },
-    ],
-  },
+  // {
+  //   title: 'Dashboard',
+  //   icon: 'heroicons-outline:home',
+  //   link: '/app/home',
+  //   child: [
+  //     {
+  //       childtitle: 'Analytics Dashboard',
+  //       childlink: 'dashboard',
+  //       childicon: 'heroicons:presentation-chart-line',
+  //     },
+  //     {
+  //       childtitle: 'Ecommerce Dashboard',
+  //       childlink: 'ecommerce',
+  //       childicon: 'heroicons:shopping-cart',
+  //     },
+  //     {
+  //       childtitle: 'Project  Dashboard',
+  //       childlink: 'project',
+  //       childicon: 'heroicons:briefcase',
+  //     },
+  //     {
+  //       childtitle: 'CRM Dashboard',
+  //       childlink: 'crm',
+  //       childicon: 'ri:customer-service-2-fill',
+  //     },
+  //     {
+  //       childtitle: 'Banking Dashboard',
+  //       childlink: 'banking',
+  //       childicon: 'heroicons:wrench-screwdriver',
+  //     },
+  //   ],
+  // },
   {
     title: 'App',
     icon: 'heroicons-outline:chip',
     link: '/app/home',
     child: [
+      // {
+      //   childtitle: 'Calendar',
+      //   childlink: 'calender',
+      //   childicon: 'heroicons-outline:calendar',
+      // },
       {
-        childtitle: 'Calendar',
-        childlink: 'calender',
-        childicon: 'heroicons-outline:calendar',
-      },
-      {
-        childtitle: 'Kanban',
+        childtitle: 'Registro de ocorrências',
         childlink: 'kanban',
         childicon: 'heroicons-outline:view-boards',
       },
-      {
-        childtitle: 'Todo',
-        childlink: 'todo',
-        childicon: 'heroicons-outline:clipboard-check',
-      },
-      {
-        childtitle: 'Projects',
-        childlink: 'projects',
-        childicon: 'heroicons-outline:document',
-      },
+      // {
+      //   childtitle: 'Todo',
+      //   childlink: 'todo',
+      //   childicon: 'heroicons-outline:clipboard-check',
+      // },
+      // {
+      //   childtitle: 'Projects',
+      //   childlink: 'projects',
+      //   childicon: 'heroicons-outline:document',
+      // },
     ],
   },
+  // {
+  //   title: 'App',
+  //   icon: 'heroicons-outline:chip',
+  //   link: '/app/home',
+  //   child: [
+  //     {
+  //       childtitle: 'Calendar',
+  //       childlink: 'calender',
+  //       childicon: 'heroicons-outline:calendar',
+  //     },
+  //     {
+  //       childtitle: 'Kanban',
+  //       childlink: 'kanban',
+  //       childicon: 'heroicons-outline:view-boards',
+  //     },
+  //     {
+  //       childtitle: 'Todo',
+  //       childlink: 'todo',
+  //       childicon: 'heroicons-outline:clipboard-check',
+  //     },
+  //     {
+  //       childtitle: 'Projects',
+  //       childlink: 'projects',
+  //       childicon: 'heroicons-outline:document',
+  //     },
+  //   ],
+  // },
   {
     title: 'Pages',
     icon: 'heroicons-outline:view-boards',
@@ -455,96 +455,96 @@ export const topMenu: Idata[] = [
 ]
 
 export const notifications: Inotifications[] = [
-  {
-    title: 'Your order is placed',
-    desc: 'Amet minim mollit non deser unt ullamco est sit aliqua.',
+  // {
+  //   title: 'Your order is placed',
+  //   desc: 'Amet minim mollit non deser unt ullamco est sit aliqua.',
 
-    image: '/assets/images/all-img/user.png',
-    link: '#',
-  },
-  {
-    title: 'Congratulations Darlene  🎉',
-    desc: 'Won the monthly best seller badge',
-    unread: true,
-    image: '/assets/images/all-img/user2.png',
-    link: '#',
-  },
-  {
-    title: 'Revised Order 👋',
-    desc: 'Won the monthly best seller badge',
+  //   image: '/assets/images/all-img/user.png',
+  //   link: '#',
+  // },
+  // {
+  //   title: 'Congratulations Darlene  🎉',
+  //   desc: 'Won the monthly best seller badge',
+  //   unread: true,
+  //   image: '/assets/images/all-img/user2.png',
+  //   link: '#',
+  // },
+  // {
+  //   title: 'Revised Order 👋',
+  //   desc: 'Won the monthly best seller badge',
 
-    image: '/assets/images/all-img/user3.png',
-    link: '#',
-  },
-  {
-    title: 'Brooklyn Simmons',
-    desc: 'Added you to Top Secret Project group...',
+  //   image: '/assets/images/all-img/user3.png',
+  //   link: '#',
+  // },
+  // {
+  //   title: 'Brooklyn Simmons',
+  //   desc: 'Added you to Top Secret Project group...',
 
-    image: '/assets/images/all-img/user4.png',
-    link: '#',
-  },
+  //   image: '/assets/images/all-img/user4.png',
+  //   link: '#',
+  // },
 ]
 
 export const message: Imessage[] = [
-  {
-    title: 'Wade Warren',
-    desc: 'Hi! How are you doing?.....',
-    active: true,
-    hasnotifaction: true,
-    notification_count: 1,
-    image: '/assets/images/all-img/user1.png',
-    link: '#',
-  },
-  {
-    title: 'Savannah Nguyen',
-    desc: 'Hi! How are you doing?.....',
-    active: false,
-    hasnotifaction: false,
-    image: '/assets/images/all-img/user2.png',
-    link: '#',
-  },
-  {
-    title: 'Ralph Edwards',
-    desc: 'Hi! How are you doing?.....',
-    active: false,
-    hasnotifaction: true,
-    notification_count: 8,
-    image: '/assets/images/all-img/user3.png',
-    link: '#',
-  },
-  {
-    title: 'Cody Fisher',
-    desc: 'Hi! How are you doing?.....',
-    active: true,
-    hasnotifaction: false,
-    image: '/assets/images/all-img/user4.png',
-    link: '#',
-  },
-  {
-    title: 'Savannah Nguyen',
-    desc: 'Hi! How are you doing?.....',
-    active: false,
-    hasnotifaction: false,
-    image: '/assets/images/all-img/user2.png',
-    link: '#',
-  },
-  {
-    title: 'Ralph Edwards',
-    desc: 'Hi! How are you doing?.....',
-    active: false,
-    hasnotifaction: true,
-    notification_count: 8,
-    image: '/assets/images/all-img/user3.png',
-    link: '#',
-  },
-  {
-    title: 'Cody Fisher',
-    desc: 'Hi! How are you doing?.....',
-    active: true,
-    hasnotifaction: false,
-    image: '/assets/images/all-img/user4.png',
-    link: '#',
-  },
+  // {
+  //   title: 'Wade Warren',
+  //   desc: 'Hi! How are you doing?.....',
+  //   active: true,
+  //   hasnotifaction: true,
+  //   notification_count: 1,
+  //   image: '/assets/images/all-img/user1.png',
+  //   link: '#',
+  // },
+  // {
+  //   title: 'Savannah Nguyen',
+  //   desc: 'Hi! How are you doing?.....',
+  //   active: false,
+  //   hasnotifaction: false,
+  //   image: '/assets/images/all-img/user2.png',
+  //   link: '#',
+  // },
+  // {
+  //   title: 'Ralph Edwards',
+  //   desc: 'Hi! How are you doing?.....',
+  //   active: false,
+  //   hasnotifaction: true,
+  //   notification_count: 8,
+  //   image: '/assets/images/all-img/user3.png',
+  //   link: '#',
+  // },
+  // {
+  //   title: 'Cody Fisher',
+  //   desc: 'Hi! How are you doing?.....',
+  //   active: true,
+  //   hasnotifaction: false,
+  //   image: '/assets/images/all-img/user4.png',
+  //   link: '#',
+  // },
+  // {
+  //   title: 'Savannah Nguyen',
+  //   desc: 'Hi! How are you doing?.....',
+  //   active: false,
+  //   hasnotifaction: false,
+  //   image: '/assets/images/all-img/user2.png',
+  //   link: '#',
+  // },
+  // {
+  //   title: 'Ralph Edwards',
+  //   desc: 'Hi! How are you doing?.....',
+  //   active: false,
+  //   hasnotifaction: true,
+  //   notification_count: 8,
+  //   image: '/assets/images/all-img/user3.png',
+  //   link: '#',
+  // },
+  // {
+  //   title: 'Cody Fisher',
+  //   desc: 'Hi! How are you doing?.....',
+  //   active: true,
+  //   hasnotifaction: false,
+  //   image: '/assets/images/all-img/user4.png',
+  //   link: '#',
+  // },
 ]
 
 export const colors = {

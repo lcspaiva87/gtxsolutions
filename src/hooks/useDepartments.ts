@@ -9,57 +9,51 @@ export const useDepartments = () => {
 
   const createMutation = useMutation(addDepartments, {
     onError: () => {
-      enqueueSnackbar('Erro ao Salvar Camera , tente novamente', {
+      enqueueSnackbar('Ocorreu um erro ao adicionar o departamento, tente novamente', {
         variant: 'error',
       })
     },
     onSuccess: (_, data) => {
-      queryClient.setQueryData(['camera', undefined], (oldData: any) => [
-        ...oldData,
-        data,
-      ])
-      enqueueSnackbar('Camera Salvada com sucesso!', { variant: 'success' })
+      enqueueSnackbar('Departamento adicionado com sucesso!', { variant: 'success' });
+      queryClient.invalidateQueries("departament");
     },
   })
 
   const removeMutation = useMutation(deleteDepartments, {
     onError: () => {
-      enqueueSnackbar('Erro ao remover task, tente novamente', {
+      enqueueSnackbar('Ocorreu um erro ao remover o departamento, tente novamente', {
         variant: 'error',
       })
     },
 
     onSuccess: (_, id) => {
-      queryClient.setQueryData(['camera', undefined], (oldData: any) =>
-        oldData.filter((item: any) => item.id !== id),
-      )
-      enqueueSnackbar('camera removido sucesso', { variant: 'success' })
+      enqueueSnackbar('Departamento removido com sucesso!', { variant: 'success' });
+      queryClient.invalidateQueries("departament");
     },
   })
 
   const updateMutation = useMutation(updateDepartments, {
     onError: (erro) => {
       console.log(erro, "erro")
-      enqueueSnackbar(erro?.message || 'Erro ao editar usuário', {
+      enqueueSnackbar('Ocorreu um erro ao editar o departamento, tente novamente', {
         variant: 'error',
       })
       console.log("erro",erro)
     },
     onSuccess: (response) => {
-      enqueueSnackbar("Usuário editado com sucesso", {
+      enqueueSnackbar('Departamento editado com sucesso!', {
         variant: 'success',
       })
+      queryClient.invalidateQueries("departament");
     }
   });
-
-
 
   const {
     isLoading,
     isError,
     data: list
   } = useQuery({
-    queryKey: ['user'],
+    queryKey: ['departament'],
     queryFn: () => listDepartments()
   })
 

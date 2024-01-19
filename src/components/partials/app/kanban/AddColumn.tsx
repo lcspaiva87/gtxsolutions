@@ -36,7 +36,7 @@ const FormValidationSchema = yup
 
 export default function AddColumn() {
   const [color, setColor] = useState("#4669fa");
-  const { columModal, toggleColumnModal } = kabanStore();
+  const { columModal, toggleColumnModal, addColumnBoard } = kabanStore();
   const { createMutation } = useColumns();
 
   const {
@@ -61,9 +61,21 @@ export default function AddColumn() {
     const id = `container-${uuidv4()}`;
     // createMutation.mutate({ branch, unit, description, cameras, images })
 
-    console.log("IMAGES", images)
     toggleColumnModal(false);
     reset();
+    addColumnBoard({
+      id: description,
+      columnId: "0",
+      title: "Nova ocorrência 19/01/2024",
+      user: "user",
+      message: description,
+      startDate: "19/01/2024",
+      endDate: "--/--/----",
+      assignee: [{
+        label: "Leonardo Amaro",
+        image: "https://lh3.googleusercontent.com/a/ACg8ocJzFnZEmgQkVZhJn7GK1_8JS4XLkf4v3-Gi8ylaDETEUA=s288-c-no"
+      }],
+    })
   };
 
   return (
@@ -79,17 +91,9 @@ export default function AddColumn() {
             label="Filial"
             options={[
               {
-                label: "test1",
+                label: "Tereos",
                 value: 1,
-              },
-              {
-                label: "test2",
-                value: 2,
-              },
-              {
-                label: "test3",
-                value: 3,
-              },
+              }
             ]}
             register={register}
             {...register("branch", { required: "Filial é obrigatório" })}
@@ -113,17 +117,9 @@ export default function AddColumn() {
             label="Unidade"
             options={[
               {
-                label: "test1",
+                label: "Mandu",
                 value: 1,
-              },
-              {
-                label: "test2",
-                value: 2,
-              },
-              {
-                label: "test3",
-                value: 3,
-              },
+              }
             ]}
             register={register}
             {...register("unit", { required: "Unidade é obrigatório" })}
@@ -147,17 +143,13 @@ export default function AddColumn() {
             label="Cameras"
             options={[
               {
-                label: "test1",
+                label: "Escritório",
                 value: 1,
               },
               {
-                label: "test2",
+                label: "Estacionamento",
                 value: 2,
-              },
-              {
-                label: "test3",
-                value: 3,
-              },
+              }
             ]}
             register={register}
             // {...register("cata", { required: "cata is required" })}

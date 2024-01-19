@@ -1,4 +1,4 @@
-import { del, get, post } from "./client/http-client";
+import { del, get, post, put } from "./client/http-client";
 
 import { AxiosResponse } from "axios";
 import Cookies from "js-cookie";
@@ -26,7 +26,7 @@ export const listEvent = async () => {
 };
 
 export const updateEvent = async ({ id,description }: UpdatEvent) => {
-  const response = await post(`/event_origin/${id}`, {description});
+  const response = await put(`/event_origin/${id}`, {description});
   return response;
 };
 

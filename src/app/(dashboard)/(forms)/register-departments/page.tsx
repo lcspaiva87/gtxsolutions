@@ -2,6 +2,7 @@
 import { IUser } from "@/@types/Use";
 import Blank from "@/components/partials/app/chat/Blank";
 import Contacts from "@/components/partials/app/chat/Contacts";
+import DefaultCard from "@/components/partials/app/chat/DefaultCard";
 import appChatStore from "@/components/partials/app/chat/store";
 import { CreateDepartments } from "@/components/partials/forms/register-departments/CreateDepartments";
 import { FormRegister } from "@/components/partials/forms/register-departments/FormDepartments";
@@ -24,11 +25,17 @@ export default function ResgisterDepartments() {
     setContactSearch,
     toggleMobileChatSidebar,
   } = appChatStore();
-  const { isOpenModal } = createDepartmentsStore();
-  const { departments } = useDepartments();
-  const searchContacts = departments?.filter((item: { ip: string }) =>
-    item?.ip?.toLowerCase().includes(searchContact.toLowerCase()),
+
+  const { isOpenModal, toggleModal, setUserInitialData } = createDepartmentsStore();
+  const { departments, removeMutation } = useDepartments();
+
+  const searchContacts = departments?.filter((item: { name: string }) =>
+    item?.name?.toLowerCase().includes(searchContact.toLowerCase()),
   );
+
+  function handleDelete (id:string) {
+    removeMutation.mutate(id);
+  }
 
   return (
     <div className="flex lg:space-x-5 chat-height overflow-hidden relative rtl:space-x-reverse">
@@ -67,7 +74,7 @@ export default function ResgisterDepartments() {
 
           <SimpleBar className="contact-height">
             {searchContacts?.map((contact: IUser,index: Key | null | undefined) => (
-              <Contacts key={index} contact={contact} />
+              <DefaultCard key={index} contact={contact} onDelete={() => handleDelete(contact.id) } toggleModal={toggleModal} seInitialData={setUserInitialData} />
             ))}
           </SimpleBar>
         </Card>

@@ -9,46 +9,43 @@ export const useEvent = () => {
 
   const createMutation = useMutation(addEvent, {
     onError: () => {
-      enqueueSnackbar('Erro ao Salvar Evento , tente novamente', {
+      enqueueSnackbar('Ocorreu um erro ao criar a natureza da ocorrência, tente novamente', {
         variant: 'error',
       })
     },
     onSuccess: (_, data) => {
-      queryClient.setQueryData(['event', undefined], (oldData: any) => [
-        ...oldData,
-        data,
-      ])
-      enqueueSnackbar('Evento Salvada com sucesso!', { variant: 'success' })
+      enqueueSnackbar('Natureza da ocorrência adicionada com sucesso!', { variant: 'success' })
+      queryClient.invalidateQueries("event");
     },
   })
 
   const removeMutation = useMutation(deleteEvent, {
     onError: () => {
-      enqueueSnackbar('Erro ao remover Evento, tente novamente', {
+      enqueueSnackbar('Ocorreu um erro ao editar a natureza da ocorrência, tente novamente', {
         variant: 'error',
       })
     },
 
     onSuccess: (_, id) => {
-      queryClient.setQueryData(['event', undefined], (oldData: any) =>
-        oldData.filter((item: any) => item.id !== id),
-      )
-      enqueueSnackbar('Evento removido sucesso', { variant: 'success' })
+      enqueueSnackbar('Natureza da ocorrência removida com sucesso!', { variant: 'success' });
+      queryClient.invalidateQueries("event");
     },
   })
 
   const updateMutation = useMutation(updateEvent, {
     onError: (erro) => {
       console.log(erro, "erro")
-      enqueueSnackbar(erro?.message || 'Erro ao editar Evento', {
+      enqueueSnackbar('Ocorreu um erro ao editar a natureza da ocorrência, tente novamente', {
         variant: 'error',
       })
       console.log("erro",erro)
+
     },
     onSuccess: (response) => {
-      enqueueSnackbar("Evento editado com sucesso", {
+      enqueueSnackbar('Natureza da ocorrência editada com sucesso!', {
         variant: 'success',
       })
+      queryClient.invalidateQueries("event");
     }
   });
 
@@ -59,7 +56,7 @@ export const useEvent = () => {
     isError,
     data: list
   } = useQuery({
-    queryKey: ['user'],
+    queryKey: ['event'],
     queryFn: () => listEvent()
   })
 

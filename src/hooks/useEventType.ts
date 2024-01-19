@@ -9,57 +9,51 @@ export const useEventType = () => {
 
   const createMutation = useMutation(addEventType, {
     onError: () => {
-      enqueueSnackbar('Erro ao Salvar EventoType , tente novamente', {
+      enqueueSnackbar('Ocorreu um erro ao criar a tipo de ocorrência, tente novamente', {
         variant: 'error',
       })
     },
     onSuccess: (_, data) => {
-      queryClient.setQueryData(['eventType', undefined], (oldData: any) => [
-        ...oldData,
-        data,
-      ])
-      enqueueSnackbar('EventoType Salvada com sucesso!', { variant: 'success' })
+      enqueueSnackbar('Tipo de ocorrência adicionada com sucesso!', { variant: 'success' });
+      queryClient.invalidateQueries("event_type");
     },
   })
 
   const removeMutation = useMutation(deleteEventType, {
     onError: () => {
-      enqueueSnackbar('Erro ao remover EventoType, tente novamente', {
+      enqueueSnackbar('Ocorreu um erro ao remover o tipo de ocorrência, tente novamente', {
         variant: 'error',
       })
     },
 
     onSuccess: (_, id) => {
-      queryClient.setQueryData(['eventType', undefined], (oldData: any) =>
-        oldData.filter((item: any) => item.id !== id),
-      )
-      enqueueSnackbar('EventoType removido sucesso', { variant: 'success' })
+      enqueueSnackbar('Tipo de ocorrência removido com sucesso!', { variant: 'success' });
+      queryClient.invalidateQueries("event_type");
     },
   })
 
   const updateMutation = useMutation(updateEventType, {
     onError: (erro) => {
       console.log(erro, "erro")
-      enqueueSnackbar(erro?.message || 'Erro ao editar EventoType', {
+      enqueueSnackbar('Ocorreu um erro ao editar o tipo de ocorrência, tente novamente', {
         variant: 'error',
       })
       console.log("erro",erro)
     },
     onSuccess: (response) => {
-      enqueueSnackbar("EventoType editado com sucesso", {
+      enqueueSnackbar('Tipo de ocorrência editado com sucesso!', {
         variant: 'success',
       })
+      queryClient.invalidateQueries("event_type");
     }
   });
-
-
 
   const {
     isLoading,
     isError,
     data: list
   } = useQuery({
-    queryKey: ['eventType'],
+    queryKey: ['event_type'],
     queryFn: () => listEventType()
   })
 

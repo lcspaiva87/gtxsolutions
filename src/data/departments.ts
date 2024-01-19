@@ -1,4 +1,4 @@
-import { del, get, post } from "./client/http-client";
+import { del, get, post, put } from "./client/http-client";
 
 import { AxiosResponse } from "axios";
 import Cookies from "js-cookie";
@@ -32,11 +32,11 @@ export const listDepartments = async () => {
 
 
 export const updateDepartments = async ({ id,name}: UpdateCameras) => {
-  const response = await post(`/departments/${id}`, {name});
+  const response = await put(`/departments/${id}`, {name});
   return response;
 };
 
-export const deleteDepartments = async (id:string) => {
+export const  deleteDepartments = async (id:string) => {
   const response = await del(`/departments/${id}`);
   return response;
 };
