@@ -1,5 +1,5 @@
 import { Plus, Trash } from "@phosphor-icons/react";
-import { use, useCallback, useRef, useState } from "react";
+import { use, useCallback, useEffect, useRef, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import axios from "axios";
 
@@ -8,6 +8,7 @@ import { v4 as uuidv4 } from "uuid";
 
 interface IImagesGroupSelect {
   label?: string;
+  onChange?: (files: FileType['url'][]) => any;
 }
 
 type FileType = {
@@ -17,7 +18,7 @@ type FileType = {
   url?: string;
 };
 
-const ImagesGroupSelect = ({ label }: IImagesGroupSelect) => {
+const ImagesGroupSelect = ({ label, onChange }: IImagesGroupSelect) => {
   const hiddenFileInput = useRef(null);
   const [files, setFiles] = useState<FileType[]>([]);
 
@@ -118,6 +119,12 @@ const ImagesGroupSelect = ({ label }: IImagesGroupSelect) => {
   const handleOpen = () => {
     open();
   };
+
+  useEffect(() => {
+    if(onChange) {
+      onChange(files.map((file) => file.url));
+    }
+  }, [files]);
 
   return (
     <div className="fromGroup">
