@@ -12,7 +12,7 @@ interface Ievent {
   setUserInitialData: (user: IeventUpdate) => void
 }
 
-const creatIeventStore = create<Ievent>((set) => ({
+const creatIevenTypetStore = create<Ievent>((set) => ({
   isOpenModal: false,
   modalAction: "create",
   userInitialData: null,
@@ -26,4 +26,4 @@ const creatIeventStore = create<Ievent>((set) => ({
   setUserInitialData: (Ievent) => set({ userInitialData: Ievent })
 }))
 
-export default creatIeventStore
+export default creatIevenTypetStore

@@ -17,7 +17,7 @@ export const useUnit = () => {
     },
     onSuccess: (_, data) => {
       enqueueSnackbar('Unidade  Salvada com sucesso!', { variant: 'success' })
-      queryClient.invalidateQueries('unit')
+      queryClient.invalidateQueries(['unit'])
     },
   })
 

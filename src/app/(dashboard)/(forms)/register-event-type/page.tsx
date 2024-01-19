@@ -5,12 +5,12 @@ import Contacts from "@/components/partials/app/chat/Contacts";
 import appChatStore from "@/components/partials/app/chat/store";
 import { CreateEventType } from "@/components/partials/forms/register-event-type/CreateEventType";
 import { FormRegisterEventType } from "@/components/partials/forms/register-event-type/FormRegisterEventType";
+import creatIevenTypetStore from "@/components/partials/forms/register-event-type/store";
 
-import createEventTypeStore from "@/components/partials/forms/register-user/store";
 
 import { Card } from "@/components/ui/Card";
 import Icon from "@/components/ui/Icon";
-import { useEvent } from "@/hooks/useEvent";
+import { useEventType } from "@/hooks/useEventType";
 import useWidth from "@/hooks/useWidth";
 import { Key } from "react";
 import SimpleBar from "simplebar-react";
@@ -23,9 +23,9 @@ export default function ResgisterEvent() {
     setContactSearch,
     toggleMobileChatSidebar,
   } = appChatStore();
-  const { isOpenModal } = createEventTypeStore();
-  const {  event} = useEvent();
-  const searchContacts = event?.filter((item: { description: string }) =>
+  const { isOpenModal } = creatIevenTypetStore();
+  const {  eventType} = useEventType();
+  const searchContacts = eventType?.filter((item: { description: string }) =>
     item?.description?.toLowerCase().includes(searchContact.toLowerCase()),
   );
 

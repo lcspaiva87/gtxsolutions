@@ -15,7 +15,7 @@ export const useEvent = () => {
     },
     onSuccess: (_, data) => {
       enqueueSnackbar('Evento Salvada com sucesso!', { variant: 'success' })
-      queryClient.invalidateQueries('event')
+      queryClient.invalidateQueries(['event'])
 
     },
   })
@@ -57,7 +57,7 @@ export const useEvent = () => {
     isError,
     data: list
   } = useQuery({
-    queryKey: ['user'],
+    queryKey: ['event'],
     queryFn: () => listEvent()
   })
 

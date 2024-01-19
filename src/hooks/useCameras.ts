@@ -15,7 +15,7 @@ export const useCameras = () => {
     },
     onSuccess: (_, data) => {
       enqueueSnackbar('Camera Salvada com sucesso!', { variant: 'success' })
-      queryClient.invalidateQueries('cameras')
+      queryClient.invalidateQueries( ['cameras'])
     },
   })
 
@@ -29,7 +29,7 @@ export const useCameras = () => {
     onSuccess: (_, id) => {
 
       enqueueSnackbar('camera removido sucesso', { variant: 'success' })
-      queryClient.invalidateQueries('cameras')
+      queryClient.invalidateQueries( ['cameras'])
     },
   })
 

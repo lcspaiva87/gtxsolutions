@@ -14,11 +14,8 @@ export const useEventType = () => {
       })
     },
     onSuccess: (_, data) => {
-      queryClient.setQueryData(['eventType', undefined], (oldData: any) => [
-        ...oldData,
-        data,
-      ])
       enqueueSnackbar('EventoType Salvada com sucesso!', { variant: 'success' })
+      queryClient.invalidateQueries(['eventType'])
     },
   })
 
@@ -30,19 +27,19 @@ export const useEventType = () => {
     },
 
     onSuccess: (_, id) => {
-      queryClient.setQueryData(['eventType', undefined], (oldData: any) =>
-        oldData.filter((item: any) => item.id !== id),
-      )
+
       enqueueSnackbar('EventoType removido sucesso', { variant: 'success' })
+      queryClient.invalidateQueries(['eventType'])
     },
   })
 
   const updateMutation = useMutation(updateEventType, {
     onError: (erro) => {
-      console.log(erro, "erro")
+
       enqueueSnackbar(erro?.message || 'Erro ao editar EventoType', {
         variant: 'error',
       })
+      queryClient.invalidateQueries(['eventType'])
       console.log("erro",erro)
     },
     onSuccess: (response) => {
