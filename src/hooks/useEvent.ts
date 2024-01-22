@@ -57,6 +57,7 @@ export const useEvent = () => {
     data: list
   } = useQuery({
     queryKey: ['event'],
+    queryKey: ['event'],
     queryFn: () => listEvent()
   })
 

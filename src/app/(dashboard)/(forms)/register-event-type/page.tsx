@@ -4,6 +4,7 @@ import Blank from "@/components/partials/app/chat/Blank";
 import Contacts from "@/components/partials/app/chat/Contacts";
 import DefaultCard from "@/components/partials/app/chat/DefaultCard";
 import appChatStore from "@/components/partials/app/chat/store";
+import { CreateEventType } from "@/components/partials/forms/register-event-type/CreateEventType";
 import { FormRegisterEventType } from "@/components/partials/forms/register-event-type/FormRegisterEventType";
 import { CreateEventType } from "@/components/partials/forms/register-event-type/CreateEventType";
 import createEventTypeStore from "@/components/partials/forms/register-event-type/store";

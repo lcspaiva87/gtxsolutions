@@ -38,6 +38,7 @@ export const useEventType = () => {
       enqueueSnackbar('Ocorreu um erro ao editar o tipo de ocorrência, tente novamente', {
         variant: 'error',
       })
+      queryClient.invalidateQueries(['eventType'])
       console.log("erro",erro)
     },
     onSuccess: (response) => {

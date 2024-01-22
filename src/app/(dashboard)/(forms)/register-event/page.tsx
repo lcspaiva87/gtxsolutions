@@ -1,5 +1,4 @@
 "use client";
-import { IUser } from "@/@types/Use";
 import Blank from "@/components/partials/app/chat/Blank";
 import Contacts from "@/components/partials/app/chat/Contacts";
 import DefaultCard from "@/components/partials/app/chat/DefaultCard";

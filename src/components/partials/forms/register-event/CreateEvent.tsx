@@ -1,9 +1,9 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
-import creatIeventStore from "./store";
+import creatIevenTypetStore from "../register-event-type/store";
 
 
 export function CreateEvent() {
-  const { toggleModal } = creatIeventStore();
+  const { toggleModal } = creatIevenTypetStore();
 
   return (
     <div>

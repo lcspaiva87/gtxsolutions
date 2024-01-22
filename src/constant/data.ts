@@ -81,6 +81,12 @@ export const menuItems: MenuItem[] = [
     link: "register-departments",
   },
   {
+    title: "Natureza da Ocorrência",
+    isHide: true,
+    icon: "heroicons-outline:document-duplicate",
+    link: "register-event",
+  },
+  {
     title: "Unidades",
     isHide: true,
     icon: "heroicons-outline:building-storefront",
